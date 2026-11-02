@@ -114,8 +114,8 @@ const p1 = JSON.parse(fs.readFileSync('./app_build/package.json', 'utf8'));
 const p2 = JSON.parse(fs.readFileSync('./app_build/pre-launch/package.json', 'utf8'));
 p1.dependencies = { ...p1.dependencies, ...p2.dependencies };
 p1.main = 'main.js';
-p1.author = 'Jorge <jorge@talk.me>';
-p1.homepage = 'https://talk.me';
+p1.author = 'Jorge González Domínguez / Jorge.Lighting <info@talk-me.app>';
+p1.homepage = 'https://www.talk-me.app';
 fs.writeFileSync('./app_build/package.json', JSON.stringify(p1, null, 2), 'utf8');
 "
 
