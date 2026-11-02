@@ -418,6 +418,21 @@ export class HermesTTS {
             };
 
             utterance.onerror = (e) => {
+                // 🛡️ [v60.IOS-RETRY] Si iOS WebKit interrumpió la locución por cambio de audio session
+                if (e.error === 'interrupted' || e.error === 'not-allowed') {
+                    console.log('🔄 [Hermes-IOS] Reintentando locución tras estabilización de audio session...');
+                    setTimeout(() => {
+                        try {
+                            if (window.speechSynthesis && window.speechSynthesis.paused) window.speechSynthesis.resume();
+                            const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
+                            retryUtterance.lang = utterance.lang;
+                            if (utterance.voice) retryUtterance.voice = utterance.voice;
+                            retryUtterance.rate = utterance.rate;
+                            retryUtterance.volume = 1.0;
+                            window.speechSynthesis.speak(retryUtterance);
+                        } catch (_) { }
+                    }, 250);
+                }
                 console.warn('⚠️ [HermesTTS.speak] Error en síntesis de voz:', e);
                 window.activeUtterances.delete(utterance);
                 if (this.activeUtterance === utterance) {

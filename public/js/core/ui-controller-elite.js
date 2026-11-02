@@ -4502,13 +4502,17 @@ async function startChat() {
     }
     const startConstraints = window.getEliteConstraints ? window.getEliteConstraints(preferredId, preferredLabel) : { audio: true };
 
+    // [v60.LISTENER-MODE] Modo Oyente: Inicializar incondicionalmente AudioContext y dispositivos
+    if (typeof getAudioDevices === "function") getAudioDevices();
+    if (typeof window.initAudioCtx === "function") window.initAudioCtx();
+
     navigator.mediaDevices.getUserMedia(startConstraints).then(async stream => {
-        // [v59.28] Monitorizacin persistente: No detenemos los tracks, inicializamos el anlisis visual
-        window.mediaStream = stream; // Guardar referencia global
+        window.mediaStream = stream;
         await setupAudioAnalysis(stream);
         getAudioDevices();
     }).catch(err => {
-        console.warn("No se pudo pre-autorizar el micrfono:", err);
+        console.warn("ℹ️ Modo Oyente activo: microfono local omitido:", err.message || err);
+        if (typeof window.activateIOSAudioSession === "function") window.activateIOSAudioSession();
     });
 }
 
