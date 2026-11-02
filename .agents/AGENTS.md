@@ -39,3 +39,10 @@
 - **100% Licencias Permisivas (MIT y Apache 2.0)**: Node/Express (MIT), Socket.io (MIT), Vosk ASR (Apache 2.0), MADLAD-400-3B (Apache 2.0), CTranslate2 (MIT), Piper TTS (MIT), Maider eu_ES (MIT/OpenSLR), Electron (MIT), sACN/e131 (MIT), OSC (MIT/LGPL v2.1 aislado vía UDP).
 - **Prohibición de Contaminación**: NUNCA incorporar librerías bajo GPL v3, AGPL ni cláusulas Non-Commercial (NC) que invaliden la explotación comercial, venta o alquiler de Talk.me.
 
+## 8. Principio de Ingeniería de "Ojo Clínico Permanente" y Pensamiento Crítico
+- **Cero Suposiciones / Duda Sistemática**: Nunca dar por sentada una solución o validación a la primera sin auditar las interacciones cruzadas en caliente (hardware, estados de red, ciclo de vida del SO móvil).
+- **Verificación en Profundidad**: Toda afirmación debe estar respaldada por el flujo real de datos y el comportamiento del kernel (ej. WebKit/CoreAudio en iOS, threading de Node en Windows/Linux/macOS).
+- **Nomenclatura Estándar Inmutable de Instaladores**: Todo artefacto de distribución se nombra estrictamente: `Talk-me.app_${version}_Setup.${ext}` (ej. `Talk-me.app_1.0.0_Setup.exe`, `Talk-me.app_1.0.0_Setup.dmg`, `Talk-me.app_1.0.0_Setup.AppImage`).
+- **Anticipación Proactiva de Infraestructura**: Mantener dependencias de CI/CD al día (Node.js 22 LTS) sin esperar a fallos en compilaciones de producción.
+
+
