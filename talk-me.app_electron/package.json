@@ -2,6 +2,8 @@
   "name": "talk-me-desktop",
   "version": "60.2.0",
   "description": "Desktop Launcher and Client wrapper for Talk.me Chat",
+  "author": "Jorge <jorge@talk.me>",
+  "homepage": "https://talk.me",
   "main": "main.js",
   "scripts": {
     "start": "electron app_build",
@@ -76,6 +78,7 @@
         "AppImage",
         "deb"
       ],
+      "maintainer": "Jorge <jorge@talk.me>",
       "category": "Network",
       "executableName": "talk-me",
       "synopsis": "Talk.me Pro Intercom and Translation System"
