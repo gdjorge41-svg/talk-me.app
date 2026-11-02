@@ -34,7 +34,7 @@
     ],
     "nsis": {
       "include": "installer.nsh",
-      "artifactName": "Talk-me.app Setup ${version}.${ext}"
+      "artifactName": "Talk-me.app_${version}_Setup.${ext}"
     },
     "mac": {
       "target": [
@@ -48,7 +48,7 @@
       "identity": null
     },
     "dmg": {
-      "artifactName": "Talk-me-${version}.${ext}"
+      "artifactName": "Talk-me.app_${version}_Setup.${ext}"
     },
     "win": {
       "target": [
@@ -78,6 +78,7 @@
         "AppImage",
         "deb"
       ],
+      "artifactName": "Talk-me.app_${version}_Setup.${ext}",
       "maintainer": "info@talk-me.app",
       "category": "Network",
       "executableName": "talk-me",
