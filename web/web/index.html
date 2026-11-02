@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="pageTitle">Talk-me — Servidor de Comunicación Industrial, Segura y Local</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/showcase.css" />
+</head>
+
+<body>
+
+  <!-- SELECTOR DE IDIOMA PERMANENTE (DESPLEGABLE 24 IDIOMAS) -->
+  <div class="lang-selector-wrapper" id="langSelectorWrapper">
+    <button class="global-lang-selector" id="globalLangSelector" onclick="toggleLangDropdown(event)" aria-label="Select Language">
+      <span id="currentLangText">ES</span>
+      <svg class="chevron-icon" viewBox="0 0 10 6">
+        <path d="M1 1l4 4 4-4" />
+      </svg>
+    </button>
+    <div class="lang-dropdown-menu" id="langDropdownMenu"></div>
+  </div>
+
+  <!-- ==============================================
+       1. SECCIÓN STICKY PINNED DE LA INTRO (400vh)
+       ============================================== -->
+  <div class="intro-pin-wrapper" id="introWrapper">
+    <div class="sticky-scene" id="stickyScene">
+
+      <!-- Canvas Estelar -->
+      <canvas id="stars-canvas"></canvas>
+
+      <!-- Marca de agua de pie en intro -->
+      <div class="intro-bottom-watermark" id="introWatermark" data-i18n="watermark">
+        JORGE.LIGHTING 2026
+      </div>
+
+      <!-- Escenario 3D Pinned -->
+      <div class="stage-3d" id="stage3D">
+        <div class="stage-world" id="stageWorld">
+
+          <!-- Logo Talk-me (Z=0 Exacto) -->
+          <div class="focal-item" id="heroLogoWrap">
+            <h1 class="logo-h1">
+              <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+            </h1>
+          </div>
+
+          <!-- Prompt: Desliza para despegar -->
+          <div class="hero-scroll-prompt" id="heroPrompt">
+            <div class="mouse-capsule">
+              <div class="mouse-dot"></div>
+            </div>
+            <span data-i18n="scrollPrompt">Desliza para despegar</span>
+          </div>
+
+          <!-- 7 Palabras 3D con centrado óptico continuo -->
+          <div class="focal-item word-3d" data-center="0.14" data-span="0.08">Comunicación</div>
+          <div class="focal-item word-3d" data-center="0.25" data-span="0.08">Universal</div>
+          <div class="focal-item word-3d" data-center="0.36" data-span="0.08">Multidispositivo</div>
+          <div class="focal-item word-3d" data-center="0.47" data-span="0.08">Segura</div>
+          <div class="focal-item word-3d" data-center="0.58" data-span="0.08">Inteligente</div>
+          <div class="focal-item word-3d" data-center="0.69" data-span="0.08">Local</div>
+          <div class="focal-item word-3d" data-center="0.80" data-span="0.08">Personalizable</div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==============================================
+       2. WEB OFICIAL TALK-ME (REVELADO AUTOMÁTICO EN VIEWPORT)
+       ============================================== -->
+  <main id="normal-website">
+
+    <!-- NAVBAR PRINCIPAL RESPONSIVE -->
+    <nav class="site-nav" id="siteNav">
+      <div class="nav-container">
+        <a href="#filosofia" class="nav-brand">
+          <h2>
+            <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+          </h2>
+        </a>
+
+        <!-- Enlaces escritorio -->
+        <ul class="nav-menu">
+          <li><a href="#filosofia" class="nav-link" data-i18n="nav.philosophy">Filosofía</a></li>
+          <li><a href="#caracteristicas" class="nav-link" data-i18n="nav.features">Características</a></li>
+          <li><a href="#descargas" class="nav-link" data-i18n="nav.downloads">Descargas</a></li>
+          <li><a href="#precios" class="nav-link" data-i18n="nav.pricing">Planes & Licencias</a></li>
+          <li><a href="#faqs" class="nav-link" data-i18n="nav.faqs">FAQs</a></li>
+          <li><a href="#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Menú Móvil -->
+      <div class="mobile-menu-drawer" id="mobileDrawer">
+        <a href="#filosofia" class="nav-link" data-i18n="nav.philosophy">Filosofía</a>
+        <a href="#caracteristicas" class="nav-link" data-i18n="nav.features">Características</a>
+        <a href="#descargas" class="nav-link" data-i18n="nav.downloads">Descargas</a>
+        <a href="#precios" class="nav-link" data-i18n="nav.pricing">Planes & Licencias</a>
+        <a href="#faqs" class="nav-link" data-i18n="nav.faqs">FAQs</a>
+        <a href="#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+      </div>
+    </nav>
+
+    <!-- 1. MANIFIESTO / FILOSOFÍA -->
+    <section class="section-wrap" id="filosofia">
+      <div class="section-header reveal-on-scroll">
+        <h2 data-i18n="philosophy.title">Conecta personas, máquinas y software.</h2>
+        <p style="font-size:1.15rem; color:#cbd5e1; line-height:1.3; margin-top:0px;" data-i18n="philosophy.subtitle">
+          Combina comunicación en tiempo real, inteligencia artificial local, traducción, transcripción, integración de
+          hardware y automatización en un único ecosistema.
+        </p>
+        <p style="font-size:1.5rem; color:#cbd5e1; line-height:2; margin-top:0px; font-weight: 700;" data-i18n="philosophy.tagline">
+          Habla. Entiende. Actúa.
+        </p>
+      </div>
+
+      <!-- LOS 6 APARTADOS SOLICITADOS CON ICONOS UNIFICADOS (BLANCO, NARANJA Y MORADO COMO EL LOGO) -->
+      <div class="pillars-grid">
+
+        <!-- 1. Sin barreras de idioma -->
+        <div class="pillar-card reveal-on-scroll reveal-delay-1">
+          <div class="pillar-header">
+            <div class="pillar-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" stroke="var(--primary-light)" fill="rgba(129, 140, 248, 0.06)" />
+                <path d="M3.6 9h16.8M3.6 15h16.8" stroke="#ffffff" />
+                <path d="M11.5 3a14 14 0 000 18M12.5 3a14 14 0 010 18" stroke="var(--primary-light)" />
+                <circle cx="12" cy="12" r="2.5" fill="var(--logo-me)" />
+              </svg>
+            </div>
+            <h3 data-i18n="philosophy.p1Title">Sin barreras de idioma.</h3>
+          </div>
+          <p data-i18n="philosophy.p1Desc">Comunicación y traducción multilingüe en tiempo real, cada persona habla en su idioma y todos se entienden.</p>
+        </div>
+
+        <!-- 2. Tu hardware. Tu ecosistema -->
+        <div class="pillar-card reveal-on-scroll reveal-delay-2">
+          <div class="pillar-header">
+            <div class="pillar-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="13" height="9" rx="1.5" stroke="var(--primary-light)" fill="rgba(129, 140, 248, 0.06)" />
+                <path d="M6 17h5M8.5 13v4" stroke="var(--primary-light)" />
+                <rect x="14" y="8" width="8" height="12" rx="1.5" stroke="#ffffff" fill="rgba(255, 255, 255, 0.04)" />
+                <circle cx="18" cy="14" r="1.8" fill="var(--logo-me)" />
+              </svg>
+            </div>
+            <h3 data-i18n="philosophy.p2Title">Tu hardware. Tu ecosistema.</h3>
+          </div>
+          <p data-i18n="philosophy.p2Desc">Conecta ordenadores, tablets, móviles, auriculares, micrófonos y tus dispositivos actuales sin tener que sustituir tu hardware ni software existente.</p>
+        </div>
+
+        <!-- 3. Tus datos, bajo tu control -->
+        <div class="pillar-card reveal-on-scroll reveal-delay-3">
+          <div class="pillar-header">
+            <div class="pillar-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21.5s7.5-3.8 7.5-9.5V5.5L12 2.8 4.5 5.5v6.5c0 5.7 7.5 9.5 7.5 9.5z" stroke="var(--primary-light)" fill="rgba(129, 140, 248, 0.06)" />
+                <path d="M9 12l2.2 2.2 4.3-4.4" stroke="#ffffff" />
+                <circle cx="12" cy="7.5" r="1.8" fill="var(--logo-me)" />
+              </svg>
+            </div>
+            <h3 data-i18n="philosophy.p3Title">Tus datos, bajo tu control</h3>
+          </div>
+          <p data-i18n="philosophy.p3Desc">Ejecución local en tu red, sin telemetría ni servicios externos. Sin APIs ni cuotas por token.</p>
+        </div>
+
+        <!-- 4. Inteligencia donde la necesitas -->
+        <div class="pillar-card reveal-on-scroll reveal-delay-1">
+          <div class="pillar-header">
+            <div class="pillar-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="5" width="14" height="14" rx="2.5" stroke="var(--primary-light)" fill="rgba(129, 140, 248, 0.06)" />
+                <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="#ffffff" />
+                <circle cx="12" cy="12" r="2.5" fill="var(--logo-me)" />
+              </svg>
+            </div>
+            <h3 data-i18n="philosophy.p4Title">Inteligencia donde la necesitas.</h3>
+          </div>
+          <p data-i18n="philosophy.p4Desc">Motores de transcripción y traducción en tiempo real, directamente en tu red. Privacidad, menos latencia y sin depender de internet.</p>
+        </div>
+
+        <!-- 5. Sin depender de la nube -->
+        <div class="pillar-card reveal-on-scroll reveal-delay-2">
+          <div class="pillar-header">
+            <div class="pillar-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="7" rx="2" stroke="var(--primary-light)" fill="rgba(129, 140, 248, 0.06)" />
+                <rect x="3" y="14" width="18" height="7" rx="2" stroke="var(--primary-light)" fill="rgba(129, 140, 248, 0.06)" />
+                <path d="M7 6.5h.01M7 17.5h.01" stroke="#ffffff" stroke-width="2.5" />
+                <path d="M11 6.5h6M11 17.5h6" stroke="#ffffff" />
+                <circle cx="12" cy="12" r="2" fill="var(--logo-me)" />
+              </svg>
+            </div>
+            <h3 data-i18n="philosophy.p5Title">Sin depender de la nube.</h3>
+          </div>
+          <p data-i18n="philosophy.p5Desc">Traduce, transcribe y conecta personas, máquinas y software en tiempo real desde tu propia infraestructura.</p>
+        </div>
+
+        <!-- 6. Interactúa y actúa -->
+        <div class="pillar-card reveal-on-scroll reveal-delay-3">
+          <div class="pillar-header">
+            <div class="pillar-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" stroke="var(--primary-light)" fill="rgba(129, 140, 248, 0.06)" />
+                <path d="M13 5.5L7.5 13h4.5l-1 5.5 6.5-7.5h-4.5l1-5.5z" stroke="#ffffff" fill="rgba(255, 255, 255, 0.08)" />
+                <circle cx="12" cy="12" r="2" fill="var(--logo-me)" />
+              </svg>
+            </div>
+            <h3 data-i18n="philosophy.p6Title">Interactúa y actúa.</h3>
+          </div>
+          <p data-i18n="philosophy.p6Desc">Conecta con otros sistemas, softwares o máquinas y crea automatizaciones mediante triggers y protocolos como OSC, MIDI y Art-Net, sACN o Timecode SMPTE.</p>
+        </div>
+
+      </div>
+
+      <!-- CABECERA DIVISORIA Y DE CONEXIÓN ESTRATÉGICA -->
+      <div class="showcase-section-header reveal-on-scroll">
+        <h2 class="showcase-main-title">
+          <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span> <span class="showcase-title-action" data-i18n="showcaseTitleAction">en acción</span>
+        </h2>
+        <p class="showcase-main-subtitle" data-i18n="showcaseMainSubtitle">
+          Explora algunas de las funcionalidades
+        </p>
+        <div class="showcase-divider-line"></div>
+      </div>
+
+      <!-- MUESTRARIO DE 11 CARACTERÍSTICAS ANIMADAS (2 POR FILA) -->
+      <div class="animated-showcase-grid">
+
+        <!-- 1. AUDIO Y TRANSCRIPCIÓN -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="transcripcionTitle">Audio y transcripción</h2>
+            <div class="animation-container" id="transcription-demo-card">
+              <div class="transcription-demo">
+                <div class="top-transcript-popup">
+                  <span class="transcript-stt-text">la</span>
+                </div>
+
+                <div class="message-bubble">
+                  <div class="message-header">
+                    <span class="user-name-green" data-i18n="userJorge">Jorge</span>
+                    <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+                  </div>
+                  <div class="message-text" data-i18n="msgHolaMundo">Hola Mundo</div>
+
+                  <div class="audio-capsule">
+                    <div class="audio-play-btn">
+                      <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                    </div>
+                    <div class="audio-waveform-bars">
+                      <div class="audio-wave-bar" style="height: 10px;"></div>
+                      <div class="audio-wave-bar" style="height: 14px;"></div>
+                      <div class="audio-wave-bar" style="height: 8px;"></div>
+                      <div class="audio-wave-bar" style="height: 16px;"></div>
+                      <div class="audio-wave-bar" style="height: 12px;"></div>
+                      <div class="audio-wave-bar" style="height: 6px;"></div>
+                      <div class="audio-wave-bar" style="height: 14px;"></div>
+                      <div class="audio-wave-bar" style="height: 10px;"></div>
+                    </div>
+                    <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+                  </div>
+
+                  <div style="font-size: 0.72rem; color: var(--text-muted); text-align: right; margin-top: 4px;">13:04:23</div>
+                </div>
+
+                <div class="chat-bottom-bar">
+                  <button class="btn-icon-purple" title="Cámara">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                      <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                  </button>
+
+                  <div class="chat-input-wrapper">
+                    <span class="chat-placeholder" data-i18n="placeholderText">Escribe tu mensaje...</span>
+                    <div class="vumeter-input-box"></div>
+                  </div>
+
+                  <button class="btn-icon-orange" title="Hablar / Enviar">
+                    <svg class="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                      <line x1="12" y1="19" x2="12" y2="23"></line>
+                      <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <svg class="icon-plane" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="transcripcionTitle">Audio y transcripción</h3>
+              <p data-i18n="transcripcionDesc">Habla y transmite audio en tiempo real a todos los usuarios. Mientras tanto, la inteligencia artificial local procesa tu voz y tu idioma para convertirla en texto y mostrarla directamente en el chat.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. MODOS DE AUDIO -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="modosAudioTitle">Modos de audio</h2>
+            <div class="animation-container" id="modos-audio-demo-card">
+              <div class="audio-modes-demo">
+                <div class="audio-status-header-row">
+                  <div class="audio-status-pill silent" id="tx-status-pill">
+                    <div class="tx-led"></div>
+                    <span class="tx-status-text" id="tx-status-text">SILENCIO</span>
+                  </div>
+                  <div class="audio-mode-indicator-tag" id="tx-mode-tag">PUSH-TO-TALK</div>
+                </div>
+
+                <div class="sidebar-audio-config-demo">
+                  <div class="setting-row-demo">
+                    <label class="setting-label-demo" data-i18n="labelMicMode">MODO DE MICRÓFONO</label>
+                    <div class="talkme-select-container-demo" id="mic-select-container">
+                      <div class="talkme-select-display" id="mic-mode-display" data-i18n="optPttText">Push-to-Talk (mantener)</div>
+                      <div class="talkme-select-arrow">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </div>
+                      <div class="talkme-select-dropdown hidden" id="mic-select-dropdown">
+                        <div class="talkme-option-item" id="opt-ptt" data-value="ptt" data-i18n="optPttText">Push-to-Talk (mantener)</div>
+                        <div class="talkme-option-item" id="opt-auto" data-value="auto" data-i18n="optAutoText">Automático (por volumen)</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="setting-row-demo" id="threshold-section-row">
+                    <div class="setting-label-between">
+                      <span id="level-section-label" data-i18n="labelInputLevel">NIVEL DE ENTRADA</span>
+                    </div>
+                    <div class="threshold-meter-container">
+                      <div class="threshold-track">
+                        <div class="threshold-fill-bar" id="threshold-fill-bar"></div>
+                        <div class="threshold-green-line hidden" id="threshold-green-line" style="left: 60%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ptt-action-box" id="ptt-action-box">
+                    <button class="ptt-big-button" id="ptt-big-button">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                      </svg>
+                      <span id="ptt-btn-label">MANTENER PARA HABLAR</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="modosAudioTitle">Modos de audio</h3>
+              <p data-i18n="modosAudioDesc">Selecciona entre Push-to-Talk para control manual preciso o activación por voz (VOX) con umbral de volumen verde dinámico según el ruido del entorno.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. TRADUCCIÓN AUTOMÁTICA Y FLUIDA -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="traduccionTitle">Traducción automática y fluida</h2>
+            <div class="animation-container" id="translation-demo-card">
+              <div class="translation-demo">
+                <div class="translation-card user-1">
+                  <div class="trans-header-row">
+                    <span class="user-name-green" data-i18n="userJorge">Jorge</span>
+                    <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+                  </div>
+                  <div class="trans-main-text trans-main-text-user1">¿Estamos listos?</div>
+                  <div class="trans-sub-row">
+                    <span class="lang-pill-src">(FR)</span>
+                    <span class="trans-original-sub">Sommes-nous prêts ?</span>
+                  </div>
+                  <div class="audio-capsule">
+                    <div class="audio-play-btn"><svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></div>
+                    <div class="audio-waveform-bars">
+                      <div class="audio-wave-bar" style="height: 10px;"></div>
+                      <div class="audio-wave-bar" style="height: 14px;"></div>
+                      <div class="audio-wave-bar" style="height: 8px;"></div>
+                      <div class="audio-wave-bar" style="height: 16px;"></div>
+                      <div class="audio-wave-bar" style="height: 12px;"></div>
+                      <div class="audio-wave-bar" style="height: 6px;"></div>
+                      <div class="audio-wave-bar" style="height: 14px;"></div>
+                      <div class="audio-wave-bar" style="height: 10px;"></div>
+                    </div>
+                    <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+                  </div>
+                  <div class="timestamp-row"><span class="timestamp">14:16:58</span></div>
+                </div>
+
+                <div class="translation-card user-mid">
+                  <div class="trans-header-row">
+                    <span class="user-name-orange" style="color: #FACC15;" data-i18n="userCarlos">Carlos</span>
+                    <span class="category-tag cat-sonido" data-i18n="categorySonido">SONIDO</span>
+                  </div>
+                  <div class="trans-main-text trans-main-text-usermid">Todo listo.</div>
+                  <div class="audio-capsule">
+                    <div class="audio-play-btn"><svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></div>
+                    <div class="audio-waveform-bars">
+                      <div class="audio-wave-bar" style="height: 10px;"></div>
+                      <div class="audio-wave-bar" style="height: 14px;"></div>
+                      <div class="audio-wave-bar" style="height: 8px;"></div>
+                      <div class="audio-wave-bar" style="height: 16px;"></div>
+                      <div class="audio-wave-bar" style="height: 12px;"></div>
+                      <div class="audio-wave-bar" style="height: 6px;"></div>
+                      <div class="audio-wave-bar" style="height: 14px;"></div>
+                      <div class="audio-wave-bar" style="height: 10px;"></div>
+                    </div>
+                    <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+                  </div>
+                  <div class="timestamp-row"><span class="timestamp">14:17:04</span></div>
+                </div>
+
+                <div class="translation-card user-2">
+                  <div class="trans-header-row">
+                    <span class="user-name-orange" data-i18n="userSofia">Sofía</span>
+                    <span class="category-tag cat-luzfx" data-i18n="categoryLuz">LUZ / FX</span>
+                  </div>
+                  <div class="trans-main-text trans-reply-text-user2">hasta el infinito y más allá</div>
+                  <div class="trans-sub-row">
+                    <span class="lang-pill-src">(EN)</span>
+                    <span class="trans-original-sub">to infinity and beyond</span>
+                  </div>
+                  <div class="audio-capsule">
+                    <div class="audio-play-btn"><svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></div>
+                    <div class="audio-waveform-bars">
+                      <div class="audio-wave-bar" style="height: 10px;"></div>
+                      <div class="audio-wave-bar" style="height: 14px;"></div>
+                      <div class="audio-wave-bar" style="height: 8px;"></div>
+                      <div class="audio-wave-bar" style="height: 16px;"></div>
+                      <div class="audio-wave-bar" style="height: 12px;"></div>
+                      <div class="audio-wave-bar" style="height: 6px;"></div>
+                      <div class="audio-wave-bar" style="height: 14px;"></div>
+                      <div class="audio-wave-bar" style="height: 10px;"></div>
+                    </div>
+                    <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+                  </div>
+                  <div class="timestamp-row"><span class="timestamp">14:17:10</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="traduccionTitle">Traducción automática y fluida</h3>
+              <p data-i18n="traduccionDesc">Cada usuario escucha y lee los mensajes en su propio idioma en tiempo real. La IA despliega el mensaje original nativo bajo la traducción sin latencia.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. TRADUCCIÓN AVANZADA & DICCIONARIO -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="motoresTitle">Traducción avanzada</h2>
+            <div class="animation-container" id="motores-demo-card">
+              <div class="motores-demo">
+                <div class="translation-engine-header" data-i18n="headerMotorIA">Motor de Traducción IA</div>
+                <div class="translation-grid-row">
+                  <div class="translation-setting-card">
+                    <span class="translation-setting-label" data-i18n="labelTradAuto">TRADUCCIÓN AUTOMÁTICA</span>
+                    <div class="translation-setting-control">
+                      <div class="alert-pill-toggle is-on" id="tgl-trad-auto">ON</div>
+                      <span class="translation-setting-desc" data-i18n="descTradAuto">Traduce el chat al idioma de tu interfaz.</span>
+                    </div>
+                  </div>
+                  <div class="translation-setting-card">
+                    <span class="translation-setting-label" data-i18n="labelMsgOrig">MENSAJE ORIGINAL</span>
+                    <div class="translation-setting-control">
+                      <div class="alert-pill-toggle is-on" id="tgl-trad-orig">ON</div>
+                      <span class="translation-setting-desc" data-i18n="descMsgOrig">Muestra el texto en su idioma nativo bajo la traducción.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="translation-section-block">
+                  <span class="translation-section-title" data-i18n="titleIncomingFilter">FILTRO DE IDIOMAS ENTRANTES</span>
+                  <div class="lang-filter-pills">
+                    <div class="lang-filter-pill active" id="pill-lang-en">EN</div>
+                    <div class="lang-filter-pill active" id="pill-lang-fr">FR</div>
+                    <div class="lang-filter-pill" id="pill-lang-it">IT</div>
+                    <div class="lang-filter-pill active" id="pill-lang-ja">JA</div>
+                  </div>
+                </div>
+
+                <div class="translation-section-block">
+                  <span class="translation-section-title" data-i18n="titleProtectedWords">PALABRAS PROTEGIDAS (JERGA TÉCNICA)</span>
+                  <div class="protected-words-group">
+                    <input type="text" class="protected-input-field" id="dict-input-word" data-i18n-ph="phProtectWord" placeholder="Palabra a proteger..." readonly>
+                    <button class="protected-add-btn" id="btn-add-word" title="Añadir">+</button>
+                  </div>
+                  <div class="protected-tags-container" id="dict-tags-list"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="motoresTitle">Traducción avanzada</h3>
+              <p data-i18n="motoresDesc">Configura los motores locales de traducción IA, filtra qué idiomas entrantes traducir y protege palabras de jerga técnica para evitar traducciones erróneas.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. DICCIONARIOS PERSONALIZADOS -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="idiomaVozTitle">Diccionarios personalizados</h2>
+            <div class="animation-container" id="idioma-voz-demo-card">
+              <div class="idioma-voz-demo">
+                <div class="translation-engine-header" data-i18n="headerIdiomaVoz">Idioma y Voz</div>
+                <div class="translation-section-block">
+                  <span class="translation-section-title" data-i18n="titleUiLang">IDIOMA DE INTERFAZ</span>
+                  <div class="lang-filter-pills" style="margin-top: 4px;">
+                    <div class="lang-filter-pill active" id="stt-ui-es">Castellano</div>
+                    <div class="lang-filter-pill" id="stt-ui-en">English</div>
+                    <div class="lang-filter-pill" id="stt-ui-fr">Français</div>
+                    <div class="lang-filter-pill" id="stt-ui-it">Italiano</div>
+                    <div class="lang-filter-pill" id="stt-ui-ja">日本語</div>
+                  </div>
+                </div>
+
+                <div class="translation-section-block">
+                  <span class="translation-section-title" id="stt-section-header">TRANSCRIPCIÓN IA (ES)</span>
+                  <span class="translation-section-desc" data-i18n="descSttTranscription">Añade palabras difíciles para mejorar la precisión</span>
+                  <div class="stt-inputs-pair">
+                    <input type="text" class="stt-input-field" id="stt-field-bad" data-i18n="phSttBad" placeholder="Entiende..." readonly>
+                    <input type="text" class="stt-input-field" id="stt-field-good" data-i18n="phSttGood" placeholder="Corregir a..." readonly>
+                    <button class="stt-add-btn" id="stt-btn-add" title="Añadir">+</button>
+                  </div>
+                  <div class="stt-corrections-container" id="stt-corrections-list"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="idiomaVozTitle">Diccionarios personalizados</h3>
+              <p data-i18n="idiomaVozDesc">Define el idioma de interfaz y añade reglas de corrección fonética en tiempo real para que la IA entienda nombres propios y jerga técnica especializada.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. FILTROS DINÁMICOS -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="filtrosTitle">Filtros dinámicos</h2>
+            <div class="animation-container" id="filter-demo-card">
+              <div class="filter-demo">
+                <div class="filter-bar-demo">
+                  <button class="filter-btn-pill pill-all active" data-i18n="filterAll">TODOS</button>
+                  <button class="filter-btn-pill pill-prod" data-i18n="filterProd">PRODUCCIÓN</button>
+                  <button class="filter-btn-pill pill-luz" data-i18n="filterLuz">LUZ / FX</button>
+                  <button class="filter-btn-pill pill-sonido" data-i18n="filterSonido">SONIDO</button>
+                </div>
+
+                <div class="filter-card-list">
+                  <div class="filter-card-item user-1 item-1">
+                    <div class="trans-header-row">
+                      <span class="user-name-green" data-i18n="userJorge">Jorge</span>
+                      <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+                    </div>
+                    <div class="trans-main-text" data-i18n="filterMsg1">Comenzamos el show en 5 minutos</div>
+                    <div class="trans-sub-row visible">
+                      <span class="lang-pill-src">(ZH)</span>
+                      <span class="trans-original-sub">我们5分钟后开始</span>
+                    </div>
+                    <div class="audio-capsule">
+                      <div class="audio-play-btn"><svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></div>
+                      <div class="audio-waveform-bars">
+                        <div class="audio-wave-bar" style="height: 10px;"></div>
+                        <div class="audio-wave-bar" style="height: 14px;"></div>
+                        <div class="audio-wave-bar" style="height: 8px;"></div>
+                        <div class="audio-wave-bar" style="height: 16px;"></div>
+                        <div class="audio-wave-bar" style="height: 12px;"></div>
+                        <div class="audio-wave-bar" style="height: 6px;"></div>
+                        <div class="audio-wave-bar" style="height: 14px;"></div>
+                        <div class="audio-wave-bar" style="height: 10px;"></div>
+                      </div>
+                      <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+                    </div>
+                    <div class="timestamp-row"><span class="timestamp">13:04:10</span></div>
+                  </div>
+
+                  <div class="filter-card-item user-2 item-2">
+                    <div class="trans-header-row">
+                      <span class="user-name-orange" data-i18n="userSofia">Sofía</span>
+                      <span class="category-tag cat-luzfx" data-i18n="categoryLuz">LUZ / FX</span>
+                    </div>
+                    <div class="trans-main-text" data-i18n="filterMsg2">Foco principal en azul neón listo</div>
+                    <div class="trans-sub-row visible">
+                      <span class="lang-pill-src">(AR)</span>
+                      <span class="trans-original-sub">المسرح الرئيسي جاهز باللون الأزرق</span>
+                    </div>
+                    <div class="audio-capsule">
+                      <div class="audio-play-btn"><svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></div>
+                      <div class="audio-waveform-bars">
+                        <div class="audio-wave-bar" style="height: 10px;"></div>
+                        <div class="audio-wave-bar" style="height: 14px;"></div>
+                        <div class="audio-wave-bar" style="height: 8px;"></div>
+                        <div class="audio-wave-bar" style="height: 16px;"></div>
+                        <div class="audio-wave-bar" style="height: 12px;"></div>
+                        <div class="audio-wave-bar" style="height: 6px;"></div>
+                        <div class="audio-wave-bar" style="height: 14px;"></div>
+                        <div class="audio-wave-bar" style="height: 10px;"></div>
+                      </div>
+                      <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+                    </div>
+                    <div class="timestamp-row"><span class="timestamp">13:04:35</span></div>
+                  </div>
+
+                  <div class="filter-card-item user-3 item-3">
+                    <div class="trans-header-row">
+                      <span class="user-name-yellow" data-i18n="userCarlos">Carlos</span>
+                      <span class="category-tag cat-sonido" data-i18n="categorySonido">SONIDO</span>
+                    </div>
+                    <div class="trans-main-text" data-i18n="filterMsg3">Música intro sonando</div>
+                    <div class="trans-sub-row visible">
+                      <span class="lang-pill-src">(DE)</span>
+                      <span class="trans-original-sub">Die Intromusik läuft jetzt</span>
+                    </div>
+                    <div class="audio-capsule">
+                      <div class="audio-play-btn"><svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></div>
+                      <div class="audio-waveform-bars">
+                        <div class="audio-wave-bar" style="height: 10px;"></div>
+                        <div class="audio-wave-bar" style="height: 14px;"></div>
+                        <div class="audio-wave-bar" style="height: 8px;"></div>
+                        <div class="audio-wave-bar" style="height: 16px;"></div>
+                        <div class="audio-wave-bar" style="height: 12px;"></div>
+                        <div class="audio-wave-bar" style="height: 6px;"></div>
+                        <div class="audio-wave-bar" style="height: 14px;"></div>
+                        <div class="audio-wave-bar" style="height: 10px;"></div>
+                      </div>
+                      <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+                    </div>
+                    <div class="timestamp-row"><span class="timestamp">13:05:02</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="filtrosTitle">Filtros dinámicos</h3>
+              <p data-i18n="filtrosDesc">Filtra mensajes por canales o departamentos (Producción, Luz/FX, Sonido) de forma individual o mediante multiselecciones simultáneas en tiempo real.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. ALERTAS MULTISENSORIALES -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="alertasTitle">Alertas multisensoriales</h2>
+            <div class="animation-container" id="alerts-demo-card">
+              <div class="alerts-demo">
+                <div class="flashlight-circle-bg" id="flashlight-circle"></div>
+                <div class="alert-rows-list" style="position: relative; z-index: 2;">
+                  <div class="alert-row-card active-alert-row" id="alert-row-1">
+                    <div class="alert-pill-toggle is-on" id="alert-toggle-1">ON</div>
+                    <div class="alert-info-box">
+                      <span class="alert-info-title" data-i18n="alertRow1Title">Alertas Pantalla</span>
+                      <span class="alert-info-sub" data-i18n="alertRow1Sub">Animación de color y opacidad</span>
+                    </div>
+                  </div>
+                  <div class="alert-row-card" id="alert-row-2">
+                    <div class="alert-pill-toggle is-off" id="alert-toggle-2">OFF</div>
+                    <div class="alert-info-box">
+                      <span class="alert-info-title" data-i18n="alertRow2Title">Vibración</span>
+                      <span class="alert-info-sub" data-i18n="alertRow2Sub">Patrón rítmico de haptics</span>
+                    </div>
+                  </div>
+                  <div class="alert-row-card" id="alert-row-3">
+                    <div class="alert-pill-toggle is-off" id="alert-toggle-3">OFF</div>
+                    <div class="alert-info-box">
+                      <span class="alert-info-title" data-i18n="alertRow3Title">Linterna</span>
+                      <span class="alert-info-sub" data-i18n="alertRow3Sub">Secuencia de destellos LED</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="alertasTitle">Alertas multisensoriales</h3>
+              <p data-i18n="alertasDesc">Avisos sensoriales para entornos ruidosos y escenarios. Combina destellos en pantalla, patrones de vibración háptica e impulsos en la linterna remota.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. EDITOR GRÁFICO Y KEYFRAMES -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="triggersTitle">Editor gráfico y Keyframes</h2>
+            <div class="animation-container" id="triggers-demo-card">
+              <div class="triggers-demo">
+                <div class="triggers-top-bar">
+                  <div class="duration-box">
+                    <span>Duration</span>
+                    <span class="duration-val">3.9</span>
+                  </div>
+                  <div class="live-indicator-dot" title="Indicador Live">
+                    <div class="live-led-inner"></div>
+                  </div>
+                  <div class="controls-group-round">
+                    <button class="round-btn-control" title="Play"><svg viewBox="0 0 24 24" fill="#FFFFFF"><polygon points="6 4 18 12 6 20 6 4"></polygon></svg></button>
+                    <button class="round-btn-control" title="Stop"><svg viewBox="0 0 24 24" fill="#FFFFFF"><rect x="6" y="6" width="12" height="12" rx="1.5"></rect></svg></button>
+                    <button class="round-btn-control active-loop" title="Bucle"><svg viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg></button>
+                  </div>
+                  <button class="btn-add-keyframe-orange">
+                    <span class="btn-add-kf-desktop">+ Add Keyframe</span>
+                    <span class="btn-add-kf-mobile">+</span>
+                  </button>
+                </div>
+                <div class="graph-canvas-box">
+                  <div class="graph-canvas-grid"></div>
+                  <div class="graph-playhead-line"></div>
+                  <svg class="multi-curve-svg" viewBox="0 0 440 175" preserveAspectRatio="none">
+                    <path id="dynamic-bezier-path" d="M 20,145 C 140,145 220,32 420,32" fill="none" stroke="#FF6B35" stroke-width="2.5" />
+                    <circle id="node-intro" class="kf-node-circle" cx="20" cy="145" r="6.5" />
+                    <circle id="node-p2" class="kf-node-circle" cx="420" cy="32" r="6.5" />
+                  </svg>
+                </div>
+
+                <div class="edit-keyframe-row">
+                  <div class="edit-field-group">
+                    <span class="edit-field-label" data-i18n="labelTag">ETIQUETA</span>
+                    <input type="text" id="field-label" class="edit-field-input" value="Intro">
+                  </div>
+                  <div class="edit-field-group">
+                    <span class="edit-field-label" data-i18n="labelTimeMs">TIEMPO (MS)</span>
+                    <input type="text" id="field-time" class="edit-field-input" value="0">
+                  </div>
+                  <div class="edit-field-group">
+                    <span class="edit-field-label" data-i18n="labelValue">VALOR</span>
+                    <input type="text" id="field-val" class="edit-field-input" value="0">
+                  </div>
+                  <div class="edit-field-group">
+                    <span class="edit-field-label" data-i18n="labelCurveNext">CURVA A SIG.</span>
+                    <select id="field-curve-select" class="edit-field-input">
+                      <option value="Lineal">Lineal</option>
+                      <option value="Bezier">Bezier</option>
+                    </select>
+                  </div>
+                  <div class="edit-field-group">
+                    <span class="edit-field-label" data-i18n="labelHoldTime">HOLD TIME</span>
+                    <input type="text" class="edit-field-input" value="0">
+                  </div>
+                  <div class="trash-btn-svg" title="Eliminar Keyframe">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="keyframe-order-container">
+                  <div class="keyframe-order-title" data-i18n="labelKfOrder">KEYFRAME ORDER</div>
+                  <div class="keyframe-order-list">
+                    <div class="kf-order-card" id="row-intro">
+                      <span class="kf-card-name">Intro</span>
+                      <span class="kf-card-time">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        0.00s
+                      </span>
+                      <span class="kf-card-val">+ 0.00</span>
+                      <span class="kf-card-type">Lineal</span>
+                      <span class="kf-card-hold">0ms</span>
+                      <span class="kf-card-del">✕</span>
+                    </div>
+
+                    <div class="kf-order-card" id="row-p2">
+                      <span class="kf-card-name">Punto 2</span>
+                      <span class="kf-card-time">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        3.90s
+                      </span>
+                      <span class="kf-card-val">+ 1.00</span>
+                      <span class="kf-card-type" style="color: #FF6B35; font-weight: 700;">Bezier</span>
+                      <span class="kf-card-hold">0ms</span>
+                      <span class="kf-card-del">✕</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="triggersTitle">Editor gráfico y Keyframes</h3>
+              <p data-i18n="triggersDesc">Diseña curvas de automatización y keyframes visuales en tiempo real para sincronizar señales de control con alta precisión temporal.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. TRIGGERS IN/OUT -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="triggerInOutTitle">Triggers In/Out</h2>
+            <div class="animation-container" id="trigger-inout-demo-card">
+              <div class="trigger-inout-demo">
+                <div class="inout-tabs-bar">
+                  <button class="inout-tab-btn active" id="tab-trigger-out" data-i18n="tabOut">↑ OUT</button>
+                  <button class="inout-tab-btn" id="tab-trigger-in" data-i18n="tabIn">↓ IN</button>
+                </div>
+                <div class="inout-sub-header">
+                  <div class="master-toggle-flat is-on" title="Alternar todos">
+                    <div class="toggle-handle"></div>
+                    <span class="toggle-label on">ON</span>
+                    <span class="toggle-label off">OFF</span>
+                  </div>
+                  <div class="search-input-box">
+                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span data-i18n="searchPlaceholder">Buscar trigger...</span>
+                  </div>
+                  <div class="triggers-count-tag">
+                    <span data-i18n="savedTriggersLabel">TRIGGERS (15)</span>
+                  </div>
+                </div>
+                <div class="triggers-inout-list"></div>
+                <button class="btn-add-trigger-purple" data-i18n="addTriggerBtn">+ Añadir Trigger</button>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="triggerInOutTitle">Triggers In/Out</h3>
+              <p data-i18n="triggerInOutDesc">Gestor de reglas de entrada y salida para disparar acciones automáticas mediante eventos de voz, comandos OSC, eventos MIDI o canales DMX/sACN.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. CONTROL DENTRO Y FUERA DEL CHAT -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="protocolosTitle">Control dentro y fuera del chat</h2>
+            <div class="animation-container" id="protocol-demo-card">
+              <div class="protocol-demo">
+                <div class="protocol-tabs-bar">
+                  <button class="protocol-tab-btn tab-osc">OSC</button>
+                  <button class="protocol-tab-btn tab-midi">MIDI</button>
+                  <button class="protocol-tab-btn tab-sacn">sACN</button>
+                  <button class="protocol-tab-btn tab-tc active" data-i18n="tabTimeCode">Time Code</button>
+                </div>
+                <div class="protocol-panel-card">
+                  <div class="protocol-sub-panel panel-tc active">
+                    <div class="proto-grid-row">
+                      <div class="proto-field-group" style="flex: 2;">
+                        <span class="proto-field-label" data-i18n="lblSmpteAudioInput">SMPTE AUDIO INPUT</span>
+                        <div class="proto-field-input">Input 1</div>
+                      </div>
+                      <div class="proto-field-group" style="flex: 1;">
+                        <span class="proto-field-label" data-i18n="lblChannel">CHANNEL</span>
+                        <div class="proto-field-input">Channel 1 ▾</div>
+                      </div>
+                    </div>
+                    <div class="proto-grid-row">
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="lblStartTime">START TIME</span>
+                        <div style="display: flex; gap: 2px;">
+                          <div class="proto-field-input" style="justify-content: center; font-family: monospace;">01:00:00:00</div>
+                          <button class="pushpin-btn">📍</button>
+                        </div>
+                      </div>
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="lblEndTime">END TIME</span>
+                        <div style="display: flex; gap: 2px;">
+                          <div class="proto-field-input" style="justify-content: center; font-family: monospace;">01:05:00:00</div>
+                          <button class="pushpin-btn">📍</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ltc-live-box">
+                      <span class="ltc-live-label" data-i18n="lblLtcLive">LTC LIVE</span>
+                      <span class="ltc-live-counter" id="ltc-live-counter">01:02:14:00</span>
+                      <div class="ltc-live-status-dot" id="ltc-live-status-dot"></div>
+                    </div>
+                  </div>
+
+                  <div class="protocol-sub-panel panel-osc">
+                    <div class="proto-grid-row">
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="ipAddress">IP DIRECCIÓN</span>
+                        <div class="proto-field-input">127.0.0.1</div>
+                      </div>
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="inputPort">PUERTO ENTRADA</span>
+                        <div class="proto-field-input">8000</div>
+                      </div>
+                    </div>
+                    <div class="proto-grid-row">
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="oscActiveMsg">MENSAJE OSC ACTIVO</span>
+                        <div class="proto-field-input" style="color: #FF6B35; font-family: monospace;">/talkme/cue/trigger/go</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="protocol-sub-panel panel-midi">
+                    <div class="proto-grid-row">
+                      <div class="proto-field-group" style="flex: 2;">
+                        <span class="proto-field-label" data-i18n="inputDevice">DISPOSITIVO ENTRADA</span>
+                        <div class="proto-field-input">Virtual MIDI Bus 1 ▾</div>
+                      </div>
+                      <div class="proto-field-group" style="flex: 1;">
+                        <span class="proto-field-label" data-i18n="channel">CANAL</span>
+                        <div class="proto-field-input">Ch 1</div>
+                      </div>
+                    </div>
+                    <div class="proto-grid-row">
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="noteTriggered">NOTA / CC DISPARADA</span>
+                        <div class="proto-field-input" style="color: #10B981; font-family: monospace;">Note C3 (60) - Vel 127</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="protocol-sub-panel panel-sacn">
+                    <div class="proto-grid-row">
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="lblUniversoDmx">UNIVERSO DMX</span>
+                        <div class="proto-field-input">Universe 1</div>
+                      </div>
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="lblCanalInicio">CANAL INICIO</span>
+                        <div class="proto-field-input">Ch 001</div>
+                      </div>
+                    </div>
+                    <div class="proto-grid-row">
+                      <div class="proto-field-group">
+                        <span class="proto-field-label" data-i18n="lblValorDmxLive">VALOR DMX LIVE</span>
+                        <div class="proto-field-input" style="color: #38BDF8; font-family: monospace;">DMX 255 (100%)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="protocolosTitle">Control dentro y fuera del chat</h3>
+              <p data-i18n="protocolosDesc">Centro de integración y sincronización de Time Code SMPTE LTC en directo junto a enrutamiento directo con consolas OSC, MIDI y sACN.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. MOTORES DE VOZ FLEXIBLES -->
+        <section class="feature-section">
+          <div class="feature-content">
+            <h2 class="section-title-mobile" data-i18n="motoresVozElasticosTitle">Motores de voz flexibles</h2>
+            <div class="animation-container" id="motores-voz-demo-card">
+              <div class="voice-models-modal-demo">
+                <div class="vm-storage-box">
+                  <label class="vm-storage-label" data-i18n="labelStoragePath">Ruta de almacenamiento de los modelos</label>
+                  <div class="vm-storage-row">
+                    <input type="text" class="vm-storage-input" value="C:\TalkMe\Models" readonly>
+                    <button class="vm-storage-btn" data-i18n="btnSelectStorage">Seleccionar...</button>
+                  </div>
+                </div>
+                <div class="vm-search-box">
+                  <svg class="vm-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="text" class="vm-search-input" id="vm-search-input" data-i18n="phSearchLang" placeholder="Buscar idioma..." readonly>
+                </div>
+                <div class="vm-models-list" id="vm-models-list"></div>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <h3 class="desktop-title" data-i18n="motoresVozElasticosTitle">Motores de voz flexibles</h3>
+              <p data-i18n="motoresVozElasticosDesc">Descarga y gestiona modelos de voz offline en 24 idiomas ejecutados 100% en tu hardware local sin depender de servidores externos ni internet.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- 2. CARACTERÍSTICAS COMPLETAS DEL PRODUCTO -->
+    <section class="section-wrap" id="caracteristicas">
+      <div class="section-header reveal-on-scroll">
+        <h2 data-i18n="features.headerTitle">Tu Voz Convertida en Sistema Operativo Multilingüe</h2>
+        <p data-i18n="features.headerDesc">Dicta, traduce y sincroniza eventos de escenario o planta en tiempo real sin salir de tu flujo de trabajo.
+        </p>
+      </div>
+
+      <div class="features-showcase-grid">
+
+        <!-- Tarjeta 1: Floating Audio Pill & Voice In -->
+        <div class="feature-box reveal-on-scroll reveal-delay-1">
+          <div>
+            <h3 data-i18n="features.pillTitle">Píldora de Audio Flotante y Dictado Universal</h3>
+            <p data-i18n="features.pillDesc">
+              Talk-me opera como una capa de inteligencia invisible sobre tu sistema operativo. Dicta y traduce
+              directamente sobre cualquier consola, software de control escénico, terminal o procesador de textos sin
+              cambiar de ventana.
+            </p>
+          </div>
+
+          <div class="audio-pill-demo">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="pill-status-dot"></div>
+              <span
+                style="font-size:0.82rem; font-weight:700; color:#fff; font-family:'JetBrains Mono', monospace;" data-i18n="features.pillStatus">TALK-ME
+                STREAM // ACTIVO</span>
+            </div>
+            <div class="pill-waveforms">
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Motor Neuronal 24 Idiomas -->
+        <div class="feature-box reveal-on-scroll reveal-delay-2">
+          <div>
+            <h3 data-i18n="features.langTitle">Traducción Simultánea en 24 Idiomas Optimizados</h3>
+            <p data-i18n="features.langDesc">
+              Modelos Whisper y redes neuronales cuantizadas ejecutadas directamente en el hardware local. Habla en tu
+              idioma nativo y transmite la traducción en audio o texto al resto de puestos con latencias inferiores a
+              180 ms.
+            </p>
+          </div>
+          <div class="lang-matrix-chips">
+            <span class="lang-chip" onclick="setLanguage('es')">Español</span>
+            <span class="lang-chip" onclick="setLanguage('en')">English</span>
+            <span class="lang-chip" onclick="setLanguage('eu')">Euskara</span>
+            <span class="lang-chip" onclick="setLanguage('ca')">Català</span>
+            <span class="lang-chip" onclick="setLanguage('fr')">Français</span>
+            <span class="lang-chip" onclick="setLanguage('de')">Deutsch</span>
+            <span class="lang-chip" onclick="setLanguage('it')">Italiano</span>
+            <span class="lang-chip" onclick="setLanguage('pt')">Português</span>
+            <span class="lang-chip" onclick="setLanguage('ja')">日本語</span>
+            <span class="lang-chip" onclick="setLanguage('zh')">中文</span>
+            <span class="lang-chip" onclick="setLanguage('ko')">한국어</span>
+            <span class="lang-chip" onclick="setLanguage('nl')">Nederlands</span>
+            <span class="lang-chip" onclick="setLanguage('pl')">Polski</span>
+            <span class="lang-chip" onclick="setLanguage('sv')">Svenska</span>
+            <span class="lang-chip" onclick="setLanguage('da')">Dansk</span>
+            <span class="lang-chip" onclick="setLanguage('no')">Norsk</span>
+            <span class="lang-chip" onclick="setLanguage('fi')">Suomi</span>
+            <span class="lang-chip" onclick="setLanguage('ru')">Русский</span>
+            <span class="lang-chip" onclick="setLanguage('tr')">Türkçe</span>
+            <span class="lang-chip" onclick="setLanguage('ar')">العربية</span>
+            <span class="lang-chip" onclick="setLanguage('el')">Ελληνικά</span>
+            <span class="lang-chip" onclick="setLanguage('cs')">Čeština</span>
+            <span class="lang-chip" onclick="setLanguage('hu')">Magyar</span>
+            <span class="lang-chip" onclick="setLanguage('ro')">Română</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Matriz de Protocolos de Show e Industria -->
+        <div class="feature-box reveal-on-scroll reveal-delay-1">
+          <div>
+            <h3 data-i18n="features.matrixTitle">Matriz de Integración Escénica e Industrial</h3>
+            <p data-i18n="features.matrixDesc">
+              Conexión bidireccional nativa con consolas GrandMA, DiGiCo, QLab, ETC EOS y sistemas PLC/SCADA sin
+              depender de middleware ni software intermedio.
+            </p>
+          </div>
+          <div class="protocol-grid-box">
+            <div class="protocol-item">
+              <div class="protocol-item-title">MIDI In / Out</div>
+              <div class="protocol-item-desc" data-i18n="features.protoMidi">Disparo de notas y CC sincronizados con comandos de voz.</div>
+            </div>
+            <div class="protocol-item">
+              <div class="protocol-item-title">SMPTE Timecode</div>
+              <div class="protocol-item-desc" data-i18n="features.protoSmpte">Bloqueo de código horario LTC/MTC para directos y broadcast.</div>
+            </div>
+            <div class="protocol-item">
+              <div class="protocol-item-title">Art-Net / DMX</div>
+              <div class="protocol-item-desc" data-i18n="features.protoArtnet">Alertas lumínicas y estrobos automáticos en luminarias.</div>
+            </div>
+            <div class="protocol-item">
+              <div class="protocol-item-title">OSC Protocol</div>
+              <div class="protocol-item-desc" data-i18n="features.protoOsc">Paquetes UDP ultra veloces para control de software escénico.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Alertas Sensoriales & Bóveda Cifrada BYOK -->
+        <div class="feature-box reveal-on-scroll reveal-delay-2">
+          <div>
+            <h3 data-i18n="features.vaultTitle">Bóveda Cifrada y Alertas en Entornos con Alto Ruido</h3>
+            <p data-i18n-html="features.vaultDesc">
+              Tus claves nunca salen de tu máquina (BYOK: <em>Bring Your Own Key</em>). En entornos con volumen extremo
+              (conciertos o plantas industriales), activa avisos por <strong>vibración háptica, linterna remota y
+                flashes en pantalla</strong>.
+            </p>
+          </div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.92rem; color:#cbd5e1;">
+            <li data-i18n="features.vaultItem1">✓ Diccionarios técnicos adaptables a jerga especializada.</li>
+            <li data-i18n="features.vaultItem2">✓ Red Mesh peer-to-peer cifrada en hardware (AES-GCM-256).</li>
+            <li data-i18n="features.vaultItem3">✓ Canales privados con filtros automáticos por departamento.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. CENTRO DE DESCARGAS (WINDOWS x2 / MAC x2 / LINUX) -->
+    <section class="section-wrap" id="descargas">
+      <div class="section-header reveal-on-scroll">
+        <h2 data-i18n="downloads.headerTitle">Implementa Talk-me en Cualquier Sistema</h2>
+        <p data-i18n="downloads.headerDesc">Compilaciones nativas optimizadas para exprimir el rendimiento de cada procesador.</p>
+      </div>
+
+      <div class="downloads-container">
+
+        <!-- WINDOWS (2 TIPOS) -->
+        <div class="download-os-card reveal-on-scroll reveal-delay-1">
+          <div>
+            <div class="os-card-header">
+              <div class="os-icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
+                </svg>
+              </div>
+              <div>
+                <h3>Windows</h3>
+                <p data-i18n="downloads.winSub">Windows 10 / 11 (Desktop & Server)</p>
+              </div>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-soft); line-height:1.5;" data-i18n="downloads.winDesc">
+              Entorno de audio optimizado con controladores WASAPI / ASIO de baja latencia.
+            </p>
+          </div>
+          <div class="arch-options-list">
+            <a href="#descargas" class="btn-arch-download">
+              <span data-i18n="downloads.winBtn1">Windows x64 (Instalador .exe / MSI)</span>
+              <span class="arch-tag">x86_64</span>
+            </a>
+            <a href="#descargas" class="btn-arch-download">
+              <span data-i18n="downloads.winBtn2">Windows ARM64 & Portable (.zip)</span>
+              <span class="arch-tag">Snapdragon / ARM</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- MACOS (2 TIPOS) -->
+        <div class="download-os-card reveal-on-scroll reveal-delay-2">
+          <div>
+            <div class="os-card-header">
+              <div class="os-icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.08.64-2.74 1.41-.58.68-1.1 1.76-.98 2.8 1.08.08 2.12-.58 2.71-1.34z" />
+                </svg>
+              </div>
+              <div>
+                <h3>macOS</h3>
+                <p data-i18n="downloads.macSub">macOS Ventura, Sonoma & Sequoia</p>
+              </div>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-soft); line-height:1.5;" data-i18n="downloads.macDesc">
+              Aceleración por hardware mediante Metal y el Neural Engine de Apple.
+            </p>
+          </div>
+          <div class="arch-options-list">
+            <a href="#descargas" class="btn-arch-download">
+              <span data-i18n="downloads.macBtn1">Apple Silicon (M1 / M2 / M3 / M4)</span>
+              <span class="arch-tag">ARM64</span>
+            </a>
+            <a href="#descargas" class="btn-arch-download">
+              <span data-i18n="downloads.macBtn2">macOS Intel (.dmg)</span>
+              <span class="arch-tag">Intel x86</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- LINUX / DOCKER -->
+        <div class="download-os-card reveal-on-scroll reveal-delay-3">
+          <div>
+            <div class="os-card-header">
+              <div class="os-icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M13.8 2.1c-.8-.2-1.7-.2-2.5.1C9.6 2.8 8.4 4.5 8.4 6.4v1.8c-.8.3-1.6.8-2.3 1.4C4.8 10.9 4 12.7 4 14.7c0 2.5 1.3 4.8 3.5 6.1 1.3.8 2.8 1.2 4.3 1.2 1.9 0 3.7-.6 5.2-1.8 2-1.5 3-3.8 3-6.2 0-1.8-.7-3.5-1.9-4.8-.6-.6-1.4-1.1-2.2-1.5V6.4c0-1.9-1-3.6-2.1-4.3z" />
+                </svg>
+              </div>
+              <div>
+                <h3>Linux Server</h3>
+                <p data-i18n="downloads.linuxSub">Ubuntu, Debian, RHEL & Docker</p>
+              </div>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-soft); line-height:1.5;" data-i18n="downloads.linuxDesc">
+              Servidor headless de alta densidad para racks industriales y centros de datos.
+            </p>
+          </div>
+          <div class="arch-options-list">
+            <a href="#descargas" class="btn-arch-download">
+              <span data-i18n="downloads.linuxBtn1">Linux Server (.deb / .rpm)</span>
+              <span class="arch-tag">x64/ARM</span>
+            </a>
+            <a href="#descargas" class="btn-arch-download">
+              <span data-i18n="downloads.linuxBtn2">Docker Container (Compose)</span>
+              <span class="arch-tag">Docker Hub</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. TABLA COMPARATIVA DE 3 PLANES -->
+    <section class="section-wrap" id="precios">
+      <div class="section-header reveal-on-scroll">
+        <h2 data-i18n="pricing.headerTitle">Licenciamiento Soberano: Sin Suscripciones Ni Ataduras</h2>
+        <p style="max-width:820px; margin:0 auto; color:#cbd5e1;" data-i18n-html="pricing.headerDesc">
+          La activación se realiza <strong>directamente dentro de la aplicación descargada</strong>. La única diferencia
+          entre planes es la escala de servidores locales permitidos. Todas las licencias son 100% vitalicias de tu
+          propiedad.
+        </p>
+      </div>
+
+      <div class="three-tier-pricing-grid">
+
+        <!-- 1. PRUEBA GRATUITA -->
+        <div class="tier-card reveal-on-scroll reveal-delay-1">
+          <div>
+            <div class="tier-header">
+              <div class="tier-title" data-i18n="pricing.trialTitle">Prueba Gratuita</div>
+              <div class="tier-servers-pill" data-i18n="pricing.trialPill">1 SERVIDOR LOCAL</div>
+            </div>
+            <p style="color:var(--text-soft); font-size:0.88rem; line-height:1.5;" data-i18n="pricing.trialDesc">
+              Acceso total sin compromiso para evaluar el rendimiento de la IA local en tu infraestructura.
+            </p>
+
+            <div class="tier-pricing-box">
+              <div class="price-option-row">
+                <span class="price-mode-tag" data-i18n="pricing.trialMode">Acceso Completo</span>
+                <span class="price-main-val green" data-i18n="pricing.trialPrice">0,00 €</span>
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted);" data-i18n="pricing.trialSub">
+                30 días de prueba gratuita. Sin tarjeta de crédito.
+              </div>
+            </div>
+
+            <ul class="tier-features-list">
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n-html="pricing.trialFeat1"><strong>1 Servidor Local</strong> 100% operativo.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n-html="pricing.trialFeat2"><strong>24 Idiomas IA</strong> con transcripción y traducción.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n="pricing.trialFeat3">Protocolos MIDI, SMPTE, Art-Net y OSC activos.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n="pricing.trialFeat4">Cero llamadas externas ni telemetría.</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#descargas" class="btn-tier-download" data-i18n="pricing.trialBtn">Descargar para Probar</a>
+        </div>
+
+        <!-- 2. PLAN FREELANCE -->
+        <div class="tier-card reveal-on-scroll reveal-delay-2">
+          <div>
+            <div class="tier-header">
+              <div class="tier-title" data-i18n="pricing.freeTitle">FREELANCE</div>
+              <div class="tier-servers-pill" data-i18n="pricing.freePill">1 SERVIDOR LOCAL</div>
+            </div>
+            <p style="color:var(--text-soft); font-size:0.88rem; line-height:1.5;" data-i18n="pricing.freeDesc">
+              Para ingenieros de sonido, operadores de iluminación y técnicos en proyectos individuales.
+            </p>
+
+            <div class="tier-pricing-box">
+              <div class="price-option-row">
+                <span class="price-mode-tag" data-i18n="pricing.freeMode1">Pago Único</span>
+                <span class="price-main-val" data-i18n="pricing.freePrice1">249,00 €</span>
+              </div>
+              <div class="price-option-row" style="margin-top:4px;">
+                <span class="price-mode-tag" data-i18n="pricing.freeMode2">Rent-to-Own</span>
+                <span class="price-main-val green" data-i18n-html="pricing.freePrice2">19,90 € <span
+                    style="font-size:0.8rem; font-weight:500; color:var(--text-soft);">/mes (14 cuotas)</span></span>
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;" data-i18n="pricing.freeSub">
+                Tras 14 cuotas es 100% vitalicia y de tu propiedad.
+              </div>
+            </div>
+
+            <ul class="tier-features-list">
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n-html="pricing.freeFeat1"><strong>1 Servidor Local</strong> con licencia permanente.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n-html="pricing.freeFeat2"><strong>24 Idiomas IA</strong> sin límites de tiempo.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n="pricing.freeFeat3">Sincronización completa MIDI, SMPTE, Art-Net y OSC.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n="pricing.freeFeat4">Alertas sensoriales en pantalla, vibración y linterna.</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#descargas" class="btn-tier-download" data-i18n="pricing.freeBtn">Descargar Software</a>
+        </div>
+
+        <!-- 3. PLAN ENTERPRISE (RECOMENDADO MESH) -->
+        <div class="tier-card featured reveal-on-scroll reveal-delay-3">
+          <div class="tier-badge-mesh" data-i18n="pricing.entBadge">Recomendado Producción</div>
+          <div>
+            <div class="tier-header">
+              <div class="tier-title" data-i18n="pricing.entTitle">ENTERPRISE</div>
+              <div class="tier-servers-pill"
+                style="color:var(--primary-light); background:rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.35);" data-i18n="pricing.entPill">
+                5 SERVIDORES EN RED MESH
+              </div>
+            </div>
+            <p style="color:var(--text-soft); font-size:0.88rem; line-height:1.5;" data-i18n="pricing.entDesc">
+              Para empresas de touring, productoras de eventos, recintos multi-sala, broadcast e industria.
+            </p>
+
+            <div class="tier-pricing-box">
+              <div class="price-option-row">
+                <span class="price-mode-tag" data-i18n="pricing.entMode1">Pago Único</span>
+                <span class="price-main-val" data-i18n="pricing.entPrice1">698,60 €</span>
+              </div>
+              <div class="price-option-row" style="margin-top:4px;">
+                <span class="price-mode-tag" data-i18n="pricing.entMode2">Rent-to-Own</span>
+                <span class="price-main-val green" data-i18n-html="pricing.entPrice2">49,90 € <span
+                    style="font-size:0.8rem; font-weight:500; color:var(--text-soft);">/mes (14 cuotas)</span></span>
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;" data-i18n="pricing.entSub">
+                Tras 14 cuotas es 100% vitalicia y de tu propiedad.
+              </div>
+            </div>
+
+            <ul class="tier-features-list">
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n-html="pricing.entFeat1"><strong>5 Servidores en Red Mesh</strong> interconectados en clúster.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n-html="pricing.entFeat2"><strong>24 Idiomas Simultáneos</strong> en todas las estaciones.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n="pricing.entFeat3">Enrutamiento maestro de cues DMX, Timecode y OSC.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span data-i18n="pricing.entFeat4">Asistencia de despliegue en racks y redes cerradas.</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#descargas" class="btn-tier-download" data-i18n="pricing.entBtn">Descargar Software</a>
+        </div>
+
+      </div>
+
+      <div class="pricing-clarification-note reveal-on-scroll" data-i18n-html="pricing.note">
+        💡 <strong>Nota de Arquitectura:</strong> Todas las modalidades incluyen el motor completo de IA local (24
+        idiomas) y la totalidad de los protocolos profesionales. La única diferencia entre <em>Freelance</em> y
+        <em>Enterprise</em> radica en el número de instancias de servidor permitidas en tu red local (1 frente a 5 en
+        clúster Mesh).
+      </div>
+    </section>
+
+    <!-- 5. FAQS -->
+    <section class="section-wrap" id="faqs">
+      <div class="section-header reveal-on-scroll">
+        <h2 data-i18n="faqs.headerTitle">Preguntas Frecuentes</h2>
+      </div>
+
+      <div class="faq-container reveal-on-scroll">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faqs.q1">¿Realmente funciona 100% offline sin acceso a Internet?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer" data-i18n="faqs.a1">
+            Sí. Todo el motor de Talk-me (reconocimiento fonético, los 24 idiomas optimizados, enrutamiento de red y
+            protocolos) se ejecuta dentro de tu propio hardware en la red local. No hay ninguna llamada externa ni
+            telemetría.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faqs.q2">¿Cómo funciona exactamente el modelo Rent-to-Own?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer" data-i18n="faqs.a2">
+            Pagas la cuota mensual durante 14 meses. Una vez completados los 14 pagos, la licencia pasa a ser
+            automáticamente vitalicia y de tu propiedad para siempre, sin suscripciones recurrentes ni pagos extra.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faqs.q3">¿Cómo se integra con consolas de iluminación y sonido?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer" data-i18n="faqs.a3">
+            Talk-me escucha y emite señales Art-Net/DMX, mensajes MIDI y paquetes OSC. Puedes hacer que una palabra
+            clave dispare un cue en tu consola o que un canal DMX active alertas de linterna y vibraciones.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CONTACTO -->
+    <section class="section-wrap" id="contacto">
+      <div class="section-header reveal-on-scroll">
+        <h2 data-i18n="contact.headerTitle">Hablemos de tu Proyecto</h2>
+      </div>
+
+      <div class="contact-card reveal-on-scroll">
+        <form id="contactForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label data-i18n="contact.nameLabel">Nombre Completo</label>
+              <input type="text" class="form-input" placeholder="Tu nombre" data-i18n-ph="contact.namePh" required />
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact.emailLabel">Correo Electrónico</label>
+              <input type="email" class="form-input" placeholder="correo@empresa.com" data-i18n-ph="contact.emailPh" required />
+            </div>
+            <div class="form-group full">
+              <label data-i18n="contact.sectorLabel">Sector de Aplicación</label>
+              <input type="text" class="form-input"
+                placeholder="Ej: Giras y Conciertos, Teatro, Fábrica, Broadcast..." data-i18n-ph="contact.sectorPh" />
+            </div>
+            <div class="form-group full">
+              <label data-i18n="contact.msgLabel">Mensaje</label>
+              <textarea class="form-input" rows="4"
+                placeholder="Describe tus necesidades de comunicación local..." data-i18n-ph="contact.msgPh"></textarea>
+            </div>
+            <div class="form-group full">
+              <button type="submit" class="btn-submit" data-i18n="contact.submitBtn">Enviar Mensaje</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div style="font-weight:800; font-size:1.2rem; color:#fff;">
+        <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+      </div>
+      <div data-i18n="footer.sub">Comunicación industrial segura, inteligente y soberana</div>
+      <div style="font-size:0.75rem; letter-spacing: 2px; color:rgba(255,255,255,0.3); margin-top:8px;" data-i18n="footer.copyright">JORGE.LIGHTING
+        2026</div>
+    </footer>
+
+  </main>
+
+  <!-- MÓDULOS JAVASCRIPT SEPARADOS -->
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/stars.js"></script>
+  <script src="js/intro3d.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/showcase.js"></script>
+  <script>
+    function startShowcaseDemos() {
+      if (typeof initScrollObserver === 'function') {
+        initScrollObserver('transcription-demo-card', initTranscriptionDemo);
+        initScrollObserver('modos-audio-demo-card', initAudioModesDemo);
+        initScrollObserver('translation-demo-card', initTranslationDemo);
+        initScrollObserver('motores-demo-card', initMotoresDemo);
+        initScrollObserver('idioma-voz-demo-card', initIdiomaVozDemo);
+        initScrollObserver('filter-demo-card', initFilterDemo);
+        initScrollObserver('alerts-demo-card', initAlertasDemo);
+        initScrollObserver('triggers-demo-card', initTriggersDemo);
+        initScrollObserver('trigger-inout-demo-card', initTriggerInOutDemo);
+        initScrollObserver('protocol-demo-card', initProtocolosDemo);
+        initScrollObserver('motores-voz-demo-card', initVoiceEnginesDemo);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startShowcaseDemos);
+    } else {
+      startShowcaseDemos();
+    }
+  </script>
+</body>
+
+</html>

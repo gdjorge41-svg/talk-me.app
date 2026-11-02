@@ -1,0 +1,24 @@
+{
+  "_talkmeFormat": "trigger-v60",
+  "id": "tr_mp5th1d10w7p",
+  "name": "04 Q Si Q No",
+  "direction": "IN",
+  "type": "smpte",
+  "external": {
+    "smpte": {
+      "timecodeStart": "04:00:00:00",
+      "timecodeEnd": "04:03:00:00",
+      "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+      "audioChannel": 2
+    }
+  },
+  "message": {
+    "text": "Q Si Q No TC",
+    "filterIds": [
+      "all"
+    ],
+    "sendToAll": true,
+    "audio": null,
+    "image": null
+  }
+}

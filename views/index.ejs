@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('partials/head') %>
+    <script>
+        window.installedLangs = <%- JSON.stringify(typeof installedLangs !== 'undefined' ? installedLangs : ['es', 'en', 'eu']) %>;
+    </script>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <%- include('partials/global-lang-switcher') %>
+    <%- include('partials/modals/user-modal') %>
+    <%- include('partials/modals/terms-modal') %>
+    <div class="container" id="mainContainer">
+        <%- include('partials/main-container/control-panel') %>
+        <%- include('partials/main-container/chat-area') %>
+    </div>
+    <%- include('partials/modals/settings-modal') %>
+    <%- include('partials/modals/alerta-editor-pantalla-modal') %>
+    <%- include('partials/modals/alerta-editor-vibracion-modal') %>
+    <%- include('partials/modals/alerta-editor-linterna-modal') %>
+    <%- include('partials/modals/triggers-modal') %>
+    <%- include('partials/modals/overlays') %>
+    <%- include('partials/global-elements') %>
+</body>
+    <script src="/js/core/wake-lock.js"></script>
+    <script src="/js/core/ios-audio-session.js"></script>
+    <script src="/js/core/two-finger-ptt.js"></script>
+    <script type="module" src="/js/core/ui-controller-elite.js?v=60.107"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/starfield.js"></script>
+</html>

@@ -1,0 +1,24 @@
+{
+  "_talkmeFormat": "trigger-v60",
+  "id": "tr_mp5tsmztfaii",
+  "name": "14 Sin Preocuparme",
+  "direction": "IN",
+  "type": "smpte",
+  "external": {
+    "smpte": {
+      "timecodeStart": "14:00:00:00",
+      "timecodeEnd": "14:04:00:00",
+      "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+      "audioChannel": 2
+    }
+  },
+  "message": {
+    "text": "Sin Preocuparme TC",
+    "filterIds": [
+      "all"
+    ],
+    "sendToAll": true,
+    "audio": null,
+    "image": null
+  }
+}

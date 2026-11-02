@@ -1,0 +1,506 @@
+{
+    "guide_title": "hướng dẫn sử dụng",
+    "search_placeholder": "tìm kiếm trong hướng dẫn...",
+    "cards": [
+        {
+            "id": "audio_modes",
+            "title": "Chế độ truyền âm thanh",
+            "items": [
+                {
+                    "title": "Chế độ nhấn để nói (PTT)",
+                    "description": "Hộp số tay bằng nút bấm. Nhấn và giữ nút Talk để mở kênh micrô và bắt đầu thu âm thanh theo thời gian thực. Khi bạn thả tay ra, quá trình truyền sẽ kết thúc ngay lập tức và hệ thống sẽ tự động xử lý quá trình phiên âm.",
+                    "note": "Được khuyến nghị cho các môi trường có tiếng ồn cao hoặc các tình huống cần kiểm soát giao tiếp chính xác."
+                },
+                {
+                    "title": "Chế độ tự động (Phát hiện âm lượng)",
+                    "description": "Hộp số tự động dựa trên mức tín hiệu đầu vào. Hệ thống kích hoạt tính năng thu âm khi phát hiện âm thanh trên ngưỡng độ nhạy đã định cấu hình và dừng ghi sau một khoảng thời gian im lặng ngắn.",
+                    "note": "Lý tưởng cho trải nghiệm hoàn toàn rảnh tay."
+                },
+                {
+                    "title": "Cấp độ đầu vào",
+                    "description": "Hiển thị mức tín hiệu của nguồn âm thanh đã chọn trong thời gian thực bằng máy đo VU động.",
+                    "note": null
+                }
+            ]
+        },
+        {
+            "id": "users",
+            "title": "Người dùng",
+            "items": [
+                {
+                    "title": "Người dùng được kết nối",
+                    "description": "Hiển thị danh sách người dùng đang hoạt động, người dùng phụ và danh mục được chỉ định của họ.",
+                    "subitems": [
+                        "Những người dùng phụ do bạn tạo có thể là:",
+                        "Đã chỉnh sửa.",
+                        "Bị loại bỏ.",
+                        "Được giám sát bởi một máy đo VU riêng lẻ cho biết khi nào chúng đang truyền âm thanh."
+                    ]
+                },
+                {
+                    "title": "Tạo người dùng phụ (+)",
+                    "description": "Cho phép bạn tạo người dùng ảo với định tuyến nội bộ độc lập.",
+                    "subitems": [
+                        "Mỗi người dùng phụ có thể được cấu hình với:",
+                        "Tên.",
+                        "Loại.",
+                        "Ngôn ngữ phiên âm.",
+                        "Nguồn âm thanh.",
+                        "Kênh đầu vào.",
+                        "Ngưỡng kích hoạt."
+                    ],
+                    "extra": "Khi mức âm thanh vượt quá ngưỡng đã định cấu hình, quá trình sao chép và gửi tin nhắn sẽ được thực hiện tự động.",
+                    "important": "Không thể chỉ định đồng thời cùng một nguồn âm thanh và kênh được người dùng chính sử dụng. Trong trường hợp có xung đột, nguồn sẽ tự động bị tắt để tránh việc truyền trùng lặp."
+                }
+            ]
+        },
+        {
+            "id": "chat_transmission",
+            "title": "Tính năng trò chuyện và phát sóng",
+            "items": [
+                {
+                    "title": "Nút nói chuyện",
+                    "description": "Cho phép bạn truyền phát âm thanh trực tiếp. Khi bạn nhập văn bản vào trường nhập, nút này sẽ tự động chuyển thành biểu tượng gửi tin nhắn."
+                },
+                {
+                    "title": "Gửi ảnh",
+                    "description": "Cho phép bạn chụp ảnh bằng camera sau của thiết bị hoặc chọn ảnh từ thư viện để gửi ngay vào cuộc trò chuyện."
+                },
+                {
+                    "title": "Điều hướng bằng cử chỉ (Vuốt)",
+                    "description": "Vuốt sang phải để hiển thị bảng điều khiển bên và sang trái để ẩn nó.",
+                    "note": "Hành động này tương đương với việc sử dụng các nút điều hướng hoặc logo ứng dụng."
+                },
+                {
+                    "title": "Bộ lọc",
+                    "description": "Cho phép bạn chọn danh mục tin nhắn và cảnh báo bạn muốn nhận.",
+                    "subitems": [
+                        "Có thể:",
+                        "Hiển thị tất cả các danh mục.",
+                        "Chọn một danh mục duy nhất.",
+                        "Kết hợp một số loại."
+                    ],
+                    "note": "Mỗi người dùng có thể tùy chỉnh bộ lọc của mình một cách độc lập."
+                },
+                {
+                    "title": "Trạng thái IP và máy chủ",
+                    "description": "Hiển thị địa chỉ IP của máy chủ và trạng thái hiện tại của nó:",
+                    "statuses": {
+                        "green": "Đã kết nối và hoạt động.",
+                        "red": "Bị ngắt kết nối hoặc không có liên lạc."
+                    }
+                },
+                {
+                    "title": "Chỉ báo micrô",
+                    "description": "Hiển thị trạng thái hiện tại của micrô:",
+                    "subitems": [
+                        "Im lặng.",
+                        "Tài sản.",
+                        "Truyền âm thanh."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "audio_hardware",
+            "title": "Cấu hình âm thanh và phần cứng",
+            "items": [
+                {
+                    "title": "Lựa chọn đầu vào và đầu ra",
+                    "description": "Cho phép bạn chỉ định độc lập các thiết bị thu và phát lại âm thanh.",
+                    "subitems": [
+                        "Để đảm bảo hoạt động chính xác:",
+                        "Xác minh rằng quyền truy cập vào micrô và loa đã được cấp.",
+                        "Đặt thiết bị làm mặc định trong hệ điều hành khi cần thiết.",
+                        "Cài đặt trình điều khiển chính thức cho phần cứng của bạn nếu nhà sản xuất yêu cầu."
+                    ],
+                    "compatible": "Tương thích với:",
+                    "compatible_list": [
+                        "Card âm thanh vật lý.",
+                        "Giao diện USB.",
+                        "Thiết bị Bluetooth.",
+                        "Các kênh âm thanh ảo",
+                        "Hệ thống định tuyến chuyên nghiệp."
+                    ]
+                },
+                {
+                    "title": "Kênh chi tiết",
+                    "description": "Cho phép định tuyến tín hiệu âm thanh đến các kênh vật lý cụ thể (Kênh 1, Kênh 2, v.v.) để tích hợp với:",
+                    "subitems": [
+                        "Bàn trộn.",
+                        "Bộ định tuyến ảo.",
+                        "Hệ thống ma trận.",
+                        "Cơ sở hạ tầng âm thanh chuyên nghiệp."
+                    ]
+                },
+                {
+                    "title": "Cập nhật phần cứng",
+                    "description": "Thực hiện phát hiện động các thiết bị âm thanh được kết nối mà không cần phải khởi động lại ứng dụng."
+                },
+                {
+                    "title": "Kết nối và quyền trước đó",
+                    "description": "Bạn nên kết nối mọi loại thiết bị (tai nghe/micrô Bluetooth hoặc card âm thanh ngoài) **trước khi khởi động máy chủ hoặc ứng dụng**. Đảm bảo phần cứng và phần mềm của bên thứ ba được định cấu hình trên hệ điều hành của bạn và bạn đã cấp các quyền cần thiết trong trình duyệt web.",
+                    "important": "Việc kết nối thiết bị giữa phiên có thể yêu cầu làm mới tab hoặc nhấn 'Nâng cấp phần cứng'. Đảm bảo micrô được chấp nhận chính xác trong cửa sổ quyền của trình duyệt."
+                }
+            ]
+        },
+        {
+            "id": "language_transcription",
+            "title": "Ngôn ngữ, Phiên âm và Từ vựng IA",
+            "items": [
+                {
+                    "title": "Ngôn ngữ giao diện",
+                    "description": "Xác định ngôn ngữ ứng dụng và ngôn ngữ chính được sử d��ng bởi công cụ phiên âm."
+                },
+                {
+                    "title": "Từ điển phiên âm",
+                    "description": "Nó cho phép bạn tự động sửa các thuật ngữ, tên hoặc nhãn hiệu cụ thể.",
+                    "subitems": [
+                        "Thông số cấu hình:",
+                        "Được hiểu là: Văn bản được AI nhận dạng về mặt ngữ âm.",
+                        "Sửa: Văn bản cuối cùng sẽ được đưa vào cuộc trò chuyện."
+                    ],
+                    "examples": {
+                        "label": "Ví dụ về bản đồ ngữ âm",
+                        "pairs": [
+                            [
+                                "có một chiếc điện thoại",
+                                "Iphone"
+                            ],
+                            [
+                                "miquel",
+                                "Mikel"
+                            ],
+                            [
+                                "nói xin chào",
+                                "Bộ điều chỉnh độ sáng"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "_tag": "trans_number",
+                    "title": "Chuyển Đổi Số Nói Thành Chữ Số",
+                    "description": "Cho phép AI phiên âm các biểu thức số trực tiếp dưới dạng chữ số thay vì chữ viết (ví dụ: '12' thay vì 'mười hai', '-6 dB' thay vì 'trừ sáu decibel').",
+                    "note": "Rất khuyến khích để tăng tốc độ đọc kênh, cue và các thông số kỹ thuật trực tiếp."
+                }
+            ]
+        },
+        {
+            "id": "babel_translation",
+            "title": "Dịch thuật AI (Công cụ Babel)",
+            "items": [
+                {
+                    "title": "Công cụ dịch thuật Babel",
+                    "description": "Hệ thống tích hợp Babel, một công cụ dịch máy thần kinh (NMT) được tối ưu hóa chạy cục bộ 100% trên Máy chủ chính. Dịch các tin nhắn nhận được bằng các ngôn ngữ khác trong thời gian thực sang ngôn ngữ giao diện của bạn mà không cần gửi dữ liệu lên Internet hoặc tùy thuộc vào API bên ngoài."
+                },
+                {
+                    "_tag": "babel_download",
+                    "title": "Tải Xuống và Quản Lý Công Cụ Dịch Thuật (MADLAD)",
+                    "description": "Công cụ dịch thuật thần kinh được tải xuống theo yêu cầu (~2.75 GB) để giữ bộ cài đặt ban đầu nhẹ nhàng (~400 MB):",
+                    "subitems": [
+                        "Tải xuống: Khi đăng nhập, hệ thống đề xuất tự động tải xuống vào thư mục mô hình.",
+                        "Tắt: Bạn có thể nhấp vào 'Tắt' để hoạt động ở chế độ nhẹ không có dịch thuật và ẩn thông báo.",
+                        "Bật lại: Có thể kích hoạt lại hoặc cài đặt lại bất cứ lúc nào trong Cài đặt Pre-Launch hoặc Cài đặt ứng dụng."
+                    ]
+                },
+                {
+                    "title": "Hiển thị tin nhắn gốc",
+                    "description": "Nó cho phép bạn hiển thị văn bản gốc ở định dạng nhỏ, mờ ngay bên dưới văn bản dịch, tạo điều kiện xác minh trực tiếp nếu cần."
+                },
+                {
+                    "title": "Bộ lọc ngôn ngữ đến",
+                    "description": "Chọn lọc cấu hình ngôn ngữ nào sẽ được dịch tự động. Các ngôn ngữ không được chọn sẽ được hiển thị ở dạng thô ban đầu."
+                },
+                {
+                    "title": "Bảo vệ Babel (Thuật ngữ và thuật ngữ kỹ thuật)",
+                    "description": "Ngăn chặn một số thuật ngữ sử dụng kỹ thuật hoặc tên riêng bị bóp méo bởi công cụ dịch thuật. Khi bạn thêm từ vào danh sách loại trừ này, Babel sẽ tôn trọng chúng bằng cách giữ chúng ở dạng ban đầu.",
+                    "note": "Đặc biệt được khuyến nghị cho các thuật ngữ và mạng giải trí:",
+                    "subitems": [
+                        "Chờ/Chờ",
+                        "bộ chỉnh âm lượng",
+                        "FOH (Mặt tiền nhà)",
+                        "Mã thời gian/SMPTE",
+                        "Cue / Cuelist"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "messages_flow",
+            "title": "Tin nhắn và luồng liên lạc",
+            "items": [
+                {
+                    "title": "Nhận tin nhắn được chép lại",
+                    "description": "Bạn có thể chọn giữa:",
+                    "subitems": [
+                        "Chỉ hiển thị bản ghi.",
+                        "Hiển thị bản ghi bên cạnh âm thanh gốc được liên kết."
+                    ]
+                },
+                {
+                    "title": "Tiếp nhận âm thanh",
+                    "description": "Đặt cách bạn muốn nhận âm thanh đến:",
+                    "subitems": [
+                        "Tự động phát lại trong thời gian thực.",
+                        "Phát lại thủ công theo yêu cầu."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "hermes_tts",
+            "title": "Tổng hợp giọng nói ngoại tuyến (Hermes TTS)",
+            "items": [
+                {
+                    "title": "Đọc giọng nói ngoại tuyến",
+                    "description": "Cho phép tự động đọc tin nhắn văn bản đến hoặc bản dịch. Nó độc quyền sử dụng công cụ giọng nói gốc của hệ điều hành của bạn (API Web Speech), hoạt động 100% cục bộ, riêng tư và không cần internet. Mức tiêu thụ đĩa của nó là 0 byte và thực tế nó không có tác động gì đến CPU/RAM."
+                },
+                {
+                    "title": "Các thông số có thể điều chỉnh và riêng lẻ",
+                    "description": "Định cấu hình chức năng theo sở thích của bạn từ tab Cài đặt trên thiết bị của bạn:",
+                    "subitems": [
+                        "Nghe tin nhắn văn bản: Kích hoạt tính năng đọc văn bản địa phương. Nếu tắt tính năng này, văn bản bằng ngôn ngữ của bạn sẽ vẫn im lặng nhưng bạn vẫn có thể nghe thấy bản dịch nước ngoài.",
+                        "Bộ lọc âm thanh nước ngoài: Chặn âm thanh gốc ở các ngôn ngữ khác và chỉ đọc bản dịch của chúng.",
+                        "Phản ứng với các bộ lọc đang hoạt động: Hệ thống chỉ đọc các tin nhắn đến tương ứng với danh mục hoặc kênh do người dùng chọn trong bộ lọc trò chuyện của họ (nếu được lọc theo một nhóm cụ thể, hệ thống sẽ chỉ đọc những tin nhắn từ nhóm đó; nếu 'Tất cả' được chọn, nó sẽ đọc tất cả).",
+                        "Chọn giọng nói: Chọn từ các giọng nói có sẵn được cài đặt trên hệ điều hành của bạn hoặc để ở chế độ Tự động để kế thừa ngôn ngữ của ứng dụng.",
+                        "Bộ lọc giới tính: Tự động lọc các giọng nói tương thích theo âm sắc của họ (Nam, Nữ hoặc Tất cả).",
+                        "Tốc độ đọc: Điều chỉnh tốc độ nói giữa cực chậm (0,5x) và cực nhanh (2,0x)."
+                    ]
+                },
+                {
+                    "title": "Tiền tố và giới thiệu ngữ cảnh",
+                    "description": "Trình tường thuật tự động phát hiện loại tin nhắn để đọc tự nhiên hơn: nó sẽ nói '[Tên] đã viết...' đối với tin nhắn văn bản thuần túy và '[Tên] đã nói...' khi phát bản dịch tin nhắn thoại."
+                },
+                {
+                    "title": "Lá chắn chung sống (Hermes-Shield)",
+                    "description": "Để tránh ghép âm thanh với micrô và không cản trở quá trình giao tiếp trôi chảy, Hermes TTS sẽ tự động tắt tiếng nếu:",
+                    "subitems": [
+                        "Bạn đang nhấn nút Talk hoặc ghi âm bằng micrô của mình.",
+                        "Có hoạt động phát lại trong hàng đợi âm thanh gốc của cuộc trò chuyện.",
+                        "Mọi trình phát đa phương tiện HTML5 con trong DOM đều đang hoạt động."
+                    ]
+                },
+                {
+                    "title": "Tiền tố bản địa hóa thông minh",
+                    "description": "Trước khi đọc tin nhắn, một tiền tố động sẽ tự động được tổng hợp theo ngôn ngữ đang hoạt động để cung cấp ngữ cảnh về người gửi (ví dụ: 'Jorge đã viết: [tin nhắn]' hoặc 'Jorge đã viết: [tin nhắn]')."
+                },
+                {
+                    "title": "Sự kiên trì cục bộ",
+                    "description": "Tất cả cài đặt được lưu trữ độc lập cho từng người dùng trong localStorage của thiết bị đầu cuối. Việc thay đổi tùy chọn giọng nói hoặc tốc độ của bạn sẽ không ảnh hưởng đến những người dùng khác trên mạng cục bộ hoặc các cấu hình khác đã đăng nhập trong cùng một trình duyệt."
+                }
+            ]
+        },
+        {
+            "id": "visual_haptic_alerts",
+            "title": "Cảnh báo trực quan và xúc giác",
+            "items": [
+                {
+                    "title": "Các loại cảnh báo",
+                    "description": "Tùy thuộc vào khả năng của thiết bị, bạn có thể sử dụng:",
+                    "subitems": [
+                        "Cảnh báo trực quan trên màn hình.",
+                        "Rung.",
+                        "đèn pin LED."
+                    ]
+                },
+                {
+                    "title": "Tùy chỉnh cảnh báo",
+                    "description": "Mỗi cảnh báo đều có trình chỉnh sửa trực quan nơi bạn có thể:",
+                    "subitems": [
+                        "Cấu hình các thông số.",
+                        "Xem trước kết quả.",
+                        "Lưu cài đặt tùy chỉnh."
+                    ]
+                },
+                {
+                    "title": "Dòng thời gian trực quan",
+                    "description": "Bấm đúp vào khung vẽ để tạo và định vị các khung hình chính kiểm soát các thuộc tính như màu sắc và độ mờ."
+                },
+                {
+                    "title": "Nới lỏng đường cong",
+                    "description": "Xác định quá trình chuyển đổi giữa các khung hình chính bằng cách sử dụng:",
+                    "subitems": [
+                        "Tuyến tính hoặc Bước.",
+                        "Dễ Vào/Dễ Ra/Dễ Vào-Ra.",
+                        "Đường cong bậc hai và bậc ba."
+                    ]
+                },
+                {
+                    "title": "Mô hình Haptic và LED",
+                    "description": "Thiết kế trình tự rung và ánh sáng dựa trên các giá trị được xác định trong dòng thời gian.",
+                    "subitems": [
+                        "Giá trị lớn hơn 0,5 → Đã kích hoạt.",
+                        "Giá trị nhỏ hơn 0,5 → Bị vô hiệu hóa."
+                    ]
+                },
+                {
+                    "title": "Quyền",
+                    "description": "Một số thiết bị yêu cầu quyền truy cập vào máy ảnh để truy cập đèn pin.",
+                    "important": "Ứng dụng sẽ tự động yêu cầu các quyền đó khi cần thiết."
+                }
+            ]
+        },
+        {
+            "id": "triggers",
+            "title": "Kích hoạt (IN/OUT)",
+            "items": [
+                {
+                    "title": "Kích hoạt RA",
+                    "description": "Chúng cho phép các lệnh được tự động gửi đến hệ sinh thái kỹ thuật khi nhận được tin nhắn hoặc tin nhắn chứa một số từ khóa nhất định."
+                },
+                {
+                    "title": "Kích hoạt TRONG",
+                    "description": "Chúng cho phép nhận tín hiệu bên ngoài để thực hiện các hành động tự động trong hệ thống.",
+                    "subitems": [
+                        "Họ có thể tạo ra:",
+                        "Tin nhắn hoặc cảnh báo.",
+                        "Âm thanh.",
+                        "Hình ảnh.",
+                        "Các luồng tự động phức tạp."
+                    ]
+                },
+                {
+                    "title": "Tiêm kích hoạt vào",
+                    "description": "Chọn xem nội dung được tạo sẽ được gửi tới một bộ lọc cụ thể hay tới tất cả các bộ lọc có sẵn."
+                },
+                {
+                    "title": "Giao thức được hỗ trợ",
+                    "description": "Tích hợp gốc với:",
+                    "subitems": [
+                        "OSC (Điều khiển âm thanh mở).",
+                        "MIDI.",
+                        "sACN.",
+                        "Mã thời gian SMPTE."
+                    ]
+                },
+                {
+                    "title": "Đường cong theo khung hình chính",
+                    "description": "Chúng cho phép điều chỉnh sự phát triển của lệnh theo thời gian bằng cách sử dụng các khung hình chính và đường cong nội suy. Bao gồm hệ thống xem trước thời gian thực."
+                },
+                {
+                    "title": "Kích hoạt tất cả",
+                    "description": "Kích hoạt hoặc hủy kích hoạt đồng thời tất cả các trình kích hoạt bằng nút phía trên bên trái."
+                },
+                {
+                    "title": "Bộ lọc tìm kiếm",
+                    "description": "Nhanh chóng xác định vị trí kích hoạt cụ thể bằng cách tìm kiếm theo tên."
+                },
+                {
+                    "_tag": "triggers_timecode",
+                    "title": "Mã Thời Gian SMPTE Đa Dải",
+                    "description": "Trong Triggers IN với giao thức SMPTE Timecode, có thể định cấu hình nhiều khoảng thời gian độc lập.",
+                    "subitems": [
+                        "Cho phép thêm nhiều khung thời gian (ví dụ: 01:00:00:00 - 01:15:00:00 và 02:00:00:00 - 02:30:00:00).",
+                        "Kích hoạt sẽ tự động chạy nếu mã thời gian nhận được nằm trong bất kỳ dải nào đã định cấu hình.",
+                        "Bao gồm các nút để thêm (+), sắp xếp lại và xóa các dải với kiểm tra định dạng HH:MM:SS:FF."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "interface_customization",
+            "title": "Giao diện và tùy chỉnh",
+            "items": [
+                {
+                    "title": "Chế độ trực quan",
+                    "description": "Chọn giữa Chế độ sáng và Chế độ tối tùy theo sở thích của bạn."
+                },
+                {
+                    "title": "Bảng màu tùy chỉnh",
+                    "description": "Tùy chỉnh màu chính, màu nền và điểm nhấn trực quan của giao diện ứng dụng."
+                },
+                {
+                    "title": "Khôi phục mặc định",
+                    "description": "Khôi phục cài đặt hình ảnh ban đầu và bảng màu gốc của ứng dụng."
+                },
+                {
+                    "title": "Lưu cài đặt",
+                    "description": "Lưu trữ vĩnh viễn các thay đổi được thực hiện cho các phiên trong tương lai."
+                },
+                {
+                    "title": "Tùy chỉnh trò chuyện",
+                    "description": "Điều chỉnh kích thước văn bản, độ dày phông chữ và khả năng đọc tổng thể của tin nhắn trên màn hình."
+                }
+            ]
+        },
+        {
+            "id": "network_best_practices",
+            "title": "Thực hành cấu hình và mạng tốt",
+            "items": [
+                {
+                    "title": "Sơ đồ triển khai (Từng bước)",
+                    "description": "Để định cấu hình chính xác cơ sở hạ tầng này, hãy làm theo các nguyên tắc chuyên nghiệp sau:",
+                    "subitems": [
+                        "1. Chạy Master Server: Khởi động máy chủ Talk-me trên máy tính chính (Master). Điều này phải có giấy phép hoạt động.",
+                        "2. Lấy Local IP: Tìm hiểu địa chỉ IP riêng của máy chủ (ví dụ: 192.168.1.150).",
+                        "3. Kết nối máy khách có dây (Ethernet): Kết nối các máy tính hỗ trợ bằng cáp mạng (khuyên dùng RJ45 Cat6) với bộ định tuyến hoặc bộ chuyển mạch. Truy cập bằng cách mở trình duyệt tại https://192.168.1.150:3000.",
+                        "4. Kết nối Khách hàng qua Wi-Fi (Điện thoại di động / Máy tính bảng): Đảm bảo rằng điện thoại và máy tính bảng được kết nối với mạng Wi-Fi do cùng một bộ định tuyến cấp. Mở cùng một URL trong trình duyệt trên thiết bị di động của bạn."
+                    ]
+                },
+                {
+                    "title": "Yêu cầu bảo mật của trình duyệt (Máy ảnh và micrô)",
+                    "description": "Các trình duyệt hiện đại hạn chế quyền truy cập vào các thiết bị nhạy cảm như máy ảnh và micrô khi kết nối không an toàn.",
+                    "important": "Vì lý do này, việc truy cập vào hệ thống phải được thực hiện bằng HTTPS, chấp nhận chứng chỉ SSL cục bộ tự ký do máy chủ tạo trong quá trình cài đặt."
+                },
+                {
+                    "title": "Chủ quyền hoàn toàn và độc lập trên nền tảng đám mây",
+                    "description": "Talk-me được thiết kế để hoạt động tự chủ 100% trong cơ sở hạ tầng mạng của bạn. Sau khi cài đặt, nó không yêu cầu kết nối Internet vĩnh viễn hoặc API của bên thứ ba. Nếu quyền truy cập WAN (Internet) bị cắt, liên lạc nội bộ trong khuôn viên trường, dịch thuật, phiên âm cục bộ và cảnh báo sẽ tiếp tục hoạt động mà không bị gián đoạn."
+                }
+            ]
+        },
+        {
+            "id": "data_sovereignty",
+            "title": "Chủ quyền dữ liệu và quyền riêng tư",
+            "items": [
+                {
+                    "title": "Cơ sở hạ tầng dưới sự kiểm soát của bạn",
+                    "description": "Tất cả thông tin do Talk-me tạo ra vẫn còn trong môi trường làm việc của bạn. Điều này bao gồm:",
+                    "subitems": [
+                        "Cơ sở dữ liệu.",
+                        "Lịch sử truyền thông.",
+                        "Cài đặt.",
+                        "Các mô hình trí tuệ nhân tạo.",
+                        "Các tập tin và tài nguyên liên quan."
+                    ]
+                },
+                {
+                    "title": "Xử lý cục bộ",
+                    "description": "Quá trình phân tích, sao chép và dịch thuật chạy trực tiếp trên phần cứng của bạn khi sử dụng các mô hình cục bộ được hỗ trợ.",
+                    "extra": "Thông tin không được gửi đến các máy chủ bên ngoài để xử lý."
+                },
+                {
+                    "title": "Quyền riêng tư và bảo mật",
+                    "description": "Talk-me được thiết kế theo mô hình chủ quyền công nghệ và kiểm soát toàn bộ dữ liệu.",
+                    "extra": "Các cuộc hội thoại, cài đặt và tài nguyên của bạn vẫn được lưu trữ độc quyền trên cơ sở hạ tầng của bạn, duy trì quyền kiểm soát hoàn toàn đối với:",
+                    "subitems": [
+                        "Tính sẵn có của hệ thống.",
+                        "Sự riêng tư của thông tin.",
+                        "Việc lưu trữ dữ liệu.",
+                        "Quản lý truy cập và bảo mật."
+                    ]
+                }
+            ]
+        }
+    ],
+    "network_diagram": {
+        "internet": "MẠNG",
+        "optional": "TÙY CHỌN",
+        "ethernet_cable": "CÁP ETHERNET RJ45",
+        "ethernet_red": "Mạng Ethernet / Cáp LAN",
+        "wifi_label": "Wi-Fi/WLAN",
+        "master_server": "MÁY CHỦ CHÍNH",
+        "licensed": "ĐƯỢC CẤP PHÉP",
+        "router": "bộ định tuyến",
+        "device1": "Thiết bị 1: PC chính (Cáp)",
+        "device2": "Thiết bị 2: Hỗ trợ PC (Cáp)",
+        "device3": "Thiết bị 3: Laptop (Wi-Fi)",
+        "device4": "Thiết bị 4: Máy tính bảng (Wi-Fi)",
+        "device5": "Thiết bị 5: Điện thoại di động (Wi-Fi)",
+        "https_url": "https://192.168.1.150:3000"
+    },
+    "common": {
+        "important": "Quan trọng"
+    },
+    "guide_version": "60.2.0"
+}

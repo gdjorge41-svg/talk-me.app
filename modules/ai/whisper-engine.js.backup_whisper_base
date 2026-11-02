@@ -1,0 +1,127 @@
+/**
+ * 🎙️ Whisper Transcription Engine - Euskera Carril (v60.1)
+ * 
+ * Basado en @xenova/transformers (ONNX Runtime).
+ * Utiliza el modelo Whisper-Tiny para transcripción local ultrarrápida.
+ */
+
+class WhisperEngine {
+    constructor() {
+        this.pipeline = null;
+        this.modelName = 'Xenova/whisper-base'; // [v60.11] RESTAURACIÓN: Con 16kHz nativos, Base es rápido y preciso.
+        this.initializing = false;
+        this.isReady = false;
+    }
+
+    /**
+     * Inicializa el modelo Whisper.
+     */
+    async init() {
+        if (this.isReady) return;
+        if (this.initializing) {
+            // Esperar a que la inicialización en curso termine
+            while (this.initializing) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            return;
+        }
+        this.initializing = true;
+        
+        console.log(`🧠 [WHISPER-ENGINE] Cargando modelo: ${this.modelName}...`);
+        
+        try {
+            const { pipeline, env } = await import('@xenova/transformers');
+            
+            // [v60.17] Configuración de ruta local (Sincronizada con storage)
+            const path = require('path');
+            const modelsDir = path.join(__dirname, '..', '..', 'storage', 'models');
+            env.localModelPath = modelsDir;
+            env.cacheDir = modelsDir;
+            env.allowRemoteModels = true; // Fallback si falta algún pequeño archivo
+            
+            this.pipeline = await pipeline('automatic-speech-recognition', this.modelName, {
+                quantized: true,
+                // [v60.31] ACELERACIÓN CPU: Usamos 4 hilos para procesar la red neuronal en paralelo
+                onnx_options: {
+                    intra_op_num_threads: 4,
+                    inter_op_num_threads: 4
+                }
+            });
+
+            this.isReady = true;
+            this.initializing = false;
+            console.log('✅ [WHISPER-ENGINE] Motor Whisper listo.');
+        } catch (error) {
+            this.initializing = false;
+            console.error('❌ [WHISPER-ENGINE] Error crítico cargando Whisper:', error);
+            throw error;
+        }
+    }
+
+    /**
+     * Transcribe un buffer de audio (PCM 16-bit 16kHz).
+     */
+    async transcribe(audioBuffer, lang = 'eu') {
+        if (!this.isReady) {
+            await this.init();
+        }
+
+        try {
+            // [v60.22] SENSIBILIDAD MÁXIMA: Umbral reducido a 200 para capturar fonemas suaves iniciales (N, M, K)
+            const trimmedBuffer = this.trimSilence(audioBuffer, 200); 
+            if (trimmedBuffer.length < 3200) return ""; // ~0.2s mínimo
+
+            // Convertir Buffer (Int16) a Float32Array
+            const float32Data = this.pcm16ToFloat32(trimmedBuffer);
+
+            const output = await this.pipeline(float32Data, {
+                language: lang,
+                task: 'transcribe',
+                chunk_length_s: 30,
+                stride_length_s: 5,
+                return_timestamps: false,
+                // [v60.31] PRECISIÓN Y VELOCIDAD: Prompt para orientar la fonética y beams para seguridad
+                initial_prompt: "Kaixo laguna, nire etxea oso handia da, egun on zer moduz.",
+                num_beams: 2,
+                do_sample: false
+            });
+
+            return output.text.trim();
+        } catch (error) {
+            console.error('❌ [WHISPER-ENGINE] Error en transcripción:', error);
+            return "";
+        }
+    }
+
+    /**
+     * Elimina silencios al inicio y final del buffer para optimizar la IA.
+     */
+    trimSilence(buffer, threshold = 200) {
+        const int16Array = new Int16Array(buffer.buffer, buffer.byteOffset, buffer.length / 2);
+        let start = 0;
+        let end = int16Array.length - 1;
+
+        while (start < int16Array.length && Math.abs(int16Array[start]) < threshold) start++;
+        while (end > start && Math.abs(int16Array[end]) < threshold) end--;
+
+        return Buffer.from(int16Array.slice(start, end + 1).buffer);
+    }
+
+    /**
+     * Convierte PCM 16-bit a Float32 (-1.0 a 1.0).
+     */
+    pcm16ToFloat32(buffer) {
+        const int16Array = new Int16Array(buffer.buffer, buffer.byteOffset, buffer.length / 2);
+        const float32Array = new Float32Array(int16Array.length);
+        
+        for (let i = 0; i < int16Array.length; i++) {
+            float32Array[i] = int16Array[i] / 32768.0;
+        }
+        
+        return float32Array;
+    }
+}
+
+// Singleton
+const instance = new WhisperEngine();
+module.exports = instance;

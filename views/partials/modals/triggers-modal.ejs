@@ -1,0 +1,413 @@
+<!-- Modal Triggers - Editor Avanzado - Ajustes Generales > Triggers > Editor de Triggers -->
+<div class="user-modal hidden" id="triggersModal">
+    <div class="modal-content triggers-content" id="keyframeEditorUI">
+        <div class="triggers-scroll-wrapper custom-scroll">
+            <h2 class="modal-title-small" id="lblTriggersAdvancedTitle">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                Editor de Triggers Avanzado
+            </h2>
+            <p class="modal-subtitle" id="lblTriggersAdvancedSubtitle">Animaciones por keyframes · Curvas · Hold ·
+                Activación por mensaje</p>
+            <button class="modal-close-icon" id="btnCloseTriggers" title="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+
+            <!-- Triggers Formulario y Timeline oculto por defecto -->
+            <div id="editorFormOut" style="display:none;">
+                <div class="trigger-name-row">
+                    <input type="text" id="triggerName" value="Nombre Trigger OUT" placeholder="Nombre Trigger OUT"
+                        autocomplete="off" autocorrect="off" spellcheck="false">
+                </div>
+
+                <div class="trigger-activation">
+                    <div class="activation-row">
+                        <div class="field-group">
+                            <label id="lblTriggerLayout">Disposición de disparo</label>
+                            <div class="talkme-select-container">
+                                <select id="triggerOnSelect" class="talkme-select">
+                                    <option value="any_message" id="optAnyMessage">Al recibir CUALQUIER mensaje</option>
+                                    <option value="keyword" id="optSpecificMessage">Mensaje específico (palabra clave)
+                                    </option>
+                                </select>
+                                <div class="talkme-select-arrow">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field-group" id="keywordGroup">
+                            <label id="lblKeywordLabel">Palabra clave (Regex básico)</label>
+                            <input type="text" id="keywordInput" placeholder="Ej: rojo, verde...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="type-selector">
+                    <button class="type-btn active" data-type="osc">OSC</button>
+                    <button class="type-btn" data-type="midi">MIDI</button>
+                    <button class="type-btn" data-type="sacn">sACN</button>
+                </div>
+
+                <!-- Selector de Salida MIDI (Movido aquí) -->
+                <div id="midiOutputRow">
+                    <label id="lblMidiOutput">Salida MIDI</label>
+                    <div class="talkme-select-container">
+                        <select id="midiOutputSelect" class="talkme-select"></select>
+                        <div class="talkme-select-arrow">
+                            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="typeFieldsContainer" class="type-fields"></div>
+
+                <div class="timeline-header">
+                    <div>
+                        <h3 id="lblTimelineEasingTriggers">Timeline y Easing</h3>
+                        <p id="lblTimelineHintTriggers">Haz doble clic en el lienzo para ubicar nuevos keyframes.</p>
+                    </div>
+                    <div>
+                        <div class="global-duration duration-widget-pro">
+                            <div class="duration-control-pro">
+                                <button id="durationDown" class="prop-stepper-btn duration-btn-pro"
+                                    data-field="duration" data-delta="-0.5" title="Disminuir duración">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </button>
+                                <div class="duration-input-wrapper-pro">
+                                    <input type="text" id="globalDurationSec" value="3.0" class="duration-input-pro">
+                                    <span class="duration-unit-pro">s</span>
+                                </div>
+                                <button id="durationUp" class="prop-stepper-btn duration-btn-pro"
+                                    data-field="duration" data-delta="0.5" title="Aumentar duración">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="timeline-controls">
+                            <!-- Punto animado (luz) -->
+                            <div class="animation-point" id="animationPoint">
+                                <div class="point-indicator"></div>
+                            </div>
+
+                            <!-- Botones de reproducción -->
+                            <button id="playPauseBtn" class="timeline-btn" title="Play/Pause">
+                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                    <path d="M8 5v14l11-7z" fill="white" />
+                                </svg>
+                            </button>
+                            <button id="stopBtn" class="timeline-btn" title="Stop">
+                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                    <rect x="6" y="6" width="12" height="12" fill="white" />
+                                </svg>
+                            </button>
+                            <button id="loopBtn" class="timeline-btn loop" title="Modo bucle">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <polyline points="1 20 1 14 7 14"></polyline>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15">
+                                    </path>
+                                </svg>
+                            </button>
+                            <button id="liveBtn" class="timeline-btn live" title="Live (enviar comandos reales)">
+                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.5" fill="none" />
+                                    <circle cx="12" cy="12" r="4" fill="white" />
+                                </svg>
+                            </button>
+                        </div>
+                        <button id="addKeyframeBtn" class="btn-add">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <span id="lblAddKeyframeTriggers">Keyframe</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="canvas-wrapper">
+                    <canvas id="timelineCanvas" width="800" height="200"></canvas>
+                </div>
+
+                <div id="keyframeProps" class="keyframe-properties" style="display:none;">
+                    <div class="prop-group" style="flex:0.8;">
+                        <label>Etiqueta</label>
+                        <input type="text" id="kfName">
+                    </div>
+                    <div class="prop-group">
+                        <label>Tiempo (ms)</label>
+                        <div class="prop-stepper">
+                            <input type="text" id="kfTime">
+                            <div class="prop-stepper-buttons">
+                                <button class="prop-stepper-btn" data-field="time" data-delta="50"
+                                    style="display:flex; align-items:center; justify-content:center;">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="prop-stepper-btn" data-field="time" data-delta="-50"
+                                    style="display:flex; align-items:center; justify-content:center;">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prop-group">
+                        <label id="valueLabel">Valor</label>
+                        <div class="prop-stepper">
+                            <input type="text" id="kfValue">
+                            <div class="prop-stepper-buttons">
+                                <button class="prop-stepper-btn" data-field="value" data-delta="0.05"
+                                    style="display:flex; align-items:center; justify-content:center;">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="prop-stepper-btn" data-field="value" data-delta="-0.05"
+                                    style="display:flex; align-items:center; justify-content:center;">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prop-group" style="flex: 1.2;">
+                        <label>Curva a Sig.</label>
+                        <div class="talkme-select-container">
+                            <select id="kfEasing" class="talkme-select"
+                                style="font-size: 11px; padding: 4px 24px 4px 10px; height: 34px;">
+                                <option value="linear">Lineal</option>
+                                <option value="step">Step (Instantáneo)</option>
+                                <option value="easeInQuad">Ease In (Quad)</option>
+                                <option value="easeOutQuad">Ease Out (Quad)</option>
+                                <option value="easeInOutQuad">Ease In-Out (Quad)</option>
+                                <option value="easeInCubic">Ease In (Cubic)</option>
+                                <option value="easeOutCubic">Ease Out (Cubic)</option>
+                                <option value="easeInOutCubic">Ease In-Out (Cubic)</option>
+                            </select>
+                            <div class="talkme-select-arrow" style="right: 8px;">
+                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prop-group">
+                        <label>Hold Time</label>
+                        <div class="prop-stepper">
+                            <input type="text" id="kfHold">
+                            <div class="prop-stepper-buttons">
+                                <button class="prop-stepper-btn" data-field="hold" data-delta="50"
+                                    style="display:flex; align-items:center; justify-content:center;">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="prop-stepper-btn" data-field="hold" data-delta="-50"
+                                    style="display:flex; align-items:center; justify-content:center;">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="delete-btn" id="deleteKeyframeBtn"
+                        style="background: transparent; border: none; padding: 0; margin-left: 10px; opacity: 0.7;"
+                        title="Borrar Keyframe">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="keyframes-list">
+                    <h4 id="lblKeyframeOrderTriggers">Orden de Keyframes</h4>
+                    <div class="keyframes-scroll-area custom-scroll">
+                        <div id="keyframeItemsList" class="keyframe-items"></div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="saveTriggerBtn" class="btn-save">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        <span class="btn-save-label">Guardar Trigger</span>
+                    </button>
+                    <button id="cancelTriggerBtn" class="btn-cancel">Cancelar</button>
+                </div>
+            </div> <!-- Cierre de editorFormOut (OUT) -->
+
+            <!-- [v60] Nuevo Formulario para Triggers IN (Rediseño Elite) -->
+            <div id="editorFormIn" style="display:none;">
+                <div class="trigger-name-row">
+                    <input type="text" id="triggerNameIn" value="Nombre Trigger IN" placeholder="Nombre Trigger IN"
+                        autocomplete="off" autocorrect="off" spellcheck="false">
+                </div>
+
+                <!-- Fila de Filtro / Categoría -->
+                <div class="field-group" style="margin-bottom: 20px;">
+                    <label id="lblTriggerFilterIn">Inyectar en Departamento / Filtro</label>
+                    <div class="talkme-select-container">
+                        <select id="triggerFilterSelectIn" class="talkme-select">
+                            <option value="all" id="optFilterAllIn">🌐 TODOS (Inyección como Sistema)</option>
+                            <!-- Categorías inyectadas por JS -->
+                        </select>
+                        <div class="talkme-select-arrow">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selección de Hardware (Input) -->
+                <div class="trigger-type-selection">
+                    <div class="type-selector">
+                        <button class="type-btn active" data-type="osc">OSC</button>
+                        <button class="type-btn" data-type="midi">MIDI</button>
+                        <button class="type-btn" data-type="sacn">sACN</button>
+                        <button class="type-btn" data-type="smpte">Time Code</button>
+                    </div>
+                </div>
+
+                <!-- Contenedor dinámico de campos de hardware -->
+                <div id="hwFieldsContainerIn" class="type-fields" style="margin-top: 15px; min-height: 120px;">
+                    <!-- Se llena por JS según el tipo seleccionado -->
+                </div>
+
+                <!-- Panel de Acción (Payload) - Sustituye al Timeline -->
+                <div class="trigger-action-payload">
+                    <h3 class="section-title-small" id="lblActionPayloadTitle">Acción: Contenido a enviar</h3>
+
+                    <!-- Texto y Emojis -->
+                    <div class="payload-field-group">
+                        <div class="payload-header">
+                            <label id="lblPayloadText">Mensaje de Texto</label>
+                            <button class="btn-emoji" id="btnEmojiTriggerIn" title="Añadir Emoji">😀</button>
+                        </div>
+                        <textarea id="triggerMsgTextIn" class="custom-scroll"
+                            placeholder="Escribe el mensaje que enviará este trigger..."></textarea>
+                    </div>
+
+                    <div class="payload-media-grid">
+                        <!-- Módulo Audio -->
+                        <div class="payload-media-item" id="payloadAudioIn">
+                            <label id="lblPayloadAudio">Respuesta de Audio</label>
+                            <div class="media-preview" id="audioPreviewIn">
+                                <div class="preview-placeholder">Sin audio seleccionado</div>
+                            </div>
+                            <div class="media-controls">
+                                <button class="btn-media-action" id="btnRecordAudioIn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg>
+                                    Grabar
+                                </button>
+                                <button class="btn-media-action" id="btnUploadAudioIn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="17 8 12 3 7 8" />
+                                        <line x1="12" y1="3" x2="12" y2="15" />
+                                    </svg>
+                                    Subir
+                                </button>
+                                <button class="btn-media-action" id="btnPlayAudioIn" style="display:none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    Probar
+                                </button>
+                            </div>
+                            <input type="file" id="fileAudioIn" accept="audio/*" style="display:none;">
+                        </div>
+
+                        <!-- Módulo Imagen -->
+                        <div class="payload-media-item" id="payloadImageIn">
+                            <label id="lblPayloadImage">Respuesta de Imagen</label>
+                            <div class="media-preview" id="imagePreviewIn">
+                                <div class="preview-placeholder">Sin imagen seleccionada</div>
+                            </div>
+                            <div class="media-controls">
+                                <button class="btn-media-action" id="btnCaptureImageIn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                                        <circle cx="12" cy="13" r="4" />
+                                    </svg>
+                                    Foto
+                                </button>
+                                <button class="btn-media-action" id="btnUploadImageIn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="17 8 12 3 7 8" />
+                                        <line x1="12" y1="3" x2="12" y2="15" />
+                                    </svg>
+                                    Subir
+                                </button>
+                            </div>
+                            <input type="file" id="fileImageIn" accept="image/*" style="display:none;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons" style="margin-top: 30px;">
+                    <button id="saveTriggerBtnIn" class="btn-save">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        <span class="btn-save-label">Guardar Trigger IN</span>
+                    </button>
+                    <button id="cancelTriggerBtnIn" class="btn-cancel">Cancelar</button>
+                </div>
+            </div> <!-- Cierre de editorFormIn -->
+        </div> <!-- Cierre de triggers-scroll-wrapper -->
+    </div> <!-- Cierre especial de triggers-content -->
+</div> <!-- Cierre MAESTRO de triggersModal -->

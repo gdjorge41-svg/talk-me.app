@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Muestrario de Animaciones de Características</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #FFF 0%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-header p {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: var(--accent-purple);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      background: rgba(123, 104, 238, 0.1);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: var(--accent-purple);
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="page-header">
+    <div class="talkme-brand-header">
+      <span class="talkme-brand-logo"><span class="logo-talk">Talk</span><span class="logo-sep">-</span><span
+          class="logo-me">me</span></span>
+    </div>
+    <p data-i18n="headerSubtitle">Demostración animada y responsive de funcionalidades</p>
+  </header>
+
+
+  <!-- Selector de Idioma Global -->
+  <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Castellano</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- ==========================================================================
+       1. AUDIO Y TRANSCRIPCIÓN
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="transcripcionTitle">Audio y transcripción</h2>
+      <div class="animation-container" id="transcription-demo-card">
+        <div class="transcription-demo">
+          <div class="top-transcript-popup">
+            <span class="transcript-stt-text">la</span>
+          </div>
+
+          <div class="message-bubble">
+            <div class="message-header">
+              <span class="user-name-green" data-i18n="userJorge">Jorge</span>
+              <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+            </div>
+            <div class="message-text" data-i18n="msgHolaMundo">Hola Mundo</div>
+
+            <div class="audio-capsule">
+              <div class="audio-play-btn">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                </svg>
+              </div>
+              <div class="audio-waveform-bars">
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 8px;"></div>
+                <div class="audio-wave-bar" style="height: 16px;"></div>
+                <div class="audio-wave-bar" style="height: 12px;"></div>
+                <div class="audio-wave-bar" style="height: 6px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+              </div>
+              <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+            </div>
+
+            <div style="font-size: 0.72rem; color: var(--text-muted); text-align: right; margin-top: 4px;">13:04:23
+            </div>
+          </div>
+
+          <div class="chat-bottom-bar">
+            <button class="btn-icon-purple" title="Cámara">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="chat-input-wrapper">
+              <span class="chat-placeholder" data-i18n="placeholderText">Escribe tu mensaje...</span>
+              <div class="vumeter-input-box"></div>
+            </div>
+
+            <button class="btn-icon-orange" title="Hablar / Enviar">
+              <svg class="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linecap="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+              <svg class="icon-plane" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="transcripcionTitle">Audio y transcripción</h3>
+        <p data-i18n="transcripcionDesc">Muestra el flujo directo de captura de voz. El botón de micrófono se activa en
+          naranja únicamente al hablar, mientras la vista previa superior transcribe en directo antes de enviar el
+          mensaje con el avión de papel y su cápsula de audio original al chat</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2. MODOS DE AUDIO
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="modosAudioTitle">Modos de audio</h2>
+      <div class="animation-container" id="modos-audio-demo-card">
+        <div class="audio-modes-demo">
+
+          <!-- Estado Global de Transmisión (Header Pill) -->
+          <div class="audio-status-header-row">
+            <div class="audio-status-pill silent" id="tx-status-pill">
+              <div class="tx-led"></div>
+              <span class="tx-status-text" id="tx-status-text">SILENCIO</span>
+            </div>
+            <div class="audio-mode-indicator-tag" id="tx-mode-tag">PUSH-TO-TALK</div>
+          </div>
+
+          <!-- Panel de Ajustes de Audio -->
+          <div class="sidebar-audio-config-demo">
+
+            <div class="setting-row-demo">
+              <label class="setting-label-demo" data-i18n="labelMicMode">MODO DE MICRÓFONO</label>
+              <div class="talkme-select-container-demo" id="mic-select-container">
+                <div class="talkme-select-display" id="mic-mode-display" data-i18n="optPttText">Push-to-Talk (mantener)
+                </div>
+                <div class="talkme-select-arrow">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+
+                <!-- Menú Desplegable Animado -->
+                <div class="talkme-select-dropdown hidden" id="mic-select-dropdown">
+                  <div class="talkme-option-item" id="opt-ptt" data-value="ptt" data-i18n="optPttText">Push-to-Talk
+                    (mantener)</div>
+                  <div class="talkme-option-item" id="opt-auto" data-value="auto" data-i18n="optAutoText">Automático
+                    (por volumen)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Medidor de Nivel & Umbral Verde (Visibilidad Diferenciada) -->
+            <div class="setting-row-demo" id="threshold-section-row">
+              <div class="setting-label-between">
+                <span id="level-section-label" data-i18n="labelInputLevel">NIVEL DE ENTRADA</span>
+              </div>
+              <div class="threshold-meter-container">
+                <div class="threshold-track">
+                  <div class="threshold-fill-bar" id="threshold-fill-bar"></div>
+                  <div class="threshold-green-line hidden" id="threshold-green-line" style="left: 60%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón PTT para Push-to-Talk -->
+            <div class="ptt-action-box" id="ptt-action-box">
+              <button class="ptt-big-button" id="ptt-big-button">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+                <span id="ptt-btn-label">MANTENER PARA HABLAR</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="modosAudioTitle">Modos de audio</h3>
+        <p data-i18n="modosAudioDesc">Demostración interactiva de la conmutación entre el modo Automático (activación
+          por umbral de volumen verde ajustable) y Push-to-Talk (envío al mantener presionado el botón o la barra
+          espaciadora), reaccionando en tiempo real con el estado de transmisión SILENT / TRANSMITIENDO.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. TRADUCCIÓN AUTOMÁTICA Y FLUIDA
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="traduccionTitle">Traducción automática y fluida</h2>
+      <div class="animation-container" id="translation-demo-card">
+        <div class="translation-demo">
+          <div class="translation-card user-1">
+            <div class="trans-header-row">
+              <span class="user-name-green" data-i18n="userJorge">Jorge</span>
+              <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+            </div>
+
+            <div class="trans-main-text trans-main-text-user1">¿Estamos listos?</div>
+
+            <div class="trans-sub-row">
+              <span class="lang-pill-src">(FR)</span>
+              <span class="trans-original-sub">Sommes-nous prêts ?</span>
+            </div>
+
+            <!-- Cápsula de Audio Original -->
+            <div class="audio-capsule">
+              <div class="audio-play-btn">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                </svg>
+              </div>
+              <div class="audio-waveform-bars">
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 8px;"></div>
+                <div class="audio-wave-bar" style="height: 16px;"></div>
+                <div class="audio-wave-bar" style="height: 12px;"></div>
+                <div class="audio-wave-bar" style="height: 6px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+              </div>
+              <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+            </div>
+
+            <div class="timestamp-row">
+              <span class="timestamp">14:16:58</span>
+            </div>
+          </div>
+
+          <!-- Mensaje Intermedio (Carlos - SONIDO "Todo listo.") -->
+          <div class="translation-card user-mid">
+            <div class="trans-header-row">
+              <span class="user-name-orange" style="color: #FACC15;" data-i18n="userCarlos">Carlos</span>
+              <span class="category-tag cat-sonido" data-i18n="categorySonido">SONIDO</span>
+            </div>
+
+            <div class="trans-main-text trans-main-text-usermid">Todo listo.</div>
+
+            <!-- Cápsula de Audio Original -->
+            <div class="audio-capsule">
+              <div class="audio-play-btn">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                </svg>
+              </div>
+              <div class="audio-waveform-bars">
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 8px;"></div>
+                <div class="audio-wave-bar" style="height: 16px;"></div>
+                <div class="audio-wave-bar" style="height: 12px;"></div>
+                <div class="audio-wave-bar" style="height: 6px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+              </div>
+              <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+            </div>
+
+            <div class="timestamp-row">
+              <span class="timestamp">14:17:04</span>
+            </div>
+          </div>
+
+          <div class="translation-card user-2">
+            <div class="trans-header-row">
+              <span class="user-name-orange" data-i18n="userSofia">Sofía</span>
+              <span class="category-tag cat-luzfx" data-i18n="categoryLuz">LUZ / FX</span>
+            </div>
+
+            <div class="trans-main-text trans-reply-text-user2">hasta el infinito y más allá</div>
+
+            <div class="trans-sub-row">
+              <span class="lang-pill-src">(EN)</span>
+              <span class="trans-original-sub">to infinity and beyond</span>
+            </div>
+
+            <!-- Cápsula de Audio Original -->
+            <div class="audio-capsule">
+              <div class="audio-play-btn">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                </svg>
+              </div>
+              <div class="audio-waveform-bars">
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 8px;"></div>
+                <div class="audio-wave-bar" style="height: 16px;"></div>
+                <div class="audio-wave-bar" style="height: 12px;"></div>
+                <div class="audio-wave-bar" style="height: 6px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+              </div>
+              <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+            </div>
+
+            <div class="timestamp-row">
+              <span class="timestamp">14:17:10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="traduccionTitle">Traducción automática y fluida</h3>
+        <p data-i18n="traduccionDesc">Demostración de la recepción y traducción de mensajes en tiempo real. Al
+          traducirse, la versión traducida aparece en el texto principal y la línea inferior con la etiqueta (EN) y el
+          texto original se despliega hacia abajo suavemente</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. TRADUCCIÓN AVANZADA
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="motoresTitle">Traducción avanzada</h2>
+      <div class="animation-container" id="motores-demo-card">
+        <div class="motores-demo">
+
+          <div class="translation-engine-header" data-i18n="headerMotorIA">Motor de Traducción IA</div>
+
+          <div class="translation-grid-row">
+            <div class="translation-setting-card">
+              <span class="translation-setting-label" data-i18n="labelTradAuto">TRADUCCIÓN AUTOMÁTICA</span>
+              <div class="translation-setting-control">
+                <div class="alert-pill-toggle is-on" id="tgl-trad-auto">ON</div>
+                <span class="translation-setting-desc" data-i18n="descTradAuto">Traduce el chat al idioma de tu
+                  interfaz.</span>
+              </div>
+            </div>
+
+            <div class="translation-setting-card">
+              <span class="translation-setting-label" data-i18n="labelMsgOrig">MENSAJE ORIGINAL</span>
+              <div class="translation-setting-control">
+                <div class="alert-pill-toggle is-on" id="tgl-trad-orig">ON</div>
+                <span class="translation-setting-desc" data-i18n="descMsgOrig">Muestra el texto en su idioma nativo bajo
+                  la traducción.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="translation-section-block">
+            <span class="translation-section-title" data-i18n="titleIncomingFilter">FILTRO DE IDIOMAS ENTRANTES</span>
+            <span class="translation-section-desc" data-i18n="descIncomingFilter">Selecciona qué idiomas entrantes
+              quieres traducir. Los desmarcados se mostrarán sin alterar.</span>
+
+            <div class="lang-filter-pills">
+              <div class="lang-filter-pill active" id="pill-lang-en">EN</div>
+              <div class="lang-filter-pill active" id="pill-lang-fr">FR</div>
+              <div class="lang-filter-pill" id="pill-lang-it">IT</div>
+              <div class="lang-filter-pill active" id="pill-lang-ja">JA</div>
+            </div>
+          </div>
+
+          <div class="translation-section-block">
+            <span class="translation-section-title" data-i18n="titleProtectedWords">PALABRAS PROTEGIDAS (JERGA
+              TÉCNICA)</span>
+            <span class="translation-section-desc" data-i18n="descProtectedWords">Estas palabras NUNCA serán traducidas
+              por la IA (Ej: Standby, Fader).</span>
+
+            <div class="protected-words-group">
+              <input type="text" class="protected-input-field" id="dict-input-word" data-i18n="phProtectWord"
+                placeholder="Palabra a proteger..." readonly>
+              <button class="protected-add-btn" id="btn-add-word" title="Añadir">+</button>
+            </div>
+
+            <div class="protected-tags-container" id="dict-tags-list"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="motoresTitle">Traducción avanzada</h3>
+        <p data-i18n="motoresDesc">Demostración interactiva del panel de gestión de motores de IA. Permite configurar la
+          traducción automática, mostrar/ocultar el mensaje nativo original, filtrar idiomas entrantes y administrar el
+          diccionario de palabras protegidas (jerga técnica)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. DICCIONARIOS PERSONALIZADOS
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="idiomaVozTitle">Diccionarios personalizados</h2>
+      <div class="animation-container" id="idioma-voz-demo-card">
+        <div class="idioma-voz-demo">
+
+          <div class="translation-engine-header" data-i18n="headerIdiomaVoz">Idioma y Voz</div>
+
+          <div class="translation-section-block">
+            <span class="translation-section-title" data-i18n="titleUiLang">IDIOMA DE INTERFAZ</span>
+            <div class="lang-filter-pills" style="margin-top: 4px;">
+              <div class="lang-filter-pill active" id="stt-ui-es">Castellano</div>
+              <div class="lang-filter-pill" id="stt-ui-en">English</div>
+              <div class="lang-filter-pill" id="stt-ui-fr">Français</div>
+              <div class="lang-filter-pill" id="stt-ui-it">Italiano</div>
+              <div class="lang-filter-pill" id="stt-ui-ja">日本語</div>
+            </div>
+          </div>
+
+          <div class="translation-section-block">
+            <span class="translation-section-title" id="stt-section-header">TRANSCRIPCIÓN IA (ES)</span>
+            <span class="translation-section-desc" data-i18n="descSttTranscription">Añade palabras difíciles para
+              mejorar la precisión</span>
+
+            <div class="stt-inputs-pair">
+              <input type="text" class="stt-input-field" id="stt-field-bad" data-i18n="phSttBad"
+                placeholder="Entiende..." readonly>
+              <input type="text" class="stt-input-field" id="stt-field-good" data-i18n="phSttGood"
+                placeholder="Corregir a..." readonly>
+              <button class="stt-add-btn" id="stt-btn-add" title="Añadir">+</button>
+            </div>
+
+            <div class="stt-corrections-container" id="stt-corrections-list"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="idiomaVozTitle">Diccionarios personalizados</h3>
+        <p data-i18n="idiomaVozDesc">Demostración del panel de Idioma y Voz de Talk.me. Permite seleccionar el idioma de
+          interfaz y configurar mapeos de corrección en tiempo real (Ej: cuando el reconocimiento de voz entiende "hay
+          fon", la IA lo corrige automáticamente a "iphone")</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. FILTROS DINÁMICOS
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="filtrosTitle">Filtros dinámicos</h2>
+      <div class="animation-container" id="filter-demo-card">
+        <div class="filter-demo">
+
+          <div class="filter-bar-demo">
+            <button class="filter-btn-pill pill-all active" data-i18n="filterAll">TODOS</button>
+            <button class="filter-btn-pill pill-prod" data-i18n="filterProd">PRODUCCIÓN</button>
+            <button class="filter-btn-pill pill-luz" data-i18n="filterLuz">LUZ / FX</button>
+            <button class="filter-btn-pill pill-sonido" data-i18n="filterSonido">SONIDO</button>
+          </div>
+
+          <div class="filter-card-list">
+
+            <div class="filter-card-item user-1 item-1">
+              <div class="trans-header-row">
+                <span class="user-name-green" data-i18n="userJorge">Jorge</span>
+                <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+              </div>
+              <div class="trans-main-text" data-i18n="filterMsg1">Comenzamos el show en 5 minutos</div>
+
+              <div class="trans-sub-row visible">
+                <span class="lang-pill-src">(ZH)</span>
+                <span class="trans-original-sub">我们5分钟后开始</span>
+              </div>
+
+              <div class="audio-capsule">
+                <div class="audio-play-btn">
+                  <svg viewBox="0 0 24 24">
+                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                  </svg>
+                </div>
+                <div class="audio-waveform-bars">
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 8px;"></div>
+                  <div class="audio-wave-bar" style="height: 16px;"></div>
+                  <div class="audio-wave-bar" style="height: 12px;"></div>
+                  <div class="audio-wave-bar" style="height: 6px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                </div>
+                <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+              </div>
+
+              <div class="timestamp-row"><span class="timestamp">13:04:10</span></div>
+            </div>
+
+            <div class="filter-card-item user-2 item-2">
+              <div class="trans-header-row">
+                <span class="user-name-orange" data-i18n="userSofia">Sofía</span>
+                <span class="category-tag cat-luzfx" data-i18n="categoryLuz">LUZ / FX</span>
+              </div>
+              <div class="trans-main-text" data-i18n="filterMsg2">Foco principal en azul neón listo</div>
+
+              <div class="trans-sub-row visible">
+                <span class="lang-pill-src">(AR)</span>
+                <span class="trans-original-sub">المسرح الرئيسي جاهز باللون الأزرق</span>
+              </div>
+
+              <div class="audio-capsule">
+                <div class="audio-play-btn">
+                  <svg viewBox="0 0 24 24">
+                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                  </svg>
+                </div>
+                <div class="audio-waveform-bars">
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 8px;"></div>
+                  <div class="audio-wave-bar" style="height: 16px;"></div>
+                  <div class="audio-wave-bar" style="height: 12px;"></div>
+                  <div class="audio-wave-bar" style="height: 6px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                </div>
+                <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+              </div>
+
+              <div class="timestamp-row"><span class="timestamp">13:04:35</span></div>
+            </div>
+
+            <div class="filter-card-item user-3 item-3">
+              <div class="trans-header-row">
+                <span class="user-name-yellow" data-i18n="userCarlos">Carlos</span>
+                <span class="category-tag cat-sonido" data-i18n="categorySonido">SONIDO</span>
+              </div>
+              <div class="trans-main-text" data-i18n="filterMsg3">Música intro sonando</div>
+
+              <div class="trans-sub-row visible">
+                <span class="lang-pill-src">(DE)</span>
+                <span class="trans-original-sub">Die Intromusik läuft jetzt</span>
+              </div>
+
+              <div class="audio-capsule">
+                <div class="audio-play-btn">
+                  <svg viewBox="0 0 24 24">
+                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                  </svg>
+                </div>
+                <div class="audio-waveform-bars">
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 8px;"></div>
+                  <div class="audio-wave-bar" style="height: 16px;"></div>
+                  <div class="audio-wave-bar" style="height: 12px;"></div>
+                  <div class="audio-wave-bar" style="height: 6px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                </div>
+                <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+              </div>
+
+              <div class="timestamp-row"><span class="timestamp">13:05:02</span></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="filtrosTitle">Filtros dinámicos</h3>
+        <p data-i18n="filtrosDesc">Demostración del motor de filtrado por categoría en tiempo real. Permite alternar
+          instantáneamente entre todos los mensajes, categorías individuales (Producción, Luz/FX, Sonido) o
+          multiselecciones personalizadas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. ALERTAS MULTISENSORIALES
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="alertasTitle">Alertas multisensoriales</h2>
+      <div class="animation-container" id="alerts-demo-card">
+        <div class="alerts-demo">
+
+          <div class="flashlight-circle-bg" id="flashlight-circle"></div>
+
+          <div class="alert-rows-list" style="position: relative; z-index: 2;">
+
+            <div class="alert-row-card active-alert-row" id="alert-row-1">
+              <div class="alert-pill-toggle is-on" id="alert-toggle-1">ON</div>
+              <div class="alert-info-box">
+                <span class="alert-info-title" data-i18n="alertRow1Title">Alertas Pantalla</span>
+                <span class="alert-info-sub" data-i18n="alertRow1Sub">Animación de color y opacidad</span>
+              </div>
+            </div>
+
+            <div class="alert-row-card" id="alert-row-2">
+              <div class="alert-pill-toggle is-off" id="alert-toggle-2">OFF</div>
+              <div class="alert-info-box">
+                <span class="alert-info-title" data-i18n="alertRow2Title">Vibración</span>
+                <span class="alert-info-sub" data-i18n="alertRow2Sub">Patrón rítmico de haptics</span>
+              </div>
+            </div>
+
+            <div class="alert-row-card" id="alert-row-3">
+              <div class="alert-pill-toggle is-off" id="alert-toggle-3">OFF</div>
+              <div class="alert-info-box">
+                <span class="alert-info-title" data-i18n="alertRow3Title">Linterna</span>
+                <span class="alert-info-sub" data-i18n="alertRow3Sub">Secuencia de destellos LED</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="alertasTitle">Alertas multisensoriales</h3>
+        <p data-i18n="alertasDesc">Réplica exacta del panel de alertas de Talk.me. Permite seleccionar y activar
+          patrones de alertas visuales en pantalla (color y opacidad), respuestas de vibración táctil háptica y
+          secuencias de destellos de linterna LED</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. EDITOR GRÁFICO Y KEYFRAMES
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="triggersTitle">Editor gráfico y Keyframes</h2>
+      <div class="animation-container" id="triggers-demo-card">
+        <div class="triggers-demo">
+
+          <div class="triggers-top-bar">
+            <div class="duration-box">
+              <span>Duration</span>
+              <span class="duration-val">3.9</span>
+            </div>
+
+            <div class="live-indicator-dot" title="Indicador Live">
+              <div class="live-led-inner"></div>
+            </div>
+
+            <div class="controls-group-round">
+              <button class="round-btn-control" title="Play">
+                <svg viewBox="0 0 24 24" fill="#FFFFFF">
+                  <polygon points="6 4 18 12 6 20 6 4"></polygon>
+                </svg>
+              </button>
+              <button class="round-btn-control" title="Stop">
+                <svg viewBox="0 0 24 24" fill="#FFFFFF">
+                  <rect x="6" y="6" width="12" height="12" rx="1.5"></rect>
+                </svg>
+              </button>
+              <button class="round-btn-control active-loop" title="Bucle">
+                <svg viewBox="0 0 24 24" fill="#FFFFFF">
+                  <path
+                    d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" />
+                </svg>
+              </button>
+              <button class="round-btn-control record-btn" title="Grabación en Vivo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="12" cy="12" r="4" fill="#FFFFFF"></circle>
+                </svg>
+              </button>
+            </div>
+
+            <button class="btn-add-keyframe-orange">
+              <span class="btn-add-kf-desktop">+ Add Keyframe</span>
+              <span class="btn-add-kf-mobile">+</span>
+            </button>
+          </div>
+
+          <div class="graph-canvas-box">
+            <div class="graph-canvas-grid"></div>
+            <div class="graph-playhead-line"></div>
+
+            <svg class="multi-curve-svg" viewBox="0 0 440 175" preserveAspectRatio="none">
+              <path id="dynamic-bezier-path" d="M 20,145 C 140,145 220,32 420,32" fill="none" stroke="#FF6B35"
+                stroke-width="2.5" />
+
+              <circle id="node-intro" class="kf-node-circle" cx="20" cy="145" r="6.5" />
+              <text x="20" y="162" class="node-label-text">Intro</text>
+              <text x="20" y="172" class="node-val-text">0.00</text>
+
+              <circle id="node-p2" class="kf-node-circle" cx="420" cy="32" r="6.5" />
+              <text id="label-p2" x="420" y="20" class="node-label-text">Punto 2</text>
+            </svg>
+          </div>
+
+          <div class="edit-keyframe-row">
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelTag">ETIQUETA</span>
+              <input type="text" id="field-label" class="edit-field-input" value="Intro">
+            </div>
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelTimeMs">TIEMPO (MS)</span>
+              <input type="text" id="field-time" class="edit-field-input" value="0">
+            </div>
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelValue">VALOR</span>
+              <input type="text" id="field-val" class="edit-field-input" value="0">
+            </div>
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelCurveNext">CURVA A SIG.</span>
+              <select id="field-curve-select" class="edit-field-input">
+                <option value="Lineal">Lineal</option>
+                <option value="Bezier">Bezier</option>
+              </select>
+            </div>
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelHoldTime">HOLD TIME</span>
+              <input type="text" class="edit-field-input" value="0">
+            </div>
+            <div class="trash-btn-svg" title="Eliminar Keyframe">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="keyframe-order-container">
+            <div class="keyframe-order-title" data-i18n="labelKfOrder">KEYFRAME ORDER</div>
+            <div class="keyframe-order-list">
+
+              <div class="kf-order-card" id="row-intro">
+                <span class="kf-card-name">Intro</span>
+                <span class="kf-card-time">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  0.00s
+                </span>
+                <span class="kf-card-val">+ 0.00</span>
+                <span class="kf-card-type">Lineal</span>
+                <span class="kf-card-hold">0ms</span>
+                <span class="kf-card-del">✕</span>
+              </div>
+
+              <div class="kf-order-card" id="row-p2">
+                <span class="kf-card-name">Punto 2</span>
+                <span class="kf-card-time">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  3.90s
+                </span>
+                <span class="kf-card-val">+ 1.00</span>
+                <span class="kf-card-type" style="color: #FF6B35; font-weight: 700;">Bezier</span>
+                <span class="kf-card-hold">0ms</span>
+                <span class="kf-card-del">✕</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="triggersTitle">Editor gráfico y Keyframes</h3>
+        <p data-i18n="triggersDesc">Extracto del editor gráfico de triggers con lista de keyframes y orden de ejecución.
+          Muestra el recorrido fluido de la aguja sobre los nodos de la curva modificando los valores en tiempo real</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. TRIGGERS IN/OUT
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="triggerInOutTitle">Triggers In/Out</h2>
+      <div class="animation-container" id="trigger-inout-demo-card">
+        <div class="trigger-inout-demo">
+
+          <div class="inout-tabs-bar">
+            <button class="inout-tab-btn active" id="tab-trigger-out" data-i18n="tabOut">↑ OUT</button>
+            <button class="inout-tab-btn" id="tab-trigger-in" data-i18n="tabIn">↓ IN</button>
+          </div>
+
+          <div class="inout-sub-header">
+            <div class="master-toggle-flat is-on" title="Alternar todos">
+              <div class="toggle-handle"></div>
+              <span class="toggle-label on">ON</span>
+              <span class="toggle-label off">OFF</span>
+            </div>
+
+            <div class="search-input-box">
+              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span data-i18n="searchPlaceholder">Buscar trigger...</span>
+            </div>
+
+            <div class="triggers-count-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span data-i18n="savedTriggersLabel">TRIGGERS (15)</span>
+            </div>
+          </div>
+
+          <div class="triggers-inout-list"></div>
+
+          <button class="btn-add-trigger-purple" data-i18n="addTriggerBtn">+ Añadir Trigger</button>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="triggerInOutTitle">Triggers In/Out</h3>
+        <p data-i18n="triggerInOutDesc">Demostración del gestor de triggers In-Out. Muestra la conmutación entre
+          disparadores de entrada y salida, la búsqueda activa y la selección individual o múltiple de reglas con
+          activación en directo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. CONTROL DENTRO Y FUERA DEL CHAT
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="protocolosTitle">Control dentro y fuera del chat</h2>
+      <div class="animation-container" id="protocol-demo-card">
+        <div class="protocol-demo">
+
+          <div class="protocol-tabs-bar">
+            <button class="protocol-tab-btn tab-osc">OSC</button>
+            <button class="protocol-tab-btn tab-midi">MIDI</button>
+            <button class="protocol-tab-btn tab-sacn">sACN</button>
+            <button class="protocol-tab-btn tab-tc active" data-i18n="tabTimeCode">Time Code</button>
+          </div>
+
+          <div class="protocol-panel-card">
+
+            <div class="protocol-sub-panel panel-tc active">
+              <div class="proto-grid-row">
+                <div class="proto-field-group" style="flex: 2;">
+                  <span class="proto-field-label" data-i18n="lblSmpteAudioInput">SMPTE AUDIO INPUT</span>
+                  <div class="proto-field-input">Input 1</div>
+                </div>
+                <div class="proto-field-group" style="flex: 1;">
+                  <span class="proto-field-label" data-i18n="lblChannel">CHANNEL</span>
+                  <div class="proto-field-input">Channel 1 ▾</div>
+                </div>
+              </div>
+
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblStartTime">START TIME</span>
+                  <div style="display: flex; gap: 2px;">
+                    <div class="proto-field-input" style="justify-content: center; font-family: monospace;">01:00:00:00
+                    </div>
+                    <button class="pushpin-btn">📍</button>
+                  </div>
+                </div>
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblEndTime">END TIME</span>
+                  <div style="display: flex; gap: 2px;">
+                    <div class="proto-field-input" style="justify-content: center; font-family: monospace;">01:05:00:00
+                    </div>
+                    <button class="pushpin-btn">📍</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ltc-live-box">
+                <span class="ltc-live-label" data-i18n="lblLtcLive">LTC LIVE</span>
+                <span class="ltc-live-counter" id="ltc-live-counter">01:02:14:00</span>
+                <div class="ltc-live-status-dot" id="ltc-live-status-dot"></div>
+              </div>
+            </div>
+
+            <div class="protocol-sub-panel panel-osc">
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="ipAddress">IP DIRECCIÓN</span>
+                  <div class="proto-field-input">127.0.0.1</div>
+                </div>
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="inputPort">PUERTO ENTRADA</span>
+                  <div class="proto-field-input">8000</div>
+                </div>
+              </div>
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="oscActiveMsg">MENSAJE OSC ACTIVO</span>
+                  <div class="proto-field-input" style="color: #FF6B35; font-family: monospace;">/talkme/cue/trigger/go
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="protocol-sub-panel panel-midi">
+              <div class="proto-grid-row">
+                <div class="proto-field-group" style="flex: 2;">
+                  <span class="proto-field-label" data-i18n="inputDevice">DISPOSITIVO ENTRADA</span>
+                  <div class="proto-field-input">Virtual MIDI Bus 1 ▾</div>
+                </div>
+                <div class="proto-field-group" style="flex: 1;">
+                  <span class="proto-field-label" data-i18n="channel">CANAL</span>
+                  <div class="proto-field-input">Ch 1</div>
+                </div>
+              </div>
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="noteTriggered">NOTA / CC DISPARADA</span>
+                  <div class="proto-field-input" style="color: #10B981; font-family: monospace;">Note C3 (60) - Vel 127
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="protocol-sub-panel panel-sacn">
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblUniversoDmx">UNIVERSO DMX</span>
+                  <div class="proto-field-input">Universe 1</div>
+                </div>
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblCanalInicio">CANAL INICIO</span>
+                  <div class="proto-field-input">Ch 001</div>
+                </div>
+              </div>
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblValorDmxLive">VALOR DMX LIVE</span>
+                  <div class="proto-field-input" style="color: #38BDF8; font-family: monospace;">DMX 255 (100%)</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="protocolosTitle">Control dentro y fuera del chat</h3>
+        <p data-i18n="protocolosDesc">Demostración del centro de sincronización multicanal. Muestra la recepción
+          continua de Time Code SMPTE LTC en tiempo real con contador activo, junto con la conmutación dinámica hacia
+          los protocolos OSC, MIDI y sACN</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. MOTORES DE VOZ FLEXIBLES
+       ========================================================================== -->
+  <section class="feature-section">
+    <div class="feature-content">
+      <h2 class="section-title-mobile" data-i18n="motoresVozElasticosTitle">Motores de voz flexibles</h2>
+      <div class="animation-container" id="motores-voz-demo-card">
+        <div class="voice-models-modal-demo">
+
+          <div class="vm-storage-box">
+            <label class="vm-storage-label" data-i18n="labelStoragePath">Ruta de almacenamiento de los modelos</label>
+            <div class="vm-storage-row">
+              <input type="text" class="vm-storage-input" value="C:\TalkMe\Models" readonly>
+              <button class="vm-storage-btn" data-i18n="btnSelectStorage">Seleccionar...</button>
+            </div>
+          </div>
+
+          <div class="vm-search-box">
+            <svg class="vm-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="vm-search-input" id="vm-search-input" data-i18n="phSearchLang"
+              placeholder="Buscar idioma..." readonly>
+          </div>
+
+          <div class="vm-models-list" id="vm-models-list">
+            <!-- Renderizado dinámico animado de los 24 modelos de voz Vosk -->
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 class="desktop-title" data-i18n="motoresVozElasticosTitle">Motores de voz flexibles</h3>
+        <p data-i18n="motoresVozElasticosDesc">Demostración interactiva de los Motores de Voz Elásticos de Talk.me.
+          Permite gestionar y descargar modelos offline Vosk para 24 idiomas, simular descargas en tiempo real, filtrar
+          activamente (ej: Euskera) y administrar desinstalaciones.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('transcription-demo-card', initTranscriptionDemo);
+      initScrollObserver('modos-audio-demo-card', initAudioModesDemo);
+      initScrollObserver('translation-demo-card', initTranslationDemo);
+      initScrollObserver('motores-demo-card', initMotoresDemo);
+      initScrollObserver('idioma-voz-demo-card', initIdiomaVozDemo);
+      initScrollObserver('filter-demo-card', initFilterDemo);
+      initScrollObserver('alerts-demo-card', initAlertasDemo);
+      initScrollObserver('triggers-demo-card', initTriggersDemo);
+      initScrollObserver('trigger-inout-demo-card', initTriggerInOutDemo);
+      initScrollObserver('protocol-demo-card', initProtocolosDemo);
+      initScrollObserver('motores-voz-demo-card', initVoiceEnginesDemo);
+    });
+  </script>
+</body>
+
+</html>

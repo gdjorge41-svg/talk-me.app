@@ -1,0 +1,70 @@
+{
+  "name": "talk-me-desktop",
+  "version": "60.2.0",
+  "description": "Desktop Launcher and Client wrapper for Talk.me Chat",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron app_build",
+    "prepare:win": "prepare-build.bat",
+    "prepare:mac": "./prepare-build.sh",
+    "build:win": "call prepare-build.bat && powershell -NoProfile -Command \"Stop-Process -Name 'Talk-me','electron' -Force -ErrorAction SilentlyContinue; if (Test-Path 'dist_final') { Remove-Item -Path 'dist_final' -Recurse -Force -ErrorAction SilentlyContinue }\" && .\\node_modules\\.bin\\electron-builder.cmd --win --x64",
+    "build:mac": "./prepare-build.sh && ./node_modules/.bin/electron-builder --mac",
+    "build:all": "call prepare-build.bat && .\\node_modules\\.bin\\electron-builder -mw"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.talkme.chat",
+    "productName": "Talk-me",
+    "compression": "store",
+    "asar": false,
+    "npmRebuild": false,
+    "directories": {
+      "app": "app_build",
+      "output": "dist_final"
+    },
+    "nsis": {
+      "include": "installer.nsh",
+      "artifactName": "Talk-me.app Setup ${version}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "icon.icns",
+      "category": "public.app-category.business",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "identity": null
+    },
+    "dmg": {
+      "artifactName": "Talk-me-${version}.${ext}"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icon.ico",
+      "executableName": "Talk-me",
+      "verifyUpdateCodeSignature": false
+    },
+    "portable": {
+      "artifactName": "Talk-me Portable ${version}.${ext}",
+      "unpackDirName": "TalkMe_Portable"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "_talkmeFormat": "trigger-v60",
+  "id": "tr_mp5tf86154wx",
+  "name": "02 ALESARDUI",
+  "direction": "IN",
+  "type": "smpte",
+  "external": {
+    "smpte": {
+      "timecodeStart": "02:00:00:00",
+      "timecodeEnd": "02:03:00:00",
+      "audioDeviceId": "default",
+      "audioChannel": 1
+    }
+  },
+  "message": {
+    "text": "ALESARDUI TC",
+    "filterIds": [
+      "all"
+    ],
+    "sendToAll": true,
+    "audio": null,
+    "image": null
+  }
+}

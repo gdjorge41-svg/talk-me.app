@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Animación Gestor de Triggers In-Out</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica 7 -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="triggerInOutTitle">7. Triggers In/Out</span>
+    </h2>
+
+    <div class="feature-content">
+      <!-- 1. Contenedor de la Animación -->
+      <div class="animation-container" id="trigger-inout-demo-card">
+        <div class="trigger-inout-demo">
+          
+          <!-- Pestañas Superiores OUT / IN -->
+          <div class="inout-tabs-bar">
+            <button class="inout-tab-btn active" id="tab-trigger-out" data-i18n="tabOut">↑ OUT</button>
+            <button class="inout-tab-btn" id="tab-trigger-in" data-i18n="tabIn">↓ IN</button>
+          </div>
+
+          <!-- Subcabecera de Búsqueda con Marcado Oficial 1:1 de trigger.css -->
+          <div class="inout-sub-header">
+            <div class="master-toggle-flat is-on" title="Alternar todos">
+              <div class="toggle-handle"></div>
+              <span class="toggle-label on">ON</span>
+              <span class="toggle-label off">OFF</span>
+            </div>
+            
+            <div class="search-input-box">
+              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span data-i18n="searchPlaceholder">Buscar trigger...</span>
+            </div>
+
+            <div class="triggers-count-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span data-i18n="savedTriggersLabel">TRIGGERS (15)</span>
+            </div>
+          </div>
+
+          <!-- Lista Dinámica de Triggers -->
+          <div class="triggers-inout-list"></div>
+
+          <!-- Botón Añadir Trigger -->
+          <button class="btn-add-trigger-purple" data-i18n="addTriggerBtn">+ Añadir Trigger</button>
+
+        </div>
+      </div>
+
+      <!-- 2. Contenedor de la Descripción -->
+      <div class="description-container">
+        <h3 data-i18n="triggerInOutDescTitle">Gestión de Disparadores y Selección</h3>
+        <p data-i18n="triggerInOutDesc">Demostración del gestor de triggers In-Out. Muestra la conmutación entre disparadores de entrada y salida, la búsqueda activa y la selección individual o múltiple de reglas con activación en directo</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('trigger-inout-demo-card', initTriggerInOutDemo);
+    });
+  </script>
+</body>
+</html>

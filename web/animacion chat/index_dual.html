@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Talk-me — Dual Device Simulator (Portátil + Móvil)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles_dual.css">
+</head>
+
+<body>
+
+  <!-- Encabezado de la Demo -->
+  <header class="dual-demo-header">
+    <h1 class="dual-logo">
+      <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+    </h1>
+    <p class="dual-subtitle" id="dualSubtitle">Simulación 1:1 en Portátil y Móvil con transmisión, traducción y triggers en tiempo real</p>
+  </header>
+
+  <!-- Selector de Idiomas -->
+  <div class="language-bar">
+    <button class="lang-pill active" data-lang="es">Español</button>
+    <button class="lang-pill" data-lang="en">English</button>
+    <button class="lang-pill" data-lang="fr">Français</button>
+    <button class="lang-pill" data-lang="de">Deutsch</button>
+    <button class="lang-pill" data-lang="it">Italiano</button>
+    <button class="lang-pill" data-lang="pt">Português</button>
+    <button class="lang-pill" data-lang="ca">Català</button>
+    <button class="lang-pill" data-lang="eu">Euskara</button>
+    <button class="lang-pill" data-lang="ja">日本語</button>
+  </div>
+
+  <!-- ESCENARIO MOCKUP (PORTÁTIL + MÓVIL) - Ratio nativo 3000x2000 (3:2) -->
+  <main class="mockup-stage">
+
+    <!-- 1. PANTALLA DEL PORTÁTIL (LAPTOP SCREEN - CLON 1:1 DE LA APP REAL) -->
+    <div class="laptop-screen-container">
+      <div class="laptop-viewport-scaler">
+        <div class="main-layout" style="width: 100%; height: 100%;">
+
+          <!-- CONTROL PANEL (SIDEBAR IZQUIERDO DE TALK.ME CLONADO 1:1 DE control-panel.ejs) -->
+          <aside class="control-panel" id="controlPanel">
+            <button class="panel-toggle" id="panelToggle" title="Plegar / Desplegar Panel">
+              <svg viewBox="0 0 10 24" width="10" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter">
+                <polyline points="9,0 1,12 9,24"></polyline>
+              </svg>
+            </button>
+            <div class="panel-content">
+
+              <!-- LOGO OFICIAL TALK-ME -->
+              <div class="sidebar-logo-container">
+                <h2 class="sidebar-logo">
+                  <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+                </h2>
+              </div>
+
+              <!-- Botón Ajustes Generales -->
+              <div class="settings-main-btn-container">
+                <button id="btnOpenMainSettings" class="settings-btn-premium">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                      d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                    </path>
+                  </svg>
+                  <span id="lblGeneralSettings" data-i18n="chatSim.btnGeneralSettings">Ajustes Generales</span>
+                </button>
+              </div>
+
+              <!-- Configuración de Audio -->
+              <div class="sidebar-audio-config">
+                <div class="setting-row">
+                  <label id="lblMicMode" data-i18n="chatSim.labelMicMode">MODO DE MICROFONO</label>
+                  <div class="talkme-select-container">
+                    <select id="micModeSelect" class="talkme-select">
+                      <option value="ptt" id="lblModePtt" data-i18n="chatSim.optPttText">Push-to-Talk (mantener)</option>
+                      <option value="auto" id="lblModeAuto" data-i18n="chatSim.optAutoText">Automático (por volumen)</option>
+                    </select>
+                    <div class="talkme-select-arrow">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="setting-row">
+                  <label id="lblSensibilidad" data-i18n="chatSim.labelInputLevel">NIVEL DE ENTRADA</label>
+                  <div class="v41-meter-container">
+                    <div class="volume-meter">
+                      <div id="volumeLevel" class="volume-level"></div>
+                    </div>
+                    <input type="range" id="micSensitivity" min="0" max="100" value="50" style="display:none;">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Lista de Usuarios Conectados Oficial -->
+              <div class="users-list-container">
+                <h3 id="usersListTitle" class="users-title-with-icon">
+                  <svg class="users-list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" width="18" height="18"
+                    aria-hidden="true" focusable="false">
+                    <g fill="currentColor">
+                      <path d="M48.355,17.922c3.705,2.323,6.303,6.254,6.776,10.817c1.511,0.706,3.188,1.112,4.966,1.112
+  c6.491,0,11.752-5.261,11.752-11.751c0-6.491-5.261-11.752-11.752-11.752C53.668,6.35,48.453,11.517,48.355,17.922z M40.656,41.984
+  c6.491,0,11.752-5.262,11.752-11.752s-5.262-11.751-11.752-11.751c-6.49,0-11.754,5.262-11.754,11.752S34.166,41.984,40.656,41.984
+  z M45.641,42.785h-9.972c-8.297,0-15.047,6.751-15.047,15.048v12.195l0.031,0.191l0.84,0.263
+  c7.918,2.474,14.797,3.299,20.459,3.299c11.059,0,17.469-3.153,17.864-3.354l0.785-0.397h0.084V57.833
+  C60.688,49.536,53.938,42.785,45.641,42.785z M65.084,30.653h-9.895c-0.107,3.959-1.797,7.524-4.47,10.088
+  c7.375,2.193,12.771,9.032,12.771,17.11v3.758c9.77-0.358,15.4-3.127,15.771-3.313l0.785-0.398h0.084V45.699
+  C80.13,37.403,73.38,30.653,65.084,30.653z M20.035,29.853c2.299,0,4.438-0.671,6.25-1.814c0.576-3.757,2.59-7.04,5.467-9.276
+  c0.012-0.22,0.033-0.438,0.033-0.66c0-6.491-5.262-11.752-11.75-11.752c-6.492,0-11.752,5.261-11.752,11.752
+  C8.283,24.591,13.543,29.853,20.035,29.853z M30.589,40.741c-2.66-2.551-4.344-6.097-4.467-10.032
+  c-0.367-0.027-0.73-0.056-1.104-0.056h-9.971C6.75,30.653,0,37.403,0,45.699v12.197l0.031,0.188l0.84,0.265
+  c6.352,1.983,12.021,2.897,16.945,3.185v-3.683C17.818,49.773,23.212,42.936,30.589,40.741z" />
+                    </g>
+                  </svg>
+                  <span class="users-list-text" id="lblUsersConnected" data-i18n="chatSim.lblUsersConnected">USUARIOS CONECTADOS (4)</span>
+                  <button id="btn-add-subuser" class="btn-add-subuser" title="Crear / Editar Sub-usuario">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </h3>
+
+                <div id="usersList" class="custom-scroll">
+                  <!-- JORGE (Tú / Master 👑 con SVG oficial de Talk-me) -->
+                  <div class="user-item own-user" id="userCardJorge" style="border-left-color: rgb(189, 219, 201);">
+                    <div class="user-item-content-left">
+                      <span class="user-card-name" style="color: rgb(189, 219, 201);">Jorge</span>
+                      <small class="category-tag-inline cat-produccion" id="badgeJorgeCat" data-i18n="chatSim.catProduccion">PRODUCCION</small>
+                      <small class="lang-tag-inline">ES</small>
+                    </div>
+                    <div class="user-item-content-right">
+                      <span class="own-tag" id="tagYou" data-i18n="chatSim.tagYou">(Tú)</span>
+                      <span class="master-crown-inline" title="Administrador">
+                        <svg viewBox="0 0 512 512" fill="#e0b04b" stroke="#e0b04b" xmlns="http://www.w3.org/2000/svg" width="13" height="13">
+                          <g>
+                            <path fill="#e0b04b" d="M512,152.469c0-21.469-17.422-38.875-38.891-38.875c-21.484,0-38.906,17.406-38.906,38.875 c0,10.5,4.172,20.016,10.938,27c-26.453,54.781-77.016,73.906-116.203,56.594c-34.906-15.438-47.781-59.563-52.141-93.75 c14.234-7.484,23.938-22.391,23.938-39.594C300.734,78.016,280.719,58,256,58c-24.703,0-44.734,20.016-44.734,44.719 c0,17.203,9.703,32.109,23.938,39.594c-4.359,34.188-17.234,78.313-52.141,93.75c-39.188,17.313-89.75-1.813-116.203-56.594 c6.766-6.984,10.938-16.5,10.938-27c0-21.469-17.422-38.875-38.891-38.875C17.422,113.594,0,131,0,152.469 c0,19.781,14.781,36.078,33.875,38.547l44.828,164.078h354.594l44.828-164.078C497.234,188.547,512,172.25,512,152.469z"></path>
+                            <path fill="#e0b04b" d="M455.016,425.063c0,15.984-12.953,28.938-28.953,28.938H85.938C69.953,454,57,441.047,57,425.063v-2.406 c0-16,12.953-28.953,28.953-28.953h340.125c16,0,28.953,12.953,28.953,28.953V425.063z"></path>
+                          </g>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- SOFÍA (Luz / FX - FR) -->
+                  <div class="user-item" id="userCardSofia" style="border-left-color: rgb(255, 212, 153);">
+                    <div class="user-item-content-left">
+                      <span class="user-card-name" style="color: rgb(255, 212, 153);">Sofía</span>
+                      <small class="category-tag-inline cat-luzfx" id="badgeSofiaCat" data-i18n="chatSim.catLuzFx">LUZ / FX</small>
+                      <small class="lang-tag-inline">FR</small>
+                    </div>
+                    <div class="user-item-content-right"></div>
+                  </div>
+
+                  <!-- CARLOS (Sonido - ES) -->
+                  <div class="user-item" id="userCardCarlos" style="border-left-color: rgb(32, 101, 205);">
+                    <div class="user-item-content-left">
+                      <span class="user-card-name" style="color: rgb(32, 101, 205);">Carlos</span>
+                      <small class="category-tag-inline cat-sonido" id="badgeCarlosCat" data-i18n="chatSim.catSonido">SONIDO</small>
+                      <small class="lang-tag-inline">ES</small>
+                    </div>
+                    <div class="user-item-content-right"></div>
+                  </div>
+
+                  <!-- ELENA (Regiduria - Sub-usuario) -->
+                  <div class="subusers-list" style="margin-top: 4px; margin-left: 10px; display: flex; flex-direction: column;">
+                    <div class="subuser-item" id="userCardElena" style="border-left-color: rgb(182, 44, 242);">
+                      <div class="user-item-content-left">
+                        <span class="user-card-name" style="color: rgb(182, 44, 242);">Elena</span>
+                        <small class="category-tag-inline cat-regiduria" id="badgeElenaCat" data-i18n="chatSim.catRegiduria">REGIDURIA</small>
+                        <small class="lang-tag-inline">ES</small>
+                      </div>
+                      <div class="user-item-content-right">
+                        <span class="sub-tag" id="tagSubUser" data-i18n="chatSim.subUserTag">Sub-usuario</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="server-info">
+                V1.0 (BETAv60) - Made with ♥ by Jorge.Lighting
+              </div>
+            </div>
+          </aside>
+
+          <!-- ÁREA PRINCIPAL DEL CHAT DESKTOP -->
+          <main class="chat-area">
+            <div class="chat-header">
+              <div class="header-status-group">
+                <div class="server-connection-top" id="connectionStatus">
+                  <span id="connectionStatusIP">https://192.168.0.12:3000/</span>
+                  <div class="status-icon-container blink-green" id="connectionStatusDot">
+                    <svg viewBox="0 0 24 24" class="status-icon-svg" width="10" height="10">
+                      <circle cx="12" cy="12" r="8" fill="#10B981"></circle>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="header-status-subbar">
+                  <button id="btnMuteGlobal" class="btn-mute-global" title="Mute/Unmute">
+                    <svg viewBox="0 0 24 24" id="sound-max" class="icon flat-line"
+                      style="width: 22px; height: 22px; fill: currentColor; stroke: currentColor;">
+                      <path id="mute_speaker_bg" d="M11,5V19L7,15H4a1,1,0,0,1-1-1V10A1,1,0,0,1,4,9H7Z" style="stroke: none;"></path>
+                      <path id="mute_wave_outer" d="M18.36,5.64a9,9,0,0,1,0,12.72" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5;"></path>
+                      <path id="mute_wave_inner" d="M15.54,8.46a5,5,0,0,1,0,7.08" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5;"></path>
+                      <path id="mute_speaker_outline" d="M11,5V19L7,15H4a1,1,0,0,1-1-1V10A1,1,0,0,1,4,9H7Z" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5;"></path>
+                    </svg>
+                  </button>
+
+                  <div class="status-indicator silent" id="statusIndicator">
+                    <svg class="status-indicator-svg" viewBox="0 0 24 24">
+                      <path class="mic-body" d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                      <line x1="12" y1="19" x2="12" y2="22" />
+                    </svg>
+                    <span id="statusIndicatorText" data-i18n="chatSim.statusSilence">EN SILENCIO</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Barra de Filtros Oficial -->
+            <div class="category-filter-bar" id="categoryFilterBar">
+              <button class="filter-btn active pill-all" id="filterBtnTodos" data-filter="all" data-i18n="chatSim.filterAll">TODOS</button>
+              <button class="filter-btn pill-produccion" data-filter="produccion" data-i18n="chatSim.catProduccion">PRODUCCION</button>
+              <button class="filter-btn pill-luzfx" data-filter="luzfx" data-i18n="chatSim.catLuzFx">LUZ / FX</button>
+              <button class="filter-btn pill-sonido" data-filter="sonido" data-i18n="chatSim.catSonido">SONIDO</button>
+              <button class="filter-btn pill-regiduria" data-filter="regiduria" data-i18n="chatSim.catRegiduria">REGIDURIA</button>
+            </div>
+
+            <!-- Contenedor de Mensajes -->
+            <div class="messages-container">
+              <div class="top-transcript-popup" id="topTranscriptPopup">
+                <span class="transcript-stt-text" id="transcriptSttText">...</span>
+              </div>
+
+              <div class="messages custom-scroll" id="messagesContainer">
+                <!-- Mensaje de apertura de Jorge -->
+                <div class="message own" data-category="Producción" style="border-right-color: rgb(189, 219, 201);">
+                  <div class="message-sender" style="color: rgb(189, 219, 201);">
+                    Jorge
+                    <small class="category-tag cat-produccion" data-i18n="chatSim.catProduccion">PRODUCCION</small>
+                  </div>
+                  <div class="message-text">DONDE ESTAS TC</div>
+                  <div class="message-time">19:02:10</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Input Area Desktop -->
+            <div class="input-area">
+              <button class="btn-attach" id="btnAttach" title="Enviar foto">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </button>
+
+              <div class="input-wave-container" id="inputWaveContainer">
+                <input type="text" class="text-input" id="textInput" placeholder="Escribe tu mensaje..."
+                  data-i18n-ph="chatSim.phTextInput" readonly>
+                <div class="voice-wave" id="voiceWave"></div>
+                <div class="vumeter-input-box" id="vumeterInputBox"></div>
+              </div>
+
+              <button class="btn-send" id="btnSend" title="Hablar / Enviar">
+                <span id="btnSendText" style="display: none;">Enviar</span>
+                <svg id="btnSendIcon" class="btn-send-svg" viewBox="0 0 24 24">
+                  <path class="mic-body" d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" y1="19" x2="12" y2="22" />
+                </svg>
+              </button>
+            </div>
+
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PANTALLA DEL MÓVIL (PHONE SCREEN - SMARTPHONE CLIENT TALK-ME 1:1) -->
+    <div class="phone-screen-container" id="phoneScreenContainer">
+      <div class="phone-viewport-scaler">
+
+        <!-- Dynamic Island + Barra Superior OS Móvil -->
+        <div class="phone-dynamic-island">
+          <div class="dynamic-island-pill">
+            <span class="island-camera"></span>
+            <span class="island-sensor"></span>
+          </div>
+        </div>
+
+        <div class="phone-status-top">
+          <span class="phone-clock">19:02</span>
+          
+          <div class="phone-status-icons">
+            <!-- Icono WIFI Oficial SVG -->
+            <svg class="phone-wifi-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+              <line x1="12" y1="20" x2="12.01" y2="20"></line>
+            </svg>
+            <!-- Icono Batería -->
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="16" height="10" rx="2" ry="2"></rect>
+              <line x1="22" y1="11" x2="22" y2="13"></line>
+              <rect x="4" y="9" width="11" height="6" fill="#10B981" stroke="none"></rect>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Chat Area Oficial Móvil de Talk-me -->
+        <div class="phone-chat-area">
+          <!-- Logo Oficial Talk-me flotante en móvil -->
+          <div class="phone-main-logo">
+            <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+          </div>
+
+          <!-- Header móvil con IP, botón mute y status pill -->
+          <div class="phone-chat-header">
+            <div class="phone-header-status-group">
+              <span class="phone-server-connection">
+                <span class="blink-green"></span> 192.168.0.12:3000
+              </span>
+              <div class="phone-header-actions">
+                <button class="phone-btn-mute" id="btnPhoneMute" title="Silenciar audio">
+                  <svg class="audio-on-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  </svg>
+                </button>
+                <div class="status-indicator silent" id="phoneStatusIndicator">
+                  <svg class="status-indicator-svg" viewBox="0 0 24 24">
+                    <path class="mic-body" d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                    <line x1="12" y1="19" x2="12" y2="22" />
+                  </svg>
+                  <span id="phoneStatusIndicatorText">EN SILENCIO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra de Filtros de Categoría Oficial en Móvil -->
+          <div class="phone-category-filter-bar">
+            <button class="phone-filter-btn pill-all active">TODOS</button>
+            <button class="phone-filter-btn pill-luzfx">LUZ / FX</button>
+            <button class="phone-filter-btn pill-produccion">PROD</button>
+            <button class="phone-filter-btn pill-sonido">SONIDO</button>
+          </div>
+
+          <!-- Feed de Mensajes Móvil -->
+          <div class="phone-messages-container" id="phoneMessagesContainer">
+            <!-- Popup Notificación Push Móvil de producción -->
+            <div class="phone-push-notification" id="phonePushAlert" style="display: none;">
+              <span class="phone-push-icon">🎙️</span>
+              <div class="phone-push-body">
+                <strong class="phone-push-title">Jorge (Producción)</strong>
+                <div class="phone-push-subtitle" id="phonePushText">Transmitiendo audio en vivo...</div>
+              </div>
+            </div>
+
+            <div class="phone-messages-scroll custom-scroll" id="phoneMessagesFeed">
+              <div class="message own" data-category="Producción" style="border-right-color: rgb(189, 219, 201);">
+                <div class="message-sender" style="color: rgb(189, 219, 201);">
+                  Jorge
+                  <small class="category-tag cat-produccion">PRODUCCION</small>
+                </div>
+                <div class="message-text">DONDE ESTAS TC</div>
+                <div class="message-time">19:02:10</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra Inferior Móvil Oficial -->
+          <div class="phone-input-area">
+            <button class="phone-btn-attach" title="Adjuntar foto/archivo">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="phone-input-wrapper">
+              <input type="text" class="phone-text-input" placeholder="Escribe tu mensaje..." readonly>
+              <div class="phone-vumeter-box" id="phoneVumeterBox">
+                <div class="phone-vumeter-fill" id="phoneVumeterFill"></div>
+              </div>
+            </div>
+
+            <button class="phone-btn-send" id="btnPhoneSend" title="Hablar / Enviar">
+              <svg class="phone-btn-send-svg" viewBox="0 0 24 24">
+                <path class="mic-body" d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <line x1="12" y1="19" x2="12" y2="22" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. MARCO MOCKUP SUPERPUESTO (PNG 3000x2000 OFICIAL) -->
+    <img src="mockup_laptop+phone.png" alt="Talk-me Devices Mockup" class="mockup-frame-img">
+
+  </main>
+
+  <script src="script_dual.js"></script>
+</body>
+
+</html>

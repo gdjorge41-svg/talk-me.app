@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "id": "cat_luzfx",
+      "name": "Sonido",
+      "color": "#0981d9"
+    },
+    {
+      "id": "cat_produccion",
+      "name": "Producción",
+      "color": "#70af89"
+    },
+    {
+      "id": "cat_artistas",
+      "name": "Artista",
+      "color": "#ff9ebe"
+    },
+    {
+      "id": "cat_mmk5tya3txwvf",
+      "name": "Luz / FX",
+      "color": "#ffc671"
+    },
+    {
+      "id": "cat_mmmgly9w15tzw",
+      "name": "Regiduria",
+      "color": "#be5ffe"
+    }
+  ],
+  "masterId": "twOsEbLtbUbqN_NaAAAD",
+  "masterUsername": "Jorge",
+  "masterCategory": "Producción",
+  "roomPin": null,
+  "lastModified": "2026-11-02T10:23:16.934Z"
+}

@@ -1,0 +1,35 @@
+<!-- Activadores hapticos para iOS (3 elementos independientes) -->
+<!-- Se mantienen con opacidad 0 y sin display:none para que el motor táctil de Safari los detecte -->
+<div
+    style="position:fixed; top:0; left:0; width:1px; height:1px; opacity:0; pointer-events:none; z-index:-1; overflow:hidden;">
+    <input type="checkbox" id="hapticSwitch1" switch><label for="hapticSwitch1" id="hapticL1">H1</label>
+    <input type="checkbox" id="hapticSwitch2" switch><label for="hapticSwitch2" id="hapticL2">H2</label>
+    <input type="checkbox" id="hapticSwitch3" switch><label for="hapticSwitch3" id="hapticL3">H3</label>
+</div>
+
+<!-- Vídeo técnico para prevención de auto-lock (1x1px, muted, invisible) -->
+<!-- Reproducción multimedia legítima interpretada por iOS como consumo activo de contenido para escuchar con iphone bloqueado-->
+<video id="wakeLockVideo" muted loop playsinline preload="auto"
+    style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;z-index:-1;">
+</video>
+
+<!-- Modal Imagen chat Pantalla Completa -->
+<div id="imageModal" class="image-viewer-modal hidden">
+    <div class="close-viewer" id="closeViewer">
+        <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="3" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </div>
+    <div class="viewer-content">
+        <img id="fullImage" src="" alt="Imagen a pantalla completa">
+    </div>
+</div>
+
+<!-- Toast global para notificaciones (siempre visible) -->
+<div id="globalToast" class="global-toast"></div>
+
+<!-- Transcripción en tiempo real -->
+<div class="transcription-box" id="transcriptionBox">
+    <p class="transcription-text" id="transcriptionText">Transcripción en tiempo real...</p>
+</div>

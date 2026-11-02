@@ -1,0 +1,574 @@
+<div lang="ar" class="terms-lang" style="display:none">
+    <h3>1. استخدام منصة Talk-me</h3>
+    <p>Talk-me هي أداة اتصال غير متصلة بالإنترنت، ونقل صوتي عبر بروتوكول WebRTC المعالج وقياس الشبكة عن بعد. لقد تم
+        تصميمه بشكل صارم للاستخدام الاحترافي في العروض الصوتية والإنتاج المباشر وعمليات النشر المعزولة ("Zero-Cloud").
+        يقع تشغيلها في ظل شبكات WAN أو شبكات WAN غير الآمنة أو المفتوحة ضمن مسؤولية مسؤول الشبكة وحده.</p>
+    <h3>2. المعالجة الصوتية الذكية (الذكاء الاصطناعي المحلي)</h3>
+    <p>ينفذ محرك الذكاء الاصطناعي (Vosk) نماذج رياضية للتعرف على الإملاء المحلي بنسبة 100% على وحدة المعالجة المركزية
+        للعقدة المركزية. يوافق المستخدم على التقاط صوته بواسطة الميكروفون ("AudioWorklet Node")، وتحويله رياضيًا إلى كتل
+        PCM منخفضة التردد (16 كيلو هرتز)، ونقله إلى الخادم الأساسي للمعالجة الفورية. تتم جميع عمليات المعالجة الدلالية
+        داخل الشبكة الداخلية.</p>
+    <h3>3. الخصوصية وغياب قواعد البيانات الخارجية</h3>
+    <p>الخصوصية هي حجر الزاوية في هذه الهندسة المعمارية حسب التصميم. يفتقر برنامج Talk-me إلى الاتصالات بسحابات الطرف
+        الثالث، أو أنظمة القياسات الحيوية التحليلية التجارية، أو قواعد البيانات السحابية المستمرة. تنتهي صلاحية حزم
+        الصوت (ArrayBuffer Blob PCM) أو الأوامر (OSC) بمجرد استلامها. يتم حفظ القواميس الدلالية محليا.</p>
+    <h3>4. استخدام واجهات برمجة تطبيقات المتصفح ("حقن المتصفح")</h3>
+    <p>من خلال قبول هذه الخدمة، فإنك تسمح لـ Talk-me باستدعاء إشعارات نظام التشغيل ("Notification API")، أو التعامل مع
+        أجهزة السماعات (`sinkId`)، أو تنشيط المشغلات المادية المحلية باستخدام المصباح اليدوي (`MediaTrackConstraints`)
+        ومحركات الاهتزاز اللمسي (`Navigator.Vibrate`) لضمان التنبيهات الحمراء.</p>
+    <h3>5. إخلاء المسؤولية بشأن التحكم في الأجهزة</h3>
+    <p>يسمح نظام "المشغلات" بالإدراج المباشر للأوامر الفعلية ثنائية الاتجاه إلى ناقل MIDI الأصلي أو عبر Binary OSC UDP
+        حقن إلى وحدات تحكم الطرف الثالث. لا يتحمل المطور مسؤولية الأضرار الجانبية الناتجة عن تكوينات المشغل الخاطئة.</p>
+</div>
+<div lang="ca" class="terms-lang" style="display:none">
+    <h3>1. Ús de la Plataforma Talk-me</h3>
+    <p>Talk-me és una eina de comunicació fora de línia, transmissió de veu mitjançant el protocol WebRTC processat i
+        telemetria de xarxa. Està dissenyat estrictament per a ús professional en espectacles acústics, producció en
+        directe i desplegaments aïllats ("Zero-Cloud"). El seu funcionament en xarxes insegures, WAN o obertes és
+        responsabilitat exclusiva de l'administrador de la xarxa.</p>
+    <h3>2. Processament intel·ligent de veu (IA local)</h3>
+    <p>El motor d'Intel·ligència Artificial (Vosk) executa models matemàtics de reconeixement de dicció 100% local a la
+        CPU del node central. L'usuari consent que la seva veu sigui capturada pel micròfon ("Node AudioWorklet"),
+        matemàticament transformada en blocs PCM de baixa freqüència (16 kHz) i transmesa al servidor principal per al
+        seu processament instantani. Tot el processament semàntic es produeix dins de la intranet.</p>
+    <h3>3. Privadesa i absència de bases de dades externes</h3>
+    <p>La privadesa és la pedra angular d'aquesta arquitectura per disseny. Talk-me no té connexions amb núvols de
+        tercers, sistemes biomètrics analítics comercials o bases de dades de núvol persistents. Els paquets d'àudio
+        (ArrayBuffer Blob PCM) o les ordres (OSC) caduquen un cop rebuts. Els diccionaris semàntics es guarden
+        localment.</p>
+    <h3>4. Ús de les API del navegador ("Browser Injections")</h3>
+    <p>En acceptar aquest servei, permeteu que Talk-me invoqui notificacions del sistema operatiu (`Notification API`),
+        manipuli dispositius d'altaveu o activeu actuadors físics locals mitjançant la llanterna
+        (`MediaTrackConstraints`) i motors de vibració hàptic (`Navigator.Vibrate`) per garantir alertes vermelles.</p>
+    <h3>5. Exempció de responsabilitat sobre el control de maquinari</h3>
+    <p>El sistema "Triggers" autoritza la inserció directa d'ordres físiques bidireccionals al bus MIDI natiu o
+        mitjançant injeccions binàries OSC UDP a consoles de tercers. El desenvolupador no es fa responsable dels danys
+        col·laterals derivats de configuracions d'activació errònies.</p>
+</div>
+<div lang="de" class="terms-lang" style="display:none">
+    <h3>1. Nutzung der Talk-me-Plattform</h3>
+    <p>Talk-me ist ein Offline-Kommunikationswerkzeug, das die Sprachübertragung über ein verarbeitetes WebRTC-Protokoll
+        und Netzwerktelemetrie ermöglicht. Es ist ausschließlich für den professionellen Einsatz bei akustischen Shows,
+        Live-Produktionen und isolierten Bereitstellungen („Zero-Cloud“) konzipiert. Der Betrieb in unsicheren, WAN-
+        oder offenen Netzwerken liegt in der alleinigen Verantwortung des Netzwerkadministrators.</p>
+    <h3>2. Intelligente Sprachverarbeitung (Lokale KI)</h3>
+    <p>Die KI-Engine (Vosk) führt mathematische Spracherkennungsmodelle zu 100 % lokal auf der CPU des zentralen Knotens
+        aus. Der Nutzer willigt ein, dass seine Stimme vom Mikrofon („AudioWorklet Node“) erfasst, mathematisch in
+        niederfrequente PCM-Blöcke (16 kHz) umgewandelt und zur sofortigen Verarbeitung an den Hauptserver übertragen
+        wird. Die gesamte semantische Verarbeitung findet im Intranet statt.</p>
+    <h3>3. Datenschutz und keine externen Datenbanken</h3>
+    <p>Datenschutz ist das Fundament dieser Architektur. Talk-me verfügt über keine Verbindungen zu
+        Drittanbieter-Clouds, kommerziellen biometrischen Analysesystemen oder dauerhaften Cloud-Datenbanken.
+        Audiopakete (ArrayBuffer Blob PCM) oder Befehle (OSC) verfallen sofort nach dem Empfang. Semantische
+        Wörterbücher werden lokal gespeichert.</p>
+    <h3>4. Nutzung von Browser-APIs („Browser-Injektionen“)</h3>
+    <p>Durch die Zustimmung zu diesem Dienst erlauben Sie Talk-me, Benachrichtigungen des Betriebssystems aufzurufen
+        (`Notification API`), Lautsprechergeräte zu steuern oder lokale physische Aktoren mit der Taschenlampe
+        (`MediaTrackConstraints`) und haptischen Vibrationsmotoren (`Navigator.Vibrate`) zu aktivieren, um rote
+        Warnungen zu gewährleisten.</p>
+    <h3>5. Haftungsausschluss für Hardware-Steuerung</h3>
+    <p>Das „Triggers“-System ermöglicht die direkte Eingabe von physischen bidirektionalen Befehlen in den nativen
+        MIDI-Bus oder über binäre OSC-UDP-Injektionen in Konsolen von Drittanbietern. Der Entwickler haftet nicht für
+        Kollateralschäden, die durch fehlerhafte Auslöserkonfigurationen entstehen.</p>
+</div>
+<div lang="en" class="terms-lang" style="display:none">
+    <h3>1. Use of the Talk-me Platform</h3>
+    <p>Talk-me is an offline communication tool, voice transmission via processed WebRTC protocol and network telemetry.
+        It is strictly designed for professional use in acoustic shows, live production, and isolated deployments
+        ("Zero-Cloud"). Its operation under insecure, WAN, or open networks falls under the sole responsibility of the
+        network administrator.</p>
+    <h3>2. Intelligent Voice Processing (Local AI)</h3>
+    <p>The Artificial Intelligence engine (Vosk) executes 100% local diction recognition mathematical models on the
+        central node's CPU. The user consents to their voice being captured by the microphone ("AudioWorklet Node"),
+        mathematically transformed into low-frequency PCM blocks (16kHz), and transmitted to the primary server for
+        instant processing. All semantic processing occurs within the Intranet.</p>
+    <h3>3. Privacy and Absence of External Databases</h3>
+    <p>Privacy is the cornerstone of this architecture by design. Talk-me lacks connections to Third-Party Clouds,
+        commercial analytical biometric systems, or persistent cloud databases. Audio packets (ArrayBuffer Blob PCM) or
+        commands (OSC) expire once received. Semantic dictionaries are saved locally.</p>
+    <h3>4. Use of Browser APIs ("Browser Injections")</h3>
+    <p>By accepting this service, you allow Talk-me to invoke operating system notifications (`Notification API`),
+        manipulate speaker devices (`sinkId`), or activate local physical actuators using the flashlight
+        (`MediaTrackConstraints`) and haptic vibration motors (`Navigator.Vibrate`) to guarantee red alerts.</p>
+    <h3>5. Disclaimer on Hardware Control</h3>
+    <p>The "Triggers" system authorizes the direct insertion of physical bidirectional commands to the native MIDI bus
+        or via Binary OSC UDP Injections to third-party consoles. The developer is not responsible for collateral damage
+        derived from erroneous trigger configurations.</p>
+</div>
+<div lang="eo" class="terms-lang" style="display:none">
+    <h3>1. Uzo de la Platformo Talk-me</h3>
+    <p>Talk-me estas eksterreta komunika ilo, voĉtransdono per prilaborita WebRTC-protokolo kaj rettelemetrio. Ĝi estas
+        strikte dizajnita por profesia uzo en akustikaj spektakloj, viva produktado kaj izolitaj deplojoj ("Nul-nubo").
+        Ĝia funkciado sub nesekuraj, WAN aŭ malfermitaj retoj kategoriiĝas sub la sola respondeco de la administranto de
+        la reto.</p>
+    <h3>2. Inteligenta Voĉa Pretigo (Loka AI)</h3>
+    <p>La Artefarita Inteligenta motoro (Vosk) ekzekutas 100% lokajn vortajn rekonajn matematikajn modelojn sur la CPU
+        de la centra nodo. La uzanto konsentas ke ilia voĉo estas kaptita per la mikrofono ("AudioWorklet Node"),
+        matematike transformita en malaltfrekvencajn PCM-blokojn (16kHz), kaj elsendita al la primara servilo por tuja
+        pretigo. Ĉiu semantika pretigo okazas ene de la intrareto.</p>
+    <h3>3. Privateco kaj Manko de Eksteraj Datumbazoj</h3>
+    <p>Privateco estas la bazŝtono de ĉi tiu arkitekturo laŭ dezajno. Parolu al mi mankas konektoj al Triaj Nuboj,
+        komercaj analizaj biometrikaj sistemoj aŭ konstantaj nubaj datumbazoj. Sonpakaĵoj (ArrayBuffer Blob PCM) aŭ
+        komandoj (OSC) eksvalidiĝas post ricevitaj. Semantikaj vortaroj estas konservitaj loke.</p>
+    <h3>4. Uzo de Retumilo-APIoj ("Retumilo-Injektoj")</h3>
+    <p>Akceptante ĉi tiun servon, vi permesas al Talk-me alvoki operaciumajn sciigojn (`Notification API`), manipuli
+        laŭtparolilojn (`sinkId`), aŭ aktivigi lokajn fizikajn aktuariojn uzante la poŝlampon (`MediaTrackConstraints`)
+        kaj haptajn vibrajn motorojn (`Navigator.Vibrate`) por garantii ruĝajn atentigojn.</p>
+    <h3>5. Malgarantio pri Aparataro-Kontrolo</h3>
+    <p>La "Eligiloj" sistemo rajtigas la rektan enmeton de fizikaj dudirektaj komandoj al la indiĝena MIDI-buso aŭ per
+        Binary OSC UDP Injections al triapartaj konzoloj. La programisto ne respondecas pri kroma damaĝo derivita de
+        eraraj ellasilkonfiguracioj.</p>
+</div>
+<div lang="es" class="terms-lang">
+    <h3>1. Uso de la Plataforma Talk-me</h3>
+    <p>Talk-me es una herramienta de comunicación offline, transmisión de voz mediante protocolo WebRTC procesado y
+        telemetría de red. Está diseñada estrictamente para uso profesional en espectáculos acústicos, producción en
+        vivo y despliegues aislados ("Zero-Cloud"). Su operación bajo redes inseguras, WAN, o abiertas recae bajo la
+        responsabilidad única del administrador de red.</p>
+    <h3>2. Procesamiento Inteligente de Voz (IA Local)</h3>
+    <p>El motor de Inteligencia Artificial (Vosk) ejecuta modelos matemáticos de reconocimiento de dicción 100% locales
+        en la CPU del nodo central. El usuario consiente que su voz sea captada por el micrófono ("AudioWorklet Node"),
+        transformada matemáticamente en bloques PCM de baja frecuencia (16kHz) y transmitida al servidor primario para
+        su proceso instantáneo. Todo el procesamiento semántico ocurre en la Intranet.</p>
+    <h3>3. Privacidad y Ausencia de Bases de Datos Externas</h3>
+    <p>La privacidad es la piedra angular de esta arquitectura por diseño. Talk-me carece de conexiones a Nubes de
+        Terceros, sistemas biométricos analíticos comerciales o bases persistentes de datos en la nube. Los paquetes de
+        Audio (ArrayBuffer Blob PCM) o los comandos (OSC) expiran una vez recibidos. Los diccionarios semánticos se
+        guardan localmente.</p>
+    <h3>4. Uso de APIs del Navegador ("Browser Injections")</h3>
+    <p>Al aceptar este servicio, permites que Talk-me invoque notificaciones de sistema operativo (`Notification API`),
+        manipule dispositivos de altavoces o active actuadores físicos locales usando la linterna
+        (`MediaTrackConstraints`) y motores vibratorios hápticos (`Navigator.Vibrate`) para garantizar las alertas
+        rojas.</p>
+    <h3>5. Exención de Responsabilidad sobre Control Hardware</h3>
+    <p>El sistema "Triggers" autoriza la inserción directa de comandos bidireccionales físicos al bus nativo MIDI o
+        mediante Inyecciones OSC Binarias UDP a consolas de terceros. El desarrollador no se hace responsable por daños
+        colaterales derivados de configuraciones de triggers erróneas.</p>
+</div>
+<div lang="eu" class="terms-lang" style="display:none">
+    <h3>1. Talk-me Plataformaren Erabilera</h3>
+    <p>Talk-me lineaz kanpoko komunikazio-tresna bat da, prozesatutako WebRTC protokoloaren eta sare-telemetriaren bidez
+        ahotsa transmititzen duena. Ikuskizun akustikoetan, zuzeneko ekoizpenetan eta inplementazio isolatuetan
+        ("Zero-Cloud") erabilera profesionalerako bakarrik diseinatuta dago. Sare seguru gabeetan, WANetan edo sare
+        irekietan egindako eragiketak sare-administratzailearen erantzukizun esklusiboak dira.</p>
+    <h3>2. Ahots Prozesamendu Adimentsua (Tokiko IA)</h3>
+    <p>Adimen Artifizialaren motorrak (Vosk) dikzio-ezagutzarako eredu matematikoak %100 tokian exekutatzen ditu nodo
+        zentraleko CPUan. Erabiltzaileak baimena ematen du bere ahotsa mikrofonoak ("AudioWorklet Node") har dezan,
+        matematikoki maiztasun baxuko PCM blokeetan (16kHz) bihur dadin eta zerbitzari nagusiari berehala prozesatzeko
+        transmititu diezaioten. Prozesamendu semantiko guztia Intraneten gertatzen da.</p>
+    <h3>3. Pribatutasuna eta Kanpoko Datu-baserik eza</h3>
+    <p>Pribatutasuna arkitektura honen oinarria da diseinuz. Talk-me-k ez du hirugarrenen hodeietarako konexiorik,
+        analisi biometrikorako sistema komertzialik edo hodeiko datu-base iraunkorrik. Audio paketeak (ArrayBuffer Blob
+        PCM) edo komandoak (OSC) jaso bezain laster iraungitzen dira. Hiztegi semantikoak tokian gordetzen dira.</p>
+    <h3>4. Nabigatzailearen APIen Erabilera ("Nabigatzaile-Injekzioak")</h3>
+    <p>Zerbitzu hau onartzean, baimena ematen diozu Talk-me-ri sistema eragilearen jakinarazpenak deitzeko
+        (`Notification API`), bozgorailu-gailuak manipulatzeko edo tokiko aktuadore fisikoak aktibatzeko linterna
+        (`MediaTrackConstraints`) eta bibrazio-motor háptikoak (`Navigator.Vibrate`) erabiliz alerta gorriak bermatzeko.
+    </p>
+    <h3>5. Hardware Kontrolari buruzko Erantzukizun Muga</h3>
+    <p>"Triggers" sistemak komando bidirektonal fisikoak zuzenean sartzeko baimena ematen du MIDI bus natiboan edo
+        hirugarrenen kontsoletara OSC UDP iniekzio bitarren bidez. Garatzailea ez da arduratzen trigger konfigurazio
+        okerren ondorioz sortutako kalte kolateralen gainean.</p>
+</div>
+<div lang="fa" class="terms-lang" style="display:none">
+    <h3>1. استفاده از پلتفرم Talk-me</h3>
+    <p>Talk-me یک ابزار ارتباطی آفلاین، انتقال صدا از طریق پروتکل WebRTC پردازش شده و تله متری شبکه است. این به طور دقیق
+        برای استفاده حرفه ای در نمایش های صوتی، تولید زنده، و استقرار ایزوله طراحی شده است ("Zero-Cloud"). عملکرد آن تحت
+        شبکه های ناامن، WAN یا باز تنها تحت مسئولیت مدیر شبکه است.</p>
+    <h3>2. پردازش صوتی هوشمند (هوش مصنوعی محلی)</h3>
+    <p>موتور هوش مصنوعی (Vosk) 100% مدل های ریاضی تشخیص دیکشنری محلی را بر روی CPU گره مرکزی اجرا می کند. کاربر رضایت
+        می‌دهد که صدای او توسط میکروفون ضبط شود ("AudioWorklet Node")، به صورت ریاضی به بلوک‌های PCM با فرکانس پایین (16
+        کیلوهرتز) تبدیل شود و برای پردازش فوری به سرور اصلی منتقل شود. تمام پردازش های معنایی در اینترانت رخ می دهد.</p>
+    <h3>3. حریم خصوصی و عدم وجود پایگاه های اطلاعاتی خارجی</h3>
+    <p>حریم خصوصی سنگ بنای این معماری با طراحی است. Talk-me فاقد اتصال به ابرهای شخص ثالث، سیستم‌های بیومتریک تحلیلی
+        تجاری، یا پایگاه‌های داده ابری مداوم است. بسته های صوتی (ArrayBuffer Blob PCM) یا دستورات (OSC) پس از دریافت
+        منقضی می شوند. لغت نامه های معنایی به صورت محلی ذخیره می شوند.</p>
+    <h3>4. استفاده از APIهای مرورگر ("تزریق مرورگر")</h3>
+    <p>با پذیرش این سرویس، به Talk-me اجازه می‌دهید اعلان‌های سیستم‌عامل ("API اعلان") را فراخوانی کند، دستگاه‌های
+        بلندگو ("sinkId") را دستکاری کند یا با استفاده از چراغ قوه ("MediaTrackConstraints") و موتورهای لرزش لمسی
+        ("Navigator.Vibrate") محرک‌های فیزیکی محلی را فعال کند.</p>
+    <h3>5. سلب مسئولیت در کنترل سخت افزار</h3>
+    <p>سیستم "Triggers" اجازه درج مستقیم دستورات فیزیکی دو جهته را به گذرگاه MIDI بومی یا از طریق تزریق باینری OSC UDP
+        به کنسول های شخص ثالث می دهد. توسعه‌دهنده مسئولیتی در قبال آسیب‌های جانبی ناشی از پیکربندی‌های اشتباه ماشه
+        ندارد.</p>
+</div>
+<div lang="fr" class="terms-lang" style="display:none">
+    <h3>1. Utilisation de la plateforme Talk-me</h3>
+    <p>Talk-me est un outil de communication hors ligne, de transmission vocale via le protocole WebRTC traité et de
+        télémétrie réseau. Il est strictement conçu pour un usage professionnel dans le cadre de spectacles acoustiques,
+        de productions en direct et de déploiements isolés ("Zero-Cloud"). Son fonctionnement sur des réseaux non
+        sécurisés, WAN ou ouverts relève de la seule responsabilité de l'administrateur réseau.</p>
+    <h3>2. Traitement vocal intelligent (IA locale)</h3>
+    <p>Le moteur d'Intelligence Artificielle (Vosk) exécute des modèles mathématiques de reconnaissance vocale 100%
+        locaux sur le processeur du nœud central. L'utilisateur consent à ce que sa voix soit captée par le microphone
+        ("AudioWorklet Node"), transformée mathématiquement en blocs PCM basse fréquence (16kHz) et transmise au serveur
+        principal pour un traitement instantané. Tout le traitement sémantique a lieu au sein de l'Intranet.</p>
+    <h3>3. Confidentialité et absence de bases de données externes</h3>
+    <p>La confidentialité est la pierre angulaire de cette architecture par conception. Talk-me ne dispose d'aucune
+        connexion avec des clouds tiers, des systèmes biométriques analytiques commerciaux ou des bases de données
+        persistantes dans le cloud. Les paquets audio (ArrayBuffer Blob PCM) ou les commandes (OSC) expirent dès leur
+        réception. Les dictionnaires sémantiques sont enregistrés localement.</p>
+    <h3>4. Utilisation des API du navigateur ("Injections du navigateur")</h3>
+    <p>En acceptant ce service, vous autorisez Talk-me à invoquer les notifications du système d'exploitation
+        (`Notification API`), à manipuler les périphériques de haut-parleurs ou à activer des actionneurs physiques
+        locaux en utilisant la lampe de poche (`MediaTrackConstraints`) et les moteurs de vibration haptique
+        (`Navigator.Vibrate`) pour garantir les alertes rouges.</p>
+    <h3>5. Avertissement sur le contrôle matériel</h3>
+    <p>Le système "Triggers" autorise l'envoi direct de commandes bidirectionnelles physiques vers le bus MIDI natif ou
+        via des injections binaires OSC UDP vers des consoles tierces. Le développeur n'est pas responsable des dommages
+        collatéraux résultant de configurations de déclencheurs erronées.</p>
+</div>
+<div lang="gl" class="terms-lang" style="display:none">
+    <h3>1. Uso da Plataforma Talk-me</h3>
+    <p>Talk-me é unha ferramenta de comunicación sen conexión, transmisión de voz a través do protocolo WebRTC procesado
+        e telemetría de rede. Está deseñado estrictamente para uso profesional en espectáculos acústicos, produción en
+        directo e despregamentos illados ("Zero-Cloud"). O seu funcionamento en redes inseguras, WAN ou abertas corre
+        baixo a responsabilidade exclusiva do administrador da rede.</p>
+    <h3>2. Procesamento de voz intelixente (IA local)</h3>
+    <p>O motor de Intelixencia Artificial (Vosk) executa modelos matemáticos de recoñecemento de dicción 100% local na
+        CPU do nodo central. O usuario acepta que a súa voz sexa capturada polo micrófono ("Nodo AudioWorklet"),
+        transformada matematicamente en bloques PCM de baixa frecuencia (16 kHz) e transmitida ao servidor principal
+        para o procesamento instantáneo. Todo o procesamento semántico ocorre dentro da Intranet.</p>
+    <h3>3. Privacidade e Ausencia de Bases de Datos Externas</h3>
+    <p>A privacidade é a pedra angular desta arquitectura por deseño. Talk-me carece de conexións con nubes de
+        terceiros, sistemas biométricos analíticos comerciais ou bases de datos de nube persistentes. Os paquetes de
+        audio (ArrayBuffer Blob PCM) ou os comandos (OSC) caducan unha vez recibidos. Os dicionarios semánticos gárdanse
+        localmente.</p>
+    <h3>4. Uso das API do navegador ("Browser Injections")</h3>
+    <p>Ao aceptar este servizo, permites que Talk-me invoque notificacións do sistema operativo (`Notification API`),
+        manipule dispositivos de altofalantes ou active actuadores físicos locais mediante a lanterna
+        (`MediaTrackConstraints`) e os motores de vibración háptica (`Navigator.Vibrate`) para garantir alertas
+        vermellas.</p>
+    <h3>5. Exención de responsabilidade sobre o control de hardware</h3>
+    <p>O sistema "Triggers" autoriza a inserción directa de comandos bidireccionais físicos ao bus MIDI nativo ou
+        mediante inxeccións binarias OSC UDP a consolas de terceiros. O programador non se fai responsable dos danos
+        colaterais derivados de configuracións de activación erróneas.</p>
+</div>
+<div lang="it" class="terms-lang" style="display:none">
+    <h3>1. Utilizzo della piattaforma Talk-me</h3>
+    <p>Talk-me è uno strumento di comunicazione offline, trasmissione vocale tramite protocollo WebRTC elaborato e
+        telemetria di rete. È progettato rigorosamente per l'uso professionale in spettacoli acustici, produzione dal
+        vivo e implementazioni isolate ("Zero-Cloud"). Il suo funzionamento su reti non sicure, WAN o aperte ricade
+        sotto la sola responsabilità dell'amministratore di rete.</p>
+    <h3>2. Elaborazione vocale intelligente (IA locale)</h3>
+    <p>Il motore di Intelligenza Artificial (Vosk) esegue modelli matematici di riconoscimento vocale 100% locali sulla
+        CPU del nodo centrale. L'utente acconsente a che la propria voce sia catturata dal microfono ("AudioWorklet
+        Node"), trasformata matematicamente in blocchi PCM a bassa frequenza (16kHz) e trasmessa al server primario per
+        l'elaborazione istantanea. Tutta l'elaborazione semantica avviene all'interno dell'Intranet.</p>
+    <h3>3. Privacy e assenza di database esterni</h3>
+    <p>La privacy è la pietra angolare di questa architettura per progettazione. Talk-me non ha connessioni a cloud di
+        terze parti, sistemi biometrici analitici commerciali o database cloud persistenti. I pacchetti audio
+        (ArrayBuffer Blob PCM) o i comandi (OSC) scadono una volta ricevuti. I dizionari semantici sono salvati
+        localmente.</p>
+    <h3>4. Utilizzo delle API del browser ("Iniezioni del browser")</h3>
+    <p>Accettando questo servizio, consenti a Talk-me di richiamare le notifiche del sistema operativo (`Notification
+        API`), manipolare i dispositivi degli altoparlanti o attivare attuatori fisici locali utilizzando la torcia
+        (`MediaTrackConstraints`) e i motori di vibrazione aptici (`Navigator.Vibrate`) per garantire gli allarmi rossi.
+    </p>
+    <h3>5. Esclusione di responsabilità per il controllo hardware</h3>
+    <p>Il sistema "Triggers" autoriza l'inserimento diretto di comandi bidirezionali fisici sul bus MIDI nativo o
+        tramite iniezioni binarie OSC UDP su console di terze parti. Lo sviluppatore non è responsabile per danni
+        collaterali derivanti da configurazioni errate dei trigger.</p>
+</div>
+<div lang="ja" class="terms-lang" style="display:none">
+    <h3>1.トークミープラットフォームの利用について</h3>
+    <p>Talk-me はオフライン コミュニケーション ツールであり、処理された WebRTC プロトコルとネットワーク テレメトリを介した音声送信です。これは、音響ショー、ライブ制作、および分離された展開 (「ゼロクラウド」)
+        でのプロフェッショナルな使用を目的として厳密に設計されています。安全でないネットワーク、WAN、またはオープン ネットワーク下での運用は、ネットワーク管理者の単独の責任となります。</p>
+    <h3>2. インテリジェント音声処理（ローカルAI）</h3>
+    <p>人工知能エンジン (Vosk) は、セントラル ノードの CPU 上で 100% ローカル��書認識数学モデルを実行します。ユーザーは、自分の音声がマイク (「AudioWorklet ノード」)
+        でキャプチャされ、数学的に低周波 PCM ブロック (16kHz) に変換され、即時処理のためにプライマリ サーバーに送信されることに同意します。すべてのセマンティック処理はイントラネット内で行われます。</p>
+    <h3>3. プライバシーと外部データベースの不在</h3>
+    <p>Privacy is the cornerstone of this architecture by design. Talk-me には、サードパーティ クラウド、商用分析生体認証システム、または永続的なクラウド
+        データベースへの接続がありません。オーディオ パケット (ArrayBuffer Blob PCM) またはコマンド (OSC) は、受信すると期限切れになります。意味辞書はローカルに保存されます。</p>
+    <h3>4. ブラウザ API の使用 (「ブラウザ インジェクション」)</h3>
+    <p>このサービスを受け入れると、Talk-me がオペレーティング システムの通知 (「Notification API」) を呼び出したり、スピーカー デバイス (「sinkId」) を操作したり、懐中電灯
+        (「MediaTrackConstraints」) や触覚振動モーター (「Navigator.Vibrate」) を使用してローカルの物理的アクチュエータをアクティブにして緊急警報を保証したりできるようになります。</p>
+    <h3>5. ハードウェア制御に関する免責事項</h3>
+    <p>「トリガー」システムは、物理的な双方向コマンドをネイティブ MIDI バスに直接挿入したり、バイナリ OSC UDP
+        インジェクションを介してサードパーティのコンソールに挿入したりすることを許可します。開発者は、誤ったトリガー構成に起因する付随的損害に対して責任を負いません。</p>
+</div>
+<div lang="kk" class="terms-lang" style="display:none">
+    <h3>1. Talk-me платформасын пайдалану</h3>
+    <p>Talk-me – желіден тыс байланыс құралы, өңделген WebRTC протоколы арқылы дауысты жіберу және желілік телеметрия.
+        Ол акустикалық шоуларда, тірі өндірісте және оқшауланған орналастыруларда («Нөлдік бұлт») кәсіби пайдалануға
+        қатаң түрде жасалған. Оның қауіпсіз, WAN немесе ашық желілерде жұмыс істеуі тек желі әкімшісінің
+        жауапкершілігінде болады.</p>
+    <h3>2. Дауысты интеллектуалды өңдеу (жергілікті AI)</h3>
+    <p>Жасанды интеллект қозғалтқышы (Vosk) орталық түйіннің орталық процессорында 100% жергілікті дикцияны танудың
+        математикалық үлгілерін орындайды. Пайдаланушы өз дауысын микрофонмен («AudioWorklet Node») түсіруге,
+        математикалық түрде төмен жиілікті PCM блоктарына (16 кГц) түрлендіруге және жедел өңдеу үшін негізгі серверге
+        жіберуге келіседі. Барлық семантикалық өңдеу Интранет ішінде жүреді.</p>
+    <h3>3. Құпиялылық және сыртқы деректер базасының болмауы</h3>
+    <p>Құпиялылық дизайн бойынша осы архитектураның негізі болып табылады. Talk-me қолданбасында үшінші тарап
+        бұлттарына, коммерциялық аналитикалық биометриялық жүйелерге немесе тұрақты бұлттық дерекқорларға қосылымдар
+        жоқ. Аудио пакеттер (ArrayBuffer Blob PCM) немесе пәрмендер (OSC) алғаннан кейін аяқталады. Семантикалық
+        сөздіктер жергілікті жерде сақталады.</p>
+    <h3>4. Браузер API интерфейстерін пайдалану («Browser Injections»)</h3>
+    <p>Бұл қызметті қабылдау арқылы сіз Talk-me қолданбасына операциялық жүйе хабарландыруларын (`Notification API`)
+        шақыруға, динамик құрылғыларын басқаруға немесе қызыл дабылдарға кепілдік беру үшін фонарь
+        (`MediaTrackConstraints`) және сенсорлық діріл қозғалтқыштарын (`Navigator.Vibrate`) пайдаланып жергілікті
+        физикалық жетектерді іске қосуға рұқсат бересіз.</p>
+    <h3>5. Жабдықты басқару бойынша жауапкершіліктен бас тарту</h3>
+    <p>«Триггерлер» жүйесі физикалық екі бағытты пәрмендерді жергілікті MIDI шинасына немесе екілік OSC UDP инъекциялары
+        арқылы үшінші тарап консольдеріне тікелей кірістіруге рұқсат береді. Әзірлеуші ​​қате триггер
+        конфигурацияларынан алынған кепілдік залал үшін жауапты емес.</p>
+</div>
+<div lang="ko" class="terms-lang" style="display:none">
+    <h3>1. Talk-me 플랫폼 이용</h3>
+    <p>Talk-me는 처리된 WebRTC 프로토콜 및 네트워크 원격 측정을 통한 음성 전송, 오프라인 통신 도구입니다. 이는 어쿠스틱 쇼, 라이브 프로덕션 및 격리된 배포("제로 클라우드")에서 전문적인
+        사용을 위해 엄격하게 설계되었습니다. 안전하지 않은 네트워크, WAN 또는 개방형 네트워크에서의 운영은 전적으로 네트워크 관리자의 책임입니다.</p>
+    <h3>2. 지능형 음성 처리(로컬 AI)</h3>
+    <p>인공지능 엔진(Vosk)은 중앙 노드의 CPU에서 100% 로컬 사전 인식 수학적 모델을 실행합니다. 사용자는 자신의 음성이 마이크("AudioWorklet 노드")를 통해 캡처되어 저주파 PCM
+        블록(16kHz)으로 수학적으로 변환되고 즉각적인 처리를 위해 기본 서버로 전송되는 데 동의합니다. 모든 의미 처리는 인트라넷 내에서 발생합니다.</p>
+    <h3>3. 개인정보 보호 및 외부 데이터베이스의 부재</h3>
+    <p>개인 정보 보호는 설계상 이 아키텍처의 초석입니다. Talk-me에는 타사 클라우드, 상업용 분석 생체 인식 시스템 또는 영구 클라우드 데이터베이스에 대한 연결이 부족합니다. 오디오
+        패킷(ArrayBuffer Blob PCM) 또는 명령(OSC)은 수신되면 만료됩니다. 의미 사전은 로컬에 저장됩니다.</p>
+    <h3>4. 브라우저 API 사용("브라우저 삽입")</h3>
+    <p>이 서비스를 수락하면 Talk-me가 ��영 체제 알림(`Notification API`)을 호출하고 스피커 장치를 조작(`sinkId`)하거나 손전등(`MediaTrackConstraints`) 및
+        햅틱 진동 모터(`Navigator.Vibrate`)를 사용하여 로컬 물리적 액추에이터를 활성화하여 빨간색 경고를 보장할 수 있습니다.</p>
+    <h3>5. 하드웨어 제어에 대한 면책조항</h3>
+    <p>"트리거" 시스템은 물리적 양방향 명령을 기본 MIDI 버스에 직접 삽입하거나 바이너리 OSC UDP 주입을 통해 타사 콘솔에 삽입하는 것을 승인합니다. 개발자는 잘못된 트리거 구성으로 인해 발생한
+        부수적 피해에 대해 책임을 지지 않습니다.</p>
+</div>
+<div lang="nl" class="terms-lang" style="display:none">
+    <h3>1. Gebruik van het Talk-me-platform</h3>
+    <p>Talk-me is een offline communicatietool, spraakoverdracht via verwerkt WebRTC-protocol en netwerktelemetrie. Het
+        is strikt ontworpen voor professioneel gebruik bij akoestische shows, liveproductie en geïsoleerde
+        implementaties ("Zero-Cloud"). De werking ervan onder onveilige, WAN- of open netwerken valt onder de
+        uitsluitende verantwoordelijkheid van de netwerkbeheerder.</p>
+    <h3>2. Intelligente spraakverwerking (lokale AI)</h3>
+    <p>De Artificial Intelligence-engine (Vosk) voert 100% lokale wiskundige modellen voor dictieherkenning uit op de
+        CPU van het centrale knooppunt. De gebruiker stemt ermee in dat zijn stem wordt opgevangen door de microfoon
+        ("AudioWorklet Node"), wiskundig wordt omgezet in laagfrequente PCM-blokken (16 kHz) en wordt verzonden naar de
+        primaire server voor onmiddellijke verwerking. Alle semantische verwerking vindt plaats binnen het intranet.</p>
+    <h3>3. Privacy en afwezigheid van externe databases</h3>
+    <p>Privacy is de hoeksteen van deze architectuur by design. Talk-me ontbeert verbindingen met clouds van derden,
+        commerciële analytische biometrische systemen of persistente clouddatabases. Audiopakketten (ArrayBuffer Blob
+        PCM) of opdrachten (OSC) verlopen zodra ze zijn ontvangen. Semantische woordenboeken worden lokaal opgeslagen.
+    </p>
+    <h3>4. Gebruik van browser-API's ("Browser-injecties")</h3>
+    <p>Door deze service te accepteren, staat u Talk-me toe om besturingssysteemmeldingen (`Notification API`) aan te
+        roepen, luidsprekerapparaten te manipuleren of lokale fysieke actuatoren te activeren met behulp van de zaklamp
+        (`MediaTrackConstraints`) en haptische vibratiemotoren (`Navigator.Vibrate`) om rode waarschuwingen te
+        garanderen.</p>
+    <h3>5. Disclaimer over hardwarecontrole</h3>
+    <p>Het "Triggers" -systeem maakt de directe invoeging van fysieke bidirectionele opdrachten in de native MIDI-bus of
+        via binaire OSC UDP-injecties naar consoles van derden mogelijk. De ontwikkelaar is niet verantwoordelijk voor
+        bijkomende schade die voortvloeit uit foutieve triggerconfiguraties.</p>
+</div>
+<div lang="pl" class="terms-lang" style="display:none">
+    <h3>1. Korzystanie z Platformy Talk-me</h3>
+    <p>Talk-me to narzędzie do komunikacji offline, transmisji głosu poprzez przetworzony protokół WebRTC i telemetrii
+        sieciowej. Jest przeznaczony wyłącznie do użytku profesjonalnego podczas występów akustycznych, produkcji na
+        żywo i odizolowanych wdrożeń („Zero-Cloud”). Za jego działanie w niezabezpieczonych, WAN lub otwartych sieciach
+        odpowiada wyłącznie administrator sieci.</p>
+    <h3>2. Inteligentne przetwarzanie głosu (lokalna sztuczna inteligencja)</h3>
+    <p>Silnik sztucznej inteligencji (Vosk) wykonuje w 100% modele matematyczne z rozpoznawaniem lokalnej dykcji na
+        procesorze węzła centralnego. Użytkownik wyraża zgodę na przechwytywanie jego głosu przez mikrofon („Węzeł
+        AudioWorklet”), matematyczne przekształcanie go w bloki PCM o niskiej częstotliwości (16 kHz) i przesyłanie do
+        głównego serwera w celu natychmiastowego przetworzenia. Całe przetwarzanie semantyczne odbywa się w intranecie.
+    </p>
+    <h3>3. Prywatność i brak zewnętrznych baz danych</h3>
+    <p>Prywatność jest kamieniem węgielnym tej architektury z założenia. Talk-me nie ma połączeń z chmurami innych firm,
+        komercyjnymi analitycznymi systemami biometrycznymi ani trwałymi bazami danych w chmurze. Audio packets
+        (ArrayBuffer Blob PCM) or commands (OSC) expire once received. Słowniki semantyczne są zapisywane lokalnie.</p>
+    <h3>4. Korzystanie z interfejsów API przeglądarki („Wstrzyknięcia przeglądarki”)</h3>
+    <p>Akceptując tę usługę, zezwalasz aplikacji Talk-me na wywoływanie powiadomień systemu operacyjnego („Notification
+        API”), manipulowanie urządzeniami głośnikowymi („sinkId”) lub aktywację lokalnych fizycznych elementów
+        wykonawczych za pomocą latarki („MediaTrackConstraints”) i dotykowych silników wibracyjnych
+        („Navigator.Vibrate”) w celu zagwarantowania czerwonych alertów.</p>
+    <h3>5. Zastrzeżenie dotyczące kontroli sprzętu</h3>
+    <p>System „Triggers” umożliwia bezpośrednie wstawianie fizycznych dwukierunkowych poleceń do natywnej magistrali
+        MIDI lub za pośrednictwem Binary OSC UDP Injection do konsol innych firm. Twórca nie ponosi odpowiedzialności za
+        szkody uboczne wynikające z błędnych konfiguracji wyzwalaczy.</p>
+</div>
+<div lang="pt" class="terms-lang" style="display:none">
+    <h3>1. Uso da plataforma Talk-me</h3>
+    <p>Talk-me é uma ferramenta de comunicação offline, transmissão de voz através de protocolo WebRTC processado e
+        telemetria de rede. É projetada estritamente para uso profissional em espetáculos acústicos, produção ao vivo e
+        implantações isoladas ("Zero-Cloud"). Sua operação sob redes inseguras, WAN ou redes abertas é de
+        responsabilidade exclusiva do administrador de rede.</p>
+    <h3>2. Processamento de Voz Inteligente (IA Local)</h3>
+    <p>O motor de Inteligência Artificial (Vosk) executa modelos matemáticos de reconhecimento de dicção 100% locais na
+        CPU do nó central. O usuário consente que sua voz seja captada pelo microfone ("AudioWorklet Node"),
+        transformada matematicamente em blocos PCM de baixa frequência (16kHz) e transmitida ao servidor primário para
+        processamento instantâneo. Todo o processamento semântico ocorre na Intranet.</p>
+    <h3>3. Privacidade e Ausência de Bancos de Dados Externos</h3>
+    <p>A privacidade é a pedra angular desta arquitetura por design. O Talk-me carece de conexões com nuvens de
+        terceiros, sistemas biométricos analíticos comerciais ou bancos de dados persistentes na nuvem. Os pacotes de
+        áudio (ArrayBuffer Blob PCM) ou os comandos (OSC) expiram assim que recebidos. Os dicionários semânticos são
+        salvos localmente.</p>
+    <h3>4. Uso de APIs do Navegador ("Injeções do Navegador")</h3>
+    <p>Ao aceitar este serviço, você permite que o Talk-me invoque notificações do sistema operacional (`Notification
+        API`), manipule dispositivos de alto-falantes ou ative atuadores físicos locais usando a lanterna
+        (`MediaTrackConstraints`) e motores vibratórios hápticos (`Navigator.Vibrate`) para garantir os alertas
+        vermelhos.</p>
+    <h3>5. Isenção de Responsabilidade sobre Controle de Hardware</h3>
+    <p>O sistema "Triggers" autoriza a inserção direta de comandos bidirecionais físicos no barramento nativo MIDI ou
+        através de injeções binárias OSC UDP para consoles de terceiros. O desenvolvedor não se responsabiliza por danos
+        colaterais derivados de configurações de triggers incorretas.</p>
+</div>
+<div lang="ru" class="terms-lang" style="display:none">
+    <h3>1. Использование платформы Talk-me</h3>
+    <p>Talk-me — это инструмент автономной связи, передачи голоса по обработанному протоколу WebRTC и сетевой
+        телеметрии. Он предназначен исключительно для профессионального использования в акустических шоу, прямых
+        трансляциях и изолированных инсталляциях («Zero-Cloud»). Его работа в незащищенных, глобальных или открытых
+        сетях находится под исключительной ответственностью сетевого администратора.</p>
+    <h3>2. Интеллектуальная обработка голоса (локальный искусственный интеллект)</h3>
+    <p>Механизм искусственного интеллекта (Vosk) выполняет 100% математические модели локального распознавания дикции на
+        ЦП центрального узла. Пользователь соглашается на то, чтобы его голос был захвачен микрофоном («Узел
+        AudioWorklet»), математически преобразован в низкочастотные блоки PCM (16 кГц) и передан на основной сервер для
+        мгновенной обработки. Вся семантическая обработка происходит внутри Интранета.</p>
+    <h3>3. Конфиденциальность и отсутствие внешних баз данных</h3>
+    <p>Конфиденциальность является краеугольным камнем этой архитектуры. Talk-me не имеет подключения к сторонним
+        облакам, коммерческим аналитическим биометрическим системам или постоянным облачным базам данных. Срок действия
+        аудиопакетов (ArrayBuffer Blob PCM) или команд (OSC) истекает после их получения. Семантические словари
+        сохраняются локально.</p>
+    <h3>4. Использование API-интерфейсов браузера («Браузерные инъекции»)</h3>
+    <p>Принимая эту услугу, вы разрешаете Talk-me вызывать уведомления операционной системы («Notification API»),
+        манипулировать динамиками («sinkId») или активировать локальные физические исполнительные механизмы с помощью
+        фонарика («MediaTrackConstraints») и тактильных вибрационных двигателей («Navigator.Vibrate»), чтобы
+        гарантировать красные оповещения.</p>
+    <h3>5. Отказ от ответственности в отношении управления оборудованием</h3>
+    <p>Система «Триггеры» разрешает прямую вставку физических двунаправленных команд на собственную шину MIDI или через
+        двоичные инъекции OSC UDP на сторонние консоли. Разработчик не несет ответственности за побочный ущерб,
+        возникший в результате ошибочных конфигураций триггеров.</p>
+</div>
+<div lang="sv" class="terms-lang" style="display:none">
+    <h3>1. Användning av Talk-me-plattformen</h3>
+    <p>Talk-me är ett offlinekommunikationsverktyg, röstöverföring via bearbetat WebRTC-protokoll och nätverkstelemetri.
+        Den är strikt designad för professionell användning i akustiska shower, liveproduktion och isolerade
+        distributioner ("Zero-Cloud"). Dess drift under osäkra, WAN- eller öppna nätverk faller under
+        nätverksadministratörens ensamma ansvar.</p>
+    <h3>2. Intelligent röstbehandling (lokal AI)</h3>
+    <p>Den artificiella intelligensmotorn (Vosk) exekverar 100 % lokala matematiska modeller för diktionsigenkänning på
+        den centrala nodens CPU. Användaren samtycker till att deras röst fångas av mikrofonen ("AudioWorklet Node"),
+        matematiskt omvandlas till lågfrekventa PCM-block (16kHz), och överförs till den primära servern för omedelbar
+        bearbetning. All semantisk bearbetning sker inom intranätet.</p>
+    <h3>3. Sekretess och frånvaro av externa databaser</h3>
+    <p>Sekretess är hörnstenen i denna arkitektur genom design. Talk-me saknar kopplingar till tredjepartsmoln,
+        kommersiella analytiska biometriska system eller beständiga molndatabaser. Ljudpaket (ArrayBuffer Blob PCM)
+        eller kommandon (OSC) upphör att gälla när de tas emot. Semantiska ordböcker sparas lokalt.</p>
+    <h3>4. Användning av webbläsar-API:er ("Webbläsarinjektioner")</h3>
+    <p>Genom att acceptera den här tjänsten tillåter du Talk-me att anropa operativsystemaviseringar (`Notification
+        API`), manipulera högtalarenheter eller aktivera lokala fysiska ställdon med ficklampa (`MediaTrackConstraints`)
+        och haptiska vibrationsmotorer (`Navigator.Vibrate`) för att garantera röda varningar.</p>
+    <h3>5. Friskrivningsklausul om hårdvarukontroll</h3>
+    <p>"Triggers"-systemet tillåter direkt infogning av fysiska dubbelriktade kommandon till den inbyggda MIDI-bussen
+        eller via binära OSC UDP-injektioner till tredjepartskonsoler. Utvecklaren ansvarar inte för sidoskador som
+        härrör från felaktiga triggerkonfigurationer.</p>
+</div>
+<div lang="tr" class="terms-lang" style="display:none">
+    <h3>1. Konuş-me Platformunun Kullanımı</h3>
+    <p>Talk-me, işlenmiş WebRTC protokolü ve ağ telemetrisi yoluyla ses iletimi sağlayan bir çevrimdışı iletişim
+        aracıdır. Kesinlikle akustik gösterilerde, canlı prodüksiyonlarda ve izole dağıtımlarda ("Sıfır Bulut")
+        profesyonel kullanım için tasarlanmıştır. Güvenli olmayan, WAN veya açık ağlar altında çalıştırılması yalnızca
+        ağ yöneticisinin sorumluluğundadır.</p>
+    <h3>2. Akıllı Ses İşleme (Yerel Yapay Zeka)</h3>
+    <p>Yapay Zeka motoru (Vosk), merkezi düğümün CPU'sunda %100 yerel diksiyon tanıma matematiksel modellerini yürütür.
+        Kullanıcı, sesinin mikrofon tarafından yakalanmasına ("AudioWorklet Node"), matematiksel olarak düşük frekanslı
+        PCM bloklarına (16kHz) dönüştürülmesine ve anında işlenmek üzere birincil sunucuya iletilmesine izin verir. Tüm
+        anlamsal işlemler intranet içerisinde gerçekleşir.</p>
+    <h3>3. Gizlilik ve Dış Veritabanlarının Yokluğu</h3>
+    <p>Gizlilik, tasarım gereği bu mimarinin temel taşıdır. Talk-me'nin Üçüncü Taraf Bulutlarına, ticari analitik
+        biyometrik sistemlere veya kalıcı bulut veritabanlarına bağlantısı yoktur. Ses paketleri (ArrayBuffer Blob PCM)
+        veya komutlar (OSC), alındıktan sonra sona erer. Anlamsal sözlükler yerel olarak kaydedilir.</p>
+    <h3>4. Tarayıcı API'lerinin Kullanımı ("Tarayıcı Eklemeleri")</h3>
+    <p>Bu hizmeti kabul ederek, Talk-me'nin kırmızı uyarıları garanti etmek i��in işletim sistemi bildirimlerini
+        ("Bildirim API'si") başlatmasına, hoparlör cihazlarını ("sinkId") yönetmesine veya el fenerini
+        ("MediaTrackConstraints") ve dokunsal titreşim motorlarını ("Navigator.Vibrate") kullanarak yerel fiziksel
+        aktüatörleri etkinleştirmesine izin vermiş olursunuz.</p>
+    <h3>5. Donanım Kontrolüne İlişkin Sorumluluk Reddi</h3>
+    <p>"Tetikleyiciler" sistemi, fiziksel çift yönlü komutların yerel MIDI veriyoluna veya İkili OSC UDP Enjeksiyonları
+        aracılığıyla üçüncü taraf konsollara doğrudan eklenmesine izin verir. Geliştirici, hatalı tetikleme
+        yapılandırmalarından kaynaklanan ikincil hasarlardan sorumlu değildir.</p>
+</div>
+<div lang="uk" class="terms-lang" style="display:none">
+    <h3>1. Використання платформи Talk-me</h3>
+    <p>Talk-me — це інструмент офлайн-комунікації, передача голосу через оброблений протокол WebRTC і мережева
+        телеметрія. Він розроблений виключно для професійного використання в акустичних шоу, живому виробництві та
+        ізольованих розгортаннях ("Zero-Cloud"). Його робота в незахищених, WAN або відкритих мережах належить до
+        виключної відповідальності адміністратора мережі.</p>
+    <h3>2. Інтелектуальна обробка голосу (локальний AI)</h3>
+    <p>Механізм штучного інтелекту (Vosk) виконує 100% математичні моделі локального розпізнавання дикції на ЦП
+        центрального вузла. Користувач погоджується на те, щоб його голос захоплювався мікрофоном («AudioWorklet Node»),
+        математично перетворювався в низькочастотні блоки PCM (16 кГц) і передавався на основний сервер для миттєвої
+        обробки. Уся семантична обробка відбувається всередині інтрамережі.</p>
+    <h3>3. Конфіденційність і відсутність зовнішніх баз даних</h3>
+    <p>Конфіденційність є наріжним каменем цієї архітектури. Talk-me не має підключення до сторонніх хмар, комерційних
+        аналітичних біометричних систем або постійних хмарних баз даних. Аудіопакети (ArrayBuffer Blob PCM) або команди
+        (OSC) закінчуються після отримання. Семантичні словники зберігаються локально.</p>
+    <h3>4. Використання API браузера («Ін’єкції браузера»)</h3>
+    <p>Приймаючи цю послугу, ви дозволяєте Talk-me викликати сповіщення операційної системи ("Notification API"),
+        маніпулювати гучномовцями ("sinkId") або активувати локальні фізичні виконавчі механізми за допомогою ліхтарика
+        ("MediaTrackConstraints") і моторів тактильної вібрації ("Navigator.Vibrate"), щоб гарантувати червоні
+        сповіщення.</p>
+    <h3>5. Відмова від контролю апаратного забезпечення</h3>
+    <p>Система «Тригери» дозволяє пряме вставлення фізичних двонаправлених команд до рідної шини MIDI або через Binary
+        OSC UDP Injections до сторонніх консолей. Розробник не несе відповідальності за побічний збиток, спричинений
+        помилковими конфігураціями тригерів.</p>
+</div>
+<div lang="uz" class="terms-lang" style="display:none">
+    <h3>1. Talk-me platformasidan foydalanish</h3>
+    <p>Talk-me - bu oflayn aloqa vositasi, qayta ishlangan WebRTC protokoli va tarmoq telemetriyasi orqali ovozni
+        uzatish. U akustik shoularda, jonli ishlab chiqarishda va izolyatsiyalangan joylashtirishda ("Nol-Cloud")
+        professional foydalanish uchun qat'iy mo'ljallangan. Uning xavfsiz, WAN yoki ochiq tarmoqlarda ishlashi faqat
+        tarmoq ma'murining javobgarligi ostidadir.</p>
+    <h3>2. Ovozni aqlli qayta ishlash (mahalliy AI)</h3>
+    <p>Sun'iy intellekt dvigateli (Vosk) markaziy tugunning protsessorida 100% mahalliy diksiyani aniqlashning matematik
+        modellarini bajaradi. Foydalanuvchi o'z ovozining mikrofon ("AudioWorklet Node") tomonidan yozib olinishiga,
+        matematik tarzda past chastotali PCM bloklariga (16 kHz) aylantirilishiga va tezkor ishlov berish uchun asosiy
+        serverga uzatilishiga rozilik beradi. Barcha semantik ishlov berish Intranet ichida sodir bo'ladi.</p>
+    <h3>3. Maxfiylik va tashqi ma'lumotlar bazalarining yo'qligi</h3>
+    <p>Maxfiylik dizayn bo'yicha ushbu arxitekturaning asosidir. Talk-me-da uchinchi tomon bulutlari, tijorat tahliliy
+        biometrik tizimlari yoki doimiy bulutli maʼlumotlar bazalariga ulanishlari yoʻq. Ovoz paketlari (ArrayBuffer
+        Blob PCM) yoki buyruqlar (OSC) qabul qilingandan keyin tugaydi. Semantik lug'atlar mahalliy darajada saqlanadi.
+    </p>
+    <h3>4. Brauzer API-laridan foydalanish (“Brauzer injections”)</h3>
+    <p>Ushbu xizmatni qabul qilish orqali siz Talk-mega operatsion tizim bildirishnomalarini (`Notification API`) ishga
+        tushirishga, dinamik qurilmalarni boshqarishga yoki qizil signallarni kafolatlash uchun chiroq
+        (`MediaTrackConstraints`) va teginish tebranish motorlari (`Navigator.Vibrate`) yordamida mahalliy jismoniy
+        aktuatorlarni faollashtirishga ruxsat berasiz.</p>
+    <h3>5. Uskuna nazorati bo'yicha rad javobi</h3>
+    <p>"Triggerlar" tizimi ikki tomonlama jismoniy buyruqlarni mahalliy MIDI avtobusiga yoki Binary OSC UDP Injections
+        orqali uchinchi tomon konsollariga to'g'ridan-to'g'ri kiritishga ruxsat beradi. Ishlab chiquvchi noto'g'ri
+        trigger konfiguratsiyasi natijasida kelib chiqqan garov zarari uchun javobgar emas.</p>
+</div>
+<div lang="vi" class="terms-lang" style="display:none">
+    <h3>1. Sử dụng Nền tảng Talk-me</h3>
+    <p>Talk-me là công cụ giao tiếp ngoại tuyến, truyền giọng nói thông qua giao thức WebRTC đã được xử lý và đo từ xa
+        qua mạng. Nó được thiết kế nghiêm ngặt để sử dụng chuyên nghiệp trong các chương trình âm thanh, sản xuất trực
+        tiếp và triển khai biệt lập ("Zero-Cloud"). Hoạt động của nó trong các mạng không an toàn, WAN hoặc mở thuộc
+        trách nhiệm duy nhất của quản trị viên mạng.</p>
+    <h3>2. Xử lý giọng nói thông minh (AI cục bộ)</h3>
+    <p>Công cụ Trí tuệ nhân tạo (Vosk) thực thi 100% mô hình toán học nhận dạng chuyển hướng cục bộ trên CPU của nút
+        trung tâm. Người dùng đồng ý để giọng nói của họ được micrô ("Nút AudioWorklet") ghi lại, chuyển đổi về mặt toán
+        học thành khối PCM tần số thấp (16kHz) và truyền đến máy chủ chính để xử lý tức thì. Tất cả quá trình xử lý ngữ
+        nghĩa xảy ra trong mạng nội bộ.</p>
+    <h3>3. Quyền riêng tư và sự vắng mặt của cơ sở dữ liệu bên ngoài</h3>
+    <p>Quyền riêng tư là nền tảng của kiến trúc này theo thiết kế. Talk-me thiếu kết nối với Đám mây của bên thứ ba, hệ
+        thống sinh trắc học phân tích thương mại hoặc cơ sở dữ liệu đám mây liên tục. Gói âm thanh (ArrayBuffer Blob
+        PCM) hoặc lệnh (OSC) hết hạn sau khi nhận được. Từ điển ngữ nghĩa được lưu cục bộ.</p>
+    <h3>4. Sử dụng API trình duyệt ("Chèn trình duyệt")</h3>
+    <p>Bằng việc chấp nhận dịch vụ này, bạn cho phép Talk-me gọi thông báo của hệ điều hành (`API thông báo`), điều
+        khiển thiết bị loa hoặc kích hoạt bộ truyền động vật lý cục bộ bằng đèn pin (`MediaTrackConstraints`) và động cơ
+        rung xúc giác (`Navigator.Vibrate`) để đảm bảo cảnh báo màu đỏ.</p>
+    <h3>5. Tuyên bố miễn trừ trách nhiệm về kiểm soát phần cứng</h3>
+    <p>Hệ thống "Trình kích hoạt" cho phép chèn trực tiếp các lệnh hai chiều vật lý vào bus MIDI gốc hoặc thông qua Tiêm
+        UDP OSC nhị phân vào bảng điều khiển của bên thứ ba. Nhà phát triển không chịu trách nhiệm về thiệt hại phụ do
+        cấu hình trình kích hoạt sai.</p>
+</div>
+<div lang="zh" class="terms-lang" style="display:none">
+    <h3>1. Talk-me 平台的使用</h3>
+    <p>Talk-me是一款离线通讯工具，通过经过处理的WebRTC协议和网络遥测进行语音传输。它严格设计用于声学表演、现场制作和隔离部署（“零云”）中的专业用途。其在不安全、WAN 或开放网络下的操作由网络管理员全权负责。</p>
+    <h3>2. 智能语音处理（本地AI）</h3>
+    <p>人工智能引擎（Vosk）在中心节点的CPU上执行100%本地词典识别数学模型。用户同意他们的声音被麦克风（“AudioWorklet Node”）捕获，以数学方式转换为低频 PCM
+        块（16kHz），并传输到主服务器进行即时处理。所有语义处理都发生在内联网内。</p>
+    <h3>3. 隐私和缺乏外部数据库</h3>
+    <p>隐私是该架构设计的基石。 Talk-me 缺乏与第三方云、商业分析生物识别系统或持久云数据库的连接。音频数据包 (ArrayBuffer Blob PCM) 或命令 (OSC) 一旦收到就会过期。语义词典保存在本地。</p>
+    <h3>4. 浏览器 API 的使用（“浏览器注入”）</h3>
+    <p>通过接受此服务，您允许 Talk-me 调用操作系统通知（“通知
+        API”）、操纵扬声器设备（“sinkId”）或使用手电筒（“MediaTrackConstraints”）和触觉振动电机（“Navigator.Vibrate”）激活本地物理执行器，以保证发出红色警报。</p>
+    <h3>5. 硬件控制免责声明</h3>
+    <p>“触发器”系统授权将物理双向命令直接插入到本机 MIDI 总线或通过二进制 OSC UDP 注入到第三方控制台。开发人员不对因错误触发配置而造成的附带损害负责。</p>
+</div>

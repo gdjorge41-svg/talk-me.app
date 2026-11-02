@@ -1,0 +1,87 @@
+{
+  "_talkmeFormat": "trigger-v60",
+  "id": "tr_mmk8feypuzfq",
+  "name": "DONDE ESTAS OSC",
+  "type": "osc",
+  "keyframes": [
+    {
+      "time": 0,
+      "value": 0,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Putrtryrt"
+    },
+    {
+      "time": 0,
+      "value": 1,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Punto 2"
+    },
+    {
+      "time": 560.0820346150837,
+      "value": 0,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Punto 3"
+    },
+    {
+      "time": 560.0820346150837,
+      "value": 1,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Punto 4"
+    },
+    {
+      "time": 1054,
+      "value": 0,
+      "easing": "easeInOutQuad",
+      "hold": 0,
+      "name": "Punto 5"
+    },
+    {
+      "time": 1460,
+      "value": 1,
+      "easing": "easeInCubic",
+      "hold": 0,
+      "name": "Punto 6"
+    },
+    {
+      "time": 1469.2682928753143,
+      "value": 0,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Punto 7"
+    },
+    {
+      "time": 1920.704845814978,
+      "value": 1,
+      "easing": "step",
+      "hold": 0,
+      "name": "Punto 8"
+    },
+    {
+      "time": 3574.5392369970045,
+      "value": 0,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Punto 11"
+    },
+    {
+      "time": 3860.230625505489,
+      "value": 0,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Punto 12"
+    }
+  ],
+  "triggerOn": "keyword",
+  "keyword": "DONDE ESTAS TC, BARREZKA TC,",
+  "osc": {
+    "host": "192.168.0.28",
+    "port": 7000,
+    "address": "/composition/layers/4/video/opacity",
+    "arg": "1"
+  },
+  "direction": "OUT"
+}

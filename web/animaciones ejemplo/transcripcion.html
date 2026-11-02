@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Animación Transcripción</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="transcripcionTitle">1. Audio y transcripción</span>
+    </h2>
+
+    <div class="feature-content">
+      <div class="animation-container" id="transcription-demo-card">
+        <div class="transcription-demo">
+          
+          <div class="top-transcript-popup">
+            <span class="transcript-stt-text">la</span>
+          </div>
+
+          <div class="message-bubble">
+            <div class="message-header">
+              <span class="user-name-orange" data-i18n="userJorge">Jorge</span>
+              <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+            </div>
+            <div class="message-text" data-i18n="msgHolaMundo">Hola Mundo</div>
+
+            <div class="audio-capsule">
+              <div class="audio-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              </div>
+              <div class="audio-waveform-bars">
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 8px;"></div>
+                <div class="audio-wave-bar" style="height: 16px;"></div>
+                <div class="audio-wave-bar" style="height: 12px;"></div>
+                <div class="audio-wave-bar" style="height: 6px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+              </div>
+              <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+            </div>
+
+            <div style="font-size: 0.72rem; color: var(--text-muted); text-align: right; margin-top: 4px;">13:04:23</div>
+          </div>
+
+          <!-- Barra de entrada de chat fidedigna -->
+          <div class="chat-bottom-bar">
+            <button class="btn-icon-purple" title="Cámara">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </button>
+
+            <!-- Campo de texto con placeholder traducido dinámicamente -->
+            <div class="chat-input-wrapper">
+              <span class="chat-placeholder" data-i18n="placeholderText">Escribe tu mensaje...</span>
+              <div class="vumeter-input-box"></div>
+            </div>
+
+            <!-- Botón conmutable Micrófono / Avión de Papel al enviar -->
+            <button class="btn-icon-orange" title="Hablar / Enviar">
+              <!-- Icono Micrófono -->
+              <svg class="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+              <!-- Icono Avión de Papel (Send Arrow) -->
+              <svg class="icon-plane" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 data-i18n="transcripcionDescTitle">Vúmetro y Transcripción Instantánea</h3>
+        <p data-i18n="transcripcionDesc">Muestra el flujo directo de captura de voz. El botón de micrófono se activa en naranja únicamente al hablar, mientras la vista previa superior transcribe en directo antes de enviar el mensaje con el avión de papel y su cápsula de audio original al chat.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('transcription-demo-card', initTranscriptionDemo);
+    });
+  </script>
+</body>
+</html>

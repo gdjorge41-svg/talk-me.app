@@ -1,0 +1,32 @@
+# ==============================================================================
+# Talk.me Web Infrastructure - Apache Configuration (.htaccess)
+# Misión Crítica: Seguridad, Protección de Entorno y Permisos CORS para Guías
+# ==============================================================================
+
+# 1. Proteger archivos críticos del sistema y credenciales
+<FilesMatch "^\.(env|git|htaccess|htpasswd)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(sql|log|bak|md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 2. Habilitar CORS para recursos estáticos públicos (Guías JSON y activos de localización)
+# Permite que la app Electron, apps móviles y terminales en red LAN (192.168.x.x)
+# lean las guías dinámicas y diccionarios sin bloqueos de Same-Origin Policy.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(json|svg|png|jpg|jpeg|webp|woff|woff2|ttf|eot)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, OPTIONS"
+        Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+    </FilesMatch>
+</IfModule>
+
+# 3. Prevenir listado de directorios
+Options -Indexes
+
+# 4. Configuración de codificación por defecto UTF-8
+AddDefaultCharset UTF-8

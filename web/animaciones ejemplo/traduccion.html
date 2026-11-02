@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Animación Traducción Simultánea</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica 2 -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="traduccionTitle">2. Traducción automática y fluida</span>
+    </h2>
+
+    <div class="feature-content">
+      <!-- 1. Contenedor de la Animación -->
+      <div class="animation-container" id="translation-demo-card">
+        <div class="translation-demo">
+          
+          <!-- Mensaje 1 (Enviado en Francés "Sommes-nous prêts ?" y traducido a "¿Estamos listos?") -->
+          <div class="translation-card user-1">
+            <div class="trans-header-row">
+              <span class="user-name-green" data-i18n="userJorge">Jorge</span>
+              <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+            </div>
+            
+            <div class="trans-main-text trans-main-text-user1">¿Estamos listos?</div>
+
+            <div class="trans-sub-row">
+              <span class="lang-pill-src">(FR)</span>
+              <span class="trans-original-sub">Sommes-nous prêts ?</span>
+            </div>
+
+            <!-- Cápsula de Audio Original -->
+            <div class="audio-capsule">
+              <div class="audio-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              </div>
+              <div class="audio-waveform-bars">
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 8px;"></div>
+                <div class="audio-wave-bar" style="height: 16px;"></div>
+                <div class="audio-wave-bar" style="height: 12px;"></div>
+                <div class="audio-wave-bar" style="height: 6px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+              </div>
+              <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+            </div>
+
+            <div class="timestamp-row">
+              <span class="timestamp">14:16:58</span>
+            </div>
+          </div>
+
+          <!-- Mensaje Intermedio (Carlos - SONIDO "Todo listo.") -->
+          <div class="translation-card user-mid">
+            <div class="trans-header-row">
+              <span class="user-name-orange" style="color: #FACC15;" data-i18n="userCarlos">Carlos</span>
+              <span class="category-tag cat-sonido" data-i18n="categorySonido">SONIDO</span>
+            </div>
+
+            <div class="trans-main-text trans-main-text-usermid">Todo listo.</div>
+
+            <!-- Cápsula de Audio Original -->
+            <div class="audio-capsule">
+              <div class="audio-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              </div>
+              <div class="audio-waveform-bars">
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 8px;"></div>
+                <div class="audio-wave-bar" style="height: 16px;"></div>
+                <div class="audio-wave-bar" style="height: 12px;"></div>
+                <div class="audio-wave-bar" style="height: 6px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+              </div>
+              <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+            </div>
+
+            <div class="timestamp-row">
+              <span class="timestamp">14:17:04</span>
+            </div>
+          </div>
+
+          <!-- Mensaje 2 (Enviado en Inglés "to infinity and beyond" y traducido a "hasta el infinito y más allá") -->
+          <div class="translation-card user-2">
+            <div class="trans-header-row">
+              <span class="user-name-orange" data-i18n="userSofia">Sofía</span>
+              <span class="category-tag cat-luzfx" data-i18n="categoryLuz">LUZ / FX</span>
+            </div>
+            
+            <div class="trans-main-text trans-reply-text-user2">hasta el infinito y más allá</div>
+            
+            <div class="trans-sub-row">
+              <span class="lang-pill-src">(EN)</span>
+              <span class="trans-original-sub">to infinity and beyond</span>
+            </div>
+
+            <!-- Cápsula de Audio Original -->
+            <div class="audio-capsule">
+              <div class="audio-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              </div>
+              <div class="audio-waveform-bars">
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 8px;"></div>
+                <div class="audio-wave-bar" style="height: 16px;"></div>
+                <div class="audio-wave-bar" style="height: 12px;"></div>
+                <div class="audio-wave-bar" style="height: 6px;"></div>
+                <div class="audio-wave-bar" style="height: 14px;"></div>
+                <div class="audio-wave-bar" style="height: 10px;"></div>
+              </div>
+              <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+            </div>
+
+            <div class="timestamp-row">
+              <span class="timestamp">14:17:10</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Contenedor de la Descripción -->
+      <div class="description-container">
+        <h3 data-i18n="traduccionDescTitle">Traducción Automática Fluida</h3>
+        <p data-i18n="traduccionDesc">Demostración de la recepción y traducción de mensajes en tiempo real. Al traducirse, la versión traducida aparece en el texto principal y la línea inferior con la etiqueta (EN) y el texto original se despliega hacia abajo suavemente</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('translation-demo-card', initTranslationDemo);
+    });
+  </script>
+</body>
+</html>

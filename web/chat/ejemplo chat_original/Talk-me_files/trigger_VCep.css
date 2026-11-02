@@ -1,0 +1,467 @@
+/* === TRIGGERS v60 IN/OUT === */
+.trigger-tabs-container {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px;
+    border-radius: 12px;
+    margin-bottom: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.trigger-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary, #aaa);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.trigger-tab:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.trigger-tab.active {
+    background: var(--accent-blue);
+    opacity: 0.7;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.smpte-monitor-container {
+    background: #000;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+    animation: fadeIn 0.3s ease;
+}
+
+.smpte-monitor-container.hidden {
+    display: none;
+}
+
+.smpte-label {
+    font-size: 11px;
+    color: #666;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.smpte-clock {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    color: var(--accent-orange, #f39c12);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(243, 156, 18, 0.4);
+}
+
+.smpte-signal-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #444;
+    transition: background 0.3s ease;
+}
+
+.smpte-signal-indicator.active {
+    background: #2ecc71;
+    box-shadow: 0 0 10px #2ecc71;
+    animation: pulse-green 1s infinite;
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Ajustes adicionales para la lista de triggers */
+.trigger-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.trigger-direction-tag {
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-right: 8px;
+}
+
+.tag-in {
+    background: #e74c3c;
+    color: white;
+}
+
+.tag-out {
+    background: #3498db;
+    color: white;
+}
+
+/* --- Editor Triggers IN (Acción/Payload) --- */
+.trigger-action-payload {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.payload-field-group {
+    margin-bottom: 20px;
+}
+
+.payload-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.btn-emoji {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.btn-emoji:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+#triggerMsgTextIn {
+    width: 100%;
+    min-height: 80px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: white;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#triggerMsgTextIn:focus {
+    border-color: var(--accent-blue);
+}
+
+.payload-media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.payload-media-item label {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.media-preview {
+    width: 100%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.preview-placeholder {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    padding: 10px;
+}
+
+.media-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-media-action {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #ccc;
+    font-size: 11px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-media-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-media-action svg {
+    opacity: 0.7;
+}
+
+#btnRecordAudioIn:hover {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+#btnRecordAudioIn.recording {
+    background: rgba(231, 76, 60, 0.2);
+    border-color: #e74c3c;
+    animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.image-preview-el {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Seguridad de Visibilidad (Fix v60) --- */
+#editorFormOut,
+#editorFormIn {
+    display: none;
+}
+
+/* --- Inline Nano-Elite Bulk Actions (v60) --- */
+.triggers-header-inline {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px;
+    padding: 0px 4px 8px 4px !important;
+    margin-bottom: 0 !important;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .triggers-header-inline {
+        flex-wrap: wrap !important;
+    }
+
+    .triggers-header-inline .bulk-actions-mini-toggles {
+        order: 1;
+    }
+
+    .triggers-header-inline>svg {
+        order: 2;
+        margin-left: auto !important;
+    }
+
+    .triggers-header-inline .triggers-count-text {
+        order: 2;
+    }
+
+    .triggers-header-inline .trigger-search-container {
+        order: 3;
+        width: 100% !important;
+        flex: none !important;
+        margin: 8px 0 0 0 !important;
+    }
+}
+
+.header-folder-icon.purple {
+    font-size: 14px;
+    color: #a29bfe;
+    /* Morado premium */
+    opacity: 0.9;
+    margin-top: 2px;
+}
+
+/* Fusión absoluta con la lista */
+#triggersListContainer {
+    margin-top: -3px !important;
+    padding-top: 0 !important;
+}
+
+.triggers-count-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 5px;
+}
+
+/* --- Master Flat Toggle Switch (v60.Elite) --- */
+.bulk-actions-mini-toggles {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    margin-left: 12px;
+}
+
+.master-toggle-flat {
+    position: relative;
+    width: 46px;
+    height: 25px;
+    background: #ff89774f;
+    /* OFF Red */
+    transition: background 150ms linear;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.master-toggle-flat.is-on {
+    background: #00d46a3d;
+    /* ON Green */
+}
+
+.master-toggle-flat .toggle-handle {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: #151522;
+    z-index: 2;
+    transition: transform 150ms linear;
+}
+
+.master-toggle-flat.is-on .toggle-handle {
+    transform: translateX(100%);
+}
+
+.master-toggle-flat .toggle-label {
+    position: absolute;
+    width: 50%;
+    text-align: center;
+    font-size: 8px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    z-index: 1;
+    text-transform: uppercase;
+    transition: color 150ms linear;
+}
+
+.master-toggle-flat .toggle-label.on {
+    left: 0;
+}
+
+.master-toggle-flat .toggle-label.off {
+    right: 0;
+}
+
+/* Color de texto activo */
+.master-toggle-flat.is-on .toggle-label.on {
+    color: #00d46a;
+}
+
+.master-toggle-flat:not(.is-on) .toggle-label.off {
+    color: #ff8877;
+}
+
+
+
+.mini-bulk-btn:hover {
+    transform: scale(1.1);
+}
+
+.bulk-on:hover {
+    color: #2ecc71;
+}
+
+.bulk-off:hover {
+    color: #e74c3c;
+}
+
+/* Forzar que el botón de añadir esté siempre al final y visible */
+.triggers-list-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    /* Ajustar según necesidad */
+}
+
+.triggers-scroll-area {
+    overflow-y: auto;
+    flex: 1;
+}
+
+#btnAddNewTrigger {
+    margin-top: 15px;
+    position: sticky;
+    bottom: 0;
+}
+
+/* --- Soberanía Compartida de Triggers (v60.Elite) --- */
+.trigger-claimed-by-other {
+    opacity: 0.25 !important;
+    pointer-events: none !important;
+}
+
+.trigger-claimed-by-other * {
+    pointer-events: none !important;
+}
+
+.trigger-owner-badge {
+    font-size: 0.7rem;
+    background: rgba(255, 140, 0, 0.15);
+    color: #ff8c00;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    vertical-align: middle;
+}

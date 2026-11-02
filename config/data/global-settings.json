@@ -1,0 +1,17 @@
+{
+  "theme": "dark",
+  "dna": {
+    "bgPrimary": "#0a0a0f",
+    "bgSecondary": "#151522",
+    "primary": "#7b68ee",
+    "secondary": "#ff6b35",
+    "text": "#ffffff",
+    "textSecondary": "#aaaaaa"
+  },
+  "typography": {
+    "fontSize": 100,
+    "fontWeight": 500
+  },
+  "language": "es",
+  "translateEnabled": true
+}

@@ -1,0 +1,40 @@
+{
+  "linterna": {
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 1,
+        "name": "On"
+      },
+      {
+        "time": 324,
+        "value": 0,
+        "name": "Off"
+      },
+      {
+        "time": 509,
+        "value": 0.9695121951219512,
+        "name": "On"
+      },
+      {
+        "time": 769,
+        "value": 0.012195121951219523,
+        "name": "Off"
+      },
+      {
+        "time": 991,
+        "value": 1,
+        "name": "End"
+      },
+      {
+        "time": 1435,
+        "value": 0,
+        "hold": 0,
+        "name": "Punto 6",
+        "easing": "step",
+        "easingColor": "step"
+      }
+    ],
+    "duration": 1500
+  }
+}

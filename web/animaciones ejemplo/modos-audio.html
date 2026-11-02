@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Modos de Envío de Audio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="modosAudioTitle">11. Modos de audio</span>
+    </h2>
+
+    <div class="feature-content">
+      <div class="animation-container" id="modos-audio-demo-card">
+        <div class="audio-modes-demo">
+          
+          <!-- Estado Global de Transmisión (Header Pill) -->
+          <div class="audio-status-header-row">
+            <div class="audio-status-pill silent" id="tx-status-pill">
+              <div class="tx-led"></div>
+              <span class="tx-status-text" id="tx-status-text">SILENCIO</span>
+            </div>
+            <div class="audio-mode-indicator-tag" id="tx-mode-tag">PUSH-TO-TALK</div>
+          </div>
+
+          <!-- Panel de Ajustes de Audio -->
+          <div class="sidebar-audio-config-demo">
+            
+            <div class="setting-row-demo">
+              <label class="setting-label-demo">MODO DE MICRÓFONO</label>
+              <div class="talkme-select-container-demo" id="mic-select-container">
+                <div class="talkme-select-display" id="mic-mode-display">Push-to-Talk (mantener)</div>
+                <div class="talkme-select-arrow">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                
+                <!-- Menú Desplegable Animado -->
+                <div class="talkme-select-dropdown hidden" id="mic-select-dropdown">
+                  <div class="talkme-option-item" id="opt-ptt" data-value="ptt">Push-to-Talk (mantener)</div>
+                  <div class="talkme-option-item" id="opt-auto" data-value="auto">Automático (por volumen)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Medidor de Nivel & Umbral Verde (Visibilidad Diferenciada) -->
+            <div class="setting-row-demo" id="threshold-section-row">
+              <div class="setting-label-between">
+                <span id="level-section-label">NIVEL DE ENTRADA</span>
+              </div>
+              <div class="threshold-meter-container">
+                <div class="threshold-track">
+                  <div class="threshold-fill-bar" id="threshold-fill-bar"></div>
+                  <div class="threshold-green-line hidden" id="threshold-green-line" style="left: 60%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón PTT para Push-to-Talk (Sin emojis, solo SVG y texto) -->
+            <div class="ptt-action-box" id="ptt-action-box">
+              <button class="ptt-big-button" id="ptt-big-button">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                <span id="ptt-btn-label">MANTENER PARA HABLAR</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 data-i18n="modosAudioDescTitle">Modos PTT y Automático con Umbral de Volumen</h3>
+        <p data-i18n="modosAudioDesc">Demostración interactiva de la conmutación entre el modo Automático (activación por umbral de volumen verde ajustable) y Push-to-Talk (envío al mantener presionado el botón o la barra espaciadora), reaccionando en tiempo real con el estado de transmisión SILENT / TRANSMITIENDO.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('modos-audio-demo-card', initAudioModesDemo);
+    });
+  </script>
+</body>
+</html>

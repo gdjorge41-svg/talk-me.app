@@ -1,0 +1,24 @@
+{
+  "_talkmeFormat": "trigger-v60",
+  "id": "tr_mp5tlmftvo81",
+  "name": "07 Si Muriera",
+  "direction": "IN",
+  "type": "smpte",
+  "external": {
+    "smpte": {
+      "timecodeStart": "07:00:00:00",
+      "timecodeEnd": "07:03:00:00",
+      "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+      "audioChannel": 2
+    }
+  },
+  "message": {
+    "text": "Si Muriera TC",
+    "filterIds": [
+      "all"
+    ],
+    "sendToAll": true,
+    "audio": null,
+    "image": null
+  }
+}

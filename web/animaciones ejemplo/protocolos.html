@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Animación Protocolos de Control & Timecode</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica 5 -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="protocolosTitle">5. Control dentro y fuera del chat</span>
+    </h2>
+
+    <div class="feature-content">
+      <!-- 1. Contenedor de la Animación -->
+      <div class="animation-container" id="protocol-demo-card">
+        <div class="protocol-demo">
+          
+          <!-- Pestañas de Selección de Protocolo -->
+          <div class="protocol-tabs-bar">
+            <button class="protocol-tab-btn tab-osc">OSC</button>
+            <button class="protocol-tab-btn tab-midi">MIDI</button>
+            <button class="protocol-tab-btn tab-sacn">sACN</button>
+            <button class="protocol-tab-btn tab-tc active" data-i18n="tabTimeCode">Time Code</button>
+          </div>
+
+          <!-- Card de Panel Principal -->
+          <div class="protocol-panel-card">
+            
+            <!-- 1. Sub-panel Time Code (Fidedigno a la Captura Oficial) -->
+            <div class="protocol-sub-panel panel-tc active">
+              <div class="proto-grid-row">
+                <div class="proto-field-group" style="flex: 2;">
+                  <span class="proto-field-label" data-i18n="lblSmpteAudioInput">SMPTE AUDIO INPUT</span>
+                  <div class="proto-field-input">Input 1</div>
+                </div>
+                <div class="proto-field-group" style="flex: 1;">
+                  <span class="proto-field-label" data-i18n="lblChannel">CHANNEL</span>
+                  <div class="proto-field-input">Channel 1 ▾</div>
+                </div>
+              </div>
+
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblStartTime">START TIME</span>
+                  <div style="display: flex; gap: 2px;">
+                    <div class="proto-field-input" style="justify-content: center; font-family: monospace;">01:00:00:00</div>
+                    <button class="pushpin-btn">📍</button>
+                  </div>
+                </div>
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblEndTime">END TIME</span>
+                  <div style="display: flex; gap: 2px;">
+                    <div class="proto-field-input" style="justify-content: center; font-family: monospace;">01:05:00:00</div>
+                    <button class="pushpin-btn">📍</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Caja Destacada LTC LIVE en Tiempo Real -->
+              <div class="ltc-live-box">
+                <span class="ltc-live-label" data-i18n="lblLtcLive">LTC LIVE</span>
+                <span class="ltc-live-counter" id="ltc-live-counter">01:02:14:00</span>
+                <div class="ltc-live-status-dot" id="ltc-live-status-dot"></div>
+              </div>
+            </div>
+
+            <!-- 2. Sub-panel OSC -->
+            <div class="protocol-sub-panel panel-osc">
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label">IP DIRECCIÓN</span>
+                  <div class="proto-field-input">127.0.0.1</div>
+                </div>
+                <div class="proto-field-group">
+                  <span class="proto-field-label">PUERTO ENTRADA</span>
+                  <div class="proto-field-input">8000</div>
+                </div>
+              </div>
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label">MENSAJE OSC ACTIVO</span>
+                  <div class="proto-field-input" style="color: #FF6B35; font-family: monospace;">/talkme/cue/trigger/go</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Sub-panel MIDI -->
+            <div class="protocol-sub-panel panel-midi">
+              <div class="proto-grid-row">
+                <div class="proto-field-group" style="flex: 2;">
+                  <span class="proto-field-label">DISPOSITIVO ENTRADA</span>
+                  <div class="proto-field-input">Virtual MIDI Bus 1 ▾</div>
+                </div>
+                <div class="proto-field-group" style="flex: 1;">
+                  <span class="proto-field-label">CANAL</span>
+                  <div class="proto-field-input">Ch 1</div>
+                </div>
+              </div>
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label">NOTA / CC DISPARADA</span>
+                  <div class="proto-field-input" style="color: #10B981; font-family: monospace;">Note C3 (60) - Vel 127</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Sub-panel sACN -->
+            <div class="protocol-sub-panel panel-sacn">
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblUniversoDmx">UNIVERSO DMX</span>
+                  <div class="proto-field-input">Universe 1</div>
+                </div>
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblCanalInicio">CANAL INICIO</span>
+                  <div class="proto-field-input">Ch 001</div>
+                </div>
+              </div>
+              <div class="proto-grid-row">
+                <div class="proto-field-group">
+                  <span class="proto-field-label" data-i18n="lblValorDmxLive">VALOR DMX LIVE</span>
+                  <div class="proto-field-input" style="color: #38BDF8; font-family: monospace;">DMX 255 (100%)</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Contenedor de la Descripción -->
+      <div class="description-container">
+        <h3 data-i18n="protocolosDescTitle">LTC, OSC, MIDI y sACN en Tiempo Real</h3>
+        <p data-i18n="protocolosDesc">Demostración del centro de sincronización multicanal. Muestra la recepción continua de Time Code SMPTE LTC en tiempo real con contador activo, junto con la conmutación dinámica hacia los protocolos OSC, MIDI y sACN</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('protocol-demo-card', initProtocolosDemo);
+    });
+  </script>
+</body>
+</html>

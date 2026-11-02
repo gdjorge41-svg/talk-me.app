@@ -1,0 +1,13 @@
+TÉRMINOS DE USO Y CONDICIONES DE LICENCIA
+
+1. Aceptación del Contrato
+Al instalar y utilizar este software (Talk-me), usted acepta quedar vinculado por los términos de este contrato de licencia.
+
+2. Uso Autorizado y Restricciones
+Esta licencia le otorga el derecho no exclusivo a utilizar una instancia del software en su servidor. Queda prohibida la reproducción, modificación o distribución no autorizada del mismo.
+
+3. Limitación de Responsabilidad
+El software se entrega "tal cual", sin garantías de ningún tipo. Los desarrolladores no se responsabilizan de pérdidas de datos ni de interrupciones de servicio.
+
+4. Modificación de las Condiciones
+Nos reservamos el derecho de modificar estas condiciones en cualquier momento. El texto de esta licencia se puede actualizar de forma remota.

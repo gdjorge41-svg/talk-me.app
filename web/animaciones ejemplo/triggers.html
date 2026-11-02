@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Animación Editor de Triggers</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica 3 -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="triggersTitle">3. Editor gráfico y Keyframes</span>
+    </h2>
+
+    <div class="feature-content">
+      <!-- 1. Contenedor de la Animación -->
+      <div class="animation-container" id="triggers-demo-card">
+        <div class="triggers-demo">
+          
+          <!-- 1. Barra de Controles Superior -->
+          <div class="triggers-top-bar">
+            <div class="duration-box">
+              <span>Duration</span>
+              <span class="duration-val">3.9</span>
+            </div>
+
+            <div class="live-indicator-dot" title="Indicador Live"><div class="live-led-inner"></div></div>
+
+            <div class="controls-group-round">
+              <button class="round-btn-control" title="Play">
+                <svg viewBox="0 0 24 24" fill="#FFFFFF"><polygon points="6 4 18 12 6 20 6 4"></polygon></svg>
+              </button>
+              <button class="round-btn-control" title="Stop">
+                <svg viewBox="0 0 24 24" fill="#FFFFFF"><rect x="6" y="6" width="12" height="12" rx="1.5"></rect></svg>
+              </button>
+              <button class="round-btn-control active-loop" title="Bucle">
+                <svg viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+              </button>
+              <button class="round-btn-control record-btn" title="Grabación en Vivo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4" fill="#FFFFFF"></circle></svg>
+              </button>
+            </div>
+
+            <button class="btn-add-keyframe-orange">
+              <span class="btn-add-kf-desktop">+ Add Keyframe</span>
+              <span class="btn-add-kf-mobile">+</span>
+            </button>
+          </div>
+
+          <!-- 2. Canvas de Curva Bezier Espacioso (175px de Altura) -->
+          <div class="graph-canvas-box">
+            <div class="graph-canvas-grid"></div>
+            <div class="graph-playhead-line"></div>
+
+            <svg class="multi-curve-svg" viewBox="0 0 440 175" preserveAspectRatio="none">
+              <!-- Curva Bezier Amplia con 2 Nodos -->
+              <path id="dynamic-bezier-path" d="M 20,145 C 140,145 220,32 420,32" fill="none" stroke="#FF6B35" stroke-width="2.5" />
+              
+              <!-- 2 Nodos Principales Limpios -->
+              <circle id="node-intro" class="kf-node-circle" cx="20" cy="145" r="6.5" />
+              <text x="20" y="162" class="node-label-text">Intro</text>
+              <text x="20" y="172" class="node-val-text">0.00</text>
+
+              <circle id="node-p2" class="kf-node-circle" cx="420" cy="32" r="6.5" />
+              <text id="label-p2" x="420" y="20" class="node-label-text">Punto 2</text>
+            </svg>
+          </div>
+
+          <!-- 3. Panel de Edición de Atributos -->
+          <div class="edit-keyframe-row">
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelTag">ETIQUETA</span>
+              <input type="text" id="field-label" class="edit-field-input" value="Intro">
+            </div>
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelTimeMs">TIEMPO (MS)</span>
+              <input type="text" id="field-time" class="edit-field-input" value="0">
+            </div>
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelValue">VALOR</span>
+              <input type="text" id="field-val" class="edit-field-input" value="0">
+            </div>
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelCurveNext">CURVA A SIG.</span>
+              <select id="field-curve-select" class="edit-field-input">
+                <option value="Lineal">Lineal</option>
+                <option value="Bezier">Bezier</option>
+              </select>
+            </div>
+            <div class="edit-field-group">
+              <span class="edit-field-label" data-i18n="labelHoldTime">HOLD TIME</span>
+              <input type="text" class="edit-field-input" value="0">
+            </div>
+            <div class="trash-btn-svg" title="Eliminar Keyframe">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 4. Panel Inferior: KEYFRAME ORDER (2 Filas Exactas) -->
+          <div class="keyframe-order-container">
+            <div class="keyframe-order-title" data-i18n="labelKfOrder">KEYFRAME ORDER</div>
+            <div class="keyframe-order-list">
+              
+              <div class="kf-order-card" id="row-intro">
+                <span class="kf-card-name">Intro</span>
+                <span class="kf-card-time">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  0.00s
+                </span>
+                <span class="kf-card-val">+ 0.00</span>
+                <span class="kf-card-type">Lineal</span>
+                <span class="kf-card-hold">0ms</span>
+                <span class="kf-card-del">✕</span>
+              </div>
+
+              <div class="kf-order-card" id="row-p2">
+                <span class="kf-card-name">Punto 2</span>
+                <span class="kf-card-time">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  3.90s
+                </span>
+                <span class="kf-card-val">+ 1.00</span>
+                <span class="kf-card-type" style="color: #FF6B35; font-weight: 700;">Bezier</span>
+                <span class="kf-card-hold">0ms</span>
+                <span class="kf-card-del">✕</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Contenedor de la Descripción -->
+      <div class="description-container">
+        <h3 data-i18n="triggersDescTitle">Curvas y Keyframes Animados</h3>
+        <p data-i18n="triggersDesc">Extracto del editor gráfico de triggers con lista de keyframes y orden de ejecución. Muestra el recorrido fluido de la aguja sobre los nodos de la curva modificando los valores en tiempo real</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('triggers-demo-card', initTriggersDemo);
+    });
+  </script>
+</body>
+</html>

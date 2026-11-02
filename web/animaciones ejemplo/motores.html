@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Animación Gestión de Motores</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica 8 -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="motoresTitle">8. Traducción avanzada</span>
+    </h2>
+
+    <div class="feature-content">
+      <!-- 1. Contenedor de la Animación (Panel del Motor de Traducción IA sin mezclar con el chat) -->
+      <div class="animation-container" id="motores-demo-card">
+        <div class="translation-demo">
+          
+          <div class="translation-engine-header">Motor de Traducción IA</div>
+
+          <!-- Fila de Configuración -->
+          <div class="translation-grid-row">
+            <div class="translation-setting-card">
+              <span class="translation-setting-label">TRADUCCIÓN AUTOMÁTICA</span>
+              <div class="translation-setting-control">
+                <div class="alert-pill-toggle is-on" id="tgl-trad-auto">ON</div>
+                <span class="translation-setting-desc">Traduce el chat al idioma de tu interfaz.</span>
+              </div>
+            </div>
+
+            <div class="translation-setting-card">
+              <span class="translation-setting-label">MENSAJE ORIGINAL</span>
+              <div class="translation-setting-control">
+                <div class="alert-pill-toggle is-on" id="tgl-trad-orig">ON</div>
+                <span class="translation-setting-desc">Muestra el texto en su idioma nativo bajo la traducción.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filtro de Idiomas Entrantes -->
+          <div class="translation-section-block">
+            <span class="translation-section-title">FILTRO DE IDIOMAS ENTRANTES</span>
+            <span class="translation-section-desc">Selecciona qué idiomas entrantes quieres traducir. Los desmarcados se mostrarán sin alterar.</span>
+            
+            <div class="lang-filter-pills">
+              <div class="lang-filter-pill active" id="pill-lang-en">EN</div>
+              <div class="lang-filter-pill active" id="pill-lang-fr">FR</div>
+              <div class="lang-filter-pill" id="pill-lang-it">IT</div>
+              <div class="lang-filter-pill active" id="pill-lang-ja">JA</div>
+            </div>
+          </div>
+
+          <!-- Palabras Protegidas (Jerga Técnica) -->
+          <div class="translation-section-block">
+            <span class="translation-section-title">PALABRAS PROTEGIDAS (JERGA TÉCNICA)</span>
+            <span class="translation-section-desc">Estas palabras NUNCA serán traducidas por la IA (Ej: Standby, Fader).</span>
+            
+            <div class="protected-words-group">
+              <input type="text" class="protected-input-field" id="dict-input-word" placeholder="Palabra a proteger..." readonly>
+              <button class="protected-add-btn" id="btn-add-word" title="Añadir">+</button>
+            </div>
+
+            <div class="protected-tags-container" id="dict-tags-list"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Contenedor de la Descripción -->
+      <div class="description-container">
+        <h3 data-i18n="motoresDescTitle">Motor de Traducción IA & Jerga Protegida</h3>
+        <p data-i18n="motoresDesc">Demostración interactiva del panel de gestión de motores de IA. Permite configurar la traducción automática, mostrar/ocultar el mensaje nativo original, filtrar idiomas entrantes y administrar el diccionario de palabras protegidas (jerga técnica)</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('motores-demo-card', initMotoresDemo);
+    });
+  </script>
+</body>
+</html>

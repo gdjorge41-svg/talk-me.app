@@ -1,0 +1,15 @@
+/* Evita selección de texto en botones PTT y de envío de audio en iOS y otros navegadores */
+.btn-send,
+.btn-send.active-ptt,
+.btnsend,
+.btnMic,
+.btn-mic,
+.btn-mic-ptt {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}

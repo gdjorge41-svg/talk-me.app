@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "kernel_version": "1.0.0",
+  "currency": "EUR",
+  "timestamp": 1793615015,
+  "plans": {
+    "freelance": {
+      "name": "Talk.me Freelance",
+      "device_limit": 1,
+      "one_time_net": 139.89,
+      "rto_monthly_net": 9.99,
+      "rto_payments": 14,
+      "rto_total_net": 139.86
+    },
+    "enterprise": {
+      "name": "Talk.me Enterprise",
+      "device_limit": 5,
+      "one_time_net": 698.6,
+      "rto_monthly_net": 49.9,
+      "rto_payments": 14,
+      "rto_total_net": 698.6
+    }
+  },
+  "latest_release": {
+    "version": "v1.8.0",
+    "major_channel": 1,
+    "release_date": "2026-09-07",
+    "download_urls": {
+      "windows": "https://www.talk-me.app/download/v1.1.0/TalkMe_Setup_Windows.exe",
+      "mac": "https://www.talk-me.app/download/v1.1.0/TalkMe_Setup_Mac.dmg",
+      "linux": "https://www.talk-me.app/download/v1.1.0/TalkMe_Setup_Linux.AppImage"
+    }
+  },
+  "upgrade_promo": {
+    "promo_code": "FIDELIDAD50",
+    "discount_percent": 50,
+    "description": "50% de descuento en el paso a la nueva generación para usuarios con licencia previa"
+  }
+}

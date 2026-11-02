@@ -1,0 +1,38 @@
+{
+  "_talkmeFormat": "trigger-v60",
+  "id": "tr_mp5u2q9k4wh6",
+  "name": "01 Intro+Mezu Bat ",
+  "type": "osc",
+  "keyframes": [
+    {
+      "time": 0,
+      "value": 0,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Inicio"
+    },
+    {
+      "time": 179.33124515181737,
+      "value": 1,
+      "easing": "step",
+      "hold": 0,
+      "name": "Pico"
+    },
+    {
+      "time": 1500,
+      "value": 1,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Punto 3"
+    }
+  ],
+  "triggerOn": "keyword",
+  "keyword": "Intro+Mezu Bat TC",
+  "osc": {
+    "host": "192.168.0.34",
+    "port": 7000,
+    "address": "/composition/layers/1/clips/1/connect",
+    "arg": "1"
+  },
+  "direction": "OUT"
+}

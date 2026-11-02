@@ -1,0 +1,32 @@
+{
+  "linterna": {
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 1,
+        "name": "On"
+      },
+      {
+        "time": 83,
+        "value": 0.012195121951219523,
+        "name": "Off"
+      },
+      {
+        "time": 400,
+        "value": 1,
+        "name": "On"
+      },
+      {
+        "time": 600,
+        "value": 0,
+        "name": "Off"
+      },
+      {
+        "time": 1500,
+        "value": 0,
+        "name": "End"
+      }
+    ],
+    "duration": 1500
+  }
+}

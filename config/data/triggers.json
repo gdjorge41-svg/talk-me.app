@@ -1,0 +1,822 @@
+[
+  {
+    "id": "tr_mp5tddxyveb4",
+    "name": "01 INTRO+MEZU BAT",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "01:00:00:00",
+        "timecodeEnd": "01:05:00:00",
+        "audioDeviceId": "2TcNzfv4y/WUUH6IF6/Kg6ILMAIHST1j0q/kxPzwNrw=",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "INTRO+MEZU BAT\n\nTIMECODE 01:00:00:00",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": "/uploads/triggers/audio-1784133426138-984851334.webm",
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tf86154wx",
+    "name": "02 ALESARDUI",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "02:00:00:00",
+        "timecodeEnd": "02:03:00:00",
+        "audioDeviceId": "default",
+        "audioChannel": 1
+      }
+    },
+    "message": {
+      "text": "ALESARDUI TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tg8qifdga",
+    "name": "03 FRIO",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "03:00:00:00",
+        "timecodeEnd": "03:02:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "FRIO TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5th1d10w7p",
+    "name": "04 Q Si Q No",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "04:00:00:00",
+        "timecodeEnd": "04:03:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Q Si Q No TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tjpstwxtb",
+    "name": "05 Se Piensa",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "05:00:00:00",
+        "timecodeEnd": "05:04:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Se Piensa TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tklutn3d6",
+    "name": "06 Donde Estas",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "06:00:00:00",
+        "timecodeEnd": "06:03:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Donde Estas TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tlmftvo81",
+    "name": "07 Si Muriera",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "07:00:00:00",
+        "timecodeEnd": "07:03:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Si Muriera TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tmc1dzdx4",
+    "name": "08 Que Te De Un Poco El Aire",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "08:00:00:00",
+        "timecodeEnd": "08:05:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Que Te De Un Poco El Aire TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5to6z5vd2l",
+    "name": "09 Bihotzian",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "09:00:00:00",
+        "timecodeEnd": "09:05:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Bihotzian TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tpe6yoiyi",
+    "name": "10 Una Rumba",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "10:00:00:00",
+        "timecodeEnd": "10:04:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Una Rumba TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tq7vq4k3x",
+    "name": "11 Zure Fatla Dut",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "11:00:00:00",
+        "timecodeEnd": "11:03:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Zure Falta Dut TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tqzetr5y1",
+    "name": "12 Wheezy+Maritxu",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "12:00:00:00",
+        "timecodeEnd": "12:07:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Wheezy+Maritxu TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5trtmg4wic",
+    "name": "13 Zure Atzetik",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "13:00:00:00",
+        "timecodeEnd": "13:04:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Zure Atzetik TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5tsmztfaii",
+    "name": "14 Sin Preocuparme",
+    "direction": "IN",
+    "type": "smpte",
+    "external": {
+      "smpte": {
+        "timecodeStart": "14:00:00:00",
+        "timecodeEnd": "14:04:00:00",
+        "audioDeviceId": "06b20622c137e53ff94e3552a44f196726afea78e0aff75b6d59a21492225776",
+        "audioChannel": 2
+      }
+    },
+    "message": {
+      "text": "Sin Preocuparme TC",
+      "filterIds": [
+        "all"
+      ],
+      "sendToAll": true,
+      "audio": null,
+      "image": null
+    }
+  },
+  {
+    "id": "tr_mp5u2q9k4wh6",
+    "name": "01 Intro+Mezu Bat ",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 179.33124515181737,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      },
+      {
+        "time": 1500,
+        "value": 1,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Punto 3"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Intro+Mezu Bat TC",
+    "osc": {
+      "host": "192.168.0.34",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/1/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5u5i3l0krw",
+    "name": "02 ALESARDUI",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "ALESARDUI TC",
+    "osc": {
+      "host": "2.0.0.100",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/2/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5u6gqwwlx7",
+    "name": "03 FRIO",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "FRIO TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/3/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5u7dv0ov3c",
+    "name": "04 Q Si Q No",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Q Si Q No TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/4/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5ucb4c5qlo",
+    "name": "05 Se Piensa ",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Se Piensa TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/5/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5ud918yb63",
+    "name": "06 Donde Estas",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Donde Estas TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/6/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5uei0opbs2",
+    "name": "07 Si Muriera",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Si Muriera TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/7/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5ufd3gxrpu",
+    "name": "08 Que Te De Un Poco El Aire",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Que Te De Un Poco El Aire TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/8/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5ug3tgjkm2",
+    "name": "09 Bihotzian",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Bihotzian TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/9/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5ugw4psexo",
+    "name": "10 Una Rumba",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Una Rumba TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/10/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5uj5n9wnh9",
+    "name": "11 Zure Falta Dut",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 0.9741616597989711,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Zure Falta Dut TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/11/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5ujwy39tmv",
+    "name": "12 Wheezy+Maritxu",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 0.9924543427258004,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Wheezy+Maritxu TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/12/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5ukwtcjkxs",
+    "name": "13 Zure Atzetik",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Zure Atzetik TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/13/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mp5ulhz7ee5r",
+    "name": "14 Sin Preocuparme TC",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Inicio"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Pico"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "Sin Preocuparme TC",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/1/clips/14/connect",
+      "arg": "1"
+    }
+  },
+  {
+    "id": "tr_mmk8feypuzfq",
+    "name": "DONDE ESTAS OSC",
+    "type": "osc",
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Putrtryrt"
+      },
+      {
+        "time": 0,
+        "value": 1,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Punto 2"
+      },
+      {
+        "time": 560.0820346150837,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Punto 3"
+      },
+      {
+        "time": 560.0820346150837,
+        "value": 1,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Punto 4"
+      },
+      {
+        "time": 1054,
+        "value": 0,
+        "easing": "easeInOutQuad",
+        "hold": 0,
+        "name": "Punto 5"
+      },
+      {
+        "time": 1460,
+        "value": 1,
+        "easing": "easeInCubic",
+        "hold": 0,
+        "name": "Punto 6"
+      },
+      {
+        "time": 1469.2682928753143,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Punto 7"
+      },
+      {
+        "time": 1920.704845814978,
+        "value": 1,
+        "easing": "step",
+        "hold": 0,
+        "name": "Punto 8"
+      },
+      {
+        "time": 3574.5392369970045,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Punto 11"
+      },
+      {
+        "time": 3860.230625505489,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0,
+        "name": "Punto 12"
+      }
+    ],
+    "triggerOn": "keyword",
+    "keyword": "DONDE ESTAS TC, BARREZKA TC,",
+    "osc": {
+      "host": "192.168.0.28",
+      "port": 7000,
+      "address": "/composition/layers/4/video/opacity",
+      "arg": "1"
+    }
+  }
+]

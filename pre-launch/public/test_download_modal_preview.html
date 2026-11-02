@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Modal - Descarga Motor de Traducción</title>
+    <!-- Tipografía 100% Local Offline (Inter & Outfit) -->
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #0c0b14;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', -apple-system, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Contenedor de simulación del fondo de Pre-Launch */
+        .preview-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 35%, rgba(108, 92, 231, 0.12) 0%, rgba(12, 11, 20, 0.95) 75%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+            filter: blur(2px);
+            pointer-events: none;
+        }
+
+        /* Botón de control de prueba en la esquina superior */
+        .test-controls {
+            position: fixed;
+            top: 15px;
+            left: 20px;
+            z-index: 12000;
+            display: flex;
+            gap: 10px;
+            background: rgba(14, 14, 28, 0.75);
+            padding: 8px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(123, 104, 238, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .test-btn {
+            background: rgba(123, 104, 238, 0.2);
+            border: 1px solid rgba(123, 104, 238, 0.4);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: auto;
+            box-shadow: none;
+        }
+
+        .test-btn:hover {
+            background: #6C5CE7;
+            transform: translateY(-1px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           MODAL MINIMALISTA DEFINITIVA - DESCARGA MOTOR DE TRADUCCIÓN
+           ═══════════════════════════════════════════════════════════════ */
+        .modal-overlay-translate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(4, 4, 8, 0.5) !important;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 11500;
+            animation: fadeInTranslate 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInTranslate {
+            from {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-dialog-translate {
+            width: 100%;
+            max-width: 460px;
+            background: rgba(13, 13, 24, 0.88);
+            border: 1px solid rgba(123, 104, 238, 0.32);
+            border-radius: 22px;
+            padding: 38px 34px 34px 34px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65), 0 0 35px rgba(108, 92, 231, 0.18);
+            text-align: center;
+            position: relative;
+            user-select: none;
+        }
+
+        /* Icono corporativo minimalista sin bordes circulares */
+        .translate-icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .translate-icon-svg {
+            color: #7D6FF0;
+            filter: drop-shadow(0 2px 12px rgba(125, 111, 240, 0.45));
+            transition: transform 0.3s ease;
+        }
+
+        /* Tipografía y centrado absoluto del título en la caja con color acento primario */
+        h2.translate-modal-title {
+            font-family: 'Outfit', -apple-system, sans-serif !important;
+            font-size: 23px !important;
+            font-weight: 700 !important;
+            color: var(--accent-primary, #7B68EE) !important;
+            margin: 0 auto 12px auto !important;
+            padding: 0 !important;
+            letter-spacing: 0.2px !important;
+            text-shadow: 0 2px 14px rgba(123, 104, 238, 0.35) !important;
+            display: block !important;
+            text-align: center !important;
+            width: 100% !important;
+        }
+
+        .translate-modal-desc {
+            font-size: 13.5px;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, 0.72);
+            margin: 0 0 16px 0;
+            padding: 0 6px;
+        }
+
+        /* Bloque de aviso para posponer */
+        .translate-postpone-note {
+            background: rgba(255, 183, 0, 0.08);
+            border: 1px solid rgba(255, 183, 0, 0.22);
+            border-radius: 12px;
+            padding: 11px 15px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+        }
+
+        .translate-alert-icon {
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 6px rgba(255, 183, 0, 0.4));
+        }
+
+        /* Botones de acción elegantes */
+        .translate-actions-row {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .translate-btn-half {
+            flex: 1;
+            padding: 13px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cancel {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .btn-cancel:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /* Estilo exacto de .btn-ignition de Pre-Launch (Iniciar Servidor) */
+        .btn-translate-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgb(119, 103, 238) !important;
+            border: 1px solid rgba(108, 92, 231, 0.705) !important;
+            background: #6c5ce744 !important;
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.40) !important;
+            transition: all 0.3s ease;
+        }
+
+        .btn-translate-download:hover {
+            background: #7D6FF0 !important;
+            color: #000000 !important;
+            box-shadow: 0 6px 28px rgba(108, 92, 231, 0.55) !important;
+            transform: translateY(-1px);
+        }
+
+        .btn-translate-download:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 12px rgba(108, 92, 231, 0.40) !important;
+        }
+
+        /* Barra de progreso minimalista */
+        .translate-progress-wrapper {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 20px;
+        }
+
+        .translate-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .translate-speed-badge {
+            color: #00ff88;
+            font-family: monospace;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 2px 7px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .translate-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .translate-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #6C5CE7 0%, #FF6B35 60%, #00ff88 100%);
+            border-radius: 10px;
+            box-shadow: 0 0 14px rgba(255, 107, 53, 0.45);
+            transition: width 0.3s ease;
+        }
+
+        .translate-stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, 0.45);
+            font-family: monospace;
+        }
+
+        /* Estado inferior animado */
+        .translate-status-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .translate-spinner {
+            animation: spinTranslate 1.6s linear infinite;
+        }
+
+        @keyframes spinTranslate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Sello completado / validado */
+        .translate-badge-success {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #00ff88;
+            font-size: 13.5px;
+            font-weight: 700;
+            padding: 12px;
+            background: rgba(0, 255, 136, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.25);
+            border-radius: 12px;
+            animation: fadeInTranslate 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Simulación del Launchpad de fondo para comprobar contraste y estética real -->
+    <div class="preview-backdrop">
+        <header>
+            <h1><span class="logo-talk">Talk</span><span class="logo-sep">.</span><span class="logo-me">me</span></h1>
+            <p>Cabina de Ignición y Lanzamiento</p>
+        </header>
+        <button class="btn-ignition" style="max-width: 320px; opacity: 0.5; pointer-events: none;">INICIAR
+            SERVIDOR</button>
+    </div>
+
+    <!-- Panel de Prueba de Idiomas (Los 24 Idiomas Oficiales) y Simulación -->
+    <div class="test-controls">
+        <label style="color: #fff; font-size: 12px; font-weight: 600; align-self: center;">Idioma (24):</label>
+        <select id="langPreviewSelect" onchange="switchLanguage(this.value)" class="talkme-select"
+            style="padding: 4px 8px; height: 28px; font-size: 12px; border-radius: 6px; background: #0A0A0F; color: #fff; border: 1px solid rgba(123, 104, 238, 0.4);">
+            <option value="es">Español (ES)</option>
+            <option value="en">English (EN)</option>
+            <option value="eu">Euskara (EU)</option>
+            <option value="ca">Català (CA)</option>
+            <option value="gl">Galego (GL)</option>
+            <option value="de">Deutsch (DE)</option>
+            <option value="fr">Français (FR)</option>
+            <option value="it">Italiano (IT)</option>
+            <option value="pt">Português (PT)</option>
+            <option value="ru">Русский (RU)</option>
+            <option value="zh">中文 (ZH)</option>
+            <option value="ja">日本語 (JA)</option>
+            <option value="ar">العربية (AR)</option>
+            <option value="fa">فارسی (FA)</option>
+            <option value="ko">한국어 (KO)</option>
+            <option value="nl">Nederlands (NL)</option>
+            <option value="pl">Polski (PL)</option>
+            <option value="sv">Svenska (SV)</option>
+            <option value="tr">Türkçe (TR)</option>
+            <option value="uk">Українська (UK)</option>
+            <option value="vi">Tiếng Việt (VI)</option>
+            <option value="uz">Oʻzbekcha (UZ)</option>
+            <option value="kk">Қазақша (KK)</option>
+            <option value="eo">Esperanto (EO)</option>
+        </select>
+        <button class="test-btn" onclick="startSimulatedDownload()">▶ Simular Descarga Real</button>
+        <button class="test-btn" onclick="resetSimulation()">↺ Reiniciar</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         MODAL DE AVISO Y DESCARGA INMUTABLE (NO CERRABLE)
+         ═══════════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay-translate" id="downloadTranslateModal">
+        <div class="modal-dialog-translate">
+
+            <!-- Icono minimalista sin bordes circulares -->
+            <div class="translate-icon-wrapper">
+                <!-- SVG Globo terráqueo multilingüe estilizado Talk.me -->
+                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" class="translate-icon-svg">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+            </div>
+
+            <!-- Título oficial solicitado con color acento secundario -->
+            <h2 class="translate-modal-title" id="lblTranslateTitle">Descarga motor de traducción</h2>
+
+            <!-- Mensaje oficial solicitado -->
+            <p class="translate-modal-desc" id="lblTranslateDesc">
+                Se requiere conexión a internet para descargar motor para habilitar la traducción neuronal sin conexión.
+            </p>
+
+            <!-- Advertencia si decide posponer -->
+            <div class="translate-postpone-note" id="postponeNotice">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="#ffb700" stroke-width="2.2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round" class="translate-alert-icon">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                    </path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <span id="lblPostponeDesc">Si pospones la instalación, el chat y el resto de funciones operarán con
+                    normalidad, pero la traducción entre idiomas quedará inactiva.</span>
+            </div>
+
+            <!-- Botones de Acción Inicial (Descargar / Posponer) -->
+            <div class="translate-actions-row" id="actionsRow">
+                <button class="btn-cancel translate-btn-half" onclick="handlePostpone()"
+                    id="btnPostpone">Posponer</button>
+                <button class="btn-translate-download translate-btn-half" onclick="startDownloadProcess()"
+                    id="btnStartDownload">
+                    <svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Descargar</span>
+                </button>
+            </div>
+
+            <!-- Bloque de Progreso (Oculto inicialmente hasta pulsar Descargar) -->
+            <div class="translate-progress-wrapper" id="progressWrapper" style="display: none;">
+                <div class="translate-meta-row">
+                    <span id="lblDownloadingStatus">Descargando componentes...</span>
+                    <span class="translate-speed-badge" id="lblDownloadSpeed">34.2 MB/s</span>
+                </div>
+
+                <div class="translate-bar-bg">
+                    <div class="translate-bar-fill" id="barFill"></div>
+                </div>
+
+                <div class="translate-stats-row">
+                    <span id="lblBytesTransferred">0 MB / 2.75 GB</span>
+                    <span id="lblPercentage">0%</span>
+                </div>
+            </div>
+
+            <!-- Mensaje de éxito al completar -->
+            <div class="translate-badge-success" id="badgeSuccess">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="#00ff88" stroke-width="3" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="lblSuccess">Motor de traducción validado y listo</span>
+            </div>
+
+            <!-- Pie de estado bloqueado (Solo visible durante la descarga activa) -->
+            <div class="translate-status-footer" id="footerLockStatus" style="display: none;">
+                <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round" class="translate-spinner">
+                    <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+                </svg>
+                <span id="lblLockNotice">No cierre ni apague el sistema durante la instalación</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script de Simulación Dinámica y Diccionario Completo de 24 Idiomas -->
+    <script>
+        const i18n = {
+            es: {
+                title: "Descarga motor de traducción",
+                desc: "Se requiere conexión a internet para descargar motor para habilitar la traducción neuronal sin conexión.",
+                status_downloading: "Descargando componentes neuronales...",
+                status_unzipping: "Descomprimiendo y verificando hashes...",
+                status_ready: "Motor de traducción validado y listo",
+                lock_notice: "No cierre ni apague el sistema durante la instalación"
+            },
+            en: {
+                title: "Translation Engine Download",
+                desc: "An internet connection is required to download the engine to enable offline neural translation.",
+                status_downloading: "Downloading neural components...",
+                status_unzipping: "Extracting and verifying hashes...",
+                status_ready: "Translation engine validated and ready",
+                lock_notice: "Do not close or turn off the system during installation"
+            },
+            eu: {
+                title: "Itzulpen motorra deskargatzea",
+                desc: "Interneterako konexioa behar da motorra deskargatzeko, lineaz kanpoko itzulpen neurala gaitzeko.",
+                status_downloading: "Osagai neuronalak deskargatzen...",
+                status_unzipping: "Erauzten eta hash-ak egiaztatzen...",
+                status_ready: "Itzulpen motorra balioztatuta eta prest",
+                lock_notice: "Ez itxi sistema instalazioan zehar"
+            },
+            ca: {
+                title: "Descàrrega motor de traducció",
+                desc: "Es requereix connexió a internet per descarregar el motor per habilitar la traducció neuronal sense connexió.",
+                status_downloading: "Descarregant components neuronals...",
+                status_unzipping: "Descomprimint i verificant hashes...",
+                status_ready: "Motor de traducció validat i a punt",
+                lock_notice: "No tanqueu el sistema durant la instal·lació"
+            },
+            gl: {
+                title: "Descarga motor de tradución",
+                desc: "Requírese conexión a internet para descargar o motor para habilitar a tradución neuronal sen conexión.",
+                status_downloading: "Descargando compoñentes neuronais...",
+                status_unzipping: "Descomprimindo e verificando hashes...",
+                status_ready: "Motor de tradución validado e listo",
+                lock_notice: "Non peche o sistema durante a instalación"
+            },
+            de: {
+                title: "Download des Übersetzungsmoduls",
+                desc: "Eine Internetverbindung ist erforderlich, um das Modul für die neuronale Offline-Übersetzung herunterzuladen.",
+                status_downloading: "Neuronale Komponenten werden heruntergeladen...",
+                status_unzipping: "Entpacken und Hashes überprüfen...",
+                status_ready: "Übersetzungsmodul validiert und bereit",
+                lock_notice: "Schließen Sie das System während der Installation nicht"
+            },
+            fr: {
+                title: "Téléchargement du moteur de traduction",
+                desc: "Une connexion Internet est requise pour télécharger le moteur afin d'activer la traduction neuronale hors ligne.",
+                status_downloading: "Téléchargement des composants neuronaux...",
+                status_unzipping: "Décompression et vérification des hachages...",
+                status_ready: "Moteur de traduction validé et prêt",
+                lock_notice: "Ne fermez pas le système pendant l'installation"
+            },
+            it: {
+                title: "Download motore di traduzione",
+                desc: "È necessaria una connessione Internet per scaricare il motore per abilitare la traduzione neurale offline.",
+                status_downloading: "Download dei componenti neurali...",
+                status_unzipping: "Decompressione e verifica degli hash...",
+                status_ready: "Motore di traduzione validato e pronto",
+                lock_notice: "Non chiudere il sistema durante l'installazione"
+            },
+            pt: {
+                title: "Download do motor de tradução",
+                desc: "É necessária uma conexão à Internet para baixar o motor e habilitar a tradução neural offline.",
+                status_downloading: "Baixando componentes neurais...",
+                status_unzipping: "Descompactando e verificando hashes...",
+                status_ready: "Motor de tradução validado e pronto",
+                lock_notice: "Não feche o sistema durante a instalação"
+            },
+            ru: {
+                title: "Загрузка модуля перевода",
+                desc: "Для загрузки модуля требуется подключение к Интернету, чтобы включить автономный нейронный перевод.",
+                status_downloading: "Загрузка нейронных компонентов...",
+                status_unzipping: "Распаковка и проверка хешей...",
+                status_ready: "Модуль перевода проверен и готов",
+                lock_notice: "Не закрывайте систему во время установки"
+            },
+            zh: {
+                title: "翻译引擎下载",
+                desc: "需要互联网连接以下载引擎以启用离线神经翻译。",
+                status_downloading: "正在下载神经组件...",
+                status_unzipping: "正在解压并验证哈希...",
+                status_ready: "翻译引擎已验证并就绪",
+                lock_notice: "安装过程中请勿关闭系统"
+            },
+            ja: {
+                title: "翻訳エンジンのダウンロード",
+                desc: "オフラインニューラル翻訳を有効にするには、エンジンをダウンロードするためのインターネット接続が必要です。",
+                status_downloading: "ニューラルコンポーネントをダウンロード中...",
+                status_unzipping: "解凍およびハッシュの検証中...",
+                status_ready: "翻訳エンジンが検証され準備完了",
+                lock_notice: "インストール中にシステムを閉じないでください"
+            },
+            ar: {
+                title: "تحميل محرك الترجمة",
+                desc: "يلزم الاتصال بالإنترنت لتنزيل المحرك لتمكين الترجمة العصبية دون اتصال بالإنترنت.",
+                status_downloading: "جاري تنزيل المكونات العصبية...",
+                status_unzipping: "فك الضغط والتحقق من التجزئة...",
+                status_ready: "تم التحقق من محرك الترجمة وهو جاهز",
+                lock_notice: "لا تغلق النظام أو توقفه أثناء التثبيت"
+            },
+            fa: {
+                title: "دانلود موتور ترجمه",
+                desc: "برای دانلود موتور جهت فعال‌سازی ترجمه عصبی آفلاین، اتصال به اینترنت لازم است.",
+                status_downloading: "در حال دانلود اجزای عصبی...",
+                status_unzipping: "استخراج و بررسی هش‌ها...",
+                status_ready: "موتور ترجمه تایید و آماده شد",
+                lock_notice: "در حین نصب سیستم را نبندید"
+            },
+            ko: {
+                title: "번역 엔진 다운로드",
+                desc: "오프라인 신경망 번역을 활성화하려면 엔진을 다운로드하기 위한 인터넷 연결이 필요합니다.",
+                status_downloading: "신경망 구성 요소를 다운로드하는 중...",
+                status_unzipping: "압축을 풀고 해시를 확인하는 중...",
+                status_ready: "번역 엔진이 확인되었으며 준비되었습니다",
+                lock_notice: "설치 중에는 시스템을 닫거나 종료하지 마십시오"
+            },
+            nl: {
+                title: "Download vertaalmotor",
+                desc: "Er is een internetverbinding vereist om de motor te downloaden voor offline neurale vertaling.",
+                status_downloading: "Neurale componenten downloaden...",
+                status_unzipping: "Uitpakken en hashes verifiëren...",
+                status_ready: "Vertaalmotor gevalideerd en gereed",
+                lock_notice: "Sluit het systeem niet af tijdens de installatie"
+            },
+            pl: {
+                title: "Pobieranie silnika tłumaczeń",
+                desc: "Wymagane jest połączenie z Internetem, aby pobrać silnik umożliwiający tłumaczenie neuronowe offline.",
+                status_downloading: "Pobieranie komponentów neuronowych...",
+                status_unzipping: "Rozpakowywanie i sprawdzanie sum kontrolnych...",
+                status_ready: "Silnik tłumaczeń zweryfikowany i gotowy",
+                lock_notice: "Nie zamykaj systemu podczas instalacji"
+            },
+            sv: {
+                title: "Ladda ner översättningsmotor",
+                desc: "Internetanslutning krävs för att ladda ner motorn och aktivera offline neural översättning.",
+                status_downloading: "Laddar ner neurala komponenter...",
+                status_unzipping: "Packar upp och verifierar hash-värden...",
+                status_ready: "Översättningsmotor validerad och klar",
+                lock_notice: "Stäng inte av systemet under installationen"
+            },
+            tr: {
+                title: "Çeviri motorunu indir",
+                desc: "Çevrimdışı nöral çeviriyi etkinleştirmek üzere motoru indirmek için internet bağlantısı gereklidir.",
+                status_downloading: "Nöral bileşenler indiriliyor...",
+                status_unzipping: "Ayıklanıyor ve karmalar doğrulanıyor...",
+                status_ready: "Çeviri motoru doğrulandı ve hazır",
+                lock_notice: "Kurulum sırasında sistemi kapatmayın"
+            },
+            uk: {
+                title: "Завантаження модуля перекладу",
+                desc: "Для завантаження модуля потрібне підключення до Інтернету, щоб увімкнути офлайн нейронний переклад.",
+                status_downloading: "Завантаження нейронних компонентів...",
+                status_unzipping: "Розпакування та перевірка хешів...",
+                status_ready: "Модуль перекладу перевірено та готовий",
+                lock_notice: "Не закривайте систему під час встановлення"
+            },
+            vi: {
+                title: "Tải xuống công cụ dịch thuật",
+                desc: "Cần có kết nối internet để tải xuống công cụ cho phép dịch nơ-ron ngoại tuyến.",
+                status_downloading: "Đang tải xuống các thành phần nơ-ron...",
+                status_unzipping: "Đang giải nén và xác minh mã hash...",
+                status_ready: "Công cụ dịch thuật đã được xác thực và sẵn sàng",
+                lock_notice: "Không tắt hoặc đóng hệ thống trong quá trình cài đặt"
+            },
+            uz: {
+                title: "Tarjima dvigatelini yuklab olish",
+                desc: "Oflayn neyron tarjimani yoqish uchun dvigatelni yuklab olishga internet aloqasi talab qilinadi.",
+                status_downloading: "Neyron komponentlar yuklab olinmoqda...",
+                status_unzipping: "Chiqarilmoqda va xeshlar tekshirilmoqda...",
+                status_ready: "Tarjima dvigateli tasdiqlandi va tayyor",
+                lock_notice: "O‘rnatish vaqtida tizimni yopmang"
+            },
+            kk: {
+                title: "Аударма қозғалтқышын жүктеу",
+                desc: "Офлайн нейрондық аударманы қосу үшін қозғалтқышты жүктеуге интернет байланысы қажет.",
+                status_downloading: "Нейрондық компоненттер жүктелуде...",
+                status_unzipping: "Шығарылуда және хэштер тексерілуде...",
+                status_ready: "Аударма қозғалтқышы тексерілді және дайын",
+                lock_notice: "Орнату кезінде жүйені жаппаңыз"
+            },
+            eo: {
+                title: "Elŝuto de tradukmotoro",
+                desc: "Interreta konekto estas postulata por elŝuti la motoron por ebligi eksterretan neŭralan tradukadon.",
+                status_downloading: "Elŝutante neŭralajn komponantojn...",
+                status_unzipping: "Malkunpremante kaj kontrolante haketojn...",
+                status_ready: "Tradukmotoro validigita kaj preta",
+                lock_notice: "Ne fermu la sistemon dum instalado"
+            }
+        };
+
+        const buttonTexts = {
+            es: { btn_postpone: "Posponer", btn_download: "Descargar", note: "Si pospones la instalación, el chat y el resto de funciones operarán con normalidad, pero la traducción entre idiomas quedará inactiva." },
+            en: { btn_postpone: "Postpone", btn_download: "Download", note: "If you postpone installation, chat and all other features will work normally, but multilingual translation will remain inactive." },
+            eu: { btn_postpone: "Atzeratu", btn_download: "Deskargatu", note: "Instalazioa atzeratzen baduzu, txata eta gainerako funtzioak normaltasunez arituko dira, baina itzulpena desaktibatuta geratuko da." },
+            ca: { btn_postpone: "Posposar", btn_download: "Descarregar", note: "Si posposeu la instal·lació, el xat i la resta de funcions operaran amb normalitat, però la traducció quedarà inactiva." },
+            gl: { btn_postpone: "Pospoñer", btn_download: "Descargar", note: "Se pospós a instalación, o chat e o resto de funcións operarán con normalidade, pero a tradución quedará inactiva." },
+            de: { btn_postpone: "Verschieben", btn_download: "Herunterladen", note: "Wenn Sie die Installation verschieben, funktionieren Chat und andere Funktionen normal, aber Übersetzungen bleiben inaktiv." },
+            fr: { btn_postpone: "Reporter", btn_download: "Télécharger", note: "Si vous reportez l'installation, le chat et les autres fonctions fonctionneront normalement, mais la traduction restera inactive." },
+            it: { btn_postpone: "Posticipa", btn_download: "Scarica", note: "Se posticipi l'installazione, la chat e le altre funciones opereranno normalmente, ma la traduzione rimarrà inattiva." },
+            pt: { btn_postpone: "Adiar", btn_download: "Baixar", note: "Se você adiar a instalação, o chat e outros recursos funcionarão normalmente, mas a tradução permanecerá inativa." },
+            ru: { btn_postpone: "Отложить", btn_download: "Скачать", note: "Если вы отложите установку, чат и остальные функции будут работать нормально, но перевод будет отключен." },
+            zh: { btn_postpone: "稍后安装", btn_download: "立即下载", note: "如果您推迟安装，聊天和其余功能将正常运行，但跨语言翻译将保持非活动状态。" },
+            ja: { btn_postpone: "後で", btn_download: "ダウンロード", note: "インストールを延期した場合でもチャット等の他機能は通常通り動作しますが、翻訳機能は無効になります。" },
+            ar: { btn_postpone: "تأجيل", btn_download: "تنزيل", note: "إذا قمت بتأجيل التثبيت، فستعمل الدردشة والوظائف الأخرى بشكل طبيعي، ولكن الترجمة ستبقى معطلة." },
+            fa: { btn_postpone: "به تعویق انداختن", btn_download: "دانلود", note: "اگر نصب را به تعویق بیندازید، چت و سایر قابلیت‌ها کار خواهند کرد اما ترجمه غیرفعال می‌ماند." },
+            ko: { btn_postpone: "나중에", btn_download: "다운로드", note: "설치를 연기하더라도 다른 기능은 정상 작동하지만 실시간 번역은 비활성화됩니다." },
+            nl: { btn_postpone: "Uitstellen", btn_download: "Downloaden", note: "Als u de installatie uitstelt, werken de chat en andere functies normaal, maar blijft vertaling inactief." },
+            pl: { btn_postpone: "Odłóż", btn_download: "Pobierz", note: "Jeśli odłożysz instalację, czat i pozostałe funkcje będą działać normalnie, ale tłumaczenie pozostanie nieaktywne." },
+            sv: { btn_postpone: "Skjut upp", btn_download: "Ladda ner", note: "Om du skjuter upp installationen fungerar chatten normalt, men översättningen förblir inaktiv." },
+            tr: { btn_postpone: "Ertele", btn_download: "İndir", note: "Kurulumu ertelerseniz sohbet ve diğer işlevler normal çalışır ancak çeviri devre dışı kalır." },
+            uk: { btn_postpone: "Відкласти", btn_download: "Завантажити", note: "Якщо ви відкладете встановлення, чат працюватиме у звичайному режимі, але переклад буде неактивним." },
+            vi: { btn_postpone: "Để sau", btn_download: "Tải xuống", note: "Nếu bạn hoãn cài đặt, trò chuyện và các tính năng khác sẽ hoạt động bình thường nhưng bản dịch sẽ không khả dụng." },
+            uz: { btn_postpone: "Kechiktirish", btn_download: "Yuklab olish", note: "Agar o'rnatishni kechiktirsangiz, chat va boshqa funksiyalar ishlaydi, lekin tarjima faol bo'lmaydi." },
+            kk: { btn_postpone: "Кейінге қалдыру", btn_download: "Жүктеу", note: "Егер сіз орнатуды кейінге қалдырсаңыз, чат қалыпты жұмыс істейді, бірақ аударма өшіріледі." },
+            eo: { btn_postpone: "Prokrasti", btn_download: "Elŝuti", note: "Se vi prokrastas la instaladon, la babilejo kaj aliaj funkcioj funkcios normale, sed la tradukado restos malaktiva." }
+        };
+
+        let currentLang = 'es';
+        let simInterval = null;
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const dict = i18n[lang] || i18n['es'];
+            const btns = buttonTexts[lang] || buttonTexts['en'] || buttonTexts['es'];
+
+            document.getElementById('lblTranslateTitle').innerText = dict.title;
+            document.getElementById('lblTranslateDesc').innerText = dict.desc;
+            document.getElementById('lblDownloadingStatus').innerText = dict.status_downloading;
+            document.getElementById('lblSuccess').innerText = dict.status_ready;
+            document.getElementById('lblLockNotice').innerText = dict.lock_notice;
+
+            if (document.getElementById('btnPostpone')) document.getElementById('btnPostpone').innerText = btns.btn_postpone;
+            if (document.getElementById('btnStartDownload')) {
+                document.getElementById('btnStartDownload').innerHTML = `
+                    <svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>${btns.btn_download}</span>
+                `;
+            }
+            if (document.getElementById('lblPostponeDesc')) document.getElementById('lblPostponeDesc').innerText = btns.note;
+        }
+
+        function handlePostpone() {
+            const modal = document.getElementById('downloadTranslateModal');
+            modal.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+            modal.style.opacity = '0';
+            modal.style.transform = 'scale(0.96)';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                alert("✨ Has pospuesto la descarga. Talk.me arranca normalmente sin motor de traducción.\nPuedes volver a descargarlo en cualquier momento desde la pestaña 'Motores'.");
+            }, 250);
+        }
+
+        function startDownloadProcess() {
+            document.getElementById('postponeNotice').style.display = 'none';
+            document.getElementById('actionsRow').style.display = 'none';
+            document.getElementById('progressWrapper').style.display = 'block';
+            document.getElementById('footerLockStatus').style.display = 'flex';
+            startSimulatedDownload();
+        }
+
+        function startSimulatedDownload() {
+            if (simInterval) clearInterval(simInterval);
+            let percent = 0;
+            const totalMB = 2816; // ~2.75 GB
+            const barFill = document.getElementById('barFill');
+            const lblPercent = document.getElementById('lblPercentage');
+            const lblBytes = document.getElementById('lblBytesTransferred');
+            const lblSpeed = document.getElementById('lblDownloadSpeed');
+            const lblStatus = document.getElementById('lblDownloadingStatus');
+            const dict = i18n[currentLang] || i18n['es'];
+
+            simInterval = setInterval(() => {
+                percent += 1.5;
+                if (percent >= 100) {
+                    percent = 100;
+                    clearInterval(simInterval);
+                    barFill.style.width = '100%';
+                    lblPercent.innerText = '100%';
+                    lblBytes.innerText = '2.75 GB / 2.75 GB';
+                    lblSpeed.innerText = '0.0 MB/s';
+                    lblStatus.innerText = dict.status_unzipping;
+
+                    setTimeout(() => {
+                        document.getElementById('progressWrapper').style.display = 'none';
+                        document.getElementById('footerLockStatus').style.display = 'none';
+                        document.getElementById('badgeSuccess').style.display = 'flex';
+                    }, 1200);
+                } else {
+                    const currentMB = Math.round((percent / 100) * totalMB);
+                    barFill.style.width = percent + '%';
+                    lblPercent.innerText = Math.round(percent) + '%';
+                    lblBytes.innerText = (currentMB > 1024 ? (currentMB / 1024).toFixed(2) + ' GB' : currentMB + ' MB') + ' / 2.75 GB';
+                    lblSpeed.innerText = (32 + Math.random() * 8).toFixed(1) + ' MB/s';
+                }
+            }, 80);
+        }
+
+        function resetSimulation() {
+            if (simInterval) clearInterval(simInterval);
+            const modal = document.getElementById('downloadTranslateModal');
+            modal.style.display = 'flex';
+            modal.style.opacity = '1';
+            modal.style.transform = 'scale(1)';
+
+            document.getElementById('postponeNotice').style.display = 'flex';
+            document.getElementById('actionsRow').style.display = 'flex';
+            document.getElementById('progressWrapper').style.display = 'none';
+            document.getElementById('footerLockStatus').style.display = 'none';
+            document.getElementById('badgeSuccess').style.display = 'none';
+
+            document.getElementById('barFill').style.width = '0%';
+            document.getElementById('lblPercentage').innerText = '0%';
+            document.getElementById('lblBytesTransferred').innerText = '0 MB / 2.75 GB';
+            document.getElementById('lblDownloadSpeed').innerText = '34.2 MB/s';
+            switchLanguage(currentLang);
+        }
+    </script>
+</body>
+
+</html>

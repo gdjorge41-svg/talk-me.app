@@ -1,0 +1,42 @@
+name: Build macOS Installer
+
+on:
+  workflow_dispatch: # Permite ejecutar la compilación manualmente con un botón desde GitHub
+
+jobs:
+  build-macos:
+    runs-on: macos-latest # Máquina virtual oficial de macOS provista por GitHub
+
+    steps:
+      - name: 1. Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 3. Instalar dependencias base
+        run: |
+          npm install --omit=dev
+          cd pre-launch && npm install --omit=dev && cd ..
+          cd talk-me.app_electron && npm install && cd ..
+
+      - name: 4. Asignar permisos de ejecución al script
+        run: chmod +x talk-me.app_electron/prepare-build.sh
+
+      - name: 5. Compilar instalador para macOS (.dmg y .zip)
+        run: |
+          cd talk-me.app_electron
+          npm run build:mac
+
+      - name: 6. Publicar instalador como artefacto descargable
+        uses: actions/upload-artifact@v4
+        with:
+          name: Talk-me-macOS-Installer
+          path: |
+            talk-me.app_electron/dist_final/*.dmg
+            talk-me.app_electron/dist_final/*.zip
+          retention-days: 14
+

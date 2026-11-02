@@ -1,0 +1,48 @@
+{
+  "linterna": {
+    "keyframes": [
+      {
+        "time": 69,
+        "value": 0,
+        "name": "On"
+      },
+      {
+        "time": 222,
+        "value": 1,
+        "name": "Off"
+      },
+      {
+        "time": 403,
+        "value": 0.0060975609756097615,
+        "name": "On"
+      },
+      {
+        "time": 597,
+        "value": 1,
+        "name": "Off"
+      },
+      {
+        "time": 843,
+        "value": 0.024390243902439046,
+        "name": "End"
+      },
+      {
+        "time": 1051,
+        "value": 1,
+        "hold": 0,
+        "name": "Punto 6",
+        "easing": "step",
+        "easingColor": "step"
+      },
+      {
+        "time": 1500,
+        "value": 0,
+        "hold": 0,
+        "name": "Punto 7",
+        "easing": "step",
+        "easingColor": "step"
+      }
+    ],
+    "duration": 1500
+  }
+}

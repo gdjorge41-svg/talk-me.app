@@ -1,0 +1,31 @@
+{
+  "_talkmeFormat": "trigger-v60",
+  "id": "tr_mp5ufd3gxrpu",
+  "name": "08 Que Te De Un Poco El Aire",
+  "type": "osc",
+  "keyframes": [
+    {
+      "time": 0,
+      "value": 0,
+      "easing": "linear",
+      "hold": 0,
+      "name": "Inicio"
+    },
+    {
+      "time": 10,
+      "value": 1,
+      "easing": "step",
+      "hold": 0,
+      "name": "Pico"
+    }
+  ],
+  "triggerOn": "keyword",
+  "keyword": "Que Te De Un Poco El Aire TC",
+  "osc": {
+    "host": "192.168.0.28",
+    "port": 7000,
+    "address": "/composition/layers/1/clips/8/connect",
+    "arg": "1"
+  },
+  "direction": "OUT"
+}

@@ -1,0 +1,17 @@
+<div class="login-header-actions" id="globalLangSwitcher">
+    <div class="lang-switcher-mini" id="loginLangSwitcher">
+        <div class="talkme-select-container">
+            <select id="loginLangSelect" class="talkme-select">
+                <% (typeof installedLangs !== 'undefined' ? installedLangs : ['es', 'en', 'eu']).forEach(function(lang) { %>
+                    <option value="<%= lang %>"><%= lang.toUpperCase() %></option>
+                <% }); %>
+            </select>
+            <div class="talkme-select-arrow">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>

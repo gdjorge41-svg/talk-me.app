@@ -1,0 +1,12 @@
+node_modules
+.git
+00dev-backups
+backups
+scratch
+storage\models
+storage\media
+storage\temp
+storage\recordings
+.tmp
+.zip
+.bak

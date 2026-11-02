@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Motores de Voz Elásticos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="motoresVozElasticosTitle">10. Motores de voz flexibles</span>
+    </h2>
+
+    <div class="feature-content">
+      <div class="animation-container" id="motores-voz-demo-card">
+        <div class="voice-models-modal-demo">
+          
+          <div class="vm-storage-box">
+            <label class="vm-storage-label">Ruta de almacenamiento de los modelos</label>
+            <div class="vm-storage-row">
+              <input type="text" class="vm-storage-input" value="C:\TalkMe\Models" readonly>
+              <button class="vm-storage-btn">Seleccionar...</button>
+            </div>
+          </div>
+
+          <div class="vm-search-box">
+            <svg class="vm-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" class="vm-search-input" id="vm-search-input" placeholder="Buscar idioma..." readonly>
+          </div>
+
+          <div class="vm-models-list" id="vm-models-list">
+            <!-- Renderizado dinámico animado de los 24 modelos de voz Vosk -->
+          </div>
+
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h3 data-i18n="motoresVozElasticosDescTitle">Gestión de Modelos de Voz Offline (24 Idiomas)</h3>
+        <p data-i18n="motoresVozElasticosDesc">Demostración interactiva de los Motores de Voz Elásticos de Talk.me. Permite gestionar y descargar modelos offline Vosk para 24 idiomas, simular descargas en tiempo real, filtrar activamente (ej: Euskera) y administrar desinstalaciones.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('motores-voz-demo-card', initVoiceEnginesDemo);
+    });
+  </script>
+</body>
+</html>

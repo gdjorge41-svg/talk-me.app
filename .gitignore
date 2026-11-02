@@ -1,0 +1,45 @@
+# Dependencias de Node (se instalan automáticamente en GitHub)
+node_modules/
+*/node_modules/
+pre-launch/node_modules/
+talk-me.app_electron/node_modules/
+dashboard/node_modules/
+
+# Carpetas de compilación y empaquetado
+talk-me.app_electron/app_build/
+talk-me.app_electron/dist_final/
+dashboard/dist/
+
+# Copias de seguridad y archivos de desarrollo temporales
+00dev-backups/
+backups/
+scratch/
+00 DOCS/
+modelos descarga prueba/
+*TalkMe*Models*
+"C??TalkMe?Models/"
+
+# Archivos de almacenamiento temporal y grabaciones de audio
+storage/models/
+storage/media/
+storage/temp/
+storage/recordings/
+
+# Logs y variables de entorno privadas
+*.log
+process_logs.txt
+.env
+
+# Archivos temporales, volcados y scripts auxiliares
+._*
+.DS_Store
+Thumbs.db
+*.zip
+*.tmp
+*.bak
+*.spec
+*.php
+extracted_*.txt
+translations_code.txt
+user_prompt_untruncated.txt
+_marker_update

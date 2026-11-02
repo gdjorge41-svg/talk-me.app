@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk.me - Animación Filtros Dinámicos por Categoría</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Selector de Idioma Global -->
+    <div class="language-selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">Français</button>
+    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">Italiano</button>
+    <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">Português</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLanguage('ca')">Català</button>
+    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+    <button class="lang-btn" data-lang="eu" onclick="setLanguage('eu')">Euskara</button>
+    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLanguage('nl')">Nederlands</button>
+    <button class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">Polski</button>
+    <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">Türkçe</button>
+    <button class="lang-btn" data-lang="cs" onclick="setLanguage('cs')">Čeština</button>
+    <button class="lang-btn" data-lang="sv" onclick="setLanguage('sv')">Svenska</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">Українська</button>
+    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+    <button class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">한국어</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+    <button class="lang-btn" data-lang="th" onclick="setLanguage('th')">ไทย</button>
+    <button class="lang-btn" data-lang="fa" onclick="setLanguage('fa')">فارسی</button>
+  </div>
+
+  <!-- Sección de la Característica 4 -->
+  <section class="feature-section">
+    <h2 class="feature-title">
+      <span data-i18n="filtrosTitle">4. Filtros dinámicos</span>
+    </h2>
+
+    <div class="feature-content">
+      <!-- 1. Contenedor de la Animación -->
+      <div class="animation-container" id="filter-demo-card">
+        <div class="filter-demo">
+          
+          <!-- Barra de Filtros -->
+          <div class="filter-bar-demo">
+            <button class="filter-btn-pill pill-all active" data-i18n="filterAll">TODOS</button>
+            <button class="filter-btn-pill pill-prod" data-i18n="filterProd">PRODUCCIÓN</button>
+            <button class="filter-btn-pill pill-luz" data-i18n="filterLuz">LUZ / FX</button>
+            <button class="filter-btn-pill pill-sonido" data-i18n="filterSonido">SONIDO</button>
+          </div>
+
+          <!-- Lista de Tarjetas de Chat Filtrables -->
+          <div class="filter-card-list">
+            
+            <div class="filter-card-item user-1 item-1">
+              <div class="trans-header-row">
+                <span class="user-name-green" data-i18n="userJorge">Jorge</span>
+                <span class="category-tag cat-produccion" data-i18n="categoryProd">PRODUCCIÓN</span>
+              </div>
+              <div class="trans-main-text" data-i18n="filterMsg1">Comenzamos el show en 5 minutos</div>
+
+              <div class="trans-sub-row visible">
+                <span class="lang-pill-src">(ZH)</span>
+                <span class="trans-original-sub">我们5分钟后开始</span>
+              </div>
+
+              <div class="audio-capsule">
+                <div class="audio-play-btn">
+                  <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                </div>
+                <div class="audio-waveform-bars">
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 8px;"></div>
+                  <div class="audio-wave-bar" style="height: 16px;"></div>
+                  <div class="audio-wave-bar" style="height: 12px;"></div>
+                  <div class="audio-wave-bar" style="height: 6px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                </div>
+                <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+              </div>
+
+              <div class="timestamp-row"><span class="timestamp">13:04:10</span></div>
+            </div>
+
+            <div class="filter-card-item user-2 item-2">
+              <div class="trans-header-row">
+                <span class="user-name-orange" data-i18n="userSofia">Sofía</span>
+                <span class="category-tag cat-luzfx" data-i18n="categoryLuz">LUZ / FX</span>
+              </div>
+              <div class="trans-main-text" data-i18n="filterMsg2">Foco principal en azul neón listo</div>
+
+              <div class="trans-sub-row visible">
+                <span class="lang-pill-src">(AR)</span>
+                <span class="trans-original-sub">المسرح الرئيسي جاهز باللون الأزرق</span>
+              </div>
+
+              <div class="audio-capsule">
+                <div class="audio-play-btn">
+                  <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                </div>
+                <div class="audio-waveform-bars">
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 8px;"></div>
+                  <div class="audio-wave-bar" style="height: 16px;"></div>
+                  <div class="audio-wave-bar" style="height: 12px;"></div>
+                  <div class="audio-wave-bar" style="height: 6px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                </div>
+                <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+              </div>
+
+              <div class="timestamp-row"><span class="timestamp">13:04:35</span></div>
+            </div>
+
+            <div class="filter-card-item user-3 item-3">
+              <div class="trans-header-row">
+                <span class="user-name-yellow" data-i18n="userCarlos">Carlos</span>
+                <span class="category-tag cat-sonido" data-i18n="categorySonido">SONIDO</span>
+              </div>
+              <div class="trans-main-text" data-i18n="filterMsg3">Música intro sonando</div>
+
+              <div class="trans-sub-row visible">
+                <span class="lang-pill-src">(DE)</span>
+                <span class="trans-original-sub">Die Intromusik läuft jetzt</span>
+              </div>
+
+              <div class="audio-capsule">
+                <div class="audio-play-btn">
+                  <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                </div>
+                <div class="audio-waveform-bars">
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 8px;"></div>
+                  <div class="audio-wave-bar" style="height: 16px;"></div>
+                  <div class="audio-wave-bar" style="height: 12px;"></div>
+                  <div class="audio-wave-bar" style="height: 6px;"></div>
+                  <div class="audio-wave-bar" style="height: 14px;"></div>
+                  <div class="audio-wave-bar" style="height: 10px;"></div>
+                </div>
+                <span class="audio-label" data-i18n="audioOriginal">audio original</span>
+              </div>
+
+              <div class="timestamp-row"><span class="timestamp">13:05:02</span></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Contenedor de la Descripción -->
+      <div class="description-container">
+        <h3 data-i18n="filtrosDescTitle">Filtrado Instantáneo y Multiselección</h3>
+        <p data-i18n="filtrosDesc">Demostración del motor de filtrado por categoría en tiempo real. Permite alternar instantáneamente entre todos los mensajes, categorías individuales (Producción, Luz/FX, Sonido) o multiselecciones personalizadas</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollObserver('filter-demo-card', initFilterDemo);
+    });
+  </script>
+</body>
+</html>

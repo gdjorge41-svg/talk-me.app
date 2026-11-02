@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="es" style="--chat-font-size: 39.6px; --chat-font-weight: 600; --primary-bg: #0a0a0f; --secondary-bg: #151522; --accent-primary: #7b68ee; --accent-secondary: #ff6b35; --accent-blue: #7b68ee; --accent-orange: #ff6b35; --text-primary: #ffffff; --text-secondary: #aaaaaa;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no">
+<title>Talk-me</title>
+<link rel="stylesheet" href="Talk-me_files/styles_VCep.css">
+<!-- Habilitar vibración y modo app en iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Talk-me">
+<meta name="theme-color" content="#7b68ee">
+
+    
+<style id="elite-scrollbar-styles">
+            .messages::-webkit-scrollbar, .panel-content::-webkit-scrollbar, .dictionary-tags::-webkit-scrollbar,
+            .dictionary-content::-webkit-scrollbar, .triggers-list::-webkit-scrollbar, .triggers-content::-webkit-scrollbar,
+            #usersList::-webkit-scrollbar, .cat-manager-list::-webkit-scrollbar, .category-manager-content::-webkit-scrollbar,
+            .terms-scroll-area::-webkit-scrollbar, .custom-scroll::-webkit-scrollbar {
+                width: 6px; height: 6px;
+            }
+            .messages::-webkit-scrollbar-track, .panel-content::-webkit-scrollbar-track, .dictionary-tags::-webkit-scrollbar-track,
+            .dictionary-content::-webkit-scrollbar-track, .triggers-list::-webkit-scrollbar-track, .triggers-content::-webkit-scrollbar-track,
+            #usersList::-webkit-scrollbar-track, .cat-manager-list::-webkit-scrollbar-track, .category-manager-content::-webkit-scrollbar-track,
+            .terms-scroll-area::-webkit-scrollbar-track, .custom-scroll::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .messages::-webkit-scrollbar-thumb, .panel-content::-webkit-scrollbar-thumb, .dictionary-tags::-webkit-scrollbar-thumb,
+            .dictionary-content::-webkit-scrollbar-thumb, .triggers-list::-webkit-scrollbar-thumb, .triggers-content::-webkit-scrollbar-thumb,
+            #usersList::-webkit-scrollbar-thumb, .cat-manager-list::-webkit-scrollbar-thumb, .category-manager-content::-webkit-scrollbar-thumb,
+            .terms-scroll-area::-webkit-scrollbar-thumb, .custom-scroll::-webkit-scrollbar-thumb {
+                background-color: var(--accent-blue); border-radius: 6px;
+            }
+            .messages::-webkit-scrollbar-thumb:hover, .panel-content::-webkit-scrollbar-thumb:hover, .dictionary-tags::-webkit-scrollbar-thumb:hover,
+            .dictionary-content::-webkit-scrollbar-thumb:hover, .triggers-list::-webkit-scrollbar-thumb:hover, .triggers-content::-webkit-scrollbar-thumb:hover,
+            #usersList::-webkit-scrollbar-thumb:hover, .cat-manager-list::-webkit-scrollbar-thumb:hover, .category-manager-content::-webkit-scrollbar-thumb:hover,
+            .terms-scroll-area::-webkit-scrollbar-thumb:hover, .custom-scroll::-webkit-scrollbar-thumb:hover {
+                background-color: var(--accent-orange);
+            }
+        </style></head>
+<body data-theme="dark" style="--primary-bg: #0a0a0f; --secondary-bg: #151522; --accent-primary: #7b68ee; --accent-secondary: #ff6b35; --accent-blue: #7b68ee; --accent-orange: #ff6b35; --text-primary: #ffffff; --text-secondary: #aaaaaa;" class="hide-babel-original">
+<div class="main-logo">
+    <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+</div>
+<div class="container" id="mainContainer">
+        <div class="control-panel">
+    <button class="panel-toggle" id="panelToggle" title="Plegar / Desplegar Panel">
+        <svg viewBox="0 0 10 24" width="10" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter">
+            <polyline points="9,0 1,12 9,24"></polyline>
+        </svg>
+    </button>
+    <div class="panel-content">
+
+        <!-- Configuración (Acceso Único) -->
+        <div class="settings-main-btn-container" style="border-top: none; padding-top: 0; margin-top: 5px; margin-bottom: 4px;">
+            <button id="btnOpenMainSettings" class="settings-btn-premium">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                    </path>
+                </svg>
+                <span>Ajustes Generales</span>
+            </button>
+        </div>
+
+        <div class="sidebar-audio-config" style="margin-top: 8px; padding-top: 8px;">
+
+            <div class="setting-row">
+                <label id="lblMicMode">MODO DE MICROFONO</label>
+                <div class="talkme-select-container">
+                    <select id="micModeSelect" class="talkme-select">
+                        <option value="ptt" id="lblModePtt" selected="selected">Push-to-Talk (mantener)</option>
+                        <option value="auto" id="lblModeAuto">Automático (por volumen)</option>
+                    </select>
+                    <div class="talkme-select-arrow">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="setting-row">
+                <label id="lblSensibilidad">NIVEL DE ENTRADA</label>
+                <div class="v41-meter-container">
+                    <div class="volume-meter">
+                        <div id="volumeLevel" class="volume-level" style="width: 4.60906%; background: var(--accent-blue); box-shadow: none;"></div>
+                    </div>
+                    <input type="range" id="micSensitivity" min="0" max="100" value="50" style="display: none;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de Usuarios -->
+        <div class="users-list-container">
+            <h3 id="usersListTitle" class="users-title-with-icon">
+                <svg class="users-list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" width="18" height="18" aria-hidden="true" focusable="false">
+                    <g fill="currentColor">
+                        <path d="M48.355,17.922c3.705,2.323,6.303,6.254,6.776,10.817c1.511,0.706,3.188,1.112,4.966,1.112
+				c6.491,0,11.752-5.261,11.752-11.751c0-6.491-5.261-11.752-11.752-11.752C53.668,6.35,48.453,11.517,48.355,17.922z M40.656,41.984
+				c6.491,0,11.752-5.262,11.752-11.752s-5.262-11.751-11.752-11.751c-6.49,0-11.754,5.262-11.754,11.752S34.166,41.984,40.656,41.984
+				z M45.641,42.785h-9.972c-8.297,0-15.047,6.751-15.047,15.048v12.195l0.031,0.191l0.84,0.263
+				c7.918,2.474,14.797,3.299,20.459,3.299c11.059,0,17.469-3.153,17.864-3.354l0.785-0.397h0.084V57.833
+				C60.688,49.536,53.938,42.785,45.641,42.785z M65.084,30.653h-9.895c-0.107,3.959-1.797,7.524-4.47,10.088
+				c7.375,2.193,12.771,9.032,12.771,17.11v3.758c9.77-0.358,15.4-3.127,15.771-3.313l0.785-0.398h0.084V45.699
+				C80.13,37.403,73.38,30.653,65.084,30.653z M20.035,29.853c2.299,0,4.438-0.671,6.25-1.814c0.576-3.757,2.59-7.04,5.467-9.276
+				c0.012-0.22,0.033-0.438,0.033-0.66c0-6.491-5.262-11.752-11.75-11.752c-6.492,0-11.752,5.261-11.752,11.752
+				C8.283,24.591,13.543,29.853,20.035,29.853z M30.589,40.741c-2.66-2.551-4.344-6.097-4.467-10.032
+				c-0.367-0.027-0.73-0.056-1.104-0.056h-9.971C6.75,30.653,0,37.403,0,45.699v12.197l0.031,0.188l0.84,0.265
+				c6.352,1.983,12.021,2.897,16.945,3.185v-3.683C17.818,49.773,23.212,42.936,30.589,40.741z"></path>
+                    </g>
+                </svg>
+                <span class="users-list-text">USUARIOS CONECTADOS (4)</span>
+                <button id="btn-add-subuser" class="btn-add-subuser" title="Crear / Editar Sub-usuario">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
+            </h3>
+            <div id="usersList" class="custom-scroll"><div class="user-item own-user" style="border-left-color: rgb(189, 219, 201);"><div style="display: flex; align-items: center; flex-wrap: wrap;"><span style="margin-right: 5px; color: rgb(189, 219, 201); font-weight: 600;">Jorge</span><small class="category-tag-inline" style="color: rgb(112, 175, 137); border: 1px solid rgb(112, 175, 137); background: rgba(255, 255, 255, 0.03); padding: 2px 6px; border-radius: 4px; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.02em; margin-left: 5px; opacity: 0.9; vertical-align: middle; line-height: 1.4;">Producción</small><small class="lang-tag-inline" style="color: rgb(136, 136, 136); font-size: 10px; font-weight: 700; margin-left: 10px; opacity: 0.6; vertical-align: middle; line-height: 1.4;">ES</small></div><div style="display: flex; align-items: center; gap: 5px; margin-left: auto;"><span class="own-tag">(Tú)</span><span class="master-crown-inline" title="Administrador"><svg viewBox="0 0 512 512" fill="#e0b04b" stroke="#e0b04b" xmlns="http://www.w3.org/2000/svg"><g><path fill="#e0b04b" d="M512,152.469c0-21.469-17.422-38.875-38.891-38.875c-21.484,0-38.906,17.406-38.906,38.875 c0,10.5,4.172,20.016,10.938,27c-26.453,54.781-77.016,73.906-116.203,56.594c-34.906-15.438-47.781-59.563-52.141-93.75 c14.234-7.484,23.938-22.391,23.938-39.594C300.734,78.016,280.719,58,256,58c-24.703,0-44.734,20.016-44.734,44.719 c0,17.203,9.703,32.109,23.938,39.594c-4.359,34.188-17.234,78.313-52.141,93.75c-39.188,17.313-89.75-1.813-116.203-56.594 c6.766-6.984,10.938-16.5,10.938-27c0-21.469-17.422-38.875-38.891-38.875C17.422,113.594,0,131,0,152.469 c0,19.781,14.781,36.078,33.875,38.547l44.828,164.078h354.594l44.828-164.078C497.234,188.547,512,172.25,512,152.469z"></path><path fill="#e0b04b" d="M455.016,425.063c0,15.984-12.953,28.938-28.953,28.938H85.938C69.953,454,57,441.047,57,425.063v-2.406 c0-16,12.953-28.953,28.953-28.953h340.125c16,0,28.953,12.953,28.953,28.953V425.063z"></path></g></svg></span></div><span class="speaking-indicator"></span></div><div class="user-item" style="border-left-color: rgb(255, 212, 153);"><div style="display: flex; align-items: center; flex-wrap: wrap;"><span style="margin-right: 5px; color: rgb(255, 212, 153); font-weight: 600;">Sofía</span><small class="category-tag-inline" style="color: rgb(255, 198, 113); border: 1px solid rgb(255, 198, 113); background: rgba(255, 255, 255, 0.03); padding: 2px 6px; border-radius: 4px; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.02em; margin-left: 5px; opacity: 0.9; vertical-align: middle; line-height: 1.4;">Luz / FX</small><small class="lang-tag-inline" style="color: rgb(136, 136, 136); font-size: 10px; font-weight: 700; margin-left: 10px; opacity: 0.6; vertical-align: middle; line-height: 1.4;">ES</small></div><div style="display: flex; align-items: center; gap: 5px; margin-left: auto;"></div><span class="speaking-indicator"></span></div><div class="user-item" style="border-left-color: rgb(32, 101, 205);"><div style="display: flex; align-items: center; flex-wrap: wrap;"><span style="margin-right: 5px; color: rgb(32, 101, 205); font-weight: 600;">Carlos</span><small class="category-tag-inline" style="color: rgb(9, 129, 217); border: 1px solid rgb(9, 129, 217); background: rgba(255, 255, 255, 0.03); padding: 2px 6px; border-radius: 4px; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.02em; margin-left: 5px; opacity: 0.9; vertical-align: middle; line-height: 1.4;">Sonido</small><small class="lang-tag-inline" style="color: rgb(136, 136, 136); font-size: 10px; font-weight: 700; margin-left: 10px; opacity: 0.6; vertical-align: middle; line-height: 1.4;">ES</small></div><div style="display: flex; align-items: center; gap: 5px; margin-left: auto;"></div><span class="speaking-indicator"></span></div><div class="subusers-list" style="margin-top: 6px; margin-left: 12px; display: flex; flex-direction: column;"><div class="subuser-item" style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: transparent; flex-wrap: nowrap; overflow: hidden;"><div style="display: flex; align-items: center; flex: 1 1 0%; overflow: hidden;"><span style="font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgb(255, 158, 190);">Talback</span><small class="category-tag-inline" style="color: rgb(255, 158, 190); border: 1px solid rgb(255, 158, 190); background: rgba(255, 255, 255, 0.03); padding: 2px 6px; border-radius: 4px; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.02em; opacity: 0.9; flex-shrink: 0; margin-left: 6px;">Artista</small><small class="lang-tag-inline" style="color: rgb(136, 136, 136); font-size: 9px; font-weight: 700; margin-left: 10px; opacity: 0.5;">ES</small></div></div></div><div class="user-item" style="border-left-color: rgb(182, 44, 242);"><div style="display: flex; align-items: center; flex-wrap: wrap;"><span style="margin-right: 5px; color: rgb(182, 44, 242); font-weight: 600;">Elena</span><small class="category-tag-inline" style="color: rgb(190, 95, 254); border: 1px solid rgb(190, 95, 254); background: rgba(255, 255, 255, 0.03); padding: 2px 6px; border-radius: 4px; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.02em; margin-left: 5px; opacity: 0.9; vertical-align: middle; line-height: 1.4;">Regiduria</small><small class="lang-tag-inline" style="color: rgb(136, 136, 136); font-size: 10px; font-weight: 700; margin-left: 10px; opacity: 0.6; vertical-align: middle; line-height: 1.4;">ES</small></div><div style="display: flex; align-items: center; gap: 5px; margin-left: auto;"></div><span class="speaking-indicator"></span></div></div>
+
+            <!-- Información del Servidor -->
+        <div class="server-info">
+            V1.0 (BETAv60) - Made with ♥ by Jorge.Lighting
+        </div>
+    </div>
+</div>
+    </div>
+
+
+        <div class="chat-area">
+    <!-- Header del Chat -->
+    <div class="chat-header">
+        <div class="header-status-group">
+            <div class="server-connection-top" id="connectionStatus">
+                <span id="connectionStatusIP" style="cursor: pointer;" title="Click para copiar URL completa" data-full-url="https://192.168.0.12:3000/">192.168.0.12:3000</span>
+                <div class="status-icon-container blink-green" id="connectionStatusDot">
+                <svg viewBox="0 0 24 24" class="status-icon-svg">
+                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                </svg>
+            </div>
+            </div>
+            <div style="display: flex; align-items: center; position: relative; ">
+                <button id="btnMuteGlobal" class="btn-mute-global" title="Mute/Unmute">
+                    <svg viewBox="0 0 24 24" id="sound-max" class="icon flat-line icon-unmuted" style="width: 22px; height: 22px; fill: currentColor; stroke: currentColor; transition: transform 0.2s;">
+                        <path id="mute_speaker_bg" d="M11,5V19L7,15H4a1,1,0,0,1-1-1V10A1,1,0,0,1,4,9H7Z" style="stroke: none;"></path>
+                        <path id="mute_wave_outer" d="M18.36,5.64a9,9,0,0,1,0,12.72" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5;">
+                        </path>
+                        <path id="mute_wave_inner" d="M15.54,8.46a5,5,0,0,1,0,7.08" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5;">
+                        </path>
+                        <path id="mute_speaker_outline" d="M11,5V19L7,15H4a1,1,0,0,1-1-1V10A1,1,0,0,1,4,9H7Z" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5;">
+                        </path>
+                        <line id="mute_slash" x1="3" y1="3" x2="21" y2="21" style="stroke: currentColor; stroke-width: 2.0; stroke-linecap: round; display: none;">
+                        </line>
+                    </svg>
+                    <svg fill="currentColor" stroke="currentColor" viewBox="-1 0 21 19" xmlns="http://www.w3.org/2000/svg" class="icon icon-muted cf-icon-svg" style="display: none; width: 22px; height: 22px;">
+                        <path d="M7.676 4.938v9.63c0 .61-.353.756-.784.325l-2.896-2.896H2.02A1.111 1.111 0 0 1 .911 10.89V8.618a1.112 1.112 0 0 1 1.108-1.109h1.977l2.896-2.896c.43-.43.784-.284.784.325z"></path>
+                        <g transform="translate(1.8, 0)">
+                            <path d="M14.927 11.826a.554.554 0 1 1-.784.784l-2.072-2.073-2.073 2.073a.554.554 0 1 1-.784-.784l2.073-2.073L9.214 7.68a.554.554 0 0 1 .784-.783L12.07 8.97l2.072-2.073a.554.554 0 0 1 .784.783l-2.072 2.073z"></path>
+                        </g>
+                    </svg>
+                </button>
+                <div class="status-indicator silent" id="statusIndicator">
+                    <svg class="status-indicator-svg" viewBox="0 0 24 24">
+                        <path class="mic-body" d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="22"></line>
+                    </svg>
+                    <span id="statusIndicatorText">EN SILENCIO</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de Filtros (Ahora estática para evitar saltos) -->
+    <div class="category-filter-bar" id="categoryFilterBar" style="display: flex;"><button class="filter-btn active" data-filter="__ALL__" style="background-color: var(--accent-primary); border-color: var(--accent-primary); box-shadow: 0 0 10px var(--accent-primary); color: rgb(255, 255, 255);">Todos</button><button class="filter-btn " data-filter="cat_produccion" style="background-color: rgba(123, 104, 238, 0.05); border-color: rgb(112, 175, 137); color: rgb(112, 175, 137);">Producción</button><button class="filter-btn " data-filter="cat_mmk5tya3txwvf" style="background-color: rgba(123, 104, 238, 0.05); border-color: rgb(255, 198, 113); color: rgb(255, 198, 113);">Luz / FX</button><button class="filter-btn " data-filter="cat_luzfx" style="background-color: rgba(123, 104, 238, 0.05); border-color: rgb(9, 129, 217); color: rgb(9, 129, 217);">Sonido</button><button class="filter-btn " data-filter="cat_artistas" style="background-color: rgba(123, 104, 238, 0.05); border-color: rgb(255, 158, 190); color: rgb(255, 158, 190);">Artista</button><button class="filter-btn " data-filter="cat_mmmgly9w15tzw" style="background-color: rgba(123, 104, 238, 0.05); border-color: rgb(190, 95, 254); color: rgb(190, 95, 254);">Regiduria</button></div>
+
+    <!-- Indicador de Usuario Hablando (se unifica en el chat-status-area) -->
+    <div class="user-speaking-indicator status-message info" id="userSpeakingIndicator" style="display: none;">
+        🔊 <span id="speakingUser">Usuario</span> está hablando...
+    </div>
+
+    <!-- Contenedor de Mensajes -->
+    <div class="messages-container">
+        <div class="messages custom-scroll" id="messagesContainer">
+            <!-- Mensajes aparecen aquí -->
+        <div class="message own " data-category="Producción" data-category-id="cat_produccion" data-msg-id="mtlqvzzg2v0lu" style="border-right-color: rgb(189, 219, 201);"><div class="message-sender" style="color: rgb(189, 219, 201);"><span>Jorge <small class="category-tag" style="color: rgb(112, 175, 137); border: 1px solid rgb(112, 175, 137); background: rgba(255, 255, 255, 0.05);">Producción</small></span></div><div class="babel-translation hidden"></div><div class="message-text">Hola Equipo!</div><div class="message-time">18:34:10</div></div><div class="message own voice" data-category="Producción" data-category-id="cat_produccion" data-msg-id="mtlqx2cvn6o28" style="border-right-color: rgb(189, 219, 201);"><div class="message-sender" style="color: rgb(189, 219, 201);"><span>Jorge <small class="category-tag" style="color: rgb(112, 175, 137); border: 1px solid rgb(112, 175, 137); background: rgba(255, 255, 255, 0.05);">Producción</small></span></div><div class="babel-translation hidden"></div><div class="message-text">Comenzamos el ensayo técnico en 5 minutos. Revisand iluminación y matrices de audio</div><div class="audio-player-container" style="--player-accent: #70af89; margin-top: 8px;"><button class="audio-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></button><div class="audio-waves"><div class="audio-wave-bar" style="height: 4.3456px;"></div><div class="audio-wave-bar" style="height: 5.3051px;"></div><div class="audio-wave-bar" style="height: 6.58232px;"></div><div class="audio-wave-bar" style="height: 6.78185px;"></div><div class="audio-wave-bar" style="height: 7.68291px;"></div><div class="audio-wave-bar" style="height: 5.16742px;"></div><div class="audio-wave-bar" style="height: 4.0672px;"></div><div class="audio-wave-bar" style="height: 6.31227px;"></div><div class="audio-wave-bar" style="height: 6.58944px;"></div><div class="audio-wave-bar" style="height: 7.36403px;"></div><div class="audio-wave-bar" style="height: 4.63123px;"></div><div class="audio-wave-bar" style="height: 6.70793px;"></div><div class="audio-wave-bar" style="height: 6.10131px;"></div><div class="audio-wave-bar" style="height: 5.92801px;"></div><div class="audio-wave-bar" style="height: 6.01492px;"></div><div class="audio-wave-bar" style="height: 6.62273px;"></div><div class="audio-wave-bar" style="height: 4.45485px;"></div><div class="audio-wave-bar" style="height: 4.80901px;"></div><div class="audio-wave-bar" style="height: 5.47012px;"></div><div class="audio-wave-bar" style="height: 5.30335px;"></div></div><span class="audio-player-text" data-system-type="audio-label">audio original</span></div><div class="message-time">18:35:00</div></div><div class="message voice" data-category="Luz / FX" data-category-id="cat_mmk5tya3txwvf" data-msg-id="mtlqxzax97biw" style="border-left-color: rgb(255, 212, 153);"><div class="message-sender" style="color: rgb(255, 212, 153);"><span>Sofía <small class="category-tag" style="color: rgb(255, 198, 113); border: 1px solid rgb(255, 198, 113); background: rgba(255, 255, 255, 0.05);">Luz / FX</small></span></div><div class="babel-translation hidden"></div><div class="message-text">Luces probadas</div><div class="audio-player-container" style="--player-accent: #ffc671; margin-top: 8px;"><button class="audio-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></button><div class="audio-waves"><div class="audio-wave-bar" style="height: 7.8438px;"></div><div class="audio-wave-bar" style="height: 7.29121px;"></div><div class="audio-wave-bar" style="height: 5.84845px;"></div><div class="audio-wave-bar" style="height: 5.36804px;"></div><div class="audio-wave-bar" style="height: 4.05635px;"></div><div class="audio-wave-bar" style="height: 5.18888px;"></div><div class="audio-wave-bar" style="height: 5.61836px;"></div><div class="audio-wave-bar" style="height: 5.00713px;"></div><div class="audio-wave-bar" style="height: 6.28639px;"></div><div class="audio-wave-bar" style="height: 6.32078px;"></div><div class="audio-wave-bar" style="height: 5.37448px;"></div><div class="audio-wave-bar" style="height: 4.66394px;"></div><div class="audio-wave-bar" style="height: 6.87012px;"></div><div class="audio-wave-bar" style="height: 4.35439px;"></div><div class="audio-wave-bar" style="height: 6.5829px;"></div><div class="audio-wave-bar" style="height: 7.00726px;"></div><div class="audio-wave-bar" style="height: 5.53587px;"></div><div class="audio-wave-bar" style="height: 4.46148px;"></div><div class="audio-wave-bar" style="height: 6.86243px;"></div><div class="audio-wave-bar" style="height: 4.72413px;"></div></div><span class="audio-player-text" data-system-type="audio-label">audio original</span></div><div class="message-time">18:35:42</div></div><div class="message voice" data-category="Sonido" data-category-id="cat_luzfx" data-msg-id="mtlqy7bopskb6" style="border-left-color: rgb(32, 101, 205);"><div class="message-sender" style="color: rgb(32, 101, 205);"><span>Carlos <small class="category-tag" style="color: rgb(9, 129, 217); border: 1px solid rgb(9, 129, 217); background: rgba(255, 255, 255, 0.05);">Sonido</small></span></div><div class="babel-translation hidden"></div><div class="message-text">Audio listo!</div><div class="audio-player-container" style="--player-accent: #0981d9; margin-top: 8px;"><button class="audio-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></button><div class="audio-waves"><div class="audio-wave-bar" style="height: 6.98252px;"></div><div class="audio-wave-bar" style="height: 7.36617px;"></div><div class="audio-wave-bar" style="height: 7.9828px;"></div><div class="audio-wave-bar" style="height: 7.43313px;"></div><div class="audio-wave-bar" style="height: 4.56575px;"></div><div class="audio-wave-bar" style="height: 6.83467px;"></div><div class="audio-wave-bar" style="height: 5.89px;"></div><div class="audio-wave-bar" style="height: 6.61718px;"></div><div class="audio-wave-bar" style="height: 4.44194px;"></div><div class="audio-wave-bar" style="height: 7.91449px;"></div><div class="audio-wave-bar" style="height: 5.86061px;"></div><div class="audio-wave-bar" style="height: 6.16345px;"></div><div class="audio-wave-bar" style="height: 6.23585px;"></div><div class="audio-wave-bar" style="height: 6.31125px;"></div><div class="audio-wave-bar" style="height: 7.83692px;"></div><div class="audio-wave-bar" style="height: 6.37101px;"></div><div class="audio-wave-bar" style="height: 7.9466px;"></div><div class="audio-wave-bar" style="height: 5.49131px;"></div><div class="audio-wave-bar" style="height: 5.92736px;"></div><div class="audio-wave-bar" style="height: 6.85503px;"></div></div><span class="audio-player-text" data-system-type="audio-label">audio original</span></div><div class="message-time">18:35:53</div></div><div class="message voice" data-category="Regiduria" data-category-id="cat_mmmgly9w15tzw" data-msg-id="mtlqyhpsu7u8j" style="border-left-color: rgb(182, 44, 242);"><div class="message-sender" style="color: rgb(182, 44, 242);"><span>Elena <small class="category-tag" style="color: rgb(190, 95, 254); border: 1px solid rgb(190, 95, 254); background: rgba(255, 255, 255, 0.05);">Regiduria</small></span></div><div class="babel-translation hidden"></div><div class="message-text">Perfecto podemos empezar equipo</div><div class="audio-player-container" style="--player-accent: #be5ffe; margin-top: 8px;"><button class="audio-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></button><div class="audio-waves"><div class="audio-wave-bar" style="height: 6.90296px;"></div><div class="audio-wave-bar" style="height: 5.23685px;"></div><div class="audio-wave-bar" style="height: 4.5753px;"></div><div class="audio-wave-bar" style="height: 5.62571px;"></div><div class="audio-wave-bar" style="height: 5.22465px;"></div><div class="audio-wave-bar" style="height: 5.31797px;"></div><div class="audio-wave-bar" style="height: 7.39924px;"></div><div class="audio-wave-bar" style="height: 6.71147px;"></div><div class="audio-wave-bar" style="height: 6.24219px;"></div><div class="audio-wave-bar" style="height: 4.80334px;"></div><div class="audio-wave-bar" style="height: 4.28559px;"></div><div class="audio-wave-bar" style="height: 5.6689px;"></div><div class="audio-wave-bar" style="height: 4.29667px;"></div><div class="audio-wave-bar" style="height: 6.68717px;"></div><div class="audio-wave-bar" style="height: 6.54923px;"></div><div class="audio-wave-bar" style="height: 4.7313px;"></div><div class="audio-wave-bar" style="height: 7.37375px;"></div><div class="audio-wave-bar" style="height: 5.75122px;"></div><div class="audio-wave-bar" style="height: 4.56136px;"></div><div class="audio-wave-bar" style="height: 7.6682px;"></div></div><span class="audio-player-text" data-system-type="audio-label">audio original</span></div><div class="message-time">18:36:06</div></div><div class="message voice" data-category="Regiduria" data-category-id="cat_mmmgly9w15tzw" data-msg-id="mtlqyrjvh5liz" style="border-left-color: rgb(182, 44, 242);"><div class="message-sender" style="color: rgb(182, 44, 242);"><span>Elena <small class="category-tag" style="color: rgb(190, 95, 254); border: 1px solid rgb(190, 95, 254); background: rgba(255, 255, 255, 0.05);">Regiduria</small></span></div><div class="babel-translation hidden"></div><div class="message-text">Prevenidos empezamos en tres minutos</div><div class="audio-player-container" style="--player-accent: #be5ffe; margin-top: 8px;"><button class="audio-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></button><div class="audio-waves"><div class="audio-wave-bar" style="height: 6.49189px;"></div><div class="audio-wave-bar" style="height: 7.88464px;"></div><div class="audio-wave-bar" style="height: 4.79162px;"></div><div class="audio-wave-bar" style="height: 6.40459px;"></div><div class="audio-wave-bar" style="height: 6.99911px;"></div><div class="audio-wave-bar" style="height: 7.00324px;"></div><div class="audio-wave-bar" style="height: 6.08649px;"></div><div class="audio-wave-bar" style="height: 6.46276px;"></div><div class="audio-wave-bar" style="height: 4.1273px;"></div><div class="audio-wave-bar" style="height: 7.05488px;"></div><div class="audio-wave-bar" style="height: 6.63207px;"></div><div class="audio-wave-bar" style="height: 5.54137px;"></div><div class="audio-wave-bar" style="height: 4.41806px;"></div><div class="audio-wave-bar" style="height: 5.0619px;"></div><div class="audio-wave-bar" style="height: 5.51124px;"></div><div class="audio-wave-bar" style="height: 5.87951px;"></div><div class="audio-wave-bar" style="height: 4.99247px;"></div><div class="audio-wave-bar" style="height: 6.0771px;"></div><div class="audio-wave-bar" style="height: 7.43931px;"></div><div class="audio-wave-bar" style="height: 4.92799px;"></div></div><span class="audio-player-text" data-system-type="audio-label">audio original</span></div><div class="message-time">18:36:19</div></div></div>
+    </div>
+
+    <!-- Área de Input Chat -->
+    <div class="input-area">
+        <button class="btn-attach" id="btnAttach" title="Enviar foto">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                </path>
+                <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+        </button>
+        <input type="file" id="fileInput" accept="image/*" capture="environment" style="display: none;">
+        <div class="input-wave-container" id="inputWaveContainer">
+            <input type="text" class="text-input" id="textInput" placeholder="Escribe tu mensaje...">
+            <div class="voice-wave" id="voiceWave"><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3.70348px;"></div><div class="bar" style="height: 3.03503px;"></div><div class="bar" style="height: 4.41947px;"></div><div class="bar" style="height: 5.32345px;"></div><div class="bar" style="height: 6.39306px;"></div><div class="bar" style="height: 4.98341px;"></div><div class="bar" style="height: 5.07088px;"></div><div class="bar" style="height: 7.31011px;"></div><div class="bar" style="height: 5.89881px;"></div><div class="bar" style="height: 4.95335px;"></div><div class="bar" style="height: 8.03602px;"></div><div class="bar" style="height: 5.70345px;"></div><div class="bar" style="height: 9.81095px;"></div><div class="bar" style="height: 5.9204px;"></div><div class="bar" style="height: 6.6647px;"></div><div class="bar" style="height: 7.88115px;"></div><div class="bar" style="height: 10.5215px;"></div><div class="bar" style="height: 9.22912px;"></div><div class="bar" style="height: 6.3908px;"></div><div class="bar" style="height: 10.0602px;"></div><div class="bar" style="height: 9.77054px;"></div><div class="bar" style="height: 6.73829px;"></div><div class="bar" style="height: 6.57516px;"></div><div class="bar" style="height: 6.97102px;"></div><div class="bar" style="height: 6.94853px;"></div><div class="bar" style="height: 6.045px;"></div><div class="bar" style="height: 6.0733px;"></div><div class="bar" style="height: 5.77067px;"></div><div class="bar" style="height: 7.96508px;"></div><div class="bar" style="height: 6.83914px;"></div><div class="bar" style="height: 8.38075px;"></div><div class="bar" style="height: 4.8866px;"></div><div class="bar" style="height: 4.73348px;"></div><div class="bar" style="height: 4.12542px;"></div><div class="bar" style="height: 6.07986px;"></div><div class="bar" style="height: 4.11021px;"></div><div class="bar" style="height: 4.46896px;"></div><div class="bar" style="height: 4.07925px;"></div><div class="bar" style="height: 3.66711px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div><div class="bar" style="height: 3px;"></div></div>
+        </div>
+        <button class="btn-send" id="btnSend" title="Enviar" style="">
+            <span id="btnSendText" style="display: none;">Enviar</span>
+            <svg id="btnSendIcon" class="btn-send-svg" viewBox="0 0 24 24" style="display: inline-block;">
+                <path class="mic-body" d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+            </svg>
+            <!-- Icono Flecha de Envío (se muestra al escribir texto) -->
+            <svg id="btnSendArrowIcon" class="btn-send-svg" viewBox="0 0 24 24" style="display: none; fill: white; stroke: none;">
+                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+    </div>
+</body>
+</html>
+
+
+

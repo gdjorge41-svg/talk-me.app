@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk-me.app - Sandbox de Pruebas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #status-panel {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Talk-me.app</h1>
+        <p>Entorno rápido de pruebas de flujos lógicos (Sin diseño).</p>
+
+        <!-- 1. Registro -->
+        <div id="sec-register" class="section">
+            <h2>1. Crear Cuenta Nueva</h2>
+            <input type="text" id="reg-name" placeholder="Nombre" required>
+            <input type="text" id="reg-lastname" placeholder="Apellidos" required>
+            <input type="text" id="reg-company" placeholder="Empresa o Studio (Opcional)">
+            <input type="email" id="reg-email" placeholder="Email" required>
+            <input type="password" id="reg-pass" placeholder="Contraseña" required>
+            <button onclick="register()">Registrar Usuario</button>
+        </div>
+
+        <!-- 2. Login -->
+        <div class="section" id="sec-login">
+            <h2>2. Iniciar Sesión</h2>
+            <input type="email" id="log-email" placeholder="Email">
+            <input type="password" id="log-pass" placeholder="Contraseña">
+            <button onclick="login()">Entrar</button>
+        </div>
+
+        <!-- 3. Stripe / Licencia -->
+        <div class="section" id="sec-stripe" style="display: none;">
+            <h2>3. Gestión de Suscripción (Stripe)</h2>
+            <p>Usuario logueado: <strong id="logged-email">Ninguno</strong></p>
+            <button onclick="buyLicense()" style="background: #635bff;">💳 Simular Compra Stripe</button>
+            <p>Tu Clave de Licencia: <strong id="user-license-key">N/A</strong></p>
+        </div>
+
+        <!-- 4. Motor Soberano -->
+        <div class="section" id="sec-validate" style="display: none;">
+            <h2>4. Arranque de Servidor (Motor Soberano)</h2>
+            <p>Introduce tu clave de licencia para validar tu MAC y arrancar Talk-me:</p>
+            <input type="text" id="val-license" placeholder="Ej: TLKM-XXXXXXXXX">
+            <button onclick="validateLicense()" style="background: #28a745;">🚀 Validar Soberanía</button>
+            <p>Estado del Motor: <strong id="motor-status" style="color: #666;">APAGADO</strong></p>
+        </div>
+
+        <!-- 5. Iniciar Servidor Principal -->
+        <div class="section" id="sec-start-server" style="display: none;">
+            <h2>5. Cabina de Control de Despegue</h2>
+            <p>El sistema está plenamente validado. Puedes arrancar el servidor principal (cargando los modelos de IA en
+                RAM).</p>
+            <button onclick="startMainServer()"
+                style="background: #ff5722; font-size: 1.1em; padding: 12px 20px; font-weight: bold; width: 100%; border: none; border-radius: 4px; color: white; cursor: pointer;">🚀
+                INICIAR SERVIDOR PRINCIPAL</button>
+        </div>
+
+        <div id="status-panel">Consola de Estado: Listo...</div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let currentLicenseKey = null;
+
+        function logStatus(msg, isError = false) {
+            const panel = document.getElementById('status-panel');
+            panel.innerHTML = `<span class="${isError ? 'error' : 'success'}">${new Date().toLocaleTimeString()} - ${msg}</span>\n` + panel.innerHTML;
+        }
+
+        async function register() {
+            const first_name = document.getElementById('reg-name').value;
+            const last_name = document.getElementById('reg-lastname').value;
+            const company_name = document.getElementById('reg-company').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-pass').value;
+
+            const res = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ first_name, last_name, company_name, email, password })
+            });
+            const data = await res.json();
+            if (data.success) {
+                logStatus(`Registro OK: Creado ${email}`);
+                document.getElementById('log-email').value = email;
+                document.getElementById('log-pass').value = password;
+            } else {
+                logStatus(`Error registro: ${data.error}`, true);
+            }
+        }
+
+        async function login() {
+            const email = document.getElementById('log-email').value;
+            const password = document.getElementById('log-pass').value;
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            if (data.success) {
+                currentUser = data.user;
+                logStatus(`Login OK: Bienvenido ${data.user.email}`);
+                document.getElementById('sec-stripe').style.display = 'block';
+                document.getElementById('logged-email').innerText = data.user.email;
+
+                // Si el backend nos devuelve que ya tiene licencia, la rellenamos
+                if (data.license_key) {
+                    currentLicenseKey = data.license_key;
+                    document.getElementById('user-license-key').innerText = currentLicenseKey;
+                    document.getElementById('val-license').value = currentLicenseKey;
+                    document.getElementById('sec-validate').style.display = 'block';
+                    logStatus(`Licencia recuperada automáticamente de la Base de Datos: ${currentLicenseKey}`);
+                }
+            } else {
+                logStatus(`Error login: ${data.error}`, true);
+            }
+        }
+
+        async function buyLicense() {
+            if (!currentUser) return alert("Inicia sesión primero");
+            logStatus("Redirigiendo a la pasarela segura de Stripe...");
+
+            const res = await fetch('/api/create-checkout-session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: currentUser.id, userEmail: currentUser.email })
+            });
+            const data = await res.json();
+            if (data.url) {
+                window.location.href = data.url; // Redirigir a Stripe
+            } else {
+                logStatus(`Error iniciando Stripe: ${data.error}`, true);
+            }
+        }
+
+        // Comprobar si venimos rebotados de Stripe después de pagar
+        window.onload = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                const sessionId = urlParams.get('session_id');
+                const userId = urlParams.get('user_id');
+                logStatus("✅ Pago completado en Stripe. Generando Licencia Soberana...");
+                document.getElementById('sec-stripe').style.display = 'block';
+
+                const res = await fetch('/api/stripe-success', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session_id: sessionId, user_id: userId })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    currentLicenseKey = data.license_key;
+                    document.getElementById('user-license-key').innerText = currentLicenseKey;
+                    document.getElementById('val-license').value = currentLicenseKey;
+                    document.getElementById('sec-validate').style.display = 'block';
+                    logStatus(`🎉 ¡Licencia Oficial Creada y Guardada en MySQL: ${currentLicenseKey}!`);
+
+                    // Simular que el usuario ya está logueado para seguir probando
+                    currentUser = { id: userId, email: "Usuario Pringao (Verificar MySQL)" };
+                    document.getElementById('logged-email').innerText = "Autenticado vía Stripe";
+                } else {
+                    logStatus(`Error guardando licencia: ${data.error}`, true);
+                }
+            }
+            if (urlParams.get('canceled') === 'true') {
+                logStatus("❌ Pago cancelado por el usuario.", true);
+            }
+        };
+
+        async function validateLicense() {
+            const licenseKey = document.getElementById('val-license').value;
+            if (!licenseKey) return alert("Introduce la clave");
+
+            // BÚSQUEDA SEGURA DE USER_ID:
+            // 1. Mirar si está en la memoria del login (currentUser)
+            // 2. Si venimos de Stripe (memoria borrada), cogerlo de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const safeUserId = currentUser ? currentUser.id : urlParams.get('user_id');
+
+            if (!safeUserId) {
+                return logStatus(`❌ Error Crítico: No se pudo identificar al usuario para vincular el hardware. Inicia sesión de nuevo.`, true);
+            }
+
+            const res = await fetch('/api/validate-system', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ licenseKey, userId: safeUserId })
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                let statusText = `SOBERANÍA VALIDADA (${data.mode})`;
+                if (data.mode === 'OFFLINE' && data.strikesUsed > 0) {
+                    statusText += ` - Usos extra consumidos: ${data.strikesUsed}/3`;
+                }
+
+                logStatus(statusText);
+                logStatus(`Hardware ID: ${data.hw_id}`);
+                logStatus("🚀 ARRANCANDO MOTOR VOSK/WHISPER...");
+                document.getElementById('motor-status').innerText = 'EN LÍNEA';
+                document.getElementById('motor-status').style.color = '#00ff88';
+
+                // Iniciar el reporte de telemetría pasivo
+                startPassiveTelemetry();
+            } else {
+                logStatus(`Error Soberanía: ${data.error}`, true);
+                if (data.error.includes("3 usos")) {
+                    document.getElementById('motor-status').innerText = 'BLOQUEADO';
+                    document.getElementById('motor-status').style.color = '#f366';
+                }
+            }
+        }
+
+        // --- SIMULACIÓN DE TELEMETRÍA PASIVA ---
+        let telemetryTimer = null;
+        let mockStats = {
+            duration_mins: 0,
+            msg_count: 0,
+            trigger_count: 0,
+            users_connected: 0,
+            categories_used: 0,
+            photos_sent: 0
+        };
+
+        function startPassiveTelemetry() {
+            if (telemetryTimer) return; // Ya estaba corriendo
+            logStatus("📡 [TELEMETRÍA] Motor de auto-guardado en segundo plano iniciado (Cada 10s en Sandbox).");
+
+            telemetryTimer = setInterval(async () => {
+                // Incrementamos los contadores para simular que la gente está usando el chat
+                mockStats.duration_mins += 30; // Han pasado 30 mins
+                mockStats.msg_count += Math.floor(Math.random() * 50);
+                mockStats.trigger_count += Math.floor(Math.random() * 5);
+                mockStats.users_connected = 50 + Math.floor(Math.random() * 20);
+                mockStats.categories_used = 4;
+                mockStats.photos_sent += Math.floor(Math.random() * 30);
+
+                try {
+                    await fetch('/api/telemetry-heartbeat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(mockStats)
+                    });
+                } catch (e) {
+                    console.error("Fallo enviando latido de telemetría local.");
+                }
+            }, 1800000); // 30 minutos (1.800.000 ms)
+        }
+
+        // --- GUARDADO GARANTIZADO AL CERRAR ---
+        window.addEventListener('beforeunload', (event) => {
+            if (telemetryTimer) {
+                // sendBeacon es la única forma 100% fiable de enviar datos cuando la pestaña/ventana se está cerrando
+                const blob = new Blob([JSON.stringify(mockStats)], { type: 'application/json' });
+                navigator.sendBeacon('/api/telemetry-heartbeat', blob);
+            }
+        });
+    </script>
+</body>
+
+</html>

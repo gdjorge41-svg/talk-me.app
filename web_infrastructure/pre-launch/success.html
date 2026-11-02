@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk-me</title>
+    <link rel="icon" type="image/png" href="https://www.talk-me.app/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;700&display=swap');
+
+        :root {
+            --bg-dark: #09080f;
+            --card-bg: rgba(13, 12, 22, 0.75);
+            --border-glow: rgba(123, 104, 238, 0.35);
+            --accent: #7B68EE;
+            --accent-hover: #6c5ce7;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Starfield background effect */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            opacity: 0.25;
+            z-index: 1;
+
+        }
+
+
+
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .icon-wrapper {
+            font-size: 64px;
+            margin-bottom: 24px;
+            display: inline-block;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #b2a8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+        }
+
+        p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: var(--text-main);
+            border: none;
+            padding: 15px 30px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(123, 104, 238, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(123, 104, 238, 0.45);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            cursor: default;
+            transform: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="icon-wrapper">🎉</div>
+            <h1 id="landing-title">¡Pago Completado con Éxito!</h1>
+            <p id="landing-desc">Tu licencia ha sido activada correctamente. Ya puedes cerrar esta pestaña del navegador
+                y regresar a la aplicación de escritorio de Talk-me, la cual se activará automáticamente para que puedas
+                continuar.</p>
+            <button id="landing-btn" class="btn" onclick="closeBrowserTab(this)">Cerrar pestaña</button>
+        </div>
+    </div>
+
+    <script>
+        const extLandingDict = {
+            es: {
+                titleSuccess: "¡Pago Completado con Éxito!",
+                descSuccess: "Tu licencia ha sido activada correctamente. Ya puedes cerrar esta pestaña del navegador y regresar a la aplicación de escritorio de <strong>Talk-me</strong>, la cual se activará automáticamente para que puedas continuar.",
+                btnSuccess: "Cerrar pestaña"
+            },
+            en: {
+                titleSuccess: "Payment Completed Successfully!",
+                descSuccess: "Your license has been activated successfully. You can now close this browser tab and return to the <strong>Talk-me</strong> desktop app, which will automatically activate so you can continue.",
+                btnSuccess: "Close tab"
+            },
+            ca: {
+                titleSuccess: "Pagament Completat amb Èxit!",
+                descSuccess: "La teva llicència s'ha activat correctament. Ja pots tancar aquesta pestanya del navegador e tornar a l'aplicació de sobretaula de <strong>Talk-me</strong>, la qual s'activarà automàticament per a continuar.",
+                btnSuccess: "Tancar pestanya"
+            },
+            eu: {
+                titleSuccess: "Ordainketa Arrakastaz Burututa!",
+                descSuccess: "Zure lizentzia behar bezala aktibatu da. Orain nabigatzaileko fitxa hau itxi eta <strong>Talk-me</strong> mahaigaineko aplikaziora itzul zaitezke, automatikoki aktibatuko baita jarrai dezazun.",
+                btnSuccess: "Itxi fitxa"
+            },
+            gl: {
+                titleSuccess: "Pago Completado con Éxito!",
+                descSuccess: "A túa licencia foi activada correctamente. Xa podes pechar esta pestana do navegador e volver á aplicación de escritorio de <strong>Talk-me</strong>, a cal se activará automaticamente para continuar.",
+                btnSuccess: "Pechar pestana"
+            },
+            fr: {
+                titleSuccess: "Paiement Effectué avec Succès !",
+                descSuccess: "Votre licence a été activée avec succès. Vous pouvez maintenant fermer cet onglet et revenir à l'application de bureau <strong>Talk-me</strong>, qui s'activera automatiquement pour continuer.",
+                btnSuccess: "Fermer l'onglet"
+            },
+            de: {
+                titleSuccess: "Zahlung Erfolgreich Abgeschlossen!",
+                descSuccess: "Ihre Lizenz wurde erfolgreich aktiviert. Sie können dieses Browser-Tab jetzt schließen und zur <strong>Talk-me</strong> Desktop-Anwendung zurückkehren, die sich automatisch aktiviert.",
+                btnSuccess: "Tab schließen"
+            },
+            it: {
+                titleSuccess: "Pagamento Completato con Successo!",
+                descSuccess: "La tua licenza è stata attivata con successo. Ora puoi chiudere questa scheda del browser e tornare all'applicazione desktop <strong>Talk-me</strong>, che si attiverà automaticamente.",
+                btnSuccess: "Chiudi scheda"
+            },
+            pt: {
+                titleSuccess: "Pagamento Concluído com Sucesso!",
+                descSuccess: "A sua licença foi ativada com sucesso. Já pode fechar este separador do navegador e voltar à aplicação de ambiente de trabalho <strong>Talk-me</strong>, que será ativada automaticamente.",
+                btnSuccess: "Fechar separador"
+            },
+            nl: {
+                titleSuccess: "Betaling Succesvol Voltooid!",
+                descSuccess: "Uw licentie is succesvol geactiveerd. U kunt dit tabblad nu sluiten en terugkeren naar de <strong>Talk-me</strong> desktop-app, die automatisch wordt geactiveerd.",
+                btnSuccess: "Tabblad sluiten"
+            },
+            pl: {
+                titleSuccess: "Płatność Zakończona Sukcesem!",
+                descSuccess: "Twoja licencja została pomyślnie aktywowana. Możesz teraz zamknąć tę kartę przeglądarki i wrócić do aplikacji stacjonarnej <strong>Talk-me</strong>, która aktywuje się automatycznie.",
+                btnSuccess: "Zamknij kartę"
+            },
+            ru: {
+                titleSuccess: "Оплата Успешно Завершена!",
+                descSuccess: "Ваша лицензия успешно активирована. Теперь вы можете закрыть эту вкладку браузера и вернуться в десктопное приложение <strong>Talk-me</strong>, которое автоматически активируется.",
+                btnSuccess: "Закрыть вкладку"
+            },
+            uk: {
+                titleSuccess: "Оплату Успішно Завершено!",
+                descSuccess: "Вашу ліцензію успішно активовано. Тепер ви можете закрити цю вкладку браузера та повернутися до настільного додатка <strong>Talk-me</strong>, який автоматично активується.",
+                btnSuccess: "Закрити вкладку"
+            },
+            ar: {
+                titleSuccess: "تم الدفع بنجاح!",
+                descSuccess: "تم تفعيل ترخيصك بنجاح. يمكنك الآن إغلاق تبويب المتصفح هذا والعودة إلى تطبيق سطح المكتب <strong>Talk-me</strong> الذي سيتم تفعيله تلقائيًا.",
+                btnSuccess: "إغلاق التبويب"
+            },
+            zh: {
+                titleSuccess: "支付成功完成！",
+                descSuccess: "您的许可证已成功激活。您现在可以关闭此浏览器标签页并返回 <strong>Talk-me</strong> 桌面应用程序，该程序将自动激活以便您继续使用。",
+                btnSuccess: "关闭标签页"
+            },
+            ja: {
+                titleSuccess: "お支払いが正常に完了しました！",
+                descSuccess: "ライセンスが正常に有効化されました。このブラウザタブを閉じて <strong>Talk-me</strong> デスクトップアプリに戻ることができます。アプリは自動的に有効化されます。",
+                btnSuccess: "タブを閉じる"
+            },
+            ko: {
+                titleSuccess: "결제가 성공적으로 완료되었습니다!",
+                descSuccess: "라이선스가 성공적으로 활성화되었습니다. 이제 이 브라우저 탭을 닫고 <strong>Talk-me</strong> 데스크톱 앱으로 돌아가실 수 있으며, 앱이 자동으로 활성화됩니다.",
+                btnSuccess: "탭 닫기"
+            },
+            tr: {
+                titleSuccess: "Ödeme Başarıyla Tamamlandı!",
+                descSuccess: "Lisansınız başarıyla etkinleştirildi. Artık bu tarayıcı sekmesini kapatıp otomatik olarak etkinleştirilecek olan <strong>Talk-me</strong> masaüstü uygulamasına dönebilirsiniz.",
+                btnSuccess: "Sekmeyi kapat"
+            },
+            sv: {
+                titleSuccess: "Betalningen Har Slutförts!",
+                descSuccess: "Ditt licens har aktiverats. Du kan nu stänga denna webbläsarflik och återvända till <strong>Talk-me</strong> skrivbordsappen, som aktiveras automatiskt.",
+                btnSuccess: "Stäng flik"
+            },
+            vi: {
+                titleSuccess: "Thanh Toán Thành Công!",
+                descSuccess: "Giáo trình của bạn đã được kích hoạt thành công. Bây giờ bạn có thể đóng thẻ trình duyệt này và quay lại ứng dụng máy tính <strong>Talk-me</strong>, ứng dụng sẽ tự động kích hoạt.",
+                btnSuccess: "Đóng thẻ"
+            },
+            eo: {
+                titleSuccess: "Pago Sukcese Kompletita!",
+                descSuccess: "Via licenco estis sukcese aktivigita. Vi nun povas fermi ĉi tiun retumilan langeton kaj reveni al la labortabla aplikaĵo <strong>Talk-me</strong>, kiu aŭtomate aktiviĝos.",
+                btnSuccess: "Fermi langeton"
+            },
+            fa: {
+                titleSuccess: "پرداخت با موفقیت انجام شد!",
+                descSuccess: "مجوز شما با موفقیت فعال شد. اکنون می‌توانید این تب مرورگر را ببندید و به برنامه دسکتاپ <strong>Talk-me</strong> بازگردید که به طور خودکار فعال می‌شود.",
+                btnSuccess: "بستن تب"
+            },
+            kk: {
+                titleSuccess: "Төлем Сәтті Аяқталды!",
+                descSuccess: "Лицензияңыз сәтті белсендірілді. Енді осы шолғыш қойындысын жауып, автоматты түрде белсендірілетін <strong>Talk-me</strong> жұмыс үстелі қолданбасына оралуыңызға болады.",
+                btnSuccess: "Қойындыны жабу"
+            },
+            uz: {
+                titleSuccess: "To'lov Muvaffaqiyatli Bajarildi!",
+                descSuccess: "Litsenziyangiz muvaffaqiyatli faollashtirildi. Endi ushbu brauzer varag'ini yopishingiz va avtomatik ravishda faollashadigan <strong>Talk-me</strong> ish stoli ilovasiga qaytishingiz mumkin.",
+                btnSuccess: "Varaqni yopish"
+            }
+        };
+
+        const closedMsgDict = {
+            es: "✔ Pestaña lista para cerrar. Regresa a Talk-me",
+            en: "✔ Tab ready to close. Return to Talk-me",
+            ca: "✔ Pestanya a punt per tancar. Torna a Talk-me",
+            eu: "✔ Fitxa itxita prest. Itzuli Talk-me-ra",
+            gl: "✔ Pestana lista para pechar. Volve a Talk-me",
+            fr: "✔ Onglet prêt à être fermé. Retournez à Talk-me",
+            de: "✔ Tab bereit zum Schließen. Zurück zu Talk-me",
+            it: "✔ Scheda pronta per la chiusura. Torna a Talk-me",
+            pt: "✔ Separador pronto a fechar. Volte ao Talk-me",
+            nl: "✔ Tabblad gereed om te sluiten. Keer terug naar Talk-me",
+            pl: "✔ Karta gotowa do zamknięcia. Wróć do Talk-me",
+            ru: "✔ Вкладка готова к закрытию. Вернитесь в Talk-me",
+            uk: "✔ Вкладку готово до закриття. Поверніться до Talk-me",
+            ar: "✔ التبويب جاهز للإغلاق. عد إلى Talk-me",
+            zh: "✔ 标签页已准备好关闭。请返回 Talk-me",
+            ja: "✔ タブを閉じる準備ができました。Talk-me に戻ってください",
+            ko: "✔ 탭을 닫을 준비가 되었습니다. Talk-me로 돌아가세요",
+            tr: "✔ Sekme kapatılmaya hazır. Talk-me'ye dönün",
+            sv: "✔ Fliken klar att stängas. Återvänd till Talk-me",
+            vi: "✔ Thẻ đã sẵn sàng đóng. Quay lại Talk-me",
+            eo: "✔ Langeto preta por fermi. Revenu al Talk-me",
+            fa: "✔ تب آماده بستن است. به Talk-me بازگردید",
+            kk: "✔ Қойынды жабылуға дайын. Talk-me-ге оралыңыз",
+            uz: "✔ Varaq yopilishga tayyor. Talk-me-ga qayting"
+        };
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+
+        // Detect language
+        const urlParams = new URLSearchParams(window.location.search);
+        const langCookie = getCookie('talkme_client_lang');
+        const langLocal = localStorage.getItem('talkme_client_lang');
+        const rawLang = urlParams.get('lang') || langLocal || langCookie || '';
+        const langParam = rawLang.trim().slice(0, 2).toLowerCase();
+        const browserLang = (navigator.language || navigator.userLanguage || 'es').slice(0, 2).toLowerCase();
+        const activeLang = extLandingDict[langParam] ? langParam : (extLandingDict[browserLang] ? browserLang : 'es');
+
+
+
+
+        // Apply translations
+        const l10n = extLandingDict[activeLang];
+        document.title = "Talk-me - " + l10n.titleSuccess;
+        document.getElementById('landing-title').innerText = l10n.titleSuccess;
+        document.getElementById('landing-desc').innerHTML = l10n.descSuccess;
+        document.getElementById('landing-btn').innerText = l10n.btnSuccess;
+
+
+        // Close window helper
+        window.closeBrowserTab = function (btnElement) {
+            try { window.close(); } catch (e) { }
+            try { window.open('', '_self', '').close(); } catch (e) { }
+            setTimeout(() => {
+                if (btnElement) {
+                    btnElement.disabled = true;
+                    btnElement.style.opacity = '0.9';
+                    btnElement.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
+                    btnElement.style.boxShadow = '0 4px 15px rgba(16, 185, 129, 0.4)';
+                    btnElement.innerText = closedMsgDict[activeLang] || closedMsgDict['es'];
+                }
+            }, 250);
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+{
+  "pantalla": {
+    "keyframes": [
+      {
+        "time": 0,
+        "value": 0,
+        "color": "#ffffff",
+        "easing": "linear",
+        "easingColor": "linear",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Pulso 1"
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "color": "#ffffff",
+        "easing": "step",
+        "easingColor": "step",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Hold"
+      },
+      {
+        "time": 120,
+        "value": 0.8,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "easingColor": "linear",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Orange"
+      },
+      {
+        "time": 360,
+        "value": 0,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "easingColor": "linear",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Fade"
+      },
+      {
+        "time": 420,
+        "value": 1,
+        "color": "#ffffff",
+        "easing": "step",
+        "easingColor": "step",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Pulso 2"
+      },
+      {
+        "time": 540,
+        "value": 0.8,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "easingColor": "linear",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Orange 2"
+      },
+      {
+        "time": 780,
+        "value": 0,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "easingColor": "linear",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Fade 2"
+      },
+      {
+        "time": 840,
+        "value": 1,
+        "color": "#ffffff",
+        "easing": "step",
+        "easingColor": "step",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Pulso 3"
+      },
+      {
+        "time": 1200,
+        "value": 0,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "easingColor": "linear",
+        "hold": 0,
+        "holdColor": 0,
+        "name": "Final"
+      }
+    ],
+    "duration": 1200,
+    "keyframesOpacidad": [
+      {
+        "time": 0,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 10,
+        "value": 1,
+        "easing": "step",
+        "hold": 0
+      },
+      {
+        "time": 120,
+        "value": 0.8,
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 360,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 420,
+        "value": 1,
+        "easing": "step",
+        "hold": 0
+      },
+      {
+        "time": 540,
+        "value": 0.8,
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 780,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 840,
+        "value": 1,
+        "easing": "step",
+        "hold": 0
+      },
+      {
+        "time": 1200,
+        "value": 0,
+        "easing": "linear",
+        "hold": 0
+      }
+    ],
+    "keyframesColor": [
+      {
+        "time": 0,
+        "color": "#ffffff",
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 10,
+        "color": "#ffffff",
+        "easing": "step",
+        "hold": 0
+      },
+      {
+        "time": 120,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 360,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 420,
+        "color": "#ffffff",
+        "easing": "step",
+        "hold": 0
+      },
+      {
+        "time": 540,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 780,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "hold": 0
+      },
+      {
+        "time": 840,
+        "color": "#ffffff",
+        "easing": "step",
+        "hold": 0
+      },
+      {
+        "time": 1200,
+        "color": "#FF6B35",
+        "easing": "linear",
+        "hold": 0
+      }
+    ]
+  }
+}
