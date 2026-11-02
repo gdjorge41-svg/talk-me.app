@@ -3252,25 +3252,44 @@ async function pttDown() {
     }
 
     if (isRecording && isPTTActive) {
-        updateMicButtonsUI(); // Confirmacin visual (Talking)
+        // [v60.IOS-MIC-LIFECYCLE] En iOS, reactivar el track de microfono al pulsar
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        if (isIOS && mediaStream) {
+            const track = mediaStream.getAudioTracks()[0];
+            if (track && !track.enabled) {
+                track.enabled = true;
+                console.log("🎙️ [iOS-PTT] Track de microfono rehabilitado para captura.");
+            }
+        }
+        updateMicButtonsUI();
         if (window.navigator?.vibrate) window.navigator.vibrate(60);
     }
 }
 
 function pttUp() {
     isPTTActive = false;
-    // Detener la captura de voz (esto emite stop-speaking y procesa el mensaje final)
     endSpeechCapture(true);
 
-    // [v60.ELITE] MANTENER MICRO CALIENTE:
-    // No llamamos a stopRecording() aqu para evitar el "Cold Start" en la siguiente pulsacin.
-    // El software gating en AudioCapture ya garantiza que no se enve audio si isPTTActive es false.
+    // [v60.ELITE] MANTENER MICRO CALIENTE (Desktop/Android) VS LIBERAR HARDWARE (iOS):
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+        if (mediaStream) {
+            const track = mediaStream.getAudioTracks()[0];
+            if (track && track.enabled) {
+                track.enabled = false;
+                console.log("🔇 [iOS-PTT] Track de microfono suspendido para permitir SpeechSynthesis.");
+            }
+        }
+        try {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.resume();
+            }
+        } catch (_) { }
+    }
 
-    updateMicButtonsUI(); // Restaurar todos los botones
-    // [v59.12] Reset inmediato del vmetro al soltar para evitar "fantasmas" de audio
-    if (volumeLevel) volumeLevel.style.width = '0%';
+    updateMicButtonsUI();
+    if (volumeLevel) volumeLevel.style.width = "0%";
 }
-
 /**
  * [v46.4.30] UNIFICACIN TOTAL DE MANEJADORES
  * Concentra todos los disparadores en una nica lgica sncrona.

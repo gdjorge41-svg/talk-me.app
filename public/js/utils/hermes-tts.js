@@ -269,25 +269,19 @@ export class HermesTTS {
                 return;
             }
 
-            // Chequeo de cualquier reproductor de audio HTML5 activo en el DOM
-            const audios = document.querySelectorAll('audio');
-            console.log(`🗣️ [HermesTTS.speak] Encontrados ${audios.length} elementos de audio en DOM`);
-            for (let a of audios) {
-                // 🛡️ [v60.HERMES-SHIELD] Ignorar elementos silentes de keep-alive de iOS o elementos enmudecidos
-                const isSilentKeepAlive = a.src && (a.src.includes('data:audio/wav') || a.src.includes('silence') || a.volume < 0.01 || a.muted);
-                if (!a.paused && !isSilentKeepAlive) {
-                    console.log('🔇 [Hermes-Shield] Silenciado por reproducción activa de audio audible en segundo plano.', a);
-                    return;
-                }
+            // 🛡️ [v60.HERMES-SHIELD] Fuente Única de Verdad: Solo silenciar si Talk.me está reproduciendo un audio del chat
+            const isPlayingChatAudio = window.isPlayingGlobalAutoPlay === true || 
+                                       (window.globalAutoPlayQueue && window.globalAutoPlayQueue.length > 0);
+            if (isPlayingChatAudio) {
+                console.log('🔇 [Hermes-Shield] Silenciado: reproducción activa de mensaje de audio del chat.');
+                return;
             }
 
-            // Cancelar locuciones previas sólo si está hablando activamente para evitar bug de Safari/WebKit iOS
-            if (this.synth.speaking) {
-                this.synth.cancel();
-            }
-
-            // 🛡️ [v60.IOS-SAFARI-WAKE] Forzar resume preventivo si el sintetizador está pausado o tras cambio de audio session
+            // 🛡️ [v60.WEBKIT-PURGE] Purgado defensivo de WebKit: cancelar locución anterior y reanimar bus
             try {
+                if (this.synth.speaking) {
+                    this.synth.cancel();
+                }
                 if (this.synth.paused) {
                     this.synth.resume();
                 }
