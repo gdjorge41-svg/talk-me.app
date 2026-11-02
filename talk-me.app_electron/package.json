@@ -25,6 +25,9 @@
       "app": "app_build",
       "output": "dist_final"
     },
+    "files": [
+      "**/*"
+    ],
     "nsis": {
       "include": "installer.nsh",
       "artifactName": "Talk-me.app Setup ${version}.${ext}"

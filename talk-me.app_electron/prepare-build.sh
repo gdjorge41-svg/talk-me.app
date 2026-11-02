@@ -119,19 +119,12 @@ fs.writeFileSync('./app_build/package.json', JSON.stringify(p1, null, 2), 'utf8'
 
 echo ""
 echo "========================================================"
-echo " [5/6] Preparando dependencias de producción en staging..."
+echo " [5/6] Instalando dependencias limpias de producción en staging..."
 echo "========================================================"
-# Enfoque defensivo y Soberano Offline:
-# Sincronizar módulos locales existentes de forma atómica y confiable
-echo "  -> Sincronizando dependencias locales (raíz + pre-launch)..."
-mkdir -p app_build/node_modules
-if [ -d "../node_modules" ]; then
-    cp -R ../node_modules/* app_build/node_modules/ 2>/dev/null || true
-fi
-if [ -d "../pre-launch/node_modules" ]; then
-    cp -R ../pre-launch/node_modules/* app_build/node_modules/ 2>/dev/null || true
-fi
-echo "  [OK] Dependencias locales de producción listas en staging."
+cd app_build
+npm install --omit=dev
+cd ..
+echo "  [OK] Dependencias limpias de producción listas en staging."
 
 echo ""
 echo "========================================================"
