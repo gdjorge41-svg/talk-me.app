@@ -1,0 +1,40 @@
+name: Build Linux Installer (AppImage & deb)
+
+on:
+  workflow_dispatch: # Permite compilar manualmente con un clic desde GitHub Actions
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest # Máquina virtual oficial de Linux (Ubuntu)
+
+    steps:
+      - name: 1. Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 3. Instalar herramientas de compilación Electron
+        run: |
+          cd talk-me.app_electron
+          npm install
+
+      - name: 4. Asignar permisos de ejecución al script
+        run: chmod +x talk-me.app_electron/prepare-build.sh
+
+      - name: 5. Compilar instalador para Linux (AppImage y .deb)
+        run: |
+          cd talk-me.app_electron
+          ./prepare-build.sh
+          ./node_modules/.bin/electron-builder --linux AppImage deb --publish never
+
+      - name: 6. Publicar instaladores como artefactos descargables
+        uses: actions/upload-artifact@v4
+        with:
+          name: Talk-me-Linux-Installer
+          path: |
+            talk-me.app_electron/dist_final/*.AppImage
+            talk-me.app_electron/dist_final/*.deb
+          retention-days: 14

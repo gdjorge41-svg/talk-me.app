@@ -70,6 +70,15 @@
     "portable": {
       "artifactName": "Talk-me Portable ${version}.${ext}",
       "unpackDirName": "TalkMe_Portable"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Network",
+      "executableName": "talk-me",
+      "synopsis": "Talk.me Pro Intercom and Translation System"
     }
   }
 }
