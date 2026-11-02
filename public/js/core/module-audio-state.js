@@ -80,7 +80,8 @@ class AudioStateManager {
             pendingAudioBlobUrl: null,             // URL de blob pendiente
             pendingMimeType: null,                 // MIME type del audio pendiente
             audioBlobUrls: [],                     // Buffer de URLs generadas
-            isWaitingForVosk: false,               // ¿Esperando resultado final de Vosk?
+            isWaitingForVosk: false,
+            currentAudioPromise: null,               // ¿Esperando resultado final de Vosk?
             voskSendBuffer: [],                    // Buffer de envío para Vosk
             voskSendSamples: 0,                    // Contador de muestras enviadas a Vosk
             pcmChunks: [],                         // Fragmentos PCM crudos

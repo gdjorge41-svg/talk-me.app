@@ -2909,9 +2909,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         initHardwareStatus();
 
-        window.addEventListener('click', function unlockAudio() {
+        const universalUnlockIOS = function() {
             if (typeof activateIOSAudioSession === 'function') activateIOSAudioSession();
-        }, { once: true });
+        };
+        window.addEventListener('click', universalUnlockIOS, { once: true });
+        window.addEventListener('touchstart', universalUnlockIOS, { once: true, passive: true });
+        window.addEventListener('pointerdown', universalUnlockIOS, { once: true });
 
     } catch (err) {
         console.error('  Error crtico en DOMContentLoaded:', err);

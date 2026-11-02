@@ -39,14 +39,23 @@ export function initAudioCtx() {
 
         if (!window._masterGain) {
             window._masterGain = audioCtx.createGain();
-            // [v59.18] Ruteo profesional: Master Gain -> ChannelMerger -> Desitnation
+
+            // 🎛️ [v60.SOFT-LIMITER] Compresor/Limitador suave de protección contra Ducking/Clipping de iOS/Apple
+            const masterLimiter = audioCtx.createDynamicsCompressor();
+            masterLimiter.threshold.setValueAtTime(-3, audioCtx.currentTime); // Límite suave en -3 dBFS
+            masterLimiter.knee.setValueAtTime(6, audioCtx.currentTime);
+            masterLimiter.ratio.setValueAtTime(12, audioCtx.currentTime);     // Contención firme de picos
+            masterLimiter.attack.setValueAtTime(0.002, audioCtx.currentTime); // Ataque ultra-rápido (2ms)
+            masterLimiter.release.setValueAtTime(0.1, audioCtx.currentTime);  // Retorno fluido
+
             const maxChannels = Math.max(2, audioCtx.destination.maxChannelCount || 2);
             window._channelMerger = audioCtx.createChannelMerger(maxChannels);
+            
+            // Cadena de ruteo: masterGain -> masterLimiter -> channelMerger -> destination
+            window._masterGain.connect(masterLimiter);
+            masterLimiter.connect(window._channelMerger, 0, 0);
             window._channelMerger.connect(audioCtx.destination);
-
-            // Conectar masterGain al canal 0 (por defecto Ch 1)
-            // Esto se actualizará dinámicamente vía applyAudioOutputChannel
-            window._masterGain.connect(window._channelMerger, 0, 0);
+            window._masterLimiter = masterLimiter;
         }
 
         if (typeof window.applyAudioOutput === 'function') {

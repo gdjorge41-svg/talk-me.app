@@ -66,6 +66,18 @@ class SocketHandlers {
         this.socket.on('connect_error', (err) => this._onConnectError(err));
         this.socket.on('reconnect', () => this._onReconnect());
         this.socket.on('reconnect_failed', () => this._onReconnectFailed());
+
+        // ⚡ [v60.IOS-WAKE-RECONNECT] Rescate instantáneo de socket al desbloquear pantalla (<100ms)
+        const rescueSocketConnection = () => {
+            if (this.socket && !this.socket.connected) {
+                console.log('🔄 [SocketHandlers] Retorno de suspensión/bloqueo detectado: Forzando reconexión inmediata...');
+                try { this.socket.connect(); } catch (err) { }
+            }
+        };
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') rescueSocketConnection();
+        });
+        window.addEventListener('pageshow', rescueSocketConnection);
     }
 
     _onConnect() {
@@ -1429,16 +1441,30 @@ class SocketHandlers {
             window.pendingCaptureTimeout = null;
         }
 
-        // Si el audio aún se está procesando (pcmToWav), esperamos unos ms
-        let retries = 0;
-        const audioState = this.audio;
-        while (!audioState.get('pendingAudioBlob') && audioState.get('isWaitingForVosk') && retries < 30) {
-            console.log(`⏳ [SocketHandlers] Esperando a que el audio esté listo... (Intento ${retries + 1}/30)`);
-            await new Promise(r => setTimeout(r, 100));
-            retries++;
+        // ⚡ [v60.PROMISE-BARRIER] Sincronización reactiva Cero-Polling / Cero-Delay
+        // Si el audio se está empaquetando en el post-roll (ej: en palabras cortas de 1 vocablo),
+        // esperamos reactivamente la resolución de la promesa en curso (hasta 240ms de techo Murphy).
+        const sendAudio = this.audio.get('sendAudio');
+        let pendingAudioBlob = this.audio.get('pendingAudioBlob');
+        let pendingBlobUrl = this.audio.get('pendingAudioBlobUrl');
+        let pendingMimeType = this.audio.get('pendingMimeType') || 'audio/wav';
+
+        const audioPromise = this.audio.get('currentAudioPromise');
+        if (sendAudio && !pendingAudioBlob && audioPromise) {
+            try {
+                const timeoutGuard = new Promise(r => setTimeout(() => r(null), 240));
+                const audioResult = await Promise.race([audioPromise, timeoutGuard]);
+                if (audioResult && audioResult.blob) {
+                    pendingAudioBlob = audioResult.blob;
+                    pendingBlobUrl = audioResult.blobUrl;
+                    pendingMimeType = audioResult.mimeType || 'audio/wav';
+                }
+            } catch (e) {
+                console.warn('⚠️ [SocketHandlers] Error en Promise Barrier:', e);
+            }
         }
 
-        this.audio.setState({ isWaitingForVosk: false });
+        this.audio.setState({ isWaitingForVosk: false, currentAudioPromise: null });
 
         if (this.audio.get('messageSentForCurrentCapture')) {
             console.warn('⚠️ [SocketHandlers] El mensaje para esta captura ya fue enviado. Abortando duplicado.');
@@ -1477,8 +1503,7 @@ class SocketHandlers {
         this.audio.setState({ voskConfirmedSegments: [] });
         finalText = finalText.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]|[\u001b\u009b]\[[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
 
-        const sendAudio = this.audio.get('sendAudio');
-        const pendingAudioBlob = this.audio.get('pendingAudioBlob');
+        // sendAudio y pendingAudioBlob ya resueltos reactivamente en la Promise Barrier
 
         console.log(`📡 [SocketHandlers] Decisión de envío: sendAudio=${sendAudio}, hasBlob=${!!pendingAudioBlob}, streamId=${this.audio.get('activeStreamingIdForVosk')}`);
 

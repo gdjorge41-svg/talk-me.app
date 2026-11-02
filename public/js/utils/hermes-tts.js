@@ -253,8 +253,12 @@ export class HermesTTS {
         try {
             console.log(`🗣️ [HermesTTS.speak] Grabando mic: ${window.isRecording}, AudioState isRecording: ${window.audioState?.get('isRecording')}`);
             // Impedir acoplamiento: si se está grabando micrófono, abortamos la lectura
-            if (window.isRecording === true || (window.audioState && window.audioState.get('isRecording') === true) || (window.audioState && window.audioState.get('recording') === true)) {
-                console.log('🔇 [Hermes-Shield] Silenciado para prevenir acoplamiento con el micrófono.');
+            // 🛡️ [v60.HERMES-SHIELD] Solo silenciar si se está HABLANDO ACTIVAMENTE (PTT presionado o VAD capturando voz),
+            // NO simplemente por tener el micrófono pre-autorizado o en espera pasiva (isRecording).
+            const isActuallyCapturing = (window.audioState && (window.audioState.get('isCapturingSpeech') === true || window.audioState.get('isPTTActive') === true)) ||
+                                        window.isCapturingSpeech === true || window.isPTTActive === true;
+            if (isActuallyCapturing) {
+                console.log('🔇 [Hermes-Shield] Silenciado: locución propia en curso para prevenir acople.');
                 return;
             }
 
@@ -269,8 +273,10 @@ export class HermesTTS {
             const audios = document.querySelectorAll('audio');
             console.log(`🗣️ [HermesTTS.speak] Encontrados ${audios.length} elementos de audio en DOM`);
             for (let a of audios) {
-                if (!a.paused) {
-                    console.log('🔇 [Hermes-Shield] Silenciado por reproducción activa de audio en segundo plano.', a);
+                // 🛡️ [v60.HERMES-SHIELD] Ignorar elementos silentes de keep-alive de iOS o elementos enmudecidos
+                const isSilentKeepAlive = a.src && (a.src.includes('data:audio/wav') || a.src.includes('silence') || a.volume < 0.01 || a.muted);
+                if (!a.paused && !isSilentKeepAlive) {
+                    console.log('🔇 [Hermes-Shield] Silenciado por reproducción activa de audio audible en segundo plano.', a);
                     return;
                 }
             }
@@ -385,6 +391,8 @@ export class HermesTTS {
 
             utterance.rate = this.rate;
             utterance.pitch = 1.0;
+            // 🛡️ [v60.HERMES-VOLUME] Forzar volumen al máximo contra el ducking/atenuación de iOS
+            utterance.volume = 1.0;
 
             // Evitar Garbage Collector
             this.activeUtterance = utterance;

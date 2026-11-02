@@ -1580,6 +1580,10 @@ export class SettingsUI {
         if (toggle) {
             this.bindTriggerStyleBadge('btnToggleHermes', 'hermesToggle', (isEnabled) => {
                 window.hermesTTS.masterEnabled = isEnabled;
+                if (isEnabled && typeof window.hermesTTS.unlock === 'function') {
+                    // ⚡ [v60.HERMES-INSTANT] Desbloqueo síncrono aprovechando el User Gesture del clic
+                    try { window.hermesTTS.unlock(); } catch (err) { console.warn('⚠️ [HermesTTS] Error en unlock:', err); }
+                }
                 updateVisibility();
             });
         }

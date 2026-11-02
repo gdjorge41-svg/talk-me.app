@@ -548,9 +548,26 @@ class AudioCapture {
             if (box) box.classList.remove('show');
         }
 
-        // --- 🛡️ PASO 2: POST-ROLL DE AUDIO DESACOPLADO (180 ms) ---
-        // Se retiene la captura 180ms adicionales para registrar la cola fonética
-        // de la última palabra y evitar que Vosk o Whisper reciban fonemas truncados.
+        // --- ⚡ PASO 2: PROMISE BARRIER INMEDIATA (0 ms) & POST-ROLL ---
+        // [v60.PROMISE-BARRIER] Crear barrera reactiva atómica para sincronizar
+        // la transcripción con el audio sin polling ni esperas artificiales.
+        let resolveAudioReady;
+        const audioReadyPromise = new Promise(resolve => {
+            resolveAudioReady = resolve;
+        });
+
+        this.audio.setState({
+            isCapturingSpeech: false,
+            isWaitingForVosk: true,
+            currentAudioPromise: audioReadyPromise,
+            pendingAudioBlob: null,
+            pendingAudioBlobUrl: null,
+            pendingMimeType: 'audio/wav',
+            activeStreamingIdForVosk: this.audio.get('streamingId'),
+            messageSentForCurrentCapture: false
+        });
+
+        // Retención fonética para cola de palabras (180 ms)
         const POST_ROLL_DELAY_MS = 180;
         await new Promise(resolve => setTimeout(resolve, POST_ROLL_DELAY_MS));
 
@@ -582,16 +599,15 @@ class AudioCapture {
         // Reset flag de stream para permitir nuevas frases
         this.streamStartEmitted = false;
 
-        // Actualizar estado de forma atómica para evitar carreras con SocketHandlers
+        // Actualizar estado final con el blob en memoria
         this.audio.setState({
-            isCapturingSpeech: false,
-            isWaitingForVosk: true,
             pendingAudioBlob: blob,
             pendingAudioBlobUrl: blobUrl,
-            pendingMimeType: 'audio/wav',
-            activeStreamingIdForVosk: this.audio.get('streamingId'),
-            messageSentForCurrentCapture: false
+            pendingMimeType: 'audio/wav'
         });
+
+        // 🔓 Liberar barrera reactiva inmediatamente: despierta a SocketHandlers al milisegundo exacto
+        resolveAudioReady({ blob, blobUrl, mimeType: 'audio/wav' });
 
         const streamingId = this.audio.get('streamingId');
         if (streamingId) {
