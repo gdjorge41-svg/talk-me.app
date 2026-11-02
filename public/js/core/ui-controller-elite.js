@@ -1590,10 +1590,15 @@ const unlockAudioContext = () => {
         ctx.resume().then(() => {
             console.log('✅ [Audio] AudioContext autorizado y activo.');
             audioState.setState({ audioContextAuthorized: true });
-            // Eliminar listeners tras el éxito
-            document.removeEventListener('mousedown', unlockAudioContext);
-            document.removeEventListener('touchstart', unlockAudioContext);
-            document.removeEventListener('keydown', unlockAudioContext);
+            // [v60.IOS-FIX] En iOS Safari, NO remover los listeners porque cada vez que
+            // se concede permiso de micrófono o cambia el hardware de audio, WebKit suspende
+            // la sesión de AudioContext y SpeechSynthesis, requiriendo re-desbloqueo táctil continuo.
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            if (!isIOS) {
+                document.removeEventListener('mousedown', unlockAudioContext);
+                document.removeEventListener('touchstart', unlockAudioContext);
+                document.removeEventListener('keydown', unlockAudioContext);
+            }
         }).catch(err => {
             console.warn('⚠️ [Audio] Fallo en el desbloqueo proactivo:', err);
         });
@@ -4676,6 +4681,16 @@ async function startRecording() {
 
         mediaStream = stream;
         isRecording = true;
+
+        // 🛡️ [v60.IOS-HERMES-RECOVERY] Re-desbloquear proactivamente SpeechSynthesis y AudioSession tras getUserMedia
+        try {
+            if (window.hermesTTS && typeof window.hermesTTS.unlock === 'function') {
+                window.hermesTTS.unlock();
+            } else if (window.speechSynthesis && window.speechSynthesis.paused) {
+                window.speechSynthesis.resume();
+            }
+            if (typeof activateIOSAudioSession === 'function') activateIOSAudioSession();
+        } catch (_) { }
 
         // ❧ INGENIERA: Generar streamingId ANTES de setupAudioAnalysis para que AudioWorklet tenga ID desde el inicio
         //  FIX V59.8: Permitir grabacin incluso sin socket (streaming es mejor-effort)

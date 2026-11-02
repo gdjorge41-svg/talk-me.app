@@ -286,10 +286,12 @@ export class HermesTTS {
                 this.synth.cancel();
             }
 
-            // Resume preventivo si el sintetizador Chromium está colgado
-            if (this.synth.paused) {
-                this.synth.resume();
-            }
+            // 🛡️ [v60.IOS-SAFARI-WAKE] Forzar resume preventivo si el sintetizador está pausado o tras cambio de audio session
+            try {
+                if (this.synth.paused) {
+                    this.synth.resume();
+                }
+            } catch (_) { }
 
             const cleanText = this._sanitizeText(text);
             if (!cleanText) return;
