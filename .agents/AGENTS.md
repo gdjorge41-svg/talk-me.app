@@ -45,4 +45,20 @@
 - **Nomenclatura Estándar Inmutable de Instaladores**: Todo artefacto de distribución se nombra estrictamente: `Talk-me.app_${version}_Setup.${ext}` (ej. `Talk-me.app_1.0.0_Setup.exe`, `Talk-me.app_1.0.0_Setup.dmg`, `Talk-me.app_1.0.0_Setup.AppImage`).
 - **Anticipación Proactiva de Infraestructura**: Mantener dependencias de CI/CD al día (Node.js 22 LTS) sin esperar a fallos en compilaciones de producción.
 
+## 9. Sincronización Espejo Obligatoria (`public/` <-> `overrides/`)
+- **Indivisibilidad de Cambios**: Cualquier modificación en la lógica del cliente web (`public/js/`, `public/css/`, `views/`) DEBE sincronizarse de forma inmediata e indivisible en `talk-me.app_electron/overrides/` antes de cualquier commit o compilación.
+- **Razón**: `prepare-build.bat` sobrescribe `public/` con `overrides/` durante la etapa 4 de compilación; si no están en paridad exacta, se restaurarán versiones viejas rotas en el empaquetado final.
+
+## 10. Erradicación Previa de Procesos Zombis
+- **Liberación Estricta del Puerto 3000**: Antes de dar por válida una prueba local o iniciar el servidor, es imperativo verificar y purgar instancias huérfanas (`Stop-Process -Name 'Talk-me','node' -Force` en Windows o `killall` en Unix).
+- **Razón**: Si un proceso zombi retiene el puerto 3000, los dispositivos cliente (iPhone/PC remoto) se conectan al bundle en memoria de la versión antigua enmascarando cualquier corrección.
+
+## 11. Auditoría del Binario Desempaquetado Post-Build
+- **Verificación Física en `dist_final`**: Tras cada empaquetado con `electron-builder`, el agente debe inspeccionar programáticamente el contenido en `dist_final/win-unpacked/resources/app/...` para verificar con `includes()` que los identificadores y parches críticos (`v60.x`) están físicamente presentes en los archivos JS desempaquetados.
+
+## 12. Regla de Coexistencia de Audio en iOS (WebKit CoreAudio Protocol)
+- **Exclusión Mutua de Hardware**: En Safari/iOS, `window.speechSynthesis` y `getUserMedia` colisionan en el kernel (`AVAudioSessionCategoryPlayAndRecord`). NUNCA mantener tracks de micrófono en estado `live` en reposo si se requiere que el dispositivo reciba o lea textos por TTS.
+- **Ciclo PTT en iOS**: Al soltar el micro (`pttUp`), `track.enabled = false` es obligatorio para liberar el bus de audio y reanimar `speechSynthesis.resume()`. Al pulsar (`pttDown`), `track.enabled = true` se reactiva síncronamente dentro del evento táctil.
+
+
 
