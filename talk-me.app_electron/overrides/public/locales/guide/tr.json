@@ -1,0 +1,506 @@
+{
+    "guide_title": "kullanıcı kılavuzu",
+    "search_placeholder": "kılavuzda ara...",
+    "cards": [
+        {
+            "id": "audio_modes",
+            "title": "Ses İletim Modları",
+            "items": [
+                {
+                    "title": "Bas-Konuş (PTT) Modu",
+                    "description": "Basma düğmesiyle manuel şanzıman. Mikrofon kanalını açmak ve gerçek zamanlı ses yakalamaya başlamak için Konuşma düğmesini basılı tutun. Bıraktığınızda iletim hemen sona erer ve sistem, transkripsiyonu otomatik olarak işler.",
+                    "note": "Gürültünün yüksek olduğu ortamlar veya iletişimin hassas kontrolünün gerekli olduğu durumlar için önerilir."
+                },
+                {
+                    "title": "Otomatik Mod (Ses Seviyesi Algılama)",
+                    "description": "Giriş sinyali seviyesine göre otomatik iletim. Sistem, yapılandırılmış hassasiyet eşiğinin üzerinde ses algıladığında ses yakalamayı etkinleştirir ve kısa bir süre sessiz kaldıktan sonra kaydı durdurur.",
+                    "note": "Tamamen eller serbest bir deneyim için idealdir."
+                },
+                {
+                    "title": "Giriş Seviyesi",
+                    "description": "Dinamik bir VU ölçer kullanarak seçilen ses kaynağının sinyal seviyesini gerçek zamanlı olarak görüntüler.",
+                    "note": null
+                }
+            ]
+        },
+        {
+            "id": "users",
+            "title": "Kullanıcılar",
+            "items": [
+                {
+                    "title": "Bağlı Kullanıcılar",
+                    "description": "Etkin kullanıcıların, alt kullanıcıların ve bunlara atanan kategorilerin listesini görüntüler.",
+                    "subitems": [
+                        "Sizin tarafınızdan oluşturulan alt kullanıcılar şunlar olabilir:",
+                        "Düzenlendi.",
+                        "Elendi.",
+                        "Ses ilettiklerini gösteren ayrı bir VU ölçer tarafından izlenir."
+                    ]
+                },
+                {
+                    "title": "Alt Kullanıcılar Oluştur (+)",
+                    "description": "Bağımsız dahili yönlendirmeye sahip sanal kullanıcılar oluşturmanıza olanak tanır.",
+                    "subitems": [
+                        "Her alt kullanıcı aşağıdakilerle yapılandırılabilir:",
+                        "İsim.",
+                        "Kategori.",
+                        "Transkripsiyon dili.",
+                        "Ses kaynağı.",
+                        "Giriş kanalı.",
+                        "Etkinleştirme eşiği."
+                    ],
+                    "extra": "Ses seviyesi yapılandırılan eşiği aştığında, transkripsiyon ve mesaj gönderimi otomatik olarak gerçekleştirilir.",
+                    "important": "Birincil kullanıcı tarafından kullanılan aynı ses kaynağı ve kanalı aynı anda atamak mümkün değildir. Çakışma durumunda, mükerrer iletimleri önlemek için kaynak otomatik olarak devre dışı bırakılacaktır."
+                }
+            ]
+        },
+        {
+            "id": "chat_transmission",
+            "title": "Sohbet ve Yayın Özellikleri",
+            "items": [
+                {
+                    "title": "Konuşma düğmesi",
+                    "description": "Canlı ses akışı yapmanızı sağlar. Giriş alanına metin girdiğinizde düğme otomatik olarak mesaj gönder simgesine dönüşür."
+                },
+                {
+                    "title": "Fotoğraf Gönderme",
+                    "description": "Cihazın arka kamerasıyla görüntü çekmenize veya galeriden fotoğraf seçerek anında sohbete göndermenize olanak tanır."
+                },
+                {
+                    "title": "Hareketle Gezinme (Kaydırma)",
+                    "description": "Yan paneli göstermek için sağa, gizlemek için sola kaydırın.",
+                    "note": "Bu eylem, gezinme düğmelerini veya uygulama logosunu kullanmaya eşdeğerdir."
+                },
+                {
+                    "title": "Filtreler",
+                    "description": "Almak istediğiniz mesaj ve uyarı kategorilerini seçmenizi sağlar.",
+                    "subitems": [
+                        "Olabilmek:",
+                        "Tüm kategorileri göster.",
+                        "Tek bir kategori seçin.",
+                        "Birkaç kategoriyi birleştirin."
+                    ],
+                    "note": "Her kullanıcı filtrelerini bağımsız olarak özelleştirebilir."
+                },
+                {
+                    "title": "IP ve Sunucu Durumu",
+                    "description": "Sunucunun IP adresini ve mevcut durumunu gösterir:",
+                    "statuses": {
+                        "green": "Bağlı ve çalışır durumda.",
+                        "red": "Bağlantı kesildi veya iletişim yok."
+                    }
+                },
+                {
+                    "title": "Mikrofon Göstergesi",
+                    "description": "Mikrofonun mevcut durumunu gösterir:",
+                    "subitems": [
+                        "Susturuldu.",
+                        "Varlık.",
+                        "Ses aktarılıyor."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "audio_hardware",
+            "title": "Ses ve Donanım Yapılandırması",
+            "items": [
+                {
+                    "title": "Giriş ve Çıkış Seçimi",
+                    "description": "Ses yakalama ve oynatma cihazlarını bağımsız olarak atamanıza olanak tanır.",
+                    "subitems": [
+                        "Doğru çalışmayı sağlamak için:",
+                        "Mikrofona ve hoparlörlere erişim izinlerinin verildiğini doğrulayın.",
+                        "Gerektiğinde cihazları işletim sisteminde varsayılan olarak ayarlayın.",
+                        "Üretici gerektiriyorsa donanımınız için resmi sürücüleri yükleyin."
+                    ],
+                    "compatible": "Şunlarla uyumludur:",
+                    "compatible_list": [
+                        "Fiziksel ses kartları.",
+                        "USB arayüzleri.",
+                        "Bluetooth cihazları.",
+                        "Sanal ses kanalları.",
+                        "Profesyonel yönlendirme sistemleri."
+                    ]
+                },
+                {
+                    "title": "Granül Kanallar",
+                    "description": "Aşağıdakilerle entegrasyon için ses sinyallerinin belirli fiziksel kanallara (Kanal 1, Kanal 2 vb.) yönlendirilmesine olanak tanır:",
+                    "subitems": [
+                        "Karıştırma masaları.",
+                        "Sanal yönlendiriciler.",
+                        "Matris sistemleri.",
+                        "Profesyonel ses altyapıları."
+                    ]
+                },
+                {
+                    "title": "Donanımı Güncelle",
+                    "description": "Uygulamayı yeniden başlatmaya gerek kalmadan bağlı ses cihazlarının dinamik tespitini gerçekleştirir."
+                },
+                {
+                    "title": "Önceki Bağlantı ve İzinler",
+                    "description": "**Sunucuyu veya uygulamayı başlatmadan önce** her türlü cihazı (Bluetooth kulaklık/mikrofon veya harici ses kartları) bağlamanız önerilir. İşletim sisteminizde üçüncü taraf donanım ve yazılımlarının yapılandırıldığından ve web tarayıcısında gerekli izinleri verdiğinizden emin olun.",
+                    "important": "Oturumun ortasında bir cihazı bağlamak, sekmenin yenilenmesini veya 'Donanımı Yükselt'e basılmasını gerektirebilir. Mikrofonun tarayıcının izinler penceresinde doğru şekilde kabul edildiğinden emin olun."
+                }
+            ]
+        },
+        {
+            "id": "language_transcription",
+            "title": "Dil, Transkripsiyon ve Kelime Bilgisi IA",
+            "items": [
+                {
+                    "title": "Arayüz Dili",
+                    "description": "Uygulama dilini ve transkripsiyon motoru tarafından kullanılan birincil dili tanımlar."
+                },
+                {
+                    "title": "Fonetik Transkripsiyon Sözlüğü",
+                    "description": "Belirli terimleri, adları veya markaları otomatik olarak düzeltmenize olanak tanır.",
+                    "subitems": [
+                        "Yapılandırma parametreleri:",
+                        "Şu şekilde anlaşılır: Yapay zeka tarafından fonetik olarak tanınan metin.",
+                        "Düzeltme: Sohbete eklenecek son metin."
+                    ],
+                    "examples": {
+                        "label": "Fonetik Haritalama Örnekleri",
+                        "pairs": [
+                            [
+                                "bir telefon var",
+                                "iPhone"
+                            ],
+                            [
+                                "miquel",
+                                "Mikel"
+                            ],
+                            [
+                                "bana söyle",
+                                "Karartıcı"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "_tag": "trans_number",
+                    "title": "Konuşulan Sayıları Rakamlara Dönüştürme",
+                    "description": "Yapay zekanın sayısal ifadeleri kelimeler yerine doğrudan rakam olarak yazıya dökmesini sağlar (örn. 'on iki' yerine '12', 'eksi altı desibel' yerine '-6 dB').",
+                    "note": "Canlı yayında kanal, cue ve teknik seviye okumalarını hızlandırmak için şiddetle tavsiye edilir."
+                }
+            ]
+        },
+        {
+            "id": "babel_translation",
+            "title": "Yapay Zeka Çevirisi (Babel Engine)",
+            "items": [
+                {
+                    "title": "Babel Çeviri Motoru",
+                    "description": "Sistem, Ana Sunucuda %100 yerel olarak çalışan, optimize edilmiş bir sinir makinesi çevirisi (NMT) motoru olan Babel'i entegre eder. Diğer dillerde alınan mesajları, internete veri göndermeden veya harici API'lere bağlı olarak gerçek zamanlı olarak arayüzünüzün diline çevirin."
+                },
+                {
+                    "_tag": "babel_download",
+                    "title": "Çeviri Motorunu İndirme ve Yönetme (MADLAD)",
+                    "description": "Yapay zeka çeviri motoru, başlangıç yükleyicisini hafif tutmak (~400 MB) için isteğe bağlı indirilir (~2.75 GB):",
+                    "subitems": [
+                        "İndirme: Giriş yapıldığında sistem model klasörüne otomatik indirme önerir.",
+                        "Devre Dışı Bırak: Çevirisiz hafif modda çalışmak ve uyarıyı gizlemek için 'Devre Dışı Bırak'a tıklayabilirsiniz.",
+                        "Yeniden Etkinleştir: Pre-Launch veya uygulama ayarlarından istediğiniz zaman yeniden açabilirsiniz."
+                    ]
+                },
+                {
+                    "title": "Orijinal Mesajı Göster",
+                    "description": "Orijinal metni, çevrilmiş metnin hemen altında küçük, soluk bir formatta görüntülemenize olanak tanır ve gerekirse doğrudan doğrulamayı kolaylaştırır."
+                },
+                {
+                    "title": "Gelen Dil Filtresi",
+                    "description": "Hangi dillerin otomatik olarak çevrilmesi gerektiğini seçerek yapılandırın. Seçilmeyen diller orijinal ham haliyle görüntülenecektir."
+                },
+                {
+                    "title": "Babil Koruması (Sözlük ve Teknik Jargon)",
+                    "description": "Belirli teknik kullanım koşullarının veya özel adların çeviri motoru tarafından çarpıtılmasını önler. Bu hariç tutma listesine kelime eklediğinizde, Babel onları orijinal hallerinde tutarak onurlandıracaktır.",
+                    "note": "Özellikle eğlence jargonu ve ağları için önerilir:",
+                    "subitems": [
+                        "Bekleme / Bekleme",
+                        "Fader",
+                        "FOH (Evin Önü)",
+                        "Zaman kodu/SMPTE",
+                        "İşaret / Cuelist"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "messages_flow",
+            "title": "Mesajlar ve İletişim Akışı",
+            "items": [
+                {
+                    "title": "Yazıya Dönüştürülmüş Mesajları Alma",
+                    "description": "Aşağıdakiler arasında seçim yapabilirsiniz:",
+                    "subitems": [
+                        "Yalnızca transkripti göster.",
+                        "İlgili orijinal sesin yanında transkripsiyonu gösterin."
+                    ]
+                },
+                {
+                    "title": "Ses Alımı",
+                    "description": "Gelen sesi nasıl almak istediğinizi ayarlayın:",
+                    "subitems": [
+                        "Gerçek zamanlı olarak otomatik oynatma.",
+                        "İsteğe bağlı olarak manuel oynatma."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "hermes_tts",
+            "title": "Çevrimdışı Ses Sentezi (Hermes TTS)",
+            "items": [
+                {
+                    "title": "Çevrimdışı Sesli Okuma",
+                    "description": "Gelen kısa mesajların veya çevirilerin otomatik olarak okunmasına olanak tanır. Yalnızca işletim sisteminizin yerel ses motorunu (Web Konuşma API'si) kullanır, %100 yerel, özel ve internet gerektirmeden çalışır. Disk tüketimi 0 bayttır ve CPU/RAM üzerinde neredeyse sıfır etkisi vardır."
+                },
+                {
+                    "title": "Ayarlanabilir ve Bireysel Parametreler",
+                    "description": "İşlevselliği, cihazınızın Ayarlar sekmesinden tercihlerinize göre yapılandırın:",
+                    "subitems": [
+                        "Metin mesajlarını dinle: Yerel metinlerin okunmasını etkinleştirin. Kapatılırsa dildeki metinleriniz sessiz kalır ancak yabancı çevirileri duymaya devam edersiniz.",
+                        "Yabancı Ses Filtresi: Diğer dillerdeki orijinal sesleri engeller ve yalnızca çevirilerini okur.",
+                        "Aktif Filtrelere Tepki: Sistem, yalnızca kullanıcının sohbet filtrelerinde seçtiği kategori veya kanala karşılık gelen gelen mesajları okur (belirli bir grup tarafından filtrelendiyse yalnızca o gruptaki mesajları okur; 'Tümü' seçilirse hepsini okur).",
+                        "Ses Seçimi: İşletim sisteminizde yüklü olan mevcut sesler arasından seçim yapın veya uygulamanın dilini devralmak için Otomatik'te bırakın.",
+                        "Cinsiyet Filtresi: Uyumlu sesleri tonlarına göre (Erkek, Kadın veya Tümü) dinamik olarak filtreler.",
+                        "Okuma Hızı: Konuşmanın hızını son derece yavaş (0,5x) ile hızlı (2,0x) arasında ayarlar."
+                    ]
+                },
+                {
+                    "title": "Önekler ve Bağlam Tanıtımları",
+                    "description": "Anlatıcı, daha doğal bir okuma için mesajın türünü otomatik olarak algılar: salt metin mesajları için '[İsim] şunu yazdı...' ve sesli mesaj çevirilerini oynatırken '[İsim] şunu söyledi...' diyecektir."
+                },
+                {
+                    "title": "Birlikte Yaşama Kalkanı (Hermes-Kalkanı)",
+                    "description": "Mikrofonla akustik eşleşmeyi önlemek ve akıcı iletişime müdahale etmemek için Hermes TTS aşağıdaki durumlarda kendini otomatik olarak sessize alacaktır:",
+                    "subitems": [
+                        "Konuşma butonuna basıyorsunuz veya mikrofonunuzla kayıt yapıyorsunuz.",
+                        "Sohbetin yerel ses kuyruğunda aktif oynatma var.",
+                        "DOM'daki herhangi bir alt HTML5 medya oynatıcısı etkindir."
+                    ]
+                },
+                {
+                    "title": "Akıllı Yerelleştirilmiş Önekler",
+                    "description": "Mesajı okumadan önce, gönderen hakkında bağlam sağlamak için aktif dile göre otomatik olarak dinamik bir önek sentezlenir (örneğin: 'Jorge şunu yazdı: [mesaj]' veya 'Jorge şunu yazdı: [mesaj]')."
+                },
+                {
+                    "title": "Yerel Kalıcılık",
+                    "description": "Tüm ayarlar, terminalin localStorage'ında her kullanıcı için bağımsız olarak saklanır. Ses veya hız seçeneklerinizi değiştirmeniz, yerel ağdaki diğer kullanıcıları veya aynı tarayıcıda oturum açan diğer profilleri etkilemeyecektir."
+                }
+            ]
+        },
+        {
+            "id": "visual_haptic_alerts",
+            "title": "Görsel ve Dokunsal Uyarılar",
+            "items": [
+                {
+                    "title": "Uyarı Türleri",
+                    "description": "Cihazın özelliklerine bağlı olarak şunları kullanabilirsiniz:",
+                    "subitems": [
+                        "Ekranda görsel uyarılar.",
+                        "Titreşim.",
+                        "LED el feneri."
+                    ]
+                },
+                {
+                    "title": "Uyarı Özelleştirme",
+                    "description": "Her uyarının aşağıdakileri yapabileceğiniz görsel bir düzenleyicisi vardır:",
+                    "subitems": [
+                        "Parametreleri yapılandırın.",
+                        "Sonuçları önizleyin.",
+                        "Özel ayarları kaydedin."
+                    ]
+                },
+                {
+                    "title": "Görsel Zaman Çizelgesi",
+                    "description": "Renk ve opaklık gibi özellikleri kontrol eden ana kareleri oluşturmak ve konumlandırmak için tuvali çift tıklayın."
+                },
+                {
+                    "title": "Eğrileri yumuşatma",
+                    "description": "Aşağıdakileri kullanarak ana kareler arasındaki geçişi tanımlayın:",
+                    "subitems": [
+                        "Doğrusal veya Adım.",
+                        "Giriş Kolaylığı / Çıkış Kolaylığı / Giriş-Çıkış Kolaylığı.",
+                        "İkinci dereceden ve kübik eğriler."
+                    ]
+                },
+                {
+                    "title": "Dokunsal ve LED Desenler",
+                    "description": "Zaman çizelgesinde tanımlanan değerlere göre titreşim ve aydınlatma dizilerini tasarlayın.",
+                    "subitems": [
+                        "Değer 0,5'ten büyük → Etkinleştirildi.",
+                        "Değer 0,5'ten küçük → Devre dışı."
+                    ]
+                },
+                {
+                    "title": "İzinler",
+                    "description": "Bazı cihazların el fenerine erişebilmesi için kamera izinleri gerekir.",
+                    "important": "Uygulama gerektiğinde bu tür izinleri otomatik olarak isteyecektir."
+                }
+            ]
+        },
+        {
+            "id": "triggers",
+            "title": "Tetikleyiciler (GİRİŞ/ÇIKIŞ)",
+            "items": [
+                {
+                    "title": "OUT'u tetikler",
+                    "description": "Bir mesaj alındığında veya bir mesaj belirli anahtar kelimeler içerdiğinde teknik ekosisteme otomatik olarak komut gönderilmesine olanak sağlar."
+                },
+                {
+                    "title": "Tetikleyiciler IN",
+                    "description": "Sistem içerisinde otomatik eylemlerin gerçekleştirilmesi için harici sinyallerin alınmasına olanak tanırlar.",
+                    "subitems": [
+                        "Aşağıdakileri oluşturabilirler:",
+                        "Mesajlar veya uyarılar.",
+                        "Sesler.",
+                        "Resimler.",
+                        "Karmaşık otomatik akışlar."
+                    ]
+                },
+                {
+                    "title": "Tetikleyicilerin Enjeksiyonu IN",
+                    "description": "Oluşturulan içeriğin belirli bir filtreye mi yoksa mevcut tüm filtrelere mi gönderileceğini seçin."
+                },
+                {
+                    "title": "Desteklenen Protokoller",
+                    "description": "Aşağıdakilerle yerel entegrasyon:",
+                    "subitems": [
+                        "OSC (Açık Ses Kontrolü).",
+                        "MIDI.",
+                        "sACN.",
+                        "SMPTE Zaman Kodu."
+                    ]
+                },
+                {
+                    "title": "Anahtar Karelere Göre Eğriler",
+                    "description": "Bir komutun gelişiminin ana kareler ve enterpolasyon eğrileri kullanılarak zaman içinde modüle edilmesine olanak tanırlar. Gerçek zamanlı önizleme sistemi içerir."
+                },
+                {
+                    "title": "Tümünü Etkinleştir",
+                    "description": "Sol üst düğmeyi kullanarak tüm tetikleyicileri aynı anda etkinleştirin veya devre dışı bırakın."
+                },
+                {
+                    "title": "Arama Filtresi",
+                    "description": "Ada göre arama yaparak belirli tetikleyicileri hızlı bir şekilde bulun."
+                },
+                {
+                    "_tag": "triggers_timecode",
+                    "title": "Çoklu Aralık SMPTE Timecode",
+                    "description": "SMPTE Timecode protokolüne sahip Triggers IN içinde birden fazla bağımsız zaman aralığı yapılandırılabilir.",
+                    "subitems": [
+                        "Birden fazla zaman penceresi eklemeye izin verir (örn: 01:00:00:00 - 01:15:00:00 ve 02:00:00:00 - 02:30:00:00).",
+                        "Gelen sinyal tanımlanan aralıklardan herhangi birine denk geldiğinde tetikleyici otomatik çalışır.",
+                        "HH:MM:SS:FF doğrulamasıyla aralık ekleme (+), sıralama ve silme kontrolleri içerir."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "interface_customization",
+            "title": "Arayüz ve Özelleştirme",
+            "items": [
+                {
+                    "title": "Görsel Mod",
+                    "description": "Tercihlerinize bağlı olarak Açık Mod ve Karanlık Mod arasında seçim yapın."
+                },
+                {
+                    "title": "Özel Palet",
+                    "description": "Uygulama arayüzünün ana renklerini, arka plan renklerini ve görsel vurgularını özelleştirin."
+                },
+                {
+                    "title": "Varsayılanları Geri Yükle",
+                    "description": "Uygulamanın orijinal görsel ayarlarını ve fabrika paletini kurtarır."
+                },
+                {
+                    "title": "Ayarları Kaydet",
+                    "description": "Gelecek oturumlar için yapılan değişiklikleri kalıcı olarak saklar."
+                },
+                {
+                    "title": "Sohbet Özelleştirme",
+                    "description": "Ekran mesajlarının metin boyutunu, yazı tipi ağırlığını ve genel okunabilirliğini ayarlar."
+                }
+            ]
+        },
+        {
+            "id": "network_best_practices",
+            "title": "İyi Ağ ve Yapılandırma Uygulamaları",
+            "items": [
+                {
+                    "title": "Dağıtım Şeması (Adım Adım)",
+                    "description": "Bu altyapıyı doğru şekilde yapılandırmak için şu profesyonel yönergeleri izleyin:",
+                    "subitems": [
+                        "1. Ana Sunucunun Çalıştırılması: Ana bilgisayardaki (Ana) Talk-me sunucusunu başlatın. Bunun aktif bir lisansı olması gerekir.",
+                        "2. Yerel IP'nin Alınması: Sunucunun özel IP adresini bulun (örn: 192.168.1.150).",
+                        "3. Kablolu İstemci Bağlantısı (Ethernet): Destek bilgisayarlarını bir ağ kablosu (RJ45 Cat6 önerilir) kullanarak yönlendiriciye veya anahtara bağlayın. https://192.168.1.150:3000 adresindeki tarayıcıyı açarak erişin.",
+                        "4. İstemcileri Wi-Fi Aracılığıyla Bağlama (Cep Telefonları / Tabletler): Telefonların ve tabletlerin aynı yönlendirici tarafından verilen Wi-Fi ağına bağlı olduğundan emin olun. Aynı URL'yi mobil cihazınızın tarayıcısında açın."
+                    ]
+                },
+                {
+                    "title": "Tarayıcı Güvenliği Gereksinimleri (Kamera ve Mikrofon)",
+                    "description": "Modern tarayıcılar, bağlantı güvenli olmadığında kamera ve mikrofon gibi hassas cihazlara erişimi kısıtlar.",
+                    "important": "Bu nedenle sisteme erişim, kurulum sırasında sunucunun oluşturduğu kendinden imzalı yerel SSL sertifikası kabul edilerek HTTPS kullanılarak yapılmalıdır."
+                },
+                {
+                    "title": "Tam Egemenlik ve Bulut Bağımsızlığı",
+                    "description": "Talk-me, ağ altyapınız içerisinde %100 otonom olarak çalışacak şekilde tasarlanmıştır. Kurulduktan sonra kalıcı bir İnternet bağlantısı veya üçüncü taraf API'ler gerektirmez. WAN (İnternet) erişiminin kesilmesi durumunda kampüs içi iletişim, çeviri, yerel deşifre ve uyarılar kesintisiz olarak çalışmaya devam edecektir."
+                }
+            ]
+        },
+        {
+            "id": "data_sovereignty",
+            "title": "Veri Egemenliği ve Gizliliği",
+            "items": [
+                {
+                    "title": "Altyapı Kontrolünüz Altında",
+                    "description": "Talk-me tarafından oluşturulan tüm bilgiler çalışma ortamınızda kalır. Bu şunları içerir:",
+                    "subitems": [
+                        "Veritabanı.",
+                        "İletişim geçmişi.",
+                        "Ayarlar.",
+                        "Yapay zeka modelleri.",
+                        "İlgili dosyalar ve kaynaklar."
+                    ]
+                },
+                {
+                    "title": "Yerel İşleme",
+                    "description": "Desteklenen yerel modelleri kullanırken analiz, transkripsiyon ve çeviri işlemleri doğrudan donanımınızda çalışır.",
+                    "extra": "Bilgiler işlenmek üzere harici sunuculara gönderilmez."
+                },
+                {
+                    "title": "Gizlilik ve Güvenlik",
+                    "description": "Talk-me, teknolojik egemenlik ve toplam veri kontrolü modeli altında tasarlandı.",
+                    "extra": "Konuşmalarınız, ayarlarınız ve kaynaklarınız özel olarak altyapınızda barındırılır ve aşağıdakiler üzerinde tam kontrol sağlar:",
+                    "subitems": [
+                        "Sistem kullanılabilirliği.",
+                        "Bilgilerin gizliliği.",
+                        "Verilerin depolanması.",
+                        "Erişim ve güvenlik yönetimi."
+                    ]
+                }
+            ]
+        }
+    ],
+    "network_diagram": {
+        "internet": "İNTERNET",
+        "optional": "OPSİYONEL",
+        "ethernet_cable": "ETHERNET KABLOSU RJ45",
+        "ethernet_red": "Ethernet Ağı / LAN Kablosu",
+        "wifi_label": "WIFI/WLAN",
+        "master_server": "ANA SUNUCU",
+        "licensed": "LİSANSLI",
+        "router": "YÖNLENDİRİCİ",
+        "device1": "Cihaz 1: Ana PC (Kablo)",
+        "device2": "Cihaz 2: PC Desteği (Kablo)",
+        "device3": "Cihaz 3: Dizüstü Bilgisayar (Wi-Fi)",
+        "device4": "Cihaz 4: Tablet (Wi-Fi)",
+        "device5": "Cihaz 5: Cep Telefonu (Wi-Fi)",
+        "https_url": "https://192.168.1.150:3000"
+    },
+    "common": {
+        "important": "Önemli"
+    },
+    "guide_version": "60.2.0"
+}

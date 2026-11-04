@@ -362,5 +362,31 @@
   },
   "settings": {
     "translation_disabled": "Системный перевод отключен"
+  },
+  "qr_modal": {
+    "tab_wifi": "Connect",
+    "tab_cert": "Certificate",
+    "tab_app": "Join",
+    "instruction_wifi": "Сканируйте для автоматического подключения к сети Wi-Fi",
+    "instruction_cert": "Сканируйте для загрузки и установки сертификата SSL CA (устраняет предупреждения безопасности).",
+    "instruction_app": "Сканируйте для входа в Talk.me",
+    "loading": "Генерация безопасных QR-кодов в реальном времени...",
+    "btn_close": "Закрыть",
+    "btn_zoom": "Нажмите на QR для увеличения",
+    "btn_copied": "Скопировано!",
+    "instruction_ethernet": "The server is connected via Ethernet cable (LAN). Connect your phone to the same local network as the server.",
+    "wifi_password_label": "Password:",
+    "copy_pass_btn": "Copy",
+    "ethernet_title": "Wired Local Network (Ethernet)",
+    "server_ip_label": "Server IP:",
+    "wifi_form_title": "Configure Guest Wi-Fi Network",
+    "wifi_ssid_placeholder": "Wi-Fi Network Name (SSID)",
+    "wifi_pass_placeholder": "Wi-Fi Password",
+    "btn_save_wifi": "Save and Generate QR",
+    "btn_edit_wifi": "Edit network",
+    "saving": "Saving...",
+    "ssid_required": "Wi-Fi network name is required.",
+    "copy_ip_btn": "Copy IP",
+    "copied_ip": "IP Copied!"
   }
 }

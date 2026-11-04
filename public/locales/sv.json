@@ -362,5 +362,31 @@
   },
   "settings": {
     "translation_disabled": "Systemöversättning inaktiverad"
+  },
+  "qr_modal": {
+    "tab_wifi": "Connect",
+    "tab_cert": "Certificate",
+    "tab_app": "Join",
+    "instruction_wifi": "Skanna för att ansluta automatiskt till Wi-Fi-nätverket",
+    "instruction_cert": "Skanna för att hämta och installera SSL CA-certifikatet (tar bort säkerhetsvarningar).",
+    "instruction_app": "Skanna för att ansluta till Talk.me",
+    "loading": "Genererar säkra QR-koder i realtid...",
+    "btn_close": "Stäng",
+    "btn_zoom": "Tryck på QR för att förstora",
+    "btn_copied": "Kopierat!",
+    "instruction_ethernet": "The server is connected via Ethernet cable (LAN). Connect your phone to the same local network as the server.",
+    "wifi_password_label": "Password:",
+    "copy_pass_btn": "Copy",
+    "ethernet_title": "Wired Local Network (Ethernet)",
+    "server_ip_label": "Server IP:",
+    "wifi_form_title": "Configure Guest Wi-Fi Network",
+    "wifi_ssid_placeholder": "Wi-Fi Network Name (SSID)",
+    "wifi_pass_placeholder": "Wi-Fi Password",
+    "btn_save_wifi": "Save and Generate QR",
+    "btn_edit_wifi": "Edit network",
+    "saving": "Saving...",
+    "ssid_required": "Wi-Fi network name is required.",
+    "copy_ip_btn": "Copy IP",
+    "copied_ip": "IP Copied!"
   }
 }

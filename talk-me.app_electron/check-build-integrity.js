@@ -19,7 +19,9 @@ const isWin = process.platform === 'win32';
 const requiredFiles = [
     path.join(__dirname, 'app_build', 'main.js'),
     path.join(__dirname, 'app_build', 'preload.js'),
-    path.join(__dirname, 'app_build', 'server.js')
+    path.join(__dirname, 'app_build', 'server.js'),
+    path.join(__dirname, 'app_build', 'wifi-detector.js'),
+    path.join(__dirname, 'app_build', 'cert-manager.js')
 ];
 
 if (isWin) {

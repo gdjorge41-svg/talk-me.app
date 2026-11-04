@@ -364,5 +364,31 @@
   },
   "settings": {
     "translation_disabled": "Traducció del sistema desactivada"
+  },
+  "qr_modal": {
+    "tab_wifi": "Connectar",
+    "tab_cert": "Certificat",
+    "tab_app": "Entrar",
+    "instruction_wifi": "Escaneja per connectar-te automàticament a la xarxa Wi-Fi",
+    "instruction_cert": "Escaneja per descarregar i instal·lar el Certificat SSL CA (elimina avisos de seguretat).",
+    "instruction_app": "Escaneja per entrar a Talk.me",
+    "loading": "Generant codis QR segurs en temps real...",
+    "btn_close": "Tancar",
+    "btn_zoom": "Toca el QR per ampliar",
+    "btn_copied": "Copiat!",
+    "instruction_ethernet": "El servidor està connectat per cable LAN (Ethernet). Connecta el mòbil a la mateixa xarxa local.",
+    "wifi_password_label": "Contrasenya:",
+    "copy_pass_btn": "Copiar",
+    "ethernet_title": "Xarxa Local Cablejada (Ethernet)",
+    "server_ip_label": "IP del Servidor:",
+    "wifi_form_title": "Configurar xarxa Wi-Fi per a convidats",
+    "wifi_ssid_placeholder": "Nom de la xarxa Wi-Fi (SSID)",
+    "wifi_pass_placeholder": "Contrasenya Wi-Fi",
+    "btn_save_wifi": "Desar i Generar QR",
+    "btn_edit_wifi": "Editar xarxa",
+    "saving": "Desant...",
+    "ssid_required": "El nom de la xarxa Wi-Fi és obligatori.",
+    "copy_ip_btn": "Copiar IP",
+    "copied_ip": "IP Copiada!"
   }
 }

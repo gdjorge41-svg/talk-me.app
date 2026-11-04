@@ -22,6 +22,8 @@ xcopy /s /e /y /r /exclude:exclude-list.txt ..\storage app_build\storage\
 xcopy /s /e /y /r /exclude:exclude-list.txt ..\views app_build\views\
 if exist ..\triggers xcopy /s /e /y /r /exclude:exclude-list.txt ..\triggers app_build\triggers\
 copy /y ..\server.js app_build\
+copy /y ..\wifi-detector.js app_build\
+copy /y ..\cert-manager.js app_build\
 copy /y ..\package.json app_build\
 copy /y ..\package-lock.json app_build\
 copy /y ..\server.key app_build\

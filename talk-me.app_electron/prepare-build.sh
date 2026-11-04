@@ -58,6 +58,8 @@ if [ -d "../triggers" ]; then
 fi
 
 cp -f ../server.js app_build/
+[ -f ../wifi-detector.js ] && cp -f ../wifi-detector.js app_build/ || true
+[ -f ../cert-manager.js ] && cp -f ../cert-manager.js app_build/ || true
 cp -f ../package.json app_build/
 cp -f ../package-lock.json app_build/
 [ -f ../server.key ] && cp -f ../server.key app_build/ || true

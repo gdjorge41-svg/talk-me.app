@@ -8,6 +8,7 @@ dashboard/node_modules/
 # Carpetas de compilación y empaquetado
 talk-me.app_electron/app_build/
 talk-me.app_electron/dist_final/
+talk-me.app_electron/github/
 dashboard/dist/
 
 # Copias de seguridad y archivos de desarrollo temporales

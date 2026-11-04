@@ -342,6 +342,29 @@ export function setupEliteTransport(socket) {
             return;
         }
 
+        // --- ⚡ [v60.EARLY-ALERT] Disparo Atómico Milisegundo 0 (PTT & Auto VAD) ---
+        if (!window._alertedStreams) window._alertedStreams = new Set();
+        const streamId = payload.streamId;
+        if (streamId && !window._alertedStreams.has(streamId)) {
+            // 1. Mutex síncrono inmediato (Anti-Ráfaga Web Audio)
+            window._alertedStreams.add(streamId);
+            // 2. Tupla de contingencia para deduplicación robusta
+            window._lastEarlyAlert = {
+                user: payload.user || '',
+                streamId: streamId,
+                timestamp: Date.now()
+            };
+            // 3. Poda defensiva LRU (Límite estricto 200 para sesiones 24/7 sin fuga de RAM)
+            if (window._alertedStreams.size > 200) {
+                const oldest = window._alertedStreams.values().next().value;
+                window._alertedStreams.delete(oldest);
+            }
+            // 4. Disparo de alertas visuales/físicas sincronizadas en milisegundo 0
+            if (typeof window.triggerEarlyStreamAlert === 'function') {
+                window.triggerEarlyStreamAlert(payload);
+            }
+        }
+
         // Obtener o inicializar estado para este flujo específico (Multiplexing)
         let state = streamStates.get(payload.streamId);
         if (!state) {

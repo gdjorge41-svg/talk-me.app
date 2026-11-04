@@ -1,0 +1,1318 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   ESTILOS DEL EDITOR DE ALERTAS (Paridad Total con Triggers)
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Modal contenedor */
+.triggers-content {
+    position: relative !important;
+    background: #12121e !important;
+    border: 1px solid #2a2a3e;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    border-radius: 20px !important;
+    max-height: 90vh;
+    /* Permite scroll interno total */
+    display: flex;
+    flex-direction: column;
+    width: 650px !important;
+    /* Ancho estándar de Triggers */
+    overflow: hidden !important;
+}
+
+.triggers-scroll-wrapper {
+    overflow-y: auto;
+    padding: 24px;
+    flex: 1;
+    width: 100%;
+}
+
+/* Filas Clickables en Ajustes (CALCO EXACTO DE .trigger-item) */
+.compact-toggle.alert-row.clickable-alert-row {
+    display: flex;
+    align-items: center;
+    gap: 12px !important;
+    /* Paridad total con Triggers */
+    padding: 12px !important;
+    /* Paridad total con Triggers */
+    margin-bottom: 8px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 12px !important;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.compact-toggle.alert-row.clickable-alert-row:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+    /* Paridad total con Triggers */
+    transform: translateX(2px);
+    /* Paridad total con Triggers */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Indicador de estado ON/OFF estilo Trigger (CALCO EXACTO - INGENIERÍA DE PRECISIÓN) */
+.alert-status-toggle,
+#section-alertas .trigger-toggle {
+    flex-shrink: 0;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    transition: all 0.2s ease;
+    padding: 0 6px;
+    border: 1px solid;
+    position: relative;
+    line-height: normal;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Estado OFF (Triggers Original: Coral/Rojo unificado en toda la interfaz) */
+    background: rgba(255, 100, 60, 0.18) !important;
+    border-color: rgba(255, 100, 60, 0.4) !important;
+    color: rgba(255, 160, 100, 0.9) !important;
+    margin-right: 10px !important;
+    margin-left: 0 !important;
+}
+
+/* Ocultar checkbox real pero dejarlo funcional */
+.alert-status-toggle input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Texto dinámico para compatibilidad con contenedores .alert-status-toggle */
+.alert-status-toggle::before {
+    content: "OFF";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+/* Estado ON (Triggers Original: Verde unificado en toda la interfaz) */
+.alert-status-toggle.tgl-on,
+.alert-status-toggle:has(input:checked),
+#section-alertas .trigger-toggle.tgl-on {
+    background: rgba(0, 200, 100, 0.2) !important;
+    border-color: rgba(0, 200, 100, 0.45) !important;
+    color: #00d46a !important;
+}
+
+.alert-status-toggle.tgl-on::before,
+.alert-status-toggle:has(input:checked)::before {
+    content: "ON" !important;
+}
+
+.alert-status-toggle:hover,
+#section-alertas .trigger-toggle:hover {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+}
+
+/* Estado de capacidad no disponible (Hardware ausente) - Estilo OFF Bloqueado */
+.compact-toggle.disabled-capability {
+    opacity: 0.4 !important;
+    pointer-events: none !important;
+    filter: grayscale(0.5);
+    cursor: default;
+}
+
+.compact-toggle.disabled-capability .alert-status-toggle,
+.compact-toggle.disabled-capability .trigger-toggle {
+    background: rgba(255, 100, 60, 0.08) !important;
+    border-color: rgba(255, 100, 60, 0.2) !important;
+    color: rgba(255, 160, 100, 0.5) !important;
+}
+
+.compact-toggle.disabled-capability .status-text::before {
+    content: "OFF" !important;
+}
+
+.alert-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Más espacio para iconos grandes */
+}
+
+.alert-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Canvas wrapper professional - Paridad Milimétrica */
+.canvas-wrapper {
+    background: #0A0A0F;
+    border-radius: 20px;
+    padding: 8px;
+    border: 1px solid #2A2A3E;
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.canvas-wrapper canvas {
+    display: block;
+    width: 100%;
+    height: 200px;
+    /* Igualado a Triggers original para paridad total */
+    cursor: crosshair;
+    touch-action: none;
+}
+
+/* Timeline Header & Controls */
+.keyframes-list h4 {
+    color: #FF6B35;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0 auto 15px auto;
+    border-bottom: 1.5px solid rgba(255, 107, 53, 0.4);
+    padding-bottom: 10px;
+    width: 80%;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* [v60.Pro] Soporte widget duración 2 niveles para alertas */
+.global-duration.duration-widget-pro,
+.duration-widget-pro {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 17, 26, 0.75);
+    border: 1px solid rgba(142, 68, 173, 0.4);
+    border-radius: 10px;
+    padding: 2px 6px 3px 6px;
+    box-sizing: border-box;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.duration-label-pro {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #94A3B8;
+    line-height: 10px;
+    margin: 3px 0 2px 0;
+    padding: 0;
+    user-select: none;
+    text-align: center;
+    display: block;
+}
+
+.duration-control-pro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.duration-btn-pro {
+    background: #232338;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #E2E8F0;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    padding: 0;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.duration-btn-pro:hover {
+    background: #8E44AD;
+    border-color: #A569BD;
+    color: #FFFFFF;
+    box-shadow: 0 0 8px rgba(142, 68, 173, 0.5);
+}
+
+.duration-btn-pro:active {
+    transform: scale(0.92);
+}
+
+.duration-btn-pro svg {
+    pointer-events: none;
+}
+
+.duration-input-wrapper-pro {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #0A0A0F;
+    border: 1px solid #2A2A3E;
+    border-radius: 6px;
+    height: 22px;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+
+.duration-input-pro {
+    width: 26px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: monospace, Consolas, sans-serif;
+    text-align: right;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+.duration-unit-pro {
+    font-size: 10px;
+    color: #94A3B8;
+    font-weight: 600;
+    margin-left: 2px;
+    user-select: none;
+}
+
+.timeline-header>div:first-child {
+    text-align: center;
+    flex: 1;
+}
+
+.timeline-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.timeline-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #fff;
+}
+
+.timeline-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent-blue);
+}
+
+.timeline-btn.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 15px rgba(123, 104, 238, 0.3);
+}
+
+.timeline-btn.live {
+    color: #ff5252;
+    border-color: #ff525244;
+}
+
+.timeline-btn.live:hover {
+    background: #ff525222;
+    border-color: #ff5252;
+}
+
+/* Property Editor (Exact Match with Triggers) */
+.keyframe-properties {
+    background: #1A1A2E;
+    border-radius: 20px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: row;
+    /* Restaurado a horizontal para Vibración/Linterna/Triggers */
+    gap: 10px;
+    align-items: flex-end;
+    border: 1px solid #2A2A3E;
+}
+
+/* Fila para el editor de Pantalla (que es el único que usa 2 filas) */
+.kf-prop-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.prop-group {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.prop-group label {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Colores de etiqueta idénticos a Triggers */
+.prop-group:nth-child(1) label {
+    color: #FF6B35;
+}
+
+/* Nombre */
+.prop-group:nth-child(2) label {
+    color: #7B68EE;
+}
+
+/* Tiempo */
+.prop-group:nth-child(3) label {
+    color: #00D26A;
+}
+
+/* Valor */
+.prop-group:nth-child(4) label {
+    color: #3B82F6;
+}
+
+/* Color */
+.prop-group:nth-child(5) label {
+    color: #888;
+}
+
+/* Easing */
+
+.prop-group input,
+.prop-group select {
+    width: 100%;
+    background: #0A0A0F;
+    border: 1px solid #2A2A3E;
+    border-radius: 10px;
+    color: #fff;
+    padding: 8px 10px;
+    font-size: 13px;
+    height: 38px;
+}
+
+.prop-group input:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+}
+
+/* Stepper Professional */
+.prop-stepper {
+    display: flex;
+    align-items: center;
+    background: #0A0A0F;
+    border: 1px solid #2A2A3E;
+    border-radius: 12px;
+    height: 38px;
+    padding: 0 4px 0 10px;
+    gap: 4px;
+    position: relative;
+}
+
+.prop-stepper input {
+    border: none !important;
+    padding: 0 !important;
+    height: auto !important;
+    background: transparent !important;
+}
+
+.prop-stepper-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.prop-stepper-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 4px;
+    width: 20px;
+    height: 15px;
+    color: #888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sidebar List Paridad */
+.keyframes-list {
+    background: #1A1A2E;
+    border-radius: 20px;
+    padding: 14px;
+    border: 1px solid #2A2A3E;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    max-height: 350px;
+    /* Tamaño máximo para que conviva con el scroll global */
+    overflow: hidden;
+}
+
+.keyframes-list h4 {
+    margin: 0 0 10px 0;
+    color: #FF6B35;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom: 1.5px solid rgba(255, 107, 53, 0.4);
+    padding-bottom: 10px;
+}
+
+.keyframes-scroll-area {
+    overflow-y: auto !important;
+    padding-right: 4px;
+    flex: 1;
+}
+
+
+/* Rejilla de Pantalla optimizada con máxima especificidad para evitar saltos de línea */
+#pantallaEditorUI .keyframe-item.pantalla-item {
+    grid-template-columns: minmax(70px, 1fr) 52px 42px 25px 48px 38px 48px 38px 25px !important;
+    font-size: 9px !important;
+    gap: 3px !important;
+    width: 100% !important;
+    padding: 8px 10px !important;
+    box-sizing: border-box;
+}
+
+/* Forzado estricto de una sola línea en Pantalla */
+.keyframe-item.pantalla-item>div {
+    white-space: nowrap !important;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.keyframe-item {
+    display: grid;
+    grid-template-columns: minmax(95px, 1.5fr) minmax(70px, 1fr) minmax(75px, 1fr) minmax(70px, 1fr) 25px;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    background: #0A0A0F;
+    border-radius: 8px;
+    border-left: 4px solid #FF6B35;
+    cursor: pointer;
+    font-size: 10.5px;
+    transition: all 0.15s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.keyframe-item.selected {
+    background: #23233a;
+    border-left-color: #FFFFFF;
+}
+
+.kf-name,
+.kf-time,
+.kf-value,
+.kf-easing,
+.kf-color,
+.kf-hold,
+.kf-curva-i,
+.kf-curva-c,
+.kf-hold-c,
+.kf-color-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centrar contenidos en sus columnas */
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    min-width: 0;
+}
+
+.kf-color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+
+.kf-name {
+    color: #FF6B35;
+    font-weight: 600;
+}
+
+.kf-time {
+    color: #7B68EE;
+}
+
+.kf-value,
+.kf-color {
+    color: #00D26A;
+    justify-content: center;
+}
+
+.kf-easing {
+    color: #3B82F6;
+}
+
+.kf-hold {
+    color: #aaa;
+}
+
+.kf-easing {
+    color: #3B82F6;
+}
+
+.keyframe-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.keyframe-actions button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.keyframe-actions button:hover {
+    opacity: 1;
+}
+
+/* Botones finales */
+.action-buttons {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+    flex-shrink: 0;
+    padding-top: 12px;
+    border-top: 1px solid #2A2A3E;
+    justify-content: center;
+}
+
+.btn-restore {
+    background: rgba(255, 107, 53, 0.05);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    color: #FF6B35;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-restore:hover {
+    background: rgba(255, 107, 53, 0.12);
+    border-color: #FF6B35;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+}
+
+.btn-restore svg {
+    flex-shrink: 0;
+}
+
+.delete-kf-btn,
+.kf-del-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.delete-kf-btn:hover,
+.kf-del-btn:hover {
+    opacity: 1;
+}
+
+.btn-add {
+    background: #FF6B35;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-add svg {
+    margin-top: 0px;
+    transform: translateY(0px);
+    /* Ajuste óptico para centrado con texto */
+    flex-shrink: 0;
+}
+
+.btn-add:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+}
+
+.btn-save,
+.btn-cancel {
+    flex: 1;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-save {
+    background: color-mix(in srgb, var(--success) 20%, transparent);
+    color: var(--success);
+    border: 1px solid color-mix(in srgb, var(--success) 70%, transparent);
+    box-shadow: 0px 0px 10px color-mix(in srgb, var(--success) 20%, transparent);
+}
+
+.btn-save:hover {
+    background: color-mix(in srgb, var(--success) 100%, transparent);
+    color: var(--primary-bg);
+    border: 1px solid color-mix(in srgb, var(--success) 100%, transparent);
+    box-shadow: 0px 0px 10px color-mix(in srgb, var(--success) 50%, transparent);
+}
+
+.btn-cancel {
+    background: color-mix(in srgb, var(--primary-bg) 25%, transparent);
+    color: color-mix(in srgb, var(--text-primary) 30%, transparent);
+    border: 1px solid #3A3A4E;
+}
+
+.btn-cancel:hover {
+    background: color-mix(in srgb, var(--text-primary) 10%, transparent);
+    color: color-mix(in srgb, var(--primary-bg) 100%, transparent);
+    border: 1px solid #3A3A4E;
+}
+
+
+
+
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MODO CLARO — Override completo de Triggers & Alert Editor Modals
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] .triggers-content {
+    background: var(--modal-bg, #FFFFFF) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Alert rows (filas clickables en ajustes de alertas) */
+[data-theme="light"] .compact-toggle.alert-row.clickable-alert-row {
+    background: var(--secondary-bg) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="light"] .compact-toggle.alert-row.clickable-alert-row:hover {
+    background: var(--item-bg-hover) !important;
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Canvas wrapper */
+[data-theme="light"] .canvas-wrapper {
+    background: var(--modal-nav-bg);
+    border-color: var(--border-color);
+}
+
+/* Timeline header border */
+[data-theme="light"] .timeline-header {
+    border-bottom-color: var(--border-color);
+}
+
+/* Timeline buttons */
+[data-theme="light"] .timeline-btn {
+    background: var(--item-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .timeline-btn:hover {
+    background: var(--item-bg-hover);
+}
+
+/* Keyframe properties panel */
+[data-theme="light"] .keyframe-properties {
+    background: var(--modal-nav-bg);
+    border-color: var(--border-color);
+}
+
+/* Keyframes list sidebar */
+[data-theme="light"] .keyframes-list {
+    background: var(--modal-nav-bg);
+    border-color: var(--border-color);
+}
+
+/* Keyframe item individual */
+[data-theme="light"] .keyframe-item {
+    background: var(--secondary-bg);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .keyframe-item.selected {
+    background: var(--item-bg-hover);
+}
+
+/* Prop group inputs/selects */
+[data-theme="light"] .prop-group input,
+[data-theme="light"] .prop-group select {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+}
+
+/* Prop stepper */
+[data-theme="light"] .prop-stepper {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+}
+
+[data-theme="light"] .prop-stepper input {
+    color: var(--text-primary) !important;
+}
+
+/* Prop stepper buttons */
+[data-theme="light"] .prop-stepper-btn {
+    background: var(--item-bg);
+    color: var(--text-secondary);
+}
+
+/* Action buttons (save/cancel) separator */
+[data-theme="light"] .action-buttons {
+    border-top-color: var(--border-color);
+}
+
+/* Cancel button */
+[data-theme="light"] .btn-cancel {
+    background: var(--modal-nav-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .btn-cancel:hover {
+    background: var(--item-bg-hover);
+}
+
+/* Delete/action buttons text visibility */
+[data-theme="light"] .keyframe-actions button,
+[data-theme="light"] .delete-kf-btn,
+[data-theme="light"] .kf-del-btn {
+    color: var(--text-secondary);
+}
+
+/* Animation point (circle) */
+[data-theme="light"] .animation-point {
+    background: var(--modal-nav-bg);
+    border-color: var(--border-color);
+}
+
+/* #keyframeEditorUI overrides from styles.css (triggers modal) */
+[data-theme="light"] #keyframeEditorUI .action-buttons {
+    border-top-color: var(--border-color);
+}
+
+[data-theme="light"] #keyframeEditorUI .btn-cancel {
+    background: var(--modal-nav-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="light"] #keyframeEditorUI .trigger-item {
+    background: var(--secondary-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] #keyframeEditorUI .trigger-item:hover {
+    background: var(--item-bg-hover);
+}
+
+
+/* Trigger tabs (IN/OUT) */
+[data-theme="light"] .trigger-tabs-container {
+    background: var(--modal-nav-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] .trigger-tab:hover {
+    background: var(--item-bg-hover);
+}
+
+/* Trigger action/payload */
+[data-theme="light"] .trigger-action-payload {
+    background: var(--modal-nav-bg);
+    border-color: var(--border-color);
+}
+
+/* Trigger IN textarea */
+[data-theme="light"] #triggerMsgTextIn {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+}
+
+/* Media controls */
+[data-theme="light"] .btn-emoji {
+    background: var(--item-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] .btn-emoji:hover {
+    background: var(--item-bg-hover);
+}
+
+[data-theme="light"] .btn-media-action {
+    background: var(--item-bg);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .btn-media-action:hover {
+    background: var(--item-bg-hover);
+    color: var(--text-primary);
+}
+
+/* Media preview placeholder */
+[data-theme="light"] .media-preview {
+    background: var(--modal-nav-bg);
+    border-color: var(--border-color);
+}
+
+/* SMPTE Monitor */
+[data-theme="light"] .smpte-monitor-container {
+    background: var(--modal-nav-bg);
+    border-color: var(--border-color);
+}
+
+/* Master toggle flat handle */
+[data-theme="light"] .master-toggle-flat .toggle-handle {
+    background: var(--secondary-bg);
+}
+
+/* btn-add hover — keep visible in light mode */
+[data-theme="light"] .btn-add:hover {
+    background: var(--text-primary);
+    color: var(--secondary-bg);
+}
+
+/* Keyframe list title (accent colors stay) */
+[data-theme="light"] .keyframes-list h4 {
+    border-bottom-color: rgba(255, 107, 53, 0.25);
+}
+
+/* Restore button background */
+[data-theme="light"] .btn-restore {
+    background: rgba(255, 107, 53, 0.08);
+}
+
+[data-theme="light"] .btn-restore:hover {
+    background: rgba(255, 107, 53, 0.15);
+}
+
+/* KF color dot border for light bg */
+[data-theme="light"] .kf-color-dot {
+    border-color: var(--border-color);
+}
+
+/* Field group inputs inside triggers modal */
+[data-theme="light"] .field-group input,
+[data-theme="light"] .field-group select,
+[data-theme="light"] .talkme-select-container select {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+}
+
+/* Type selector buttons */
+[data-theme="light"] .type-btn {
+    background: var(--item-bg);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .type-btn:hover,
+[data-theme="light"] .type-btn.active {
+    background: var(--accent-primary);
+    color: #fff;
+}
+
+/* Overrides adicionales específicos para triggers y keyframes en modo claro */
+[data-theme="light"] .triggers-content .keyframes-list h4 {
+    color: var(--text-primary);
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="light"] #keyframeEditorUI .keyframe-actions button {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] #keyframeEditorUI .keyframe-actions button:hover {
+    color: var(--accent-orange);
+}
+
+[data-theme="light"] .triggers-content .prop-stepper-btn {
+    background: var(--modal-nav-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .triggers-content .prop-stepper-btn:hover {
+    background: var(--item-bg-hover);
+}
+
+[data-theme="light"] .prop-stepper-input {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] #triggerName {
+    background: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] #triggerName::placeholder {
+    color: var(--text-secondary) !important;
+    opacity: 0.7;
+}
+
+/* Forzar visibilidad del botón de cerrar en modo claro */
+[data-theme="light"] .modal-close-icon,
+[data-theme="light"] #keyframeEditorUI .modal-close-icon {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .modal-close-icon svg,
+[data-theme="light"] #keyframeEditorUI .modal-close-icon svg {
+    stroke: var(--text-primary) !important;
+}
+
+/* Forzar visibilidad de iconos en botones de la línea de tiempo */
+[data-theme="light"] .timeline-btn {
+    background: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .timeline-btn svg {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .timeline-btn svg [fill="white"],
+[data-theme="light"] .timeline-btn svg [fill="#ffffff"] {
+    fill: var(--text-primary) !important;
+}
+
+[data-theme="light"] .timeline-btn svg [stroke="white"],
+[data-theme="light"] .timeline-btn svg [stroke="#ffffff"],
+[data-theme="light"] .timeline-btn svg[stroke="white"],
+[data-theme="light"] .timeline-btn svg[stroke="#ffffff"] {
+    stroke: var(--text-primary) !important;
+}
+
+[data-theme="light"] .timeline-btn.active {
+    background: var(--accent-primary) !important;
+    border-color: var(--accent-primary) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="light"] .timeline-btn.active svg [fill="white"],
+[data-theme="light"] .timeline-btn.active svg [fill="#ffffff"] {
+    fill: #ffffff !important;
+}
+
+[data-theme="light"] .timeline-btn.active svg [stroke="white"],
+[data-theme="light"] .timeline-btn.active svg [stroke="#ffffff"],
+[data-theme="light"] .timeline-btn.active svg[stroke="white"],
+[data-theme="light"] .timeline-btn.active svg[stroke="#ffffff"] {
+    stroke: #ffffff !important;
+}
+
+
+@media (max-width: 600px) {
+
+    /* Contenedor principal adaptable */
+    .triggers-content {
+        width: 100% !important;
+        max-width: 100vw !important;
+        height: 100% !important;
+        max-height: 100dvh !important;
+        border-radius: 0 !important;
+        border: none !important;
+    }
+
+    .triggers-scroll-wrapper {
+        padding: 12px 10px !important;
+    }
+
+    /* Reducción de títulos y subtítulos */
+    .modal-title-small {
+        font-size: 26px !important;
+    }
+
+    .modal-subtitle {
+        font-size: 11px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* Header de Timeline apilado */
+    .timeline-header {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding-bottom: 10px !important;
+    }
+
+    .timeline-header h3 {
+        font-size: 14px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .timeline-header p {
+        font-size: 10px !important;
+        opacity: 0.7;
+    }
+
+    .timeline-header>div:last-child {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        gap: 6px !important;
+    }
+
+    /* Ajuste de controles globales */
+    .global-duration {
+        margin-bottom: 0;
+    }
+
+    .timeline-controls {
+        gap: 4px !important;
+    }
+
+    .timeline-controls .timeline-btn {
+        width: 36px !important;
+        height: 40px !important;
+        min-width: 36px !important;
+        border-radius: 10px !important;
+    }
+
+    .timeline-controls .timeline-btn svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .btn-add span {
+        display: none !important;
+    }
+
+    .btn-add {
+        width: 36px !important;
+        height: 40px !important;
+        min-width: 36px !important;
+        padding: 0 !important;
+        border-radius: 10px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        margin: 0 0 0 auto !important;
+    }
+
+    .btn-add svg {
+        width: 18px !important;
+        height: 18px !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    /* Propiedades del Keyframe (Editor) */
+    .keyframe-properties {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        padding: 10px !important;
+    }
+
+    .prop-group {
+        flex: 1 1 calc(50% - 8px) !important;
+        min-width: 120px;
+    }
+
+    .prop-group label {
+        font-size: 9px !important;
+    }
+
+    .prop-group input,
+    .prop-group select,
+    .prop-stepper {
+        height: 32px !important;
+        font-size: 11px !important;
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       LISTA DE KEYFRAMES (Cirugía de Columnas)
+       ────────────────────────────────────────────────────────────────────────── */
+
+    .keyframes-list {
+        padding: 8px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .keyframes-list h4 {
+        font-size: 10px !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Keyframe Item Estándar (Linterna/Vibración - 5 Columnas) */
+    #linternaEditorUI .keyframe-item,
+    #vibracionEditorUI .keyframe-item {
+        grid-template-columns: 0.8fr 64px 62px 62px 30px !important;
+        font-size: 8.5px !important;
+        padding: 8px 10px !important;
+        /* Más padding para alejar del borde */
+        gap: 6px !important;
+    }
+
+    /* Forzar Fila Única en Linterna y Vibración (Mobile) */
+    #linternaKfProps,
+    #vibracionKfProps {
+        flex-wrap: nowrap !important;
+        overflow-x: hidden !important;
+        padding: 10px 5px !important;
+        gap: 6px !important;
+    }
+
+    #linternaKfProps .prop-group,
+    #vibracionKfProps .prop-group {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+    }
+
+    #linternaKfProps .prop-group label,
+    #vibracionKfProps .prop-group label {
+        font-size: 7.5px !important;
+    }
+
+    /* Keyframe Item Pantalla (9 Columnas - Extrema Densidad) */
+    #pantallaEditorUI .keyframe-item.pantalla-item {
+        grid-template-columns: 0.9fr 44px 34px 22px 38px 32px 38px 32px 24px !important;
+        font-size: 7px !important;
+        padding: 8px 8px !important;
+        gap: 3px !important;
+    }
+
+    /* Ajuste de alineación para nombres */
+    .kf-name {
+        justify-content: flex-start !important;
+        /* Alineado a la izquierda */
+        text-align: left !important;
+        font-size: 8.5px !important;
+        max-width: 100%;
+        padding-left: 2px;
+    }
+
+    #pantallaEditorUI .kf-name {
+        font-size: 7.5px !important;
+    }
+
+    .kf-color-dot {
+        width: 10px !important;
+        height: 10px !important;
+    }
+
+    /* Botones de acción del item */
+    .keyframe-actions button svg {
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    /* Botones de acción finales */
+    .action-buttons {
+        gap: 8px !important;
+        padding-top: 10px !important;
+    }
+
+    .btn-save,
+    .btn-cancel {
+        padding: 10px 15px !important;
+        font-size: 12px !important;
+    }
+
+    /* Estado no disponible (p.ej. Vibración en iPhone) */
+    .alert-row.unavailable {
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+    }
+}

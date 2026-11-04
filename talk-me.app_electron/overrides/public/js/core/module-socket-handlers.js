@@ -787,15 +787,27 @@ class SocketHandlers {
 
         console.log(`🔍 [SocketHandlers] Visibility: ${!isHidden} | TimeDiff: ${timeSinceLastAlert}ms | Matches: ${matchesFilter} | isOwnMaster: ${isOwnMaster} | isMySub: ${isMySubUser} | activeFilters: ${JSON.stringify(window.activeFilters)} | showAll: ${showAllInState || showAllInDOM} | msgCategory: ${data.category}`);
 
-        if (!isOwnMaster) {
-            console.log(`🚀 [SocketHandlers] Disparando alerta visual para: ${data.user} ${isMySubUser ? '(Sub-usuario propio)' : ''}`);
-            if (typeof window.showMessageAlert === 'function') {
-                window.showMessageAlert(data.user, data.text);
-            }
+        // --- 🛡️ [v60.EARLY-ALERT] Deduplicación con Doble Llave Atómica (Audio previo vs Texto Puro) ---
+        const isAlertedByStream = Boolean(data.streamId && window._alertedStreams && window._alertedStreams.has(data.streamId));
+        const isAlertedByRecentVoice = Boolean(
+            window._lastEarlyAlert &&
+            data.user === window._lastEarlyAlert.user &&
+            (now - window._lastEarlyAlert.timestamp < 10000)
+        );
+        const alreadyAlerted = isAlertedByStream || isAlertedByRecentVoice;
 
-            // La vibración sí la mantenemos filtrada por categoría para evitar molestias excesivas
-            if (matchesFilter && typeof window.triggerVibration === 'function') {
-                window.triggerVibration();
+        if (!isOwnMaster) {
+            if (!alreadyAlerted) {
+                console.log(`🚀 [SocketHandlers] Disparando alerta visual para: ${data.user} ${isMySubUser ? "(Sub-usuario propio)" : ""}`);
+                if (typeof window.showMessageAlert === 'function') {
+                    window.showMessageAlert(data.user, data.text);
+                }
+                // La vibración sí la mantenemos filtrada por categoría para evitar molestias excesivas
+                if (matchesFilter && typeof window.triggerVibration === 'function') {
+                    window.triggerVibration();
+                }
+            } else {
+                console.log(`⚡ [SocketHandlers] Alerta visual ya consumida en tiempo real para: ${data.user} (streamId: ${data.streamId || "tupla-voz"})`);
             }
             window._lastAlertTime = now;
         }

@@ -3162,6 +3162,21 @@ if (btnManageCatLogin) {
         openCategoryManager();
     });
 }
+
+// Visor de PIN en pantalla de login (Mostrar/Ocultar con icono contextual)
+const btnToggleLoginPin = document.getElementById('btnToggleLoginPin');
+const pinInputElement = document.getElementById('pinInput');
+if (btnToggleLoginPin && pinInputElement) {
+    btnToggleLoginPin.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isPassword = pinInputElement.type === 'password';
+        pinInputElement.type = isPassword ? 'text' : 'password';
+        btnToggleLoginPin.innerHTML = isPassword
+            ? `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
+            : `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+    });
+}
 usernameInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         unlockAudio();
@@ -3479,49 +3494,101 @@ if (imageModal && fullImage && closeViewer) {
     };
 
     const updateTransform = (smooth = false) => {
-        fullImage.style.transition = smooth ? 'transform 0.3s ease' : 'none';
+        fullImage.style.transition = smooth ? 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
         fullImage.style.transform = `translate(${posX}px, ${posY}px) scale(${currentScale})`;
-        if (currentScale > 1.05) fullImage.classList.add('zoomed');
-        else fullImage.classList.remove('zoomed');
+        if (currentScale > 1.05) {
+            fullImage.classList.add('zoomed');
+            fullImage.style.cursor = isDragging ? 'grabbing' : 'grab';
+        } else {
+            fullImage.classList.remove('zoomed');
+            fullImage.style.cursor = 'zoom-in';
+        }
     };
 
     closeViewer.addEventListener('click', () => {
         imageModal.classList.add('hidden');
         resetZoom();
+        if (fullImage.dataset.isBlobUrl === 'true' && fullImage.src) {
+            URL.revokeObjectURL(fullImage.src);
+            fullImage.removeAttribute('data-is-blob-url');
+        }
+        document.body.classList.remove('viewer-open');
     });
 
     imageModal.addEventListener('click', (e) => {
         if (e.target === imageModal || e.target.classList.contains('viewer-content')) {
             imageModal.classList.add('hidden');
             resetZoom();
+            if (fullImage.dataset.isBlobUrl === 'true' && fullImage.src) {
+                URL.revokeObjectURL(fullImage.src);
+                fullImage.removeAttribute('data-is-blob-url');
+            }
+            document.body.classList.remove('viewer-open');
         }
     });
 
+    // Clic para alternar zoom (1x <-> 2.2x)
     fullImage.addEventListener('click', (e) => {
         e.stopPropagation();
         if (currentScale > 1.1) {
             resetZoom();
         } else {
-            currentScale = 2.5;
-            updateTransform(true); // Suave al hacer clic
+            currentScale = 2.2;
+            updateTransform(true);
         }
     });
 
-    // Soporte para Mouse (Desktop Pan & Zoom)
-    fullImage.addEventListener('mousedown', (e) => {
+    // Clic derecho alternativo para zoom
+    fullImage.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         if (currentScale > 1.1) {
+            resetZoom();
+        } else {
+            currentScale = 2.2;
+            updateTransform(true);
+        }
+    });
+
+    // Zoom fluido con rueda de ratón (Wheel)
+    imageModal.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY < 0 ? 0.25 : -0.25;
+        const newScale = Math.min(Math.max(1, currentScale + delta), 4.5);
+        if (newScale !== currentScale) {
+            currentScale = newScale;
+            if (currentScale <= 1) {
+                posX = 0;
+                posY = 0;
+            } else {
+                // Clamping dinámico al hacer zoom con rueda
+                const rect = fullImage.getBoundingClientRect();
+                const viewportW = window.innerWidth;
+                const viewportH = window.innerHeight;
+                const maxOffX = Math.max(0, (rect.width - viewportW) / 2) / currentScale;
+                const maxOffY = Math.max(0, (rect.height - viewportH) / 2) / currentScale;
+                posX = Math.min(Math.max(posX, -maxOffX), maxOffX);
+                posY = Math.min(Math.max(posY, -maxOffY), maxOffY);
+            }
+            updateTransform(false);
+        }
+    }, { passive: false });
+
+    // Arrastre con ratón (Desktop Pan)
+    fullImage.addEventListener('mousedown', (e) => {
+        if (currentScale > 1.05) {
             isDragging = true;
             startX = e.pageX - posX;
             startY = e.pageY - posY;
             fullImage.style.cursor = 'grabbing';
-            e.preventDefault(); // Evita el arrastre por defecto del navegador
+            e.preventDefault();
         }
     });
 
     window.addEventListener('mousemove', (e) => {
-        if (isDragging && currentScale > 1.1) {
+        if (isDragging && currentScale > 1.05) {
             const dx = e.pageX - startX;
-            const dy = e.pageY - posY;
+            const dy = e.pageY - startY;
 
             const rect = fullImage.getBoundingClientRect();
             const viewportW = window.innerWidth;
@@ -3538,24 +3605,15 @@ if (imageModal && fullImage && closeViewer) {
     });
 
     window.addEventListener('mouseup', () => {
-        isDragging = false;
-        fullImage.style.cursor = currentScale > 1.1 ? 'zoom-out' : 'zoom-in';
-    });
-
-    // Botn derecho para Zoom (como pidi el usuario)
-    fullImage.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        if (currentScale > 1.1) {
-            resetZoom();
-        } else {
-            currentScale = 2.5;
-            updateTransform(true);
+        if (isDragging) {
+            isDragging = false;
+            fullImage.style.cursor = currentScale > 1.05 ? 'grab' : 'zoom-in';
         }
     });
 
-    // Soporte para Gestos Tctiles (Pinch & Pan)
+    // Gestos táctiles móviles (Pinch-to-zoom con 2 dedos & Pan con 1 dedo)
     fullImage.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
+        if (e.touches.length === 1 && currentScale > 1.05) {
             isDragging = true;
             startX = e.touches[0].pageX - posX;
             startY = e.touches[0].pageY - posY;
@@ -3569,33 +3627,28 @@ if (imageModal && fullImage && closeViewer) {
     }, { passive: true });
 
     fullImage.addEventListener('touchmove', (e) => {
-        if (e.touches.length === 1 && isDragging && currentScale > 1) {
-            // Desplazamiento (Pan) con lmites (clamping)
+        if (e.touches.length === 1 && isDragging && currentScale > 1.05) {
             const dx = e.touches[0].pageX - startX;
             const dy = e.touches[0].pageY - startY;
 
-            // Clculo de lmites dinmicos basado en el zoom
             const rect = fullImage.getBoundingClientRect();
             const viewportW = window.innerWidth;
             const viewportH = window.innerHeight;
 
-            // Solo permitir pan si la dimensin es mayor que el viewport
             const maxOffX = Math.max(0, (rect.width - viewportW) / 2) / currentScale;
             const maxOffY = Math.max(0, (rect.height - viewportH) / 2) / currentScale;
 
-            // Aplicar lmites con margen de seguridad
             posX = Math.min(Math.max(dx, -maxOffX), maxOffX);
             posY = Math.min(Math.max(dy, -maxOffY), maxOffY);
 
-            updateTransform(false); // Instantneo al arrastrar
+            updateTransform(false);
         } else if (e.touches.length === 2 && startDist > 0) {
-            // Zoom (Pinch)
             const currentDist = Math.hypot(
                 e.touches[0].pageX - e.touches[1].pageX,
                 e.touches[0].pageY - e.touches[1].pageY
             );
             const delta = currentDist / startDist;
-            const newScale = Math.min(Math.max(1, currentScale * delta), 5);
+            const newScale = Math.min(Math.max(1, currentScale * delta), 4.5);
             currentScale = newScale;
             startDist = currentDist;
             updateTransform(false);
@@ -3605,6 +3658,9 @@ if (imageModal && fullImage && closeViewer) {
     fullImage.addEventListener('touchend', () => {
         isDragging = false;
         startDist = 0;
+        if (currentScale <= 1) {
+            resetZoom();
+        }
     });
 }
 
@@ -4266,7 +4322,12 @@ updateChatFontSize();
 function updateDynamicIPDisplays(primaryUrl) {
     if (!primaryUrl) return;
 
-    // [v59.19] Limpiar URL para visualizacin (quitar https:// y / final)
+    // [v60.QR-ACCESS] Si en Electron primaryUrl es localhost, usar la IP LAN real si existe
+    if ((primaryUrl.includes('localhost') || primaryUrl.includes('127.0.0.1')) && window._serverIps && !window._serverIps.includes('localhost') && !window._serverIps.includes('127.0.0.1')) {
+        primaryUrl = window._serverIps;
+    }
+
+    // [v59.19] Limpiar URL para visualización (quitar https:// y / final)
     const displayUrl = primaryUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
     // 1. Chat Header (Preservar estilo Mono)
@@ -4274,28 +4335,21 @@ function updateDynamicIPDisplays(primaryUrl) {
     if (connectionStatusIP) {
         if (connectionStatusIP.textContent !== displayUrl) connectionStatusIP.textContent = displayUrl;
         connectionStatusIP.style.cursor = 'pointer';
-        connectionStatusIP.title = 'Click para copiar URL completa';
+        connectionStatusIP.title = 'Click para abrir Códigos QR de acceso';
 
         if (!connectionStatusIP._hasListener) {
             connectionStatusIP.onclick = (e) => {
                 if (e) e.stopImmediatePropagation();
-                const urlToCopy = connectionStatusIP.dataset.fullUrl || primaryUrl;
-                copyTextToClipboard(urlToCopy).then(() => {
-                    const originalText = connectionStatusIP.textContent;
-                    connectionStatusIP.textContent = window.localesData?.interface?.copied || 'Copiado!';
-                    connectionStatusIP.style.color = 'var(--text-secondary)';
-                    setTimeout(() => {
-                        connectionStatusIP.textContent = originalText;
-                        connectionStatusIP.style.color = '';
-                    }, 2000);
-                });
+                if (typeof window.openAccessQrModal === 'function') {
+                    window.openAccessQrModal();
+                }
             };
             connectionStatusIP._hasListener = true;
         }
         connectionStatusIP.dataset.fullUrl = primaryUrl;
     }
 
-    // 2. Login Modal (Botn Pill interactivo)
+    // 2. Login Modal (Botón interactivo que despliega los Códigos QR a pantalla completa)
     const loginIpDisplay = document.getElementById('loginIpDisplay');
     if (loginIpDisplay) {
         let btn = document.getElementById('loginConnectBtn');
@@ -4306,11 +4360,28 @@ function updateDynamicIPDisplays(primaryUrl) {
         if (!btn) {
             // [v60.Elite] Solo creamos el HTML la PRIMERA VEZ para evitar Layout Shifts y Ghost Clicks
             loginIpDisplay.innerHTML = `
-                <button class="login-connect-btn" id="loginConnectBtn" title="Copiar URL completa al portapapeles">
+                <button class="login-connect-btn" id="loginConnectBtn" title="Abrir Códigos QR de Acceso (Wi-Fi, Certificado, URL)">
                     <span class="login-connect-icon">
-                        <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        <svg fill="currentColor" viewBox="0 0 36 36" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                            <title>qr-code-line</title>
+                            <path d="M5.6,4A1.6,1.6,0,0,0,4,5.6V12h8V4ZM10,10H6V6h4Z" class="clr-i-outline clr-i-outline-path-1"></path>
+                            <path d="M4,30.4A1.6,1.6,0,0,0,5.6,32H12V24H4ZM6,26h4v4H6Z" class="clr-i-outline clr-i-outline-path-2"></path>
+                            <path d="M24,32h6.4A1.6,1.6,0,0,0,32,30.4V24H24Zm2-6h4v4H26Z" class="clr-i-outline clr-i-outline-path-3"></path>
+                            <path d="M30.4,4H24v8h8V5.6A1.6,1.6,0,0,0,30.4,4ZM30,10H26V6h4Z" class="clr-i-outline clr-i-outline-path-4"></path>
+                            <polygon points="20 10 20 8 16 8 16 12 18 12 18 10 20 10" class="clr-i-outline clr-i-outline-path-5"></polygon>
+                            <rect x="12" y="12" width="2" height="2" class="clr-i-outline clr-i-outline-path-6"></rect>
+                            <rect x="14" y="14" width="4" height="2" class="clr-i-outline clr-i-outline-path-7"></rect>
+                            <polygon points="20 6 20 8 22 8 22 4 14 4 14 8 16 8 16 6 20 6" class="clr-i-outline clr-i-outline-path-8"></polygon>
+                            <rect x="4" y="14" width="2" height="4" class="clr-i-outline clr-i-outline-path-9"></rect>
+                            <polygon points="12 16 12 18 10 18 10 14 8 14 8 18 6 18 6 20 4 20 4 22 8 22 8 20 10 20 10 22 12 22 12 20 14 20 14 16 12 16" class="clr-i-outline clr-i-outline-path-10"></polygon>
+                            <polygon points="20 16 22 16 22 18 24 18 24 16 26 16 26 14 22 14 22 10 20 10 20 12 18 12 18 14 20 14 20 16" class="clr-i-outline clr-i-outline-path-11"></polygon>
+                            <polygon points="18 30 14 30 14 32 22 32 22 30 20 30 20 28 18 28 18 30" class="clr-i-outline clr-i-outline-path-12"></polygon>
+                            <polygon points="22 20 22 18 20 18 20 16 18 16 18 18 16 18 16 20 18 20 18 22 20 22 20 20 22 20" class="clr-i-outline clr-i-outline-path-13"></polygon>
+                            <rect x="30" y="20" width="2" height="2" class="clr-i-outline clr-i-outline-path-14"></rect>
+                            <rect x="22" y="20" width="6" height="2" class="clr-i-outline clr-i-outline-path-15"></rect>
+                            <polygon points="30 14 28 14 28 16 26 16 26 18 28 18 28 20 30 20 30 18 32 18 32 16 30 16 30 14" class="clr-i-outline clr-i-outline-path-16"></polygon>
+                            <rect x="20" y="22" width="2" height="6" class="clr-i-outline clr-i-outline-path-17"></rect>
+                            <polygon points="14 28 16 28 16 26 18 26 18 24 16 24 16 20 14 20 14 28" class="clr-i-outline clr-i-outline-path-18"></polygon>
                         </svg>
                     </span>
                     <span class="login-connect-label">${connectAtStr}</span>
@@ -4322,54 +4393,410 @@ function updateDynamicIPDisplays(primaryUrl) {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopImmediatePropagation();
-                    const urlToCopy = btn.dataset.fullUrl || primaryUrl;
-                    copyTextToClipboard(urlToCopy).then(() => {
-                        const urlSpan = btn.querySelector('.login-connect-url');
-                        const lblSpan = btn.querySelector('.login-connect-label');
-                        const iconSpan = btn.querySelector('.login-connect-icon');
-                        if (!urlSpan || !lblSpan || !iconSpan) return;
-
-                        const origUrl = urlSpan.textContent;
-                        const origLbl = lblSpan.textContent;
-                        const origIcon = iconSpan.innerHTML;
-
-                        btn.classList.add('copied');
-                        iconSpan.innerHTML = `
-                            <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        `;
-                        const copiedStr = (typeof localesData !== 'undefined' && localesData && localesData.interface && localesData.interface.copied)
-                            ? localesData.interface.copied
-                            : ((window.localesData && window.localesData.interface && window.localesData.interface.copied)
-                                ? window.localesData.interface.copied
-                                : 'Copiado!');
-                        lblSpan.textContent = copiedStr;
-
-                        setTimeout(() => {
-                            btn.classList.remove('copied');
-                            iconSpan.innerHTML = origIcon;
-                            lblSpan.textContent = origLbl;
-                            urlSpan.textContent = origUrl;
-                        }, 2000);
-                    });
+                    if (typeof window.openAccessQrModal === 'function') {
+                        window.openAccessQrModal();
+                    }
                 });
             }
         } else {
-            // [v60.Elite] ACTUALIZACIN QUIRRGICA: Solo cambiamos los nodos de texto si han variado
+            // [v60.Elite] Actualización de texto si varía la IP
             const urlSpan = btn.querySelector('.login-connect-url');
             const lblSpan = btn.querySelector('.login-connect-label');
             if (urlSpan && urlSpan.textContent !== displayUrl) urlSpan.textContent = displayUrl;
             if (lblSpan && lblSpan.textContent !== connectAtStr) lblSpan.textContent = connectAtStr;
         }
-        // Actualizar la URL de referencia en el dataset (por si cambia dinmicamente)
         if (btn) btn.dataset.fullUrl = primaryUrl;
     }
 }
 
-/**
- * Utilidad universal para copiar al portapapeles con fallback.
- */
+// --- 📱 [v60.QR-ACCESS] Controlador del Modal Centro de Acceso QR (Pantalla Completa) ---
+let _cachedQrData = null;
+let _activeQrTab = 'app';
+
+window.openAccessQrModal = async function() {
+    const modal = document.getElementById('accessQrModal');
+    if (!modal) return;
+
+    // Detectar si venimos desde el Login (userModal activo) o desde la app/chat
+    const userModal = document.getElementById('userModal');
+    const isLoginActive = userModal && !userModal.classList.contains('hidden');
+
+    if (isLoginActive) {
+        modal.classList.add('from-login');
+        modal.classList.remove('from-chat');
+    } else {
+        modal.classList.add('from-chat');
+        modal.classList.remove('from-login');
+    }
+
+    modal.classList.remove('hidden');
+    document.body.classList.add('qr-modal-open');
+
+    // Registrar eventos de pestañas, zoom y cierre una sola vez
+    if (!modal._qrInit) {
+        modal._qrInit = true;
+
+        // Botón inferior estilo Términos de Servicio
+        const closeBtn = document.getElementById('btnCloseAccessQrModal');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.closeAccessQrModal();
+            });
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                window.closeAccessQrModal();
+            }
+        });
+
+        // Pestañas
+        const tabBtns = modal.querySelectorAll('.qr-tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                _activeQrTab = tab;
+                renderActiveQrTab();
+            });
+        });
+
+        // Zoom al hacer clic en el QR (solo si tiene clase .qr-zoomable y NO es un formulario)
+        const svgWrapper = document.getElementById('qrSvgWrapper');
+        if (svgWrapper) {
+            svgWrapper.addEventListener('click', (e) => {
+                // Prevenir que clics dentro de inputs o botones del formulario abran el zoom
+                if (svgWrapper.classList.contains('is-form') || !svgWrapper.classList.contains('qr-zoomable')) {
+                    return;
+                }
+                if (e.target.closest('form, input, button, label')) {
+                    return;
+                }
+                window.openQrZoomModal();
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const imgModal = document.getElementById('imageModal');
+                if (imgModal && !imgModal.classList.contains('hidden')) {
+                    window.closeQrZoomModal();
+                } else if (!modal.classList.contains('hidden')) {
+                    window.closeAccessQrModal();
+                }
+            }
+        });
+    }
+
+    // Actualizar traducciones dinámicas en los 24 idiomas según window.currentLang
+    updateQrModalI18n();
+
+    // Cargar datos de QRs del servidor
+    await loadAccessQrData();
+    renderActiveQrTab();
+};
+
+window.closeAccessQrModal = function() {
+    const modal = document.getElementById('accessQrModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('from-chat', 'from-login');
+        document.body.classList.remove('qr-modal-open');
+    }
+};
+
+window.openQrZoomModal = function() {
+    const activeSvg = document.querySelector("#qrSvgWrapper svg");
+    let svgString = "";
+
+    if (activeSvg) {
+        svgString = activeSvg.outerHTML;
+    } else if (_cachedQrData) {
+        svgString = _activeQrTab === "wifi" ? _cachedQrData.wifiQr : (_activeQrTab === "cert" ? _cachedQrData.certQr : _cachedQrData.appQr);
+    }
+
+    if (!svgString) return;
+
+    if (!svgString.includes("xmlns=")) {
+        svgString = svgString.replace("<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
+    }
+
+    const blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+    const blobUrl = URL.createObjectURL(blob);
+
+    if (window.fullImage && window.imageModal) {
+        window.fullImage.src = blobUrl;
+        window.fullImage.dataset.isBlobUrl = "true";
+        window.imageModal.classList.remove("hidden");
+        document.body.classList.add("viewer-open");
+    }
+};
+
+window.closeQrZoomModal = function() {
+    const closeBtn = document.getElementById("closeViewer");
+    if (closeBtn) {
+        closeBtn.click();
+    } else if (window.imageModal) {
+        window.imageModal.classList.add("hidden");
+        document.body.classList.remove("viewer-open");
+    }
+};
+
+function getQrI18nText(key, fallback) {
+    if (typeof localesData !== 'undefined' && localesData && localesData.qr_modal && localesData.qr_modal[key]) {
+        return localesData.qr_modal[key];
+    }
+    return fallback;
+}
+
+function updateQrModalI18n() {
+    const tabAppText = document.getElementById('qrTabAppText');
+    const tabCertText = document.getElementById('qrTabCertText');
+    const tabWifiText = document.getElementById('qrTabWifiText');
+    const closeBtn = document.getElementById('btnCloseAccessQrModal');
+
+    if (tabAppText) tabAppText.textContent = getQrI18nText('tab_app', 'Entrar');
+    if (tabCertText) tabCertText.textContent = getQrI18nText('tab_cert', 'Certificado');
+    if (tabWifiText) tabWifiText.textContent = getQrI18nText('tab_wifi', 'Conectar');
+    if (closeBtn) closeBtn.textContent = getQrI18nText('btn_close', 'Cerrar');
+}
+
+async function loadAccessQrData() {
+    try {
+        const sId = (window.socket && window.socket.id) ? window.socket.id : '';
+        const url = sId ? `/api/access-qr-data?socketId=${encodeURIComponent(sId)}` : '/api/access-qr-data';
+        const res = await fetch(url);
+        if (res.ok) {
+            const data = await res.json();
+            if (data.ok) {
+                _cachedQrData = data;
+            }
+        }
+    } catch (e) {
+        console.warn('⚠️ Error cargando datos de acceso QR:', e.message);
+    }
+}
+
+let _isEditingWifi = false;
+
+function renderActiveQrTab() {
+    const svgWrapper = document.getElementById('qrSvgWrapper');
+    const instructionText = document.getElementById('qrInstructionsText');
+    const detailUrl = document.getElementById('qrDetailUrl');
+    if (!svgWrapper || !instructionText || !detailUrl) return;
+
+    updateQrModalI18n();
+
+    if (!_cachedQrData) {
+        svgWrapper.innerHTML = '<div class="qr-loading-spinner"></div>';
+        instructionText.textContent = getQrI18nText('loading', 'Generando códigos QR seguros en tiempo real...');
+        detailUrl.textContent = '';
+        return;
+    }
+
+    // PESTAÑA 1: Entrar a Talk.me (Por defecto)
+    if (_activeQrTab === 'app') {
+        _isEditingWifi = false;
+        svgWrapper.classList.remove('is-ethernet', 'is-form');
+        svgWrapper.classList.add('qr-zoomable');
+        svgWrapper.innerHTML = _cachedQrData.appQr || '';
+        instructionText.textContent = getQrI18nText('instruction_app', 'Escanea para entrar a Talk.me');
+
+        const appUrl = _cachedQrData.appUrl || '';
+        const copyIpBtnText = getQrI18nText('copy_ip_btn', 'Copiar IP');
+        
+        detailUrl.innerHTML = `
+            <button type="button" class="qr-ip-copy-pill" id="btnCopyAppIp" title="Copiar dirección del servidor">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                <span id="btnCopyAppIpLabel">${appUrl}</span>
+            </button>
+        `;
+
+        const copyBtn = document.getElementById('btnCopyAppIp');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                copyTextToClipboard(appUrl).then(() => {
+                    const lbl = document.getElementById('btnCopyAppIpLabel');
+                    if (lbl) {
+                        const original = lbl.textContent;
+                        lbl.textContent = getQrI18nText('copied_ip', '¡Copiado!');
+                        setTimeout(() => { if (lbl) lbl.textContent = original; }, 2000);
+                    }
+                });
+            });
+        }
+    } 
+    // PESTAÑA 2: Certificado SSL Root CA
+    else if (_activeQrTab === 'cert') {
+        _isEditingWifi = false;
+        svgWrapper.classList.remove('is-ethernet', 'is-form');
+        svgWrapper.classList.add('qr-zoomable');
+        svgWrapper.innerHTML = _cachedQrData.certQr || '';
+        instructionText.textContent = getQrI18nText('instruction_cert', 'Escanea para descargar e instalar el Certificado SSL CA (elimina avisos de advertencia).');
+        
+        const certUrl = _cachedQrData.certUrl || '';
+        detailUrl.innerHTML = `<span style="color:var(--text-secondary);font-size:12.5px;font-family:monospace;">${certUrl}</span>`;
+    } 
+    // PESTAÑA 3: Conectar a Wi-Fi (Consola de Configuración Máster / QR)
+    else if (_activeQrTab === 'wifi') {
+        // [v60.Elite] Soberanía Unificada: Solo es Máster si tiene el rol activo o candidatura legítima reconocida (idéntico al botón de engranaje de categorías)
+        const isMaster = Boolean(window.isMaster || window.isMasterCandidate || (_cachedQrData && _cachedQrData.isMaster && window.electronAPI));
+        const hasWifiQr = !!_cachedQrData.wifiQr && !_isEditingWifi;
+
+        if (hasWifiQr) {
+            // Modo Wi-Fi con QR generado y listo (Sin mostrar la contraseña por seguridad y privacidad)
+            svgWrapper.classList.remove('is-ethernet', 'is-form');
+            svgWrapper.classList.add('qr-zoomable');
+            svgWrapper.innerHTML = _cachedQrData.wifiQr;
+            instructionText.textContent = getQrI18nText('instruction_wifi', 'Escanea para conectar automáticamente a la red Wi-Fi');
+            
+            // Solo mostramos el nombre de la red Wi-Fi (SSID), NUNCA la contraseña en pantalla
+            let infoHtml = `SSID: <strong style="color:var(--accent-primary, #6366f1)">${_cachedQrData.wifiSsid || ''}</strong>`;
+            if (isMaster) {
+                infoHtml += `
+                    <button type="button" class="qr-wifi-btn-edit" id="btnEditWifi" title="Modificar red Wi-Fi">
+                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.2" fill="none">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span>${getQrI18nText('btn_edit_wifi', 'Editar red')}</span>
+                    </button>
+                `;
+            }
+            detailUrl.innerHTML = infoHtml;
+
+            const editBtn = document.getElementById('btnEditWifi');
+            if (editBtn) {
+                editBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    _isEditingWifi = true;
+                    renderActiveQrTab();
+                });
+            }
+        } else if (isMaster) {
+            // Consola Máster de configuración táctica con visor de contraseña y botón compacto
+            svgWrapper.classList.remove('qr-zoomable', 'is-ethernet');
+            svgWrapper.classList.add('is-form');
+            
+            const currentSsid = _cachedQrData.wifiSsid || '';
+            const currentPass = _cachedQrData.wifiPass || '';
+
+            svgWrapper.innerHTML = `
+                <form class="qr-wifi-form" id="masterWifiForm">
+                    <span class="qr-wifi-form-title">${getQrI18nText('wifi_form_title', 'Configurar red Wi-Fi para invitados')}</span>
+                    <div class="qr-wifi-input-group">
+                        <input type="text" id="inputWifiSsid" class="qr-wifi-input" placeholder="${getQrI18nText('wifi_ssid_placeholder', 'Nombre de red Wi-Fi (SSID)')}" value="${currentSsid}" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    </div>
+                    <div class="qr-wifi-input-group qr-pass-input-wrapper">
+                        <input type="password" id="inputWifiPass" class="qr-wifi-input" placeholder="${getQrI18nText('wifi_pass_placeholder', 'Contraseña Wi-Fi')}" value="${currentPass}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        <button type="button" class="qr-toggle-pass-btn" id="btnTogglePass" title="Mostrar/Ocultar contraseña">
+                            <svg id="passEyeIcon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                <line x1="1" y1="1" x2="23" y2="23"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <button type="submit" class="qr-wifi-btn-save" id="btnSaveMasterWifi">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" fill="none">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>${getQrI18nText('btn_save_wifi', 'Guardar y Generar QR')}</span>
+                    </button>
+                </form>
+            `;
+
+            // En modo edición/configuración no duplicamos textos para evitar saturar el espacio vertical
+            instructionText.textContent = '';
+            detailUrl.innerHTML = `${getQrI18nText('server_ip_label', 'IP del Servidor:')} <strong style="color:var(--accent-primary, #6366f1)">${_cachedQrData.serverIp || ''}</strong>`;
+
+            // Toggle para mostrar/ocultar contraseña con icono SVG
+            const toggleBtn = document.getElementById('btnTogglePass');
+            const passInput = document.getElementById('inputWifiPass');
+            if (toggleBtn && passInput) {
+                toggleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isPass = passInput.type === 'password';
+                    passInput.type = isPass ? 'text' : 'password';
+                    toggleBtn.innerHTML = isPass
+                        ? `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
+                        : `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+                });
+            }
+
+            // Envío del formulario
+            const form = document.getElementById('masterWifiForm');
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const ssidVal = document.getElementById('inputWifiSsid')?.value?.trim();
+                    const passVal = document.getElementById('inputWifiPass')?.value?.trim() || '';
+                    if (!ssidVal) {
+                        alert(getQrI18nText('ssid_required', 'Debes indicar el nombre de la red Wi-Fi.'));
+                        return;
+                    }
+
+                    const saveBtn = document.getElementById('btnSaveMasterWifi');
+                    if (saveBtn) {
+                        saveBtn.disabled = true;
+                        saveBtn.innerHTML = `<span>${getQrI18nText('saving', 'Guardando...')}</span>`;
+                    }
+
+                    try {
+                        const sId = (window.socket && window.socket.id) ? window.socket.id : '';
+                        const res = await fetch('/api/save-wifi-config', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ ssid: ssidVal, password: passVal, security: passVal ? 'WPA' : 'nopass', socketId: sId })
+                        });
+                        const data = await res.json();
+                        if (data.ok) {
+                            _cachedQrData.wifiQr = data.wifiQr;
+                            _cachedQrData.wifiSsid = data.wifiSsid;
+                            _cachedQrData.wifiPass = data.wifiPass;
+                            _cachedQrData.mode = 'wifi_manual';
+                            _isEditingWifi = false;
+                            renderActiveQrTab();
+                        } else {
+                            alert('Error: ' + (data.error || 'No se pudo guardar la red'));
+                            if (saveBtn) saveBtn.disabled = false;
+                        }
+                    } catch (err) {
+                        alert('Error de conexión: ' + err.message);
+                        if (saveBtn) saveBtn.disabled = false;
+                    }
+                });
+            }
+        } else {
+            // Cliente remoto sin Wi-Fi configurada (solo lectura de red cableada)
+            svgWrapper.classList.remove('qr-zoomable', 'is-form');
+            svgWrapper.classList.add('is-ethernet');
+            svgWrapper.innerHTML = `
+                <div class="qr-ethernet-card">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" fill="none" class="ethernet-icon">
+                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                        <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                        <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                    </svg>
+                    <span class="ethernet-title">${getQrI18nText('ethernet_title', 'Red Local Cableada (Ethernet)')}</span>
+                </div>
+            `;
+            instructionText.textContent = getQrI18nText('instruction_ethernet', 'El servidor está conectado por cable LAN (Ethernet). Conecta tu móvil a la misma red local que el servidor.');
+            detailUrl.innerHTML = `${getQrI18nText('server_ip_label', 'IP del Servidor:')} <strong style="color:var(--accent-primary, #6366f1)">${_cachedQrData.serverIp || ''}</strong>`;
+        }
+    }
+}
+
 function copyTextToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
         return navigator.clipboard.writeText(text);
@@ -5610,6 +6037,22 @@ function showMessageAlert(user = '', text = '') {
         document.body.classList.remove('message-bg-flash');
     }, 1300);
 }
+
+// [v60.EARLY-ALERT] Disparador anticipado de alertas para audio en tiempo real (Milisegundo 0)
+window.triggerEarlyStreamAlert = function(payload) {
+    if (!payload) return;
+    const sender = payload.user || 'Voz';
+
+    // Disparar flash de pantalla y linterna LED inmediata
+    if (typeof showMessageAlert === 'function') {
+        showMessageAlert(sender, '🎤 Audio en tiempo real...');
+    }
+
+    // Vibración táctica inmediata (si está habilitada en el cliente)
+    if (typeof window.triggerVibration === 'function') {
+        window.triggerVibration(40);
+    }
+};
 
 function triggerFlashlightSequence(track) {
     let flashes = 0;

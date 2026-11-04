@@ -1,0 +1,506 @@
+{
+    "guide_title": "guia d'usuari",
+    "search_placeholder": "cerca a la guia...",
+    "cards": [
+        {
+            "id": "audio_modes",
+            "title": "Maneres de Transmissió d'Àudio",
+            "items": [
+                {
+                    "title": "Mode Push-to-Talk (PTT)",
+                    "description": "Transmissió manual mitjançant pulsació. Mantingueu premut el botó Talk per obrir el canal del micròfon i iniciar la captura d'àudio en temps real. En deixar-lo anar, la transmissió finalitza immediatament i el sistema processa la transcripció de forma automàtica.",
+                    "note": "Recomanat per a entorns amb soroll elevat o situacions on es requereix un control precís de la comunicació."
+                },
+                {
+                    "title": "Mode Automàtic (Detecció per Volum)",
+                    "description": "Transmissió automàtica basada en el nivell de senyal dentrada. El sistema activa la captura d'àudio quan detecta so per sobre del llindar de sensibilitat configurat i atura l'enregistrament després d'un període de silenci breu.",
+                    "note": "Ideal per a una experiència completament mans lliures."
+                },
+                {
+                    "title": "Nivell d'entrada",
+                    "description": "Visualitza en temps real el nivell de senyal de la font dàudio seleccionada mitjançant un vúmetre dinàmic.",
+                    "note": null
+                }
+            ]
+        },
+        {
+            "id": "users",
+            "title": "Usuaris",
+            "items": [
+                {
+                    "title": "Usuaris Connectats",
+                    "description": "Mostra la llista d'usuaris actius, subusuaris i les categories assignades.",
+                    "subitems": [
+                        "Els subusuaris creats per tu poden ser:",
+                        "Editats.",
+                        "Eliminats.",
+                        "Monitoritzats mitjançant un vúmetre individual que indica quan estan transmetent àudio."
+                    ]
+                },
+                {
+                    "title": "Crear Subusuaris (+)",
+                    "description": "Permet crear usuaris virtuals amb encaminament intern independent.",
+                    "subitems": [
+                        "Cada subusuari es pot configurar amb:",
+                        "Nom.",
+                        "Categoria.",
+                        "Idioma de transcripció.",
+                        "Font dàudio.",
+                        "Canal dentrada.",
+                        "Llindar d'activació."
+                    ],
+                    "extra": "Quan el nivell d'àudio supera el llindar configurat, la transcripció i l'enviament de missatges es fan automàticament.",
+                    "important": "No és possible assignar simultàniament la mateixa font dàudio i el mateix canal utilitzats per lusuari principal. En cas de conflicte, la font es desactivarà automàticament per evitar transmissions duplicades."
+                }
+            ]
+        },
+        {
+            "id": "chat_transmission",
+            "title": "Funcions de Xat i Transmissió",
+            "items": [
+                {
+                    "title": "Botó Talk",
+                    "description": "Permet transmetre àudio en directe. Quan introduïu text al camp d'entrada, el botó es transforma automàticament en la icona d'enviament de missatges."
+                },
+                {
+                    "title": "Enviament de Fotografies",
+                    "description": "Permet capturar imatges amb la càmera del darrere del dispositiu o seleccionar fotografies des de la galeria per enviar-les instantàniament al xat."
+                },
+                {
+                    "title": "Navegació per Gestos (Swipe)",
+                    "description": "Llisca cap a la dreta per mostrar el panell lateral i cap a l'esquerra per amagar-lo.",
+                    "note": "Aquesta acció és equivalent a lús dels botons de navegació o del logotip de laplicació."
+                },
+                {
+                    "title": "Filtres",
+                    "description": "Permet seleccionar quines categories de missatges i alertes vols rebre.",
+                    "subitems": [
+                        "Pots:",
+                        "Mostra totes les categories.",
+                        "Seleccioneu una única categoria.",
+                        "Combinar diverses categories."
+                    ],
+                    "note": "Cada usuari pot personalitzar els filtres de forma independent."
+                },
+                {
+                    "title": "IP i Estat del Servidor",
+                    "description": "Mostra l'adreça IP del servidor i el vostre estat actual:",
+                    "statuses": {
+                        "green": "Connectat i operatiu.",
+                        "red": "Desconnectat o sense comunicació."
+                    }
+                },
+                {
+                    "title": "Indicador de Micròfon",
+                    "description": "Mostra l'estat actual del micròfon:",
+                    "subitems": [
+                        "Silenciat.",
+                        "Actiu.",
+                        "Transmetent àudio."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "audio_hardware",
+            "title": "Configuració d'àudio i maquinari",
+            "items": [
+                {
+                    "title": "Selecció d'entrada i sortida",
+                    "description": "Permet assignar independentment els dispositius de captura i reproducció d'àudio.",
+                    "subitems": [
+                        "Per garantir un funcionament correcte:",
+                        "Verifica que els permisos d'accés al micròfon i els altaveus estiguin concedits.",
+                        "Configura els dispositius com a predeterminats al sistema operatiu quan sigui necessari.",
+                        "Instal·la els controladors oficials del teu maquinari si el fabricant ho requereix."
+                    ],
+                    "compatible": "Compatible amb:",
+                    "compatible_list": [
+                        "Targetes de so físiques.",
+                        "Interfícies USB.",
+                        "Dispositius Bluetooth.",
+                        "Canals virtuals dàudio.",
+                        "Sistemes d'encaminament professional."
+                    ]
+                },
+                {
+                    "title": "Canals Granulars",
+                    "description": "Permet encaminar senyals d'àudio a canals físics específics (Canal 1, Canal 2, etc.) per a integracions amb:",
+                    "subitems": [
+                        "Taules de mescla.",
+                        "Enrutadors virtuals.",
+                        "Sistemes matricials.",
+                        "Infraestructures dàudio professional."
+                    ]
+                },
+                {
+                    "title": "Actualitzar Maquinari",
+                    "description": "Realitza una detecció dinàmica dels dispositius dàudio connectats sense necessitat de reiniciar laplicació."
+                },
+                {
+                    "title": "Connexió Prèvia i Permisos",
+                    "description": "Es recomana connectar qualsevol tipus de dispositiu (auriculars/micròfons Bluetooth o targetes de so externes) **abans d'iniciar el servidor o l'aplicació**. Assegureu-vos que el maquinari i el programari de tercers estiguin configurats al vostre sistema operatiu i que hàgiu atorgat els permisos necessaris al navegador web.",
+                    "important": "Connectar un dispositiu a meitat de sessió pot requerir refrescar la pestanya o prémer 'Actualitzar maquinari'. Assegureu-vos que el micròfon estigui acceptat correctament a la finestra de permisos del navegador."
+                }
+            ]
+        },
+        {
+            "id": "language_transcription",
+            "title": "Idioma, Transcripció i Vocabulari IA",
+            "items": [
+                {
+                    "title": "Idioma de la Interfície",
+                    "description": "Definiu l'idioma de l'aplicació i l'idioma principal utilitzat pel motor de transcripció."
+                },
+                {
+                    "title": "Diccionari Fonètic de Transcripció",
+                    "description": "Permet corregir automàticament termes específics, noms propis o marques.",
+                    "subitems": [
+                        "Paràmetres de configuració:",
+                        "Entès com: Text tal com ho reconeix fonèticament la IA.",
+                        "Corregir a: Text definitiu que s'injectarà al xat."
+                    ],
+                    "examples": {
+                        "label": "Exemples de Mapeig Fonètic",
+                        "pairs": [
+                            [
+                                "hi ha fon",
+                                "Iphone"
+                            ],
+                            [
+                                "miquel",
+                                "Mikel"
+                            ],
+                            [
+                                "di mer",
+                                "Dimmer"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "_tag": "trans_number",
+                    "title": "Conversió de Nombres Parlats a Dígits",
+                    "description": "Permet que la IA transcrigui les expressions numèriques directament com a xifres en comptes de paraules escrites (per exemple: '12' en lloc de 'dotze', '-6 dB' en comptes de 'menys sis decibels').",
+                    "note": "Altament recomanat per agilitzar la lectura de canals, cues i nivells tècnics en directe."
+                }
+            ]
+        },
+        {
+            "id": "babel_translation",
+            "title": "Traducció IA (Motor Babel)",
+            "items": [
+                {
+                    "title": "Motor de Traducció Babel",
+                    "description": "El sistema integra Babel, un motor de traducció automàtica neuronal (NMT) optimitzat que s'executa al 100% de manera local al Servidor Master. Tradueix en temps real els missatges rebuts en altres idiomes a l'idioma de la teva interfície sense enviar dades a Internet ni dependre d'API externes."
+                },
+                {
+                    "_tag": "babel_download",
+                    "title": "Descàrrega i Gestió del Motor de Traducció (MADLAD)",
+                    "description": "El motor de traducció neuronal es descarrega a petició (~2.75 GB) per mantenir l'instal·lador inicial optimitzat (~400 MB). Es pot gestionar lliurement:",
+                    "subitems": [
+                        "Descàrrega: En iniciar sessió, el sistema ofereix descarregar-lo automàticament a la carpeta de models.",
+                        "Desactivació: Pots fer clic a 'Desactivar' per operar en mode lleuger sense traducció i silenciar l'avís.",
+                        "Reactivació: En qualsevol moment pots tornar a activar-lo o reinstal·lar-lo des dels Ajustos del Pre-Launch o de l'app."
+                    ]
+                },
+                {
+                    "title": "Mostra Missatge Original",
+                    "description": "Permet visualitzar el text original en format petit i atenuat just a sota del text traduït, facilitant la verificació directa si es requereix."
+                },
+                {
+                    "title": "Filtre d'idiomes entrants",
+                    "description": "Configura de manera selectiva quins idiomes s'han de traduir de manera automàtica. Els idiomes no seleccionats es mostraran en la forma original sense processar."
+                },
+                {
+                    "title": "Protecció Babel (Glossari i Argot Tècnic)",
+                    "description": "Evita que determinats termes dús tècnic o noms propis siguin deformats pel motor de traducció. Quan afegiu paraules a aquesta llista d'exclusió, Babel les respectarà mantenint-les en la seva forma original.",
+                    "note": "Especialment recomanat per argot de l'espectacle i xarxes:",
+                    "subitems": [
+                        "Standby / Stand-by",
+                        "Fader",
+                        "FOH (Front of House)",
+                        "Timecode / SMPTE",
+                        "Cue / Cuelist"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "messages_flow",
+            "title": "Missatges i Flux de Comunicació",
+            "items": [
+                {
+                    "title": "Recepció de Missatges Transcrits",
+                    "description": "Pots triar entre:",
+                    "subitems": [
+                        "Mostra només la transcripció.",
+                        "Mostra la transcripció al costat de l'àudio original associat."
+                    ]
+                },
+                {
+                    "title": "Recepció d'àudio",
+                    "description": "Configura com vols rebre l'àudio entrant:",
+                    "subitems": [
+                        "Reproducció automàtica a temps real.",
+                        "Reproducció manual sota demanda."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "hermes_tts",
+            "title": "Síntesi de Veu Offline (Hermes TTS)",
+            "items": [
+                {
+                    "title": "Lectura per Veu Offline",
+                    "description": "Permet la lectura automatitzada de missatges de text o traduccions entrants. Utilitza exclusivament el motor de veu nadiu del teu sistema operatiu (Web Speech API), operant al 100% de manera local, privada i sense requerir internet. El seu consum en disc és de 0 bytes i té un impacte a CPU/RAM pràcticament nul."
+                },
+                {
+                    "title": "Paràmetres Ajustables i Individuals",
+                    "description": "Configura la funcionalitat segons les teves preferències des de la pestanya d'Ajustaments del dispositiu:",
+                    "subitems": [
+                        "Escoltar missatges de text: Activeu la lectura de textos locals. Si s'apaga, els textos del vostre idioma es mantindran en silenci però podreu continuar sentint les traduccions estrangeres.",
+                        "Filtre d'Àudios Estrangers: Bloqueja els àudios originals en altres idiomes i llegeix-ne únicament la traducció.",
+                        "Reacció a Filtres Actius: El sistema llegeix únicament els missatges entrants que corresponguin a la categoria o canal seleccionat per l'usuari als filtres del xat (si es filtra per un grup específic, només llegirà els d'aquest grup; si se selecciona 'Tots', els llegirà tots).",
+                        "Selecció de Veu: Escolliu entre les veus disponibles instal·lades al vostre sistema operatiu, o deixeu-lo en Automàtic per heretar l'idioma de l'app.",
+                        "Filtre de Gènere: Filtra dinàmicament les veus compatibles segons el to (Masculí, Femení o Tots).",
+                        "Velocitat de lectura: Gradua el ritme de la locució entre extremadament lenta (0.5x) i ràpida (2.0x)."
+                    ]
+                },
+                {
+                    "title": "Prefixos i Introduccions de Context",
+                    "description": "El narrador detecta automàticament el tipus de missatge per a una lectura més natural: dirà '[Nom] ha escrit...' per a missatges de text pur, i '[Nom] ha dit...' en reproduir traduccions de missatges de veu."
+                },
+                {
+                    "title": "Escut de Coexistència (Hermes-Shield)",
+                    "description": "Per evitar acoblaments acústics amb el micròfon i no interferir amb la comunicació fluida, Hermes TTS se silenciarà automàticament si:",
+                    "subitems": [
+                        "Estàs prement el botó Talk o gravant amb el teu micròfon.",
+                        "Hi ha reproducció activa a la cua nativa dàudios del xat.",
+                        "Qualsevol reproductor multimèdia HTML5 secundari del DOM està actiu."
+                    ]
+                },
+                {
+                    "title": "Prefixos Localitzats Intel·ligents",
+                    "description": "Abans de llegir el missatge, se sintetitza automàticament un prefix dinàmic segons l'idioma actiu per donar context sobre l'emissor (per exemple: 'Jorge ha escrit: [missatge]' o 'Jorge has written: [missatge]')."
+                },
+                {
+                    "title": "Persistència Local",
+                    "description": "Tota la configuració s'emmagatzema de forma independent per a cada usuari al localStorage de la terminal. Canviar les opcions de veu o velocitat no afectarà els altres usuaris de la xarxa local ni altres perfils que iniciïn sessió al mateix navegador."
+                }
+            ]
+        },
+        {
+            "id": "visual_haptic_alerts",
+            "title": "Alertes Visuals i Hàptiques",
+            "items": [
+                {
+                    "title": "Tipus d'alerta",
+                    "description": "Depenent de les capacitats del dispositiu, podreu utilitzar:",
+                    "subitems": [
+                        "Alertes visuals a la pantalla.",
+                        "Vibració.",
+                        "Llanterna LED."
+                    ]
+                },
+                {
+                    "title": "Personalització d'Alertes",
+                    "description": "Cada alerta té un editor visual on podràs:",
+                    "subitems": [
+                        "Configurar paràmetres.",
+                        "Previsualitzar resultats.",
+                        "Guardar ajustaments personalitzats."
+                    ]
+                },
+                {
+                    "title": "Línia de Temps Visual",
+                    "description": "Fes doble clic sobre el llenç per crear i posicionar keyframes que controlin propietats com a color i opacitat."
+                },
+                {
+                    "title": "Corbes d'Easing",
+                    "description": "Defineix la transició entre keyframes utilitzant:",
+                    "subitems": [
+                        "Lineal o Step.",
+                        "Ease In / Ease Out / Ease In-Out.",
+                        "Corbes quadràtiques i cúbiques."
+                    ]
+                },
+                {
+                    "title": "Patrons Hàptics i LED",
+                    "description": "Dissenya seqüències de vibració i il·luminació basades en els valors definits a la línia de temps.",
+                    "subitems": [
+                        "Valor superior a 0,5 → Activat.",
+                        "Valor inferior a 0,5 → Desactivat."
+                    ]
+                },
+                {
+                    "title": "Permisos",
+                    "description": "Alguns dispositius requereixen permisos de càmera per accedir a la llanterna.",
+                    "important": "L'aplicació sol·licita automàticament aquests permisos quan sigui necessari."
+                }
+            ]
+        },
+        {
+            "id": "triggers",
+            "title": "Triggers (IN/OUT)",
+            "items": [
+                {
+                    "title": "Triggers OUT",
+                    "description": "Permet enviar ordres automàticament a l'ecosistema tècnic quan es rep un missatge o un missatge conté determinades paraules clau."
+                },
+                {
+                    "title": "Triggers IN",
+                    "description": "Permeten rebre senyals externs per executar accions automàtiques dins del sistema.",
+                    "subitems": [
+                        "Poden generar:",
+                        "Missatges o alertes.",
+                        "Àudios.",
+                        "Imatges.",
+                        "Fluxos automatitzats complexos."
+                    ]
+                },
+                {
+                    "title": "Injecció de Triggers IN",
+                    "description": "Seleccioneu si el contingut generat s'enviarà a un filtre específic oa tots els filtres disponibles."
+                },
+                {
+                    "title": "Protocols Compatibles",
+                    "description": "Integració nativa amb:",
+                    "subitems": [
+                        "OSC (Open Sound Control).",
+                        "MIDI.",
+                        "sACN.",
+                        "Timecode SMPTE."
+                    ]
+                },
+                {
+                    "title": "Corbes per Keyframes",
+                    "description": "Permeten modular l'evolució d'una ordre al llarg del temps mitjançant keyframes i corbes d'interpolació. Inclou sistema de previsualització en temps real."
+                },
+                {
+                    "title": "Activar Tots",
+                    "description": "Activa o desactiva simultàniament tots els triggers mitjançant el botó superior esquerre."
+                },
+                {
+                    "title": "Filtre de Cerca",
+                    "description": "Localitza ràpidament triggers específics mitjançant cerca per nom."
+                },
+                {
+                    "_tag": "triggers_timecode",
+                    "title": "Timecode SMPTE Multi-Rang",
+                    "description": "Als Triggers IN amb protocol Timecode SMPTE, és possible configurar múltiples intervals horaris independents.",
+                    "subitems": [
+                        "Permet afegir múltiples finestres de temps (ex: 01:00:00:00 - 01:15:00:00 i 02:00:00:00 - 02:30:00:00).",
+                        "El trigger s'executarà automàticament si el senyal cau dins de qualsevol dels rangs definits.",
+                        "Inclou controls dedicats per afegir (+), reordenar i eliminar rangs amb validació HH:MM:SS:FF."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "interface_customization",
+            "title": "Interfície i Personalització",
+            "items": [
+                {
+                    "title": "Mode Visual",
+                    "description": "Selecciona entre Mode clar i Mode fosc segons les teves preferències."
+                },
+                {
+                    "title": "Paleta Personalitzada",
+                    "description": "Personalitza els colors primaris, de fons i accents visuals de la interfície de laplicació."
+                },
+                {
+                    "title": "Restaurar Valors predeterminats",
+                    "description": "Recupera la configuració visual original i la paleta de fàbrica de l'aplicació."
+                },
+                {
+                    "title": "Desa Configuració",
+                    "description": "Emmagatzema permanentment els canvis realitzats per a futures sessions."
+                },
+                {
+                    "title": "Personalització del Xat",
+                    "description": "Ajusta la mida del text, gruix de font i llegibilitat general dels missatges a la pantalla."
+                }
+            ]
+        },
+        {
+            "id": "network_best_practices",
+            "title": "Bones Pràctiques de Xarxa i Configuració",
+            "items": [
+                {
+                    "title": "Esquema de Desplegament (Pas a Pas)",
+                    "description": "Per configurar aquesta infraestructura correctament, segueix aquestes directrius professionals:",
+                    "subitems": [
+                        "1. Execució del Servidor Master: Inicia el servidor Talk-me a l'ordinador principal (Master). Aquest ha de comptar amb la llicència activa.",
+                        "2. Obtenció de la IP Local: Esbrina l'adreça IP privada del servidor (ex: 192.168.1.150).",
+                        "3. Connexió de Clients per Cable (Ethernet): Connecta els ordinadors de suport mitjançant cable de xarxa (RJ45 Cat6 recomanat) al router o switch. Accedeix obrint el navegador a https://192.168.1.150:3000.",
+                        "4. Connexió de Clients per Wi-Fi (Mòbils / Tablets): Assegureu-vos que els telèfons i tauletes estiguin connectats a la xarxa Wi-Fi emesa pel mateix router. Obre la mateixa URL al navegador del dispositiu mòbil."
+                    ]
+                },
+                {
+                    "title": "Requisits de Seguretat del Navegador (Cambra i Micròfon)",
+                    "description": "Els navegadors moderns restringeixen l'accés a dispositius sensibles com ara càmeres i micròfons quan la connexió no és segura.",
+                    "important": "Per aquest motiu, l'accés al sistema s'ha de fer obligatòriament utilitzant HTTPS, acceptant el certificat SSL local autosignat generat pel servidor durant la instal·lació."
+                },
+                {
+                    "title": "Sobirania Completa i Independència Cloud",
+                    "description": "Talk-m'ha estat dissenyat per operar al 100% de manera autònoma dins la teva infraestructura de xarxa. Un cop instal·lat, no requereix connexió permanent a Internet ni APIs de tercers. Si es talla l'accés WAN (Internet), la comunicació interna del recinte, la traducció, la transcripció local i les alertes continuaran operant sense cap interrupció."
+                }
+            ]
+        },
+        {
+            "id": "data_sovereignty",
+            "title": "Sobirania i Privadesa de les Dades",
+            "items": [
+                {
+                    "title": "Infraestructura Sota El teu Control",
+                    "description": "Tota la informació generada per Talk-em roman dins del teu entorn de treball. Això inclou:",
+                    "subitems": [
+                        "Base de dades.",
+                        "Historial de comunicacions.",
+                        "Configuracions.",
+                        "Models intel·ligència artificial.",
+                        "Arxius i recursos associats."
+                    ]
+                },
+                {
+                    "title": "Processament Local",
+                    "description": "Els processos d'anàlisi, transcripció i traducció s'executen directament al maquinari quan s'utilitzen models locals compatibles.",
+                    "extra": "La informació no és enviada a servidors externs per al seu processament."
+                },
+                {
+                    "title": "Privadesa i Seguretat",
+                    "description": "Talk-me ha estat dissenyat sota un model de sobirania tecnològica i control total de les dades.",
+                    "extra": "Les teves converses, configuracions i recursos romanen allotjats exclusivament a la teva infraestructura, mantenint el control complet sobre:",
+                    "subitems": [
+                        "La disponibilitat del sistema.",
+                        "La privadesa de la informació.",
+                        "Lemmagatzematge de les dades.",
+                        "La gestió daccessos i seguretat."
+                    ]
+                }
+            ]
+        }
+    ],
+    "network_diagram": {
+        "internet": "INTERNET",
+        "optional": "OPCIONAL",
+        "ethernet_cable": "ETHERNET CABLE RJ45",
+        "ethernet_red": "Xarxa Ethernet / Cable LAN",
+        "wifi_label": "WIFI / WLAN",
+        "master_server": "SERVIDOR MÀSTER",
+        "licensed": "LLICENCIAT",
+        "router": "ROUTER",
+        "device1": "Dispositiu 1: PC Principal (Cable)",
+        "device2": "Dispositiu 2: PC Suport (Cable)",
+        "device3": "Dispositiu 3: Portàtil (Wi-Fi)",
+        "device4": "Dispositiu 4: Tablet (Wi-Fi)",
+        "device5": "Dispositiu 5: Telèfon Mòbil (Wi-Fi)",
+        "https_url": "https://192.168.1.150:3000"
+    },
+    "common": {
+        "important": "Important"
+    },
+    "guide_version": "60.2.0"
+}

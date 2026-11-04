@@ -1,0 +1,287 @@
+<!-- Modal Editor de Alerta Pantalla (estilo profesional - Paridad Total con Triggers) -->
+<div class="user-modal hidden" id="alertEditorPantallaModal">
+    <div class="modal-content triggers-content" id="pantallaEditorUI">
+        <div class="triggers-scroll-wrapper custom-scroll">
+            <h2 class="modal-title-small" id="lblEditorTitlePantalla">Editor de Alerta Pantalla</h2>
+            <p class="modal-subtitle" id="lblEditorDescPantalla">Personaliza la intensidad y el color de los destellos
+                en pantalla.</p>
+            <button class="modal-close-icon" id="btnCloseAlertEditorPantalla" title="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="timeline-header">
+                <div>
+                    <h3 id="lblTimelineEasingPantalla">Timeline y Easing</h3>
+                    <p id="lblTimelineHintPantalla">Haz doble clic en el lienzo para ubicar nuevos keyframes.</p>
+                    <button id="btnRestorePantalla" class="btn-restore"
+                        style="margin-top: 8px; padding: 6px 14px; font-size: 11px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                        </svg>
+                        <span id="lblRestoreAnimPantalla">Restaurar Animación Original</span>
+                    </button>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div class="global-duration duration-widget-pro">
+                        <div class="duration-control-pro">
+                            <button id="btnPantallaDurDown" class="prop-stepper-btn duration-btn-pro" title="Disminuir duración">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            <div class="duration-input-wrapper-pro">
+                                <input type="text" id="pantallaDuracion" value="3.0" class="duration-input-pro">
+                                <span class="duration-unit-pro">s</span>
+                            </div>
+                            <button id="btnPantallaDurUp" class="prop-stepper-btn duration-btn-pro" title="Aumentar duración">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="timeline-controls">
+                        <!-- Punto animado (luz) -->
+                        <div class="animation-point">
+                            <div class="point-indicator"></div>
+                        </div>
+
+                        <button id="btnPlayPantalla" class="timeline-btn" title="Reproducir">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M8 5v14l11-7z" fill="white" />
+                            </svg>
+                        </button>
+                        <button id="btnStopPantalla" class="timeline-btn" title="Detener">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <rect x="6" y="6" width="12" height="12" fill="white" />
+                            </svg>
+                        </button>
+                        <button id="btnLoopPantalla" class="timeline-btn loop" title="Bucle">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15">
+                                </path>
+                            </svg>
+                        </button>
+                        <button id="btnLivePantalla" class="timeline-btn live" title="Prueba Real">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.5" fill="none" />
+                                <circle cx="12" cy="12" r="4" fill="white" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Botón añadir movido a la línea 1 para paridad total -->
+                    <button id="btnAddPantallaKf" class="btn-add">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        <span id="lblAddKeyframePantalla">Keyframe</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="canvas-wrapper">
+                <canvas id="pantallaCanvas" width="800" height="200"></canvas>
+                <div class="timeline-cursor"></div>
+            </div>
+
+            <!-- Propiedades Keyframe unificadas (2 Filas para Pantalla) -->
+            <div id="pantallaKfProps" class="keyframe-properties" style="display:none; flex-direction: column; gap: 0;">
+                <!-- Fila 1: Estructura e Intensidad -->
+                <div class="kf-prop-row" style="display: flex; width: 100%; gap: 10px; align-items: flex-end;">
+                    <div class="prop-group" style="flex:0.8;">
+                        <label>Etiqueta</label>
+                        <input type="text" id="pantallaKfName">
+                    </div>
+                    <div class="prop-group" style="flex:0.8;">
+                        <label>Tiempo (ms)</label>
+                        <div class="prop-stepper">
+                            <input type="text" id="pantallaKfTime">
+                            <div class="prop-stepper-buttons">
+                                <button class="pantalla-kf-stepper prop-stepper-btn" data-field="time" data-delta="50">
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="pantalla-kf-stepper prop-stepper-btn" data-field="time" data-delta="-50">
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prop-group" style="flex:0.8;">
+                        <label id="valueLabel">Valor</label>
+                        <div class="prop-stepper">
+                            <input type="text" id="pantallaKfValue">
+                            <div class="prop-stepper-buttons">
+                                <button class="pantalla-kf-stepper prop-stepper-btn" data-field="value"
+                                    data-delta="0.05">
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="pantalla-kf-stepper prop-stepper-btn" data-field="value"
+                                    data-delta="-0.05">
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prop-group" style="flex: 1;">
+                        <label>Curva Int.</label>
+                        <div class="talkme-select-container">
+                            <select id="pantallaKfEasing" class="talkme-select" style="font-size: 11px; height: 34px;">
+                                <option value="linear">Lineal</option>
+                                <option value="step">Step (Instantáneo)</option>
+                                <option value="easeInQuad">Ease In (Quad)</option>
+                                <option value="easeOutQuad">Ease Out (Quad)</option>
+                                <option value="easeInOutQuad">Ease In-Out (Quad)</option>
+                                <option value="easeInCubic">Ease In (Cubic)</option>
+                                <option value="easeOutCubic">Ease Out (Cubic)</option>
+                                <option value="easeInOutCubic">Ease In-Out (Cubic)</option>
+                            </select>
+                            <div class="talkme-select-arrow" style="right: 8px;">
+                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prop-group" style="flex: 0.8;">
+                        <label>Hold Int.</label>
+                        <div class="prop-stepper">
+                            <input type="text" id="pantallaKfHold">
+                            <div class="prop-stepper-buttons">
+                                <button class="pantalla-kf-stepper prop-stepper-btn" data-field="hold" data-delta="50">
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="pantalla-kf-stepper prop-stepper-btn" data-field="hold" data-delta="-50">
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fila 2: Configuración de Color -->
+                <div class="kf-prop-row"
+                    style="display: flex; width: 100%; gap: 10px; align-items: flex-end; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <div class="prop-group" style="flex:0.8;">
+                        <label>Color</label>
+                        <input type="color" id="pantallaKfColor"
+                            style="height:38px; padding:2px; cursor:pointer; border-radius: 8px; border: 1px solid #2A2A3E;">
+                    </div>
+                    <div class="prop-group" style="flex: 1;">
+                        <label style="color: #FF6B35 !important;">Curva Col.</label>
+                        <div class="talkme-select-container">
+                            <select id="pantallaKfEasingColor" class="talkme-select"
+                                style="font-size: 11px; height: 34px;">
+                                <option value="linear">Lineal</option>
+                                <option value="step">Step (Instantáneo)</option>
+                                <option value="easeInQuad">Ease In (Quad)</option>
+                                <option value="easeOutQuad">Ease Out (Quad)</option>
+                                <option value="easeInOutQuad">Ease In-Out (Quad)</option>
+                                <option value="easeInCubic">Ease In (Cubic)</option>
+                                <option value="easeOutCubic">Ease Out (Cubic)</option>
+                                <option value="easeInOutCubic">Ease In-Out (Cubic)</option>
+                            </select>
+                            <div class="talkme-select-arrow" style="right: 8px;">
+                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prop-group" style="flex: 0.8;">
+                        <label style="color: #FF6B35 !important;">Hold Col.</label>
+                        <div class="prop-stepper">
+                            <input type="text" id="pantallaKfHoldColor">
+                            <div class="prop-stepper-buttons">
+                                <button class="pantalla-kf-stepper prop-stepper-btn" data-field="holdColor"
+                                    data-delta="50">
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="pantalla-kf-stepper prop-stepper-btn" data-field="holdColor"
+                                    data-delta="-50">
+                                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prop-group"
+                        style="flex: 0.2; align-items: center; justify-content: center; min-width: 40px;">
+                        <label style="opacity: 0; margin-bottom: 6px;">&nbsp;</label> <!-- Alineador quirúrgico -->
+                        <button class="delete-btn delete-kf-btn" id="btnDeletePantallaKf" title="Borrar"
+                            style="background: transparent; border: none; padding: 0; opacity: 0.7; height: 34px; display: flex; align-items: center; justify-content: center; margin: 0 10px 0 5px !important; align-self: center !important; width: auto !important;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="keyframes-list">
+                <h4 id="lblKeyframeOrderPantalla">Orden de Keyframes</h4>
+                <div class="keyframes-scroll-area custom-scroll">
+                    <div id="pantallaKeyframes" class="keyframe-items"></div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="btnSaveAlertPantalla" class="btn-save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    <span>Guardar Alerta</span>
+                </button>
+                <button id="btnCancelAlertPantalla" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

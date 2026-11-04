@@ -1,17 +1,4 @@
-<!-- Activadores hapticos para iOS (3 elementos independientes) -->
-<!-- Se mantienen con opacidad 0 y sin display:none para que el motor táctil de Safari los detecte -->
-<div
-    style="position:fixed; top:0; left:0; width:1px; height:1px; opacity:0; pointer-events:none; z-index:-1; overflow:hidden;">
-    <input type="checkbox" id="hapticSwitch1" switch><label for="hapticSwitch1" id="hapticL1">H1</label>
-    <input type="checkbox" id="hapticSwitch2" switch><label for="hapticSwitch2" id="hapticL2">H2</label>
-    <input type="checkbox" id="hapticSwitch3" switch><label for="hapticSwitch3" id="hapticL3">H3</label>
-</div>
 
-<!-- Vídeo técnico para prevención de auto-lock (1x1px, muted, invisible) -->
-<!-- Reproducción multimedia legítima interpretada por iOS como consumo activo de contenido para escuchar con iphone bloqueado-->
-<video id="wakeLockVideo" muted loop playsinline preload="auto"
-    style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;z-index:-1;">
-</video>
 
 <!-- Modal Imagen chat Pantalla Completa -->
 <div id="imageModal" class="image-viewer-modal hidden">
@@ -32,4 +19,53 @@
 <!-- Transcripción en tiempo real -->
 <div class="transcription-box" id="transcriptionBox">
     <p class="transcription-text" id="transcriptionText">Transcripción en tiempo real...</p>
+</div>
+
+<!-- [v60.QR-ACCESS] Modal Centro de Acceso QR (Alineado con User/Terms Modal) -->
+<div id="accessQrModal" class="user-modal qr-access-modal hidden">
+    <div class="modal-content qr-modal-card">
+        <!-- Navegación de Pestañas Tácticas (Texto en 1 línea, SVG Icons) -->
+        <div class="qr-tabs-nav">
+            <button class="qr-tab-btn active" data-tab="app" id="qrTabApp" title="Entrar a Talk.me">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                <span id="qrTabAppText">Entrar</span>
+            </button>
+            <button class="qr-tab-btn" data-tab="cert" id="qrTabCert" title="Instalar Certificado SSL CA">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span id="qrTabCertText">Certificado</span>
+            </button>
+            <button class="qr-tab-btn" data-tab="wifi" id="qrTabWifi" title="Conectar a la red Wi-Fi">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                    <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+                <span id="qrTabWifiText">Conectar</span>
+            </button>
+        </div>
+
+        <!-- Contenedor del Código QR Activo (Clicable para zoom completo) -->
+        <div class="qr-display-body">
+            <div id="qrSvgWrapper" class="qr-svg-wrapper qr-zoomable" title="Toca o haz clic para ampliar">
+                <div class="qr-loading-spinner"></div>
+            </div>
+            <p id="qrInstructionsText" class="qr-instructions-text">
+                Escanea con la cámara para conectar automáticamente a la red Wi-Fi
+            </p>
+            <div class="qr-card-footer">
+                <span id="qrDetailUrl" class="qr-detail-url"></span>
+            </div>
+        </div>
+
+        <!-- Botón de Cierre al estilo de Términos de Servicio -->
+        <div class="modal-actions qr-actions">
+            <button class="btn-start" id="btnCloseAccessQrModal">Cerrar</button>
+        </div>
+    </div>
 </div>

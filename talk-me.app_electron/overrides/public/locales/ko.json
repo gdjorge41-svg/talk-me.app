@@ -362,5 +362,31 @@
   },
   "settings": {
     "translation_disabled": "시스템 번역이 비활성화되었습니다"
+  },
+  "qr_modal": {
+    "tab_wifi": "Connect",
+    "tab_cert": "Certificate",
+    "tab_app": "Join",
+    "instruction_wifi": "스캔하여 Wi-Fi 네트워크에 자동 연결",
+    "instruction_cert": "SSL CA 인증서를 다운로드하고 설치하여 보안 경고를 제거하세요.",
+    "instruction_app": "스캔하여 Talk.me 접속",
+    "loading": "실시간 보안 QR 코드 생성 중...",
+    "btn_close": "닫기",
+    "btn_zoom": "QR 코드를 눌러 확대",
+    "btn_copied": "복사됨!",
+    "instruction_ethernet": "The server is connected via Ethernet cable (LAN). Connect your phone to the same local network as the server.",
+    "wifi_password_label": "Password:",
+    "copy_pass_btn": "Copy",
+    "ethernet_title": "Wired Local Network (Ethernet)",
+    "server_ip_label": "Server IP:",
+    "wifi_form_title": "Configure Guest Wi-Fi Network",
+    "wifi_ssid_placeholder": "Wi-Fi Network Name (SSID)",
+    "wifi_pass_placeholder": "Wi-Fi Password",
+    "btn_save_wifi": "Save and Generate QR",
+    "btn_edit_wifi": "Edit network",
+    "saving": "Saving...",
+    "ssid_required": "Wi-Fi network name is required.",
+    "copy_ip_btn": "Copy IP",
+    "copied_ip": "IP Copied!"
   }
 }

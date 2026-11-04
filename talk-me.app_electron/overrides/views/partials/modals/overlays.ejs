@@ -1,0 +1,28 @@
+<div id="pinResetOverlay" class="user-modal">
+    <div class="modal-content glass-premium">
+        <h2 id="pinResetTitle">Seguridad Actualizada</h2>
+        <p id="pinResetReason">El Maestro ha modificado el PIN de acceso. Por favor, introduce el nuevo código para validar tu acceso.</p>
+        <input type="password" id="inputPinReset" placeholder="••••" maxlength="8">
+        <p id="pinResetAttemptsLabel">Intentos restantes: 3</p>
+        <button id="btnVerifyPinReset" class="btn-start">Verificar Acceso</button>
+    </div>
+</div>
+
+<div id="kickedOverlay" class="user-modal">
+    <div class="modal-content glass-premium sober-urgent">
+        <h2 id="kickedTitle">Acceso Denegado</h2>
+        <p id="kickedReason">Has sido expulsado de la sala por el Maestro supremo.<br>Tu sesión ha sido revocada de forma permanente.</p>
+        <button class="btn-start" id="btnReloadKickedSession">Reiniciar Sesión</button>
+    </div>
+</div>
+
+<div id="customConfirmModal" class="user-modal hidden" style="display: none; z-index: 12000; background: rgba(5, 5, 10, 0.96);">
+    <div class="modal-content glass-premium" style="max-width: 420px; text-align: center; padding: 40px; border-radius: 20px; border: 1px solid rgba(125, 111, 240, 0.4); box-shadow: 0 8px 32px rgba(125, 111, 240, 0.15);">
+        <h2 id="customConfirmTitle" style="color: #fff; font-size: 22px; font-weight: 800; margin-bottom: 15px;">Confirmación</h2>
+        <p id="customConfirmText" style="color: rgba(255, 255, 255, 0.85); font-size: 15px; line-height: 1.6; margin-bottom: 25px;"></p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+            <button id="btnConfirmCancel" class="btn-start" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); flex: 1; color: rgba(255, 255, 255, 0.6) !important;">Cancelar</button>
+            <button id="btnConfirmAccept" class="btn-start" style="flex: 1;">Aceptar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,906 @@
+<!-- Modal Ajustes Generales Modular - Menu -->
+<div class="user-modal hidden" id="settingsModal">
+    <div class="modal-content settings-modular-content">
+        <button class="modal-close-icon" id="btnCloseSettingsIcon" title="Cerrar">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="settings-nav">
+            <!-- [v46.4.66.9] Control de Sala Prioritario para el Master -->
+            <button class="nav-item master-only-nav" data-section="section-control" id="navItemControl"
+                style="display: none;">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Control Sala</span>
+            </button>
+            <button class="nav-item" data-section="section-audio">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 11V9a9 9 0 0 1 18 0v2" />
+                    <rect x="2" y="11" width="4" height="6" rx="1" fill="currentColor" stroke="none" />
+                    <rect x="18" y="11" width="4" height="6" rx="1" fill="currentColor" stroke="none" />
+                    <path d="M20 17v1a2 2 0 0 1-2 2h-2" />
+                </svg>
+                <span id="lblNavAudio">Audio</span>
+            </button>
+            <button class="nav-item" data-section="section-idioma">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="7" cy="7" r="4" />
+                    <path d="M15.54 5.46a5 5 0 0 1 0 7.07" />
+                    <path d="M19.07 1.93a10 10 0 0 1 0 14.14" />
+                </svg>
+                <span id="lblNavIdioma">Idioma</span>
+            </button>
+
+            <button class="nav-item" data-section="section-traduccion">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 8l6 6"></path>
+                    <path d="M4 14l6-6 2-3"></path>
+                    <path d="M2 5h12"></path>
+                    <path d="M7 2h1"></path>
+                    <path d="M22 22l-5-10-5 10"></path>
+                    <path d="M14 18h6"></path>
+                </svg>
+                <span id="lblNavTraduccion">Traducción</span>
+            </button>
+
+            <button class="nav-item" data-section="section-mensajes">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path
+                        d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"
+                        fill="currentColor" />
+                </svg>
+                <span id="lblNavMensajes">Mensajes</span>
+            </button>
+
+            <button class="nav-item" data-section="section-alertas">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path
+                        d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"
+                        fill="currentColor" />
+                </svg>
+                <span id="lblNavAlertas">Alertas</span>
+            </button>
+
+            <button class="nav-item" data-section="section-triggers">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span id="lblNavTriggers">Triggers</span>
+            </button>
+
+
+            <button class="nav-item" data-section="section-interfaz">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <!-- Mango -->
+                    <path d="M18 2a2.828 2.828 0 0 1 4 4L16 12l-4-4z" />
+                    <!-- Virola -->
+                    <path d="M11 9l4 4-1 1-4-4z" />
+                    <!-- Cerda -->
+                    <path d="M9 11c-4 2-6 6-7 11 5-1 9-3 11-7z" />
+                </svg>
+                <span id="lblNavInterfaz">Interfaz</span>
+            </button>
+
+            <button class="nav-item" data-section="section-guia">
+                <svg viewBox="0 0 14 14" width="20" height="20" fill="currentColor" role="img" focusable="false"
+                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="m 12.00625,2.6364725 -2.9125,0 c -1.0020833,0 -1.8729167,0.69375 -2.0916667,1.67291 C 6.78125,3.3302225 5.9125,2.6364725 4.9104167,2.6364725 L 2,2.6364725 c -0.5520833,0 -1,0.44791 -1,1 l 0,5.12083 c 0,0.55208 0.4479167,1 1,1 l 1.86875,0 c 2.1291667,0 2.7645833,0.5083305 3.06875,1.5625005 0.014583,0.0583 0.1083333,0.0583 0.125,0 0.30625,-1.05417 0.9416667,-1.5625005 3.06875,-1.5625005 l 1.86875,0 c 0.552083,0 1,-0.44792 1,-1 l 0,-5.11875 c 0,-0.55 -0.44375,-0.99792 -0.99375,-1.00208 z m -5.9645833,5.52916 c 0,0.0396 -0.03125,0.0729 -0.072917,0.0729 l -3.3395833,0 c -0.039583,0 -0.072917,-0.0312 -0.072917,-0.0729 l 0,-0.47708 c 0,-0.0396 0.03125,-0.0729 0.072917,-0.0729 l 3.3416666,0 c 0.039583,0 0.072917,0.0312 0.072917,0.0729 l 0,0.47708 z m 0,-1.26875 c 0,0.0396 -0.03125,0.0729 -0.072917,0.0729 l -3.3395833,0 c -0.039583,0 -0.072917,-0.0312 -0.072917,-0.0729 l 0,-0.47708 c 0,-0.0396 0.03125,-0.0729 0.072917,-0.0729 l 3.3416666,0 c 0.039583,0 0.072917,0.0312 0.072917,0.0729 l 0,0.47708 z m 0,-1.26875 c 0,0.0396 -0.03125,0.0729 -0.072917,0.0729 l -3.3395833,0 c -0.039583,0 -0.072917,-0.0312 -0.072917,-0.0729 l 0,-0.47708 c 0,-0.0396 0.03125,-0.0729 0.072917,-0.0729 l 3.3416666,0 c 0.039583,0 0.072917,0.0312 0.072917,0.0729 l 0,0.47708 z m 5.4020833,2.53542 c 0,0.0396 -0.03125,0.0729 -0.07292,0.0729 l -3.339583,0 c -0.039583,0 -0.072917,-0.0312 -0.072917,-0.0729 l 0,-0.47708 c 0,-0.0396 0.03125,-0.0729 0.072917,-0.0729 l 3.341667,0 c 0.03958,0 0.07292,0.0312 0.07292,0.0729 l 0,0.47708 z m 0,-1.26875 c 0,0.0396 -0.03125,0.0729 -0.07292,0.0729 l -3.339583,0 c -0.039583,0 -0.072917,-0.0312 -0.072917,-0.0729 l 0,-0.47708 c 0,-0.0396 0.03125,-0.0729 0.072917,-0.0729 l 3.341667,0 c 0.03958,0 0.07292,0.0312 0.07292,0.0729 l 0,0.47708 z m 0,-1.26875 c 0,0.0396 -0.03125,0.0729 -0.07292,0.0729 l -3.339583,0 c -0.039583,0 -0.072917,-0.0312 -0.072917,-0.0729 l 0,-0.475 c 0,-0.0396 0.03125,-0.0729 0.072917,-0.0729 l 3.341667,0 c 0.03958,0 0.07292,0.0312 0.07292,0.0729 l 0,0.475 z">
+                        </path>
+                    </g>
+                </svg>
+                <span id="lblNavGuia">Guía</span>
+            </button>
+
+            <button class="nav-item" data-section="section-legal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M14.5 9.5C13.8 8.8 12.9 8.5 12 8.5C10.07 8.5 8.5 10.07 8.5 12C8.5 13.93 10.07 15.5 12 15.5C12.9 15.5 13.8 15.2 14.5 14.5" />
+                </svg>
+                <span id="lblNavLegal">Legal</span>
+            </button>
+        </div>
+
+
+        <div class="settings-content-wrapper">
+            <!-- Sección Idioma -->
+            <div class="settings-section-content active" id="section-idioma">
+                <h2 class="modal-title-small">Idioma y Voz</h2>
+                <div class="setting-row">
+                    <label id="lblUiLang">Idioma de Interfaz</label>
+                    <div class="lang-selector-group">
+                        <% (typeof installedLangs !=='undefined' ? installedLangs : ['es', 'en' , 'eu'
+                            ]).forEach(function(lang) { %>
+                            <button class="lang-pill <%= lang === 'es' ? 'active' : '' %>" data-lang="<%= lang %>">
+                                <%= (typeof langNames !=='undefined' && langNames[lang]) ? langNames[lang] :
+                                    lang.toUpperCase() %>
+                            </button>
+                            <% }); %>
+                    </div>
+                </div>
+                <div class="setting-row">
+                    <label id="lblVocabTitle">Transcripción IA (<span id="dictLangLabel"
+                            style="color:var(--accent-orange); font-weight:700;">ES</span>)</label>
+                    <p class="modal-subtitle-extra-small" id="lblVocabSubtitle">Añade palabras difíciles para
+                        mejorar la precisión</p>
+
+                    <div class="dictionary-input-group-columns-modular">
+                        <div class="dict-field">
+                            <input type="text" class="dict-input-mod" id="dictFrom" placeholder="Entiende..."
+                                maxlength="50">
+                        </div>
+                        <div class="dict-field">
+                            <input type="text" class="dict-input-mod" id="dictTo" placeholder="Corregir a..."
+                                maxlength="50">
+                        </div>
+                        <button class="btn-add-tag-mod" id="btnAddWord" title="Añadir">+</button>
+                    </div>
+
+                    <div class="dictionary-tags-modular custom-scroll" id="dictionaryTags">
+                        <!-- Tags aparecerán aquí -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Alertas -->
+            <div class="settings-section-content" id="section-alertas">
+                <h2 class="modal-title-small" id="lblSectionAlertasTitle">Alertas</h2>
+                <div class="setting-row">
+                    <label id="lblPersonalizarAlertas">Personalizar alertas</label>
+                    <p class="modal-subtitle-extra-small" id="lblInstruccionAlerta">Pulsa en una fila para diseñar su
+                        patrón de animación/ritmo.</p>
+                    <div id="alertsList" class="alerts-list">
+                        <div class="compact-toggle alert-row clickable-alert-row" data-alert-type="pantalla">
+                            <div class="alert-status-toggle-container" style="display: inline-flex; align-items: center;">
+                                <span class="trigger-toggle tgl-off" id="btnToggleScreenAlerts" style="cursor: pointer;">OFF</span>
+                                <input type="checkbox" class="alert-enable" id="screenAlertsToggle" data-alert-type="pantalla" style="display:none;">
+                            </div>
+                            <div class="alert-info">
+                                <div>
+                                    <strong id="lblScreenAlertTitle">Pantalla</strong>
+                                    <div class="modal-subtitle-extra-small" id="lblScreenAlertDesc">Animación de color y
+                                        opacidad</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="compact-toggle alert-row clickable-alert-row" data-alert-type="vibracion">
+                            <div class="alert-status-toggle-container" style="display: inline-flex; align-items: center;">
+                                <span class="trigger-toggle tgl-off" id="btnToggleVibrationAlerts" style="cursor: pointer;">OFF</span>
+                                <input type="checkbox" class="alert-enable" id="vibrationToggleAlt" data-alert-type="vibracion" style="display:none;">
+                            </div>
+                            <div class="alert-info">
+                                <div>
+                                    <strong id="lblVibrationAlertTitle">Vibración</strong>
+                                    <div class="modal-subtitle-extra-small" id="lblVibrationAlertDesc">Patrón rítmico de
+                                        haptics</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="compact-toggle alert-row clickable-alert-row" data-alert-type="linterna">
+                            <div class="alert-status-toggle-container" style="display: inline-flex; align-items: center;">
+                                <span class="trigger-toggle tgl-off" id="btnToggleFlashlightAlerts" style="cursor: pointer;">OFF</span>
+                                <input type="checkbox" class="alert-enable" id="flashlightToggleAlt" data-alert-type="linterna" style="display:none;">
+                            </div>
+                            <div class="alert-info">
+                                <div>
+                                    <strong id="lblFlashlightAlertTitle">Linterna</strong>
+                                    <div class="modal-subtitle-extra-small" id="lblFlashlightAlertDesc">Secuencia de
+                                        destellos LED</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sección Audio -->
+            <div class="settings-section-content" id="section-audio">
+                <h2 class="modal-title-small" id="lblSectionAudioTitle">Configuración de Audio</h2>
+
+                <div class="setting-row" id="audioOutputContainer">
+                    <label id="lblAudioOutput">Salida de Audio</label>
+                    <div class="talkme-select-container">
+                        <select id="audioOutputSelect" class="talkme-select"></select>
+                        <div class="talkme-select-arrow">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- [v59.18] Selección de canal de salida granular -->
+                    <div class="talkme-select-container channel-select-container" style="margin-top: 8px;">
+                        <select id="audioOutputChannelSelect" class="talkme-select select-channel">
+                            <option value="0">Ch 1</option>
+                        </select>
+                        <div class="talkme-select-arrow">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-row">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label id="lblMicInput" style="margin-bottom: 0;">Entrada de Micrófono</label>
+                        <button id="btnRefreshAudioHardware" class="talkme-icon-btn"
+                            title="Refrescar canales y hardware"
+                            style="background: none; border: none; padding: 4px; cursor: pointer; color: var(--accent-orange, #ff6b00); display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="refresh-icon">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="talkme-select-container">
+                        <select id="audioDeviceSelect" class="talkme-select"></select>
+                        <div class="talkme-select-arrow">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- [v59.18] Selección de canal de entrada granular -->
+                    <div class="talkme-select-container channel-select-container" style="margin-top: 8px;">
+                        <select id="audioDeviceChannelSelect" class="talkme-select select-channel">
+                            <option value="0">Ch 1</option>
+                        </select>
+                        <div class="talkme-select-arrow">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Traducción (IA) -->
+            <div class="settings-section-content" id="section-traduccion">
+                <h2 class="modal-title-small" id="lblSectionTraduccionTitle">Motor de Traducción IA</h2>
+
+
+                <div class="translation-grid">
+                    <!-- Columna 1: Traducción Automática -->
+                    <div class="setting-row" style="flex: 1; margin-bottom: 0;">
+                        <label id="lblTradAuto"
+                            style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">Traducción
+                            Automática</label>
+                        <div style="display: flex; align-items: center; margin-top: 8px;">
+                            <span class="trigger-toggle tgl-off" id="btnToggleTranslateEnable" style="cursor: pointer; margin-right: 8px !important; flex-shrink: 0;">OFF</span>
+                            <input type="checkbox" class="alert-enable" id="translateEnableToggle" style="display:none;">
+                            <p class="modal-subtitle-extra-small" id="lblTradAutoDesc"
+                                style="margin: 0; padding-top: 2px;">Traduce el chat al idioma de tu interfaz.</p>
+                        </div>
+                    </div>
+
+                    <!-- Columna 2: Mensaje Original -->
+                    <div class="setting-row" id="showOriginalContainer"
+                        style="flex: 1; margin-bottom: 0; transition: opacity 0.3s ease;">
+                        <label id="lblTradOriginal"
+                            style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">Mensaje
+                            Original</label>
+                        <div style="display: flex; align-items: center; margin-top: 8px;">
+                            <span class="trigger-toggle tgl-off" id="btnToggleShowOriginal" style="cursor: pointer; margin-right: 8px !important; flex-shrink: 0;">OFF</span>
+                            <input type="checkbox" class="alert-enable" id="showOriginalToggle" style="display:none;">
+                            <p class="modal-subtitle-extra-small" id="lblTradOrigDesc"
+                                style="margin: 0; padding-top: 2px;">Muestra el texto en su idioma nativo bajo la
+                                traducción.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="translationSuboptions" class="translation-suboptions">
+                    <div class="setting-row">
+                        <label id="lblTradLangsTitle">Filtro de Idiomas Entrantes</label>
+                        <p class="modal-subtitle-extra-small" id="lblTradLangsDesc">Selecciona qué idiomas entrantes
+                            quieres
+                            traducir. Los desmarcados se mostrarán sin alterar.</p>
+                        <div class="lang-selector-group" id="translateLangsContainer" style="margin-top: 12px;">
+                            <% (typeof installedLangs !=='undefined' ? installedLangs : ['es', 'en' , 'eu'
+                                ]).forEach(function(lang) { %>
+                                <button class="lang-pill active" data-translate-lang="<%= lang %>">
+                                    <%= lang.toUpperCase() %>
+                                </button>
+                                <% }); %>
+                        </div>
+                    </div>
+
+                    <div class="setting-row">
+                        <label id="lblTradDictTitle">Palabras Protegidas (Jerga Técnica)</label>
+                        <p class="modal-subtitle-extra-small" id="lblTradDictDesc">Estas palabras NUNCA serán traducidas
+                            por
+                            la IA (Ej: Standby, Fader).</p>
+                        <div class="dictionary-input-group-columns-modular" style="margin-top: 12px;">
+                            <div class="dict-field" style="flex: 2;">
+                                <input type="text" class="dict-input-mod" id="inputTradExclude"
+                                    placeholder="Palabra a proteger..." maxlength="50">
+                            </div>
+                            <button class="btn-add-tag-mod" id="btnTradExcludeAdd" title="Añadir">+</button>
+                        </div>
+                        <div class="dictionary-tags-modular custom-scroll" id="translateExcludeTags">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Interfaz -->
+            <div class="settings-section-content" id="section-interfaz">
+                <h2 class="modal-title-small" id="lblSectionInterfazTitle">Personalización</h2>
+                <div class="setting-row">
+                    <label id="lblThemeMode">Modo Visual</label>
+                    <div class="theme-switch-elegant">
+                        <button class="theme-btn-mod active" data-theme="dark">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M19.9001 2.30719C19.7392 1.8976 19.1616 1.8976 19.0007 2.30719L18.5703 3.40247C18.5212 3.52752 18.4226 3.62651 18.298 3.67583L17.2067 4.1078C16.7986 4.26934 16.7986 4.849 17.2067 5.01054L18.298 5.44252C18.4226 5.49184 18.5212 5.59082 18.5703 5.71587L19.0007 6.81115C19.1616 7.22074 19.7392 7.22074 19.9001 6.81116L20.3305 5.71587C20.3796 5.59082 20.4782 5.49184 20.6028 5.44252L21.6941 5.01054C22.1022 4.849 22.1022 4.26934 21.6941 4.1078L20.6028 3.67583C20.4782 3.62651 20.3796 3.52752 20.3305 3.40247L19.9001 2.30719Z" fill="currentColor"></path>
+                                <path d="M16.0328 8.12967C15.8718 7.72009 15.2943 7.72009 15.1333 8.12967L14.9764 8.52902C14.9273 8.65407 14.8287 8.75305 14.7041 8.80237L14.3062 8.95987C13.8981 9.12141 13.8981 9.70107 14.3062 9.86261L14.7041 10.0201C14.8287 10.0694 14.9273 10.1684 14.9764 10.2935L15.1333 10.6928C15.2943 11.1024 15.8718 11.1024 16.0328 10.6928L16.1897 10.2935C16.2388 10.1684 16.3374 10.0694 16.462 10.0201L16.8599 9.86261C17.268 9.70107 17.268 9.12141 16.8599 8.95987L16.462 8.80237C16.3374 8.75305 16.2388 8.65407 16.1897 8.52902L16.0328 8.12967Z" fill="currentColor"></path>
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"></path>
+                            </svg>
+                            <span id="lblThemeDark">Oscuro</span>
+                        </button>
+                        <button class="theme-btn-mod" data-theme="light">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <span id="lblThemeLight">Claro</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- [v46.4.66.1] ADN Cromático: Personalización Profunda -->
+                <div class="setting-row">
+                    <label id="lblDNATitle">ADN Cromático (Paleta Personalizada)</label>
+                    <div class="color-dna-grid">
+                        <div class="color-dna-item">
+                            <label id="lblDNABGPrimary">Fondo Principal</label>
+                            <input type="color" id="colorPickerPrimaryBG" class="dna-picker">
+                        </div>
+                        <div class="color-dna-item">
+                            <label id="lblDNABGSecondary">Fondo Paneles</label>
+                            <input type="color" id="colorPickerSecondaryBG" class="dna-picker">
+                        </div>
+                        <div class="color-dna-item">
+                            <label id="lblDNAAccentPrimary">Acento Primario</label>
+                            <input type="color" id="colorPickerAccentPrimary" class="dna-picker">
+                        </div>
+                        <div class="color-dna-item">
+                            <label id="lblDNAAccentSecondary">Acento Secundario</label>
+                            <input type="color" id="colorPickerAccentSecondary" class="dna-picker">
+                        </div>
+                        <div class="color-dna-item">
+                            <label id="lblDNATextPrimary">Texto Títulos</label>
+                            <input type="color" id="colorPickerTextPrimary" class="dna-picker">
+                        </div>
+                        <div class="color-dna-item">
+                            <label id="lblDNATextSecondary">Texto Cuerpo</label>
+                            <input type="color" id="colorPickerTextSecondary" class="dna-picker">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-row premium-typography-row">
+                    <div class="knob-group">
+                        <div class="knob-container" id="fontSizeKnobContainer">
+                            <label id="lblTextSizeKnob">Tamaño</label>
+                            <div class="knob-rotary-premium" id="fontSizeKnob" data-min="50" data-max="250"
+                                data-value="100">
+                                <div class="knob-dial">
+                                    <div class="knob-indicator"></div>
+                                </div>
+                                <div class="knob-marks"></div>
+                            </div>
+                            <span class="knob-value" id="fontSizeKnobValue">100%</span>
+                        </div>
+                        <div class="knob-container" id="fontWeightKnobContainer">
+                            <label id="lblTextWeightKnob">Grosor</label>
+                            <div class="knob-rotary-premium" id="fontWeightKnob" data-min="100" data-max="900"
+                                data-step="100" data-value="400">
+                                <div class="knob-dial">
+                                    <div class="knob-indicator"></div>
+                                </div>
+                                <div class="knob-marks"></div>
+                            </div>
+                            <span class="knob-value" id="fontWeightKnobValue">400</span>
+                        </div>
+                    </div>
+                    <div class="typography-preview-container">
+                        <span id="typographyPreview">Hola Mundo!</span>
+                    </div>
+                </div>
+
+                <div class="setting-row dna-actions-row">
+                    <div class="dna-actions-group" style="display: flex; gap: 8px;">
+                        <!-- Botón Restablecer -->
+                        <button id="btnResetDNA" class="dna-action-btn" style="flex: 1;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                            </svg>
+                            <span id="lblBtnResetDNA">Restablecer Valores de Fábrica</span>
+                        </button>
+
+                        <!-- [v59.Elite] Botón Guardar Global (Solo Master) -->
+                        <button id="btnSaveGlobalDNA" class="dna-action-btn master-only-flex"
+                            style="flex: 1; display: none;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                <polyline points="7 3 7 8 15 8"></polyline>
+                            </svg>
+                            <span id="lblBtnSaveGlobal">Guardar como Global</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- [v46.4.63] Sección CONTROL SALA / MASTER (Exclusiva) -->
+            <div class="settings-section-content" id="section-control">
+                <h2 class="modal-title-small" id="lblSectionControlTitle">Panel de Control
+                    Master</h2>
+
+                <!-- [v46.4.92] Gestión de Caché (Movido aquí desde Mensajes) con Icono Interactivo -->
+                <div class="setting-row">
+                    <label id="lblCacheManagement" style="margin-bottom: 12px;">Gestión de Caché (Sesión)</label>
+                    <div class="cache-visualizer-elite">
+                        <div class="cache-info-header">
+                            <span class="cache-usage-label"><span id="lblCacheUsagePrefix">Uso:</span> <strong
+                                    id="cacheCurrentMB">0MB</strong></span>
+                            <span class="cache-limit-label"><span id="lblCacheMaxPrefix">Máx:</span> <strong
+                                    id="cacheLimitLabel">100MB</strong></span>
+                        </div>
+                        <div class="cache-graph-container" id="cacheInteractiveContainer">
+                            <button id="btnClearCache" class="cache-delete-btn-elite"
+                                title="Borrar caché (imágenes y audios)">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--accent-orange)" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                            <div class="cache-graph-bar-bg">
+                                <div id="cacheUsageBar" class="cache-graph-progress" style="width: 0%;"></div>
+                                <input type="range" id="cacheLimitRange" min="10" max="500" step="10" value="100"
+                                    class="cache-slider-integrated">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PIN Moved here -->
+                <div class="setting-row">
+                    <label id="lblRoomPinControl">PIN de Sala (Seguridad)</label>
+                    <div class="input-with-actions">
+                        <input type="password" id="inputRoomPin" class="settings-input" placeholder="Sin PIN">
+                        <button class="icon-action-btn" id="btnTogglePin" title="Ver/Ocultar">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                        <button class="icon-action-btn" id="btnSavePin" title="Guardar">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                <polyline points="7 3 7 8 15 8"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Departamentos Moved here -->
+                <div class="setting-row">
+                    <button id="btnManageCategories" class="btn-dic full-width-btn"
+                        style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 0px !important;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg>
+                        <span>Gestión de Filtros/Departamentos/Categorías</span>
+                    </button>
+                </div>
+
+                <!-- Expulsar Usuarios / Estadísticas -->
+                <div class="setting-row">
+                    <label id="lblUserAdminControl">Administración de Usuarios</label>
+                    <div class="management-table-container-dynamic custom-scroll">
+                        <table class="management-table" id="userManagementTable">
+                            <thead>
+                                <tr>
+                                    <th id="tableHeaderUser" title="Usuario"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg></th>
+                                    <th id="tableHeaderCategory" title="Categoría"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z">
+                                            </path>
+                                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                        </svg></th>
+                                    <th id="tableHeaderSubUsers" title="Sub-usuarios"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        </svg></th>
+                                    <th id="tableHeaderLang" title="Idioma"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                                            <path
+                                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                            </path>
+                                        </svg></th>
+                                    <th id="tableHeaderAutoTrans" title="Traducciones activas"><svg width="14"
+                                            height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                                            <line x1="9" y1="20" x2="15" y2="20"></line>
+                                            <line x1="12" y1="4" x2="12" y2="20"></line>
+                                        </svg></th>
+                                    <th id="tableHeaderMsgs" title="Mensajes enviados"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                            </path>
+                                        </svg></th>
+                                    <th id="tableHeaderPhotos" title="Fotos enviadas"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                            <polyline points="21 15 16 10 5 21"></polyline>
+                                        </svg></th>
+                                    <th id="tableHeaderTriggers" title="Triggers disparados"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                        </svg></th>
+                                    <th id="tableHeaderSession" title="Tiempo en la sesión"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg></th>
+                                    <th id="tableHeaderAction" title="Acción"><svg width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg></th>
+                                </tr>
+                            </thead>
+                            <tbody id="userManagementBody">
+                                <!-- Generado dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Mensajes -->
+            <div class="settings-section-content" id="section-mensajes">
+                <h2 class="modal-title-small">Flujo de Mensajes del Chat</h2>
+                <div class="settings-grid-2col">
+                    <div class="setting-row" style="margin-bottom: 0 !important;">
+                        <label id="lblMessagesMode">Recepción Mensajes transcriptos al Chat</label>
+                        <div class="talkme-select-container" style="max-width: 420px; width: 100% !important;">
+                            <select id="messagesModeSelectAlt" class="talkme-select">
+                                <option id="optMsgBoth" value="both">Transcripción-Texto y Audio</option>
+                                <option id="optMsgText" value="text">Solo Transcripción-Texto</option>
+                            </select>
+                            <div class="talkme-select-arrow">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-row" style="margin-bottom: 0 !important;">
+                        <label id="lblReceptionMode">Modo de Recepción</label>
+                        <div class="talkme-select-container" style="max-width: 420px; width: 100% !important;">
+                            <select id="receptionModeSelectAlt" class="talkme-select">
+                                <option id="optReceptionAuto" value="auto">Audio en tiempo real Auto Play</option>
+                                <option id="optReceptionManual" value="manual">Play Manual</option>
+                            </select>
+                            <div class="talkme-select-arrow">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección Lectura de Voz (Hermes TTS - Text-to-Speech) -->
+                <!-- [v60.ITN] Conversión Inteligente de Números Hablados a Dígitos (OFF por defecto) -->
+                <div class="setting-row" style="margin-top: 18px; margin-bottom: 18px !important;">
+                    <label id="lblConvertNumbersTitle" style="margin-bottom: 8px !important;">Convertir Números a Dígitos</label>
+                    <div style="display: flex; align-items: center;">
+                        <span class="trigger-toggle tgl-off" id="btnToggleConvertNumbers" style="cursor: pointer; margin-right: 8px !important; flex-shrink: 0;">OFF</span>
+                        <input type="checkbox" class="alert-enable" id="convertNumbersToggle" style="display:none;">
+                        <p class="modal-subtitle-extra-small" id="lblConvertNumbersDesc"
+                            style="margin: 0; padding-top: 2px; line-height: 1.25;">Transcribe los números hablados como cifras ("12" en vez de "doce").</p>
+                    </div>
+                </div>
+
+                <!-- Contenedor unificado de Hermes (Siempre Visible y Alineado) -->
+                <div class="hermes-container-card show" id="hermesContainerCard" style="margin-top: 0;">
+                    <!-- Fila del interruptor maestro y descripción -->
+                    <div class="setting-row" style="margin-bottom: 0 !important; padding: 0 !important;">
+                        <label id="lblHermesTitle" style="margin-bottom: 8px !important;">Hermes TTS (Lectura por Voz)</label>
+                        <span id="lblHermesEnabled" style="display: none;"></span>
+                        <div style="display: flex; align-items: center;">
+                            <span class="trigger-toggle tgl-off" id="btnToggleHermes" style="cursor: pointer; margin-right: 8px !important; flex-shrink: 0;">OFF</span>
+                            <input type="checkbox" class="alert-enable" id="hermesToggle" style="display:none;">
+                            <p class="modal-subtitle-extra-small" id="lblHermesEnabledDesc"
+                                style="margin: 0; padding-top: 2px; line-height: 1.25;">Escuchar mensajes de texto a voz
+                                (reacciona a filtros)</p>
+                        </div>
+                    </div>
+
+                    <!-- Subcontenedor de Ajustes de Hermes (Se muestra/oculta dinámicamente) -->
+                    <div id="hermesSettingsSubContainer"
+                        style="display: none; flex-direction: column; gap: 16px; padding-top: 4px;">
+                        <!-- Fila 1: Modo de Lectura & Tratamiento de Audios en grid -->
+                        <div class="settings-grid-2col no-margin">
+                            <div class="setting-row" id="hermesModeRow"
+                                style="display: flex; flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; width: 100% !important; margin-bottom: 0 !important;">
+                                <label id="lblHermesModeSelect" style="margin-bottom: 0 !important;">Modo de
+                                    Lectura</label>
+                                <div class="talkme-select-container" style="max-width: 420px; width: 100% !important;">
+                                    <select id="hermesModeSelect" class="talkme-select">
+                                        <option value="text_only">Solo mensajes de texto (originales y traducciones)
+                                        </option>
+                                        <option value="text_and_foreign_audio">Mensajes de texto y traducción de voz en
+                                            otros idiomas</option>
+                                    </select>
+                                    <div class="talkme-select-arrow">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="setting-row" id="hermesAudioTreatmentRow"
+                                style="display: none; flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; width: 100% !important; margin-bottom: 0 !important;">
+                                <label id="lblHermesAudioTreatmentSelect"
+                                    style="margin-bottom: 0 !important;">Tratamiento de Audios en otros idiomas</label>
+                                <div class="talkme-select-container" style="max-width: 420px; width: 100% !important;">
+                                    <select id="hermesAudioTreatmentSelect" class="talkme-select">
+                                        <option value="mute">No reproducir audio original y oír traducción directamente
+                                        </option>
+                                        <option value="play_then_tts">Reproducir audio original en tiempo real y luego
+                                            la traducción</option>
+                                    </select>
+                                    <div class="talkme-select-arrow">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fila 2: Género y Motor de voz en grid -->
+                        <div class="settings-grid-2col no-margin" style="margin-top: 12px !important;">
+                            <div class="setting-row" id="hermesGenderRow"
+                                style="display: flex; flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; width: 100% !important; margin-bottom: 0 !important;">
+                                <label id="lblHermesGenderSelect" style="margin-bottom: 0 !important;">Género
+                                    Voz</label>
+                                <div class="talkme-select-container" style="max-width: 420px; width: 100% !important;">
+                                    <select id="hermesGenderSelect" class="talkme-select">
+                                        <option value="all">Cualquiera (Todas)</option>
+                                        <option value="female">Solo Voces Femeninas</option>
+                                        <option value="male">Solo Voces Masculinas</option>
+                                    </select>
+                                    <div class="talkme-select-arrow">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="setting-row" id="hermesVoiceRow"
+                                style="display: flex; flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; width: 100% !important; margin-bottom: 0 !important;">
+                                <label id="lblHermesVoiceSelect" style="margin-bottom: 0 !important;">Tipo Voz
+                                    Narrador</label>
+                                <div class="talkme-select-container" style="max-width: 420px; width: 100% !important;">
+                                    <select id="hermesVoiceSelect" class="talkme-select">
+                                        <option value="auto">Predeterminado del Dispositivo (Automático)</option>
+                                    </select>
+                                    <div class="talkme-select-arrow">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fila 3: Velocidad de lectura (ancho completo) -->
+                        <div class="setting-row" id="hermesRateRow">
+                            <label id="lblHermesRate">Velocidad Lectura</label>
+                            <div class="talkme-slider-container">
+                                <input type="range" id="hermesRateRange" min="0.5" max="2.0" step="0.1" value="1.0">
+                                <span id="hermesRateValueLabel">1.0x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Triggers (v60.0 IN/OUT) -->
+            <div class="settings-section-content" id="section-triggers">
+                <h2 class="modal-title-small" id="lblTriggersTitle">Control de Triggers (Automatización)</h2>
+                <p class="modal-subtitle-extra-small" id="lblTriggersDescription" style="margin-bottom: 20px;">
+                    Gestiona entradas externas (IN) y comandos de salida por mensaje (OUT).</p>
+
+                <!-- Pestañas IN/OUT -->
+                <div class="trigger-tabs-container">
+                    <button class="trigger-tab active" data-direction="OUT" id="tabTriggersOut">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-right: 4px; vertical-align: middle;">
+                            <line x1="12" y1="19" x2="12" y2="5"></line>
+                            <polyline points="5 12 12 5 19 12"></polyline>
+                        </svg>
+                        OUT
+                    </button>
+                    <button class="trigger-tab" data-direction="IN" id="tabTriggersIn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-right: 4px; vertical-align: middle;">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                        IN
+                    </button>
+                </div>
+
+
+                <div class="setting-row" style="margin-bottom: 4px; margin-top: 15px;">
+                    <div id="lblTriggersGuardados" class="triggers-header-inline">
+                        <!-- El contenido se inyecta desde module-triggers.js -->
+                    </div>
+                </div>
+                <div class="triggers-list custom-scroll" id="triggersListContainer">
+                    <div id="triggersList">
+                        <!-- Lista de triggers se renderiza dinámicamente -->
+                    </div>
+                </div>
+
+                <button class="btn-add" id="addNewTriggerBtn">
+                    <svg id="svgAddTrigger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span id="lblAddTrigger">Añadir Trigger</span>
+                </button>
+            </div>
+
+            <!-- Sección Guía de Usuario -->
+            <div class="settings-section-content" id="section-guia">
+                <h2 class="modal-title-small" id="lblUiGuideTitle">Guía de Usuario</h2>
+
+                <!-- Buscador de Guía -->
+                <style>
+                    .talkme-input-dark:focus {
+                        outline: none !important;
+                        border-color: var(--accent-primary) !important;
+                        box-shadow: 0 0 8px color-mix(in srgb, var(--accent-primary) 35%, transparent) !important;
+                    }
+                </style>
+                <div class="guide-filter-container"
+                    style="position: relative; margin-bottom: 16px; display: flex; align-items: center; width: 100%;">
+                    <div
+                        style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; display: flex; align-items: center;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <input type="text" id="appGuideFilterInput" class="talkme-input-dark"
+                        placeholder="Buscar en la guía..."
+                        style="width: 100%; padding: 10px 15px 10px 42px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--accent-primary) 25%, transparent); background: var(--input-bg, rgba(0,0,0,0.25)); color: var(--text-primary); font-size: 14px; text-align: left !important; transition: border-color 0.2s, box-shadow 0.2s; outline: none;">
+                </div>
+
+                <div class="guide-scroll-area custom-scroll"
+                    style="flex: 1; min-height: 0; overflow-y: auto; padding-right: 8px; display: flex; flex-direction: column; gap: 20px; text-align: left; width: 100%;">
+                    <!-- Contenedor Dinámico de la Guía -->
+                    <div id="guideDynamicContainer"
+                        style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+                        <!-- Renderizado dinámicamente vía JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Legal y Licencias -->
+            <div class="settings-section-content" id="section-legal">
+                <h2 class="modal-title-small" id="lblUiLegalTitle">Legal y Licencias</h2>
+
+                <!-- Buscador de Licencias -->
+                <div class="guide-filter-container"
+                    style="position: relative; margin-bottom: 16px; display: flex; align-items: center; width: 100%;">
+                    <div
+                        style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; display: flex; align-items: center;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <input type="text" id="appLegalFilterInput" class="talkme-input-dark"
+                        placeholder="Buscar en licencias y componentes..."
+                        style="width: 100%; padding: 10px 15px 10px 42px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--accent-primary) 25%, transparent); background: var(--input-bg, rgba(0,0,0,0.25)); color: var(--text-primary); font-size: 14px; text-align: left !important; transition: border-color 0.2s, box-shadow 0.2s; outline: none;">
+                </div>
+
+                <div class="guide-scroll-area custom-scroll"
+                    style="flex: 1; min-height: 0; overflow-y: auto; padding-right: 8px; display: flex; flex-direction: column; gap: 20px; text-align: left; width: 100%;">
+                    <!-- Contenedor Dinámico de Legal -->
+                    <div id="legalDynamicContainer"
+                        style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+                        <!-- Renderizado dinámicamente vía JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

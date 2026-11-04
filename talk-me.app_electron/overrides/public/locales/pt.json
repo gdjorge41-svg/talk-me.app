@@ -363,5 +363,31 @@
   },
   "settings": {
     "translation_disabled": "Tradução do sistema desativada"
+  },
+  "qr_modal": {
+    "tab_wifi": "Conectar",
+    "tab_cert": "Certificado",
+    "tab_app": "Entrar",
+    "instruction_wifi": "Escaneie para conectar automaticamente à rede Wi-Fi",
+    "instruction_cert": "Escaneie para baixar e instalar o Certificado SSL CA (remove avisos de segurança).",
+    "instruction_app": "Escaneie para entrar no Talk.me",
+    "loading": "Gerando códigos QR seguros em tempo real...",
+    "btn_close": "Fechar",
+    "btn_zoom": "Toque no QR para ampliar",
+    "btn_copied": "Copiado!",
+    "instruction_ethernet": "O servidor está conectado via cabo Ethernet (LAN). Conecte seu celular à mesma rede local.",
+    "wifi_password_label": "Senha:",
+    "copy_pass_btn": "Copiar",
+    "ethernet_title": "Rede Local Cabeada (Ethernet)",
+    "server_ip_label": "IP do Servidor:",
+    "wifi_form_title": "Configurar rede Wi-Fi para convidados",
+    "wifi_ssid_placeholder": "Nome da rede Wi-Fi (SSID)",
+    "wifi_pass_placeholder": "Senha Wi-Fi",
+    "btn_save_wifi": "Salvar e Gerar QR",
+    "btn_edit_wifi": "Editar rede",
+    "saving": "Salvando...",
+    "ssid_required": "O nome da rede Wi-Fi é obrigatório.",
+    "copy_ip_btn": "Copiar IP",
+    "copied_ip": "IP Copiado!"
   }
 }

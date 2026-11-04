@@ -1,0 +1,916 @@
+<div class="control-panel">
+    <button class="panel-toggle" id="panelToggle" title="Plegar / Desplegar Panel">
+        <svg viewBox="0 0 10 24" width="10" height="24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linejoin="miter">
+            <polyline points="9,0 1,12 9,24"></polyline>
+        </svg>
+    </button>
+    <div class="panel-content">
+
+        <!-- Configuración (Acceso Único) -->
+        <div class="settings-main-btn-container"
+            style="border-top: none; padding-top: 0; margin-top: 5px; margin-bottom: 4px;">
+            <button id="btnOpenMainSettings" class="settings-btn-premium">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                    </path>
+                </svg>
+                <span>Ajustes Generales</span>
+            </button>
+        </div>
+
+        <div class="sidebar-audio-config" style="margin-top: 8px; padding-top: 8px;">
+
+            <div class="setting-row">
+                <label id="lblMicMode">Modo de Micrófono</label>
+                <div class="talkme-select-container">
+                    <select id="micModeSelect" class="talkme-select">
+                        <option value="ptt" id="lblModePtt">Push-to-Talk (mantener)</option>
+                        <option value="auto" id="lblModeAuto">Automático (por volumen)</option>
+                    </select>
+                    <div class="talkme-select-arrow">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="setting-row">
+                <label id="lblSensibilidad">NIVEL DE ENTRADA</label>
+                <div class="v41-meter-container">
+                    <div class="volume-meter">
+                        <div id="volumeLevel" class="volume-level"></div>
+                    </div>
+                    <input type="range" id="micSensitivity" min="0" max="100" value="50">
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de Usuarios -->
+        <div class="users-list-container">
+            <h3 id="usersListTitle" class="users-title-with-icon">
+                <svg class="users-list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" width="18"
+                    height="18" aria-hidden="true" focusable="false">
+                    <g fill="currentColor">
+                        <path d="M48.355,17.922c3.705,2.323,6.303,6.254,6.776,10.817c1.511,0.706,3.188,1.112,4.966,1.112
+				c6.491,0,11.752-5.261,11.752-11.751c0-6.491-5.261-11.752-11.752-11.752C53.668,6.35,48.453,11.517,48.355,17.922z M40.656,41.984
+				c6.491,0,11.752-5.262,11.752-11.752s-5.262-11.751-11.752-11.751c-6.49,0-11.754,5.262-11.754,11.752S34.166,41.984,40.656,41.984
+				z M45.641,42.785h-9.972c-8.297,0-15.047,6.751-15.047,15.048v12.195l0.031,0.191l0.84,0.263
+				c7.918,2.474,14.797,3.299,20.459,3.299c11.059,0,17.469-3.153,17.864-3.354l0.785-0.397h0.084V57.833
+				C60.688,49.536,53.938,42.785,45.641,42.785z M65.084,30.653h-9.895c-0.107,3.959-1.797,7.524-4.47,10.088
+				c7.375,2.193,12.771,9.032,12.771,17.11v3.758c9.77-0.358,15.4-3.127,15.771-3.313l0.785-0.398h0.084V45.699
+				C80.13,37.403,73.38,30.653,65.084,30.653z M20.035,29.853c2.299,0,4.438-0.671,6.25-1.814c0.576-3.757,2.59-7.04,5.467-9.276
+				c0.012-0.22,0.033-0.438,0.033-0.66c0-6.491-5.262-11.752-11.75-11.752c-6.492,0-11.752,5.261-11.752,11.752
+				C8.283,24.591,13.543,29.853,20.035,29.853z M30.589,40.741c-2.66-2.551-4.344-6.097-4.467-10.032
+				c-0.367-0.027-0.73-0.056-1.104-0.056h-9.971C6.75,30.653,0,37.403,0,45.699v12.197l0.031,0.188l0.84,0.265
+				c6.352,1.983,12.021,2.897,16.945,3.185v-3.683C17.818,49.773,23.212,42.936,30.589,40.741z" />
+                    </g>
+                </svg>
+                <span class="users-list-text">Usuarios Conectados</span>
+                <button id="btn-add-subuser" class="btn-add-subuser" title="Crear Sub-usuario">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
+            </h3>
+            <div id="usersList" class="custom-scroll">
+                <!-- Usuarios se cargan dinámicamente -->
+            </div>
+
+            <div id="subuserModal" class="user-modal hidden">
+                <div class="modal-content" style="text-align: left; max-width: 440px;">
+                    <h2 class="modal-title-small" id="subUserModalTitle"
+                        style="margin-bottom: 24px; text-align: center; font-size: 20px;">Crear / Editar Sub-usuario
+                    </h2>
+                    <input type="hidden" id="subUserIdHidden" value="">
+
+                    <div class="form-row" style="margin-bottom: 16px;">
+                        <label id="lblSubUserName"
+                            style="display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; color: #aaa; margin-bottom: 6px;">Nombre</label>
+                        <input type="text" id="subUserName" maxlength="64" class="subuser-input"
+                            placeholder="Ej. FoH, Artista..." style="max-width: 400px;">
+                    </div>
+
+                    <div class="form-row" style="margin-bottom: 16px;">
+                        <label id="lblSubUserCategory"
+                            style="display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; color: #aaa; margin-bottom: 6px;">Categoría</label>
+                        <div class="talkme-select-container" style="max-width: 400px;">
+                            <select id="subUserCategory" class="talkme-select">
+                                <!-- Opciones rellenadas dinámicamente -->
+                            </select>
+                            <div class="talkme-select-arrow">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="margin-bottom: 16px;">
+                        <label id="lblSubUserLang"
+                            style="display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; color: #aaa; margin-bottom: 6px;">Idioma
+                            Transcripción</label>
+                        <div class="talkme-select-container" style="max-width: 400px;">
+                            <select id="subUserLang" class="talkme-select">
+                                <% (typeof installedLangs !=='undefined' ? installedLangs : ['es', 'en' , 'eu'
+                                    ]).forEach(function(lang) { %>
+                                    <option value="<%= lang %>"
+                                        id="optSubUserLang<%= lang.charAt(0).toUpperCase() + lang.slice(1) %>">
+                                        <%= (typeof langNames !=='undefined' && langNames[lang]) ? langNames[lang] :
+                                            lang.toUpperCase() %> (<%= lang.toUpperCase() %>)
+                                    </option>
+                                    <% }); %>
+                            </select>
+                            <div class="talkme-select-arrow">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="margin-bottom: 16px;">
+                        <label id="lblSubUserSource"
+                            style="display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; color: #aaa; margin-bottom: 6px;">Fuente
+                            + Canal</label>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <div class="talkme-select-container" style="flex:1">
+                                <select id="subModalAudioDeviceSelect" class="talkme-select"></select>
+                                <div class="talkme-select-arrow">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="talkme-select-container channel-select-container" style="width:110px;">
+                                <select id="subModalAudioDeviceChannelSelect" class="talkme-select select-channel">
+                                    <option value="0">Ch 1</option>
+                                </select>
+                                <div class="talkme-select-arrow">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="subHardwareWarning"
+                            style="display:none; color: var(--accent-orange); font-size: 11px; font-weight: 700; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            ⚠️ Hardware no encontrado o desconectado
+                        </div>
+                        <div id="subUserMicHint"
+                            style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 6px;">
+                            Las fuentes ocupadas aparecen deshabilitadas.
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="margin-bottom: 16px;">
+                        <label id="lblSubUserThresholdTitle"
+                            style="display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">UMBRAL</label>
+                        <div class="volume-meter-container"
+                            style="position: relative; height: 32px; background: var(--volume-track-bg); border-radius: 8px; overflow: hidden; margin-top: 8px;">
+                            <div id="subUserVolumeLevel"
+                                style="position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange)); opacity: 0.8; z-index: 1;">
+                            </div>
+                            <input type="range" id="subUserThreshold" min="0" max="100" value="50"
+                                style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: transparent; cursor: pointer; z-index: 2; appearance: none; -webkit-appearance: none;">
+                        </div>
+
+                        <style>
+                            /* Asegurar transparencia total del track del slider para ver el vúmetro debajo */
+                            #subUserThreshold::-webkit-slider-runnable-track {
+                                background: transparent;
+                                border: none;
+                            }
+
+                            #subUserThreshold::-moz-range-track {
+                                background: transparent;
+                                border: none;
+                            }
+
+                            #subUserThreshold::-webkit-slider-thumb {
+                                margin-top: 0;
+                            }
+
+                            /* Centrado de thumb */
+                        </style>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="btnCloseSubUser" class="btn-cancel">Cancelar</button>
+                        <button id="btnSaveSubUser" class="btn-save">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información del Servidor -->
+        <div class="server-info">
+            V1.0 Made with &hearts; by Jorge.Lighting
+        </div>
+    </div>
+</div>
+<script>
+    // Minimal wiring for Sub-usuario modal (non-invasive)
+    (function () {
+        const btn = document.getElementById('btn-add-subuser');
+        const modal = document.getElementById('subuserModal');
+        const btnClose = document.getElementById('btnCloseSubUser');
+        const btnSave = document.getElementById('btnSaveSubUser');
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        if (btn) btn.addEventListener('click', () => { try { window.openSubUserModal(); } catch (e) { console.error('openSubUserModal error', e && e.message); } });
+        // [v60.ELITE FIX - Sol.6] Garantizar cierre del stream de previsualización al cancelar
+        if (btnClose) btnClose.addEventListener('click', () => {
+            if (modal) modal.classList.add('hidden');
+            try { stopMicPreview(); } catch (e) { }
+        });
+
+        // Helper to fill channel options for a given device (use shared detector)
+        async function fillSubModalChannels(deviceId) {
+            const deviceSelect = document.getElementById('subModalAudioDeviceSelect');
+            const channelSelect = document.getElementById('subModalAudioDeviceChannelSelect');
+            if (!deviceSelect || !channelSelect) return;
+
+            channelSelect.innerHTML = '';
+            const deviceLabel = deviceSelect.selectedOptions[0]?.text || '';
+
+            // assigned mics logic (fetch current assignments from server and local caches)
+            let assigned = [];
+            if (window.socket && window.socket.connected) {
+                assigned = await new Promise((resolve) => {
+                    try {
+                        let called = false;
+                        const timer = setTimeout(() => { if (!called) { called = true; resolve([]); } }, 800);
+                        window.socket.emit('get-assigned-mics', null, (resp) => {
+                            if (!called) { called = true; clearTimeout(timer); resolve((resp && resp.assigned) ? resp.assigned : []); }
+                        });
+                    } catch (e) { resolve([]); }
+                });
+            }
+
+            // Fallback checking local subusers cache list to catch cold startups
+            try {
+                const currentUsername = localStorage.getItem('talkme_username') || '';
+                const currentUserData = (window.lastUsersData || []).find(u => u.username === currentUsername) || {};
+                const localSubusers = currentUserData.subUsers || JSON.parse(localStorage.getItem('talkme_cached_subusers') || '[]');
+                localSubusers.forEach(su => {
+                    if (su.mic && su.mic.deviceId && !assigned.some(a => a.subUserId === su.subUserId)) {
+                        assigned.push({ deviceId: su.mic.deviceId, channel: parseInt(su.mic.channel, 10), subUserId: su.subUserId });
+                    }
+                });
+            } catch (e) { console.warn('Local subusers check fallback failed', e); }
+
+            // Obtener canal y dispositivo preferido del Master
+            let masterDeviceId = localStorage.getItem('talkme_preferred_audio_input') || localStorage.getItem('talkme_deviceId') || 'default';
+            let masterChannel = parseInt(localStorage.getItem('talkme_preferred_audio_channel') || '0', 10);
+            if (window.audioState && typeof window.audioState.get === 'function') {
+                masterDeviceId = window.audioState.get('deviceId') || masterDeviceId;
+                masterChannel = parseInt(window.audioState.get('inputChannel') || 0, 10);
+            }
+
+            const currentSubuserId = document.getElementById('subUserIdHidden')?.value || '';
+
+            // Try to reuse the main panel's channel selector if available to avoid re-detection
+            const panelDeviceSelect = document.getElementById('audioDeviceSelect');
+            const panelChannelSelect = document.getElementById('audioDeviceChannelSelect');
+
+            // Use panel channel options only when the panel is currently showing the SAME device
+            const usePanelClone = panelDeviceSelect && panelChannelSelect && (window.areDevicesIdentical ? window.areDevicesIdentical(panelDeviceSelect.value, deviceId) : panelDeviceSelect.value === deviceId);
+            if (usePanelClone) {
+                try {
+                    const panelContainer = panelChannelSelect.closest('.channel-select-container');
+                    if (panelContainer && panelContainer.style.display === 'none') throw new Error('hidden');
+                    if (panelChannelSelect.options.length <= 1 && !Array.from(panelChannelSelect.options).some(o => o.value !== '0')) throw new Error('no-multi');
+
+                    Array.from(panelChannelSelect.options).forEach(opt => {
+                        const newOpt = document.createElement('option');
+                        const optVal = parseInt(opt.value, 10);
+                        newOpt.value = opt.value;
+                        newOpt.textContent = opt.textContent;
+
+                        // Comprobar colisión con el Master
+                        const collidesWithMaster = ((window.areDevicesIdentical ? window.areDevicesIdentical(deviceId, masterDeviceId) : deviceId === masterDeviceId) && optVal === masterChannel);
+
+                        // Comprobar colisión con otros subusuarios (excluyéndose a sí mismo si se está editando)
+                        const collidesWithSubuser = assigned.some(a =>
+                            (window.areDevicesIdentical ? window.areDevicesIdentical(a.deviceId, deviceId) : a.deviceId === deviceId) &&
+                            parseInt(a.channel, 10) === optVal &&
+                            a.subUserId !== currentSubuserId
+                        );
+
+                        if (collidesWithMaster) {
+                            newOpt.disabled = true;
+                            newOpt.textContent += ' - (En uso por Master)';
+                        } else if (collidesWithSubuser) {
+                            newOpt.disabled = true;
+                            newOpt.textContent += ' - (En uso por otro subusuario)';
+                        } else if (opt.disabled) {
+                            newOpt.disabled = true;
+                        }
+                        channelSelect.appendChild(newOpt);
+                    });
+
+                    const modalContainer = channelSelect.closest('.channel-select-container');
+                    if (modalContainer) modalContainer.style.display = panelContainer.style.display || 'block';
+                    return;
+                } catch (e) { }
+            }
+
+            const channels = (window.detectChannelsForDevice) ? await window.detectChannelsForDevice(deviceId, deviceLabel, false) : [{ index: 0, label: 'Ch 1' }];
+            channels.forEach(ch => {
+                const opt = document.createElement('option');
+                const chIndex = parseInt(ch.index, 10);
+                opt.value = ch.index;
+                opt.textContent = ch.label || `Ch ${ch.index + 1}`;
+
+                // Comprobar colisión con el Master
+                const collidesWithMaster = ((window.areDevicesIdentical ? window.areDevicesIdentical(deviceId, masterDeviceId) : deviceId === masterDeviceId) && chIndex === masterChannel);
+
+                // Comprobar colisión con otros subusuarios (excluyéndose a sí mismo si se está editando)
+                const collidesWithSubuser = assigned.some(a =>
+                    (window.areDevicesIdentical ? window.areDevicesIdentical(a.deviceId, deviceId) : a.deviceId === deviceId) &&
+                    parseInt(a.channel, 10) === chIndex &&
+                    a.subUserId !== currentSubuserId
+                );
+
+                if (collidesWithMaster) {
+                    opt.disabled = true;
+                    opt.textContent += ' - (En uso por Master)';
+                } else if (collidesWithSubuser) {
+                    opt.disabled = true;
+                    opt.textContent += ' - (En uso por otro subusuario)';
+                }
+                channelSelect.appendChild(opt);
+            });
+
+            // Sincronizar visibilidad del contenedor de canales en el modal de sub-usuarios
+            const modalContainer = channelSelect.closest('.channel-select-container');
+            if (modalContainer) {
+                const isProInterface =
+                    channels.length > 2 ||
+                    deviceId.startsWith('asio:') ||
+                    deviceId.startsWith('soundgrid') ||
+                    deviceId.startsWith('talkme') ||
+                    /audiobox|presonus|focusrite|scarlett|behringer|motu|rme|steinberg|roland|yamaha|uaudio|volt|antelope|virtual|soundgrid|vac|hi-fi/i.test(deviceLabel);
+
+                const shouldShow = channels.length > 1 && isProInterface;
+                modalContainer.style.display = shouldShow ? 'block' : 'none';
+                if (!shouldShow) channelSelect.value = 0;
+            }
+        }
+
+        // Open modal helper for create/edit
+        window.openSubUserModal = function (subUser) {
+            const modalEl = document.getElementById('subuserModal');
+            if (!modalEl) return;
+
+            // [v60.ELITE] IGNICIÓN POR GESTO DIRECTO: Despertar el contexto en el mismo hilo del click
+            // Esto es vital para Firefox y Chrome cuando hay procesos asíncronos después.
+            if (window.audioContext && window.audioContext.state === 'suspended') {
+                window.audioContext.resume().then(() => console.log('🔊 [ELITE] Contexto despertado por gesto.'));
+            }
+
+            modalEl.classList.remove('hidden');
+
+            if (subUser) {
+                document.getElementById('subUserIdHidden').value = subUser.subUserId || '';
+                document.getElementById('subUserName').value = subUser.name || '';
+                document.getElementById('subUserCategory').value = subUser.category || '';
+                document.getElementById('subUserLang').value = subUser.lang || 'es';
+
+                const thr = Math.round((subUser.threshold || 0.5) * 100);
+                document.getElementById('subUserThreshold').value = thr;
+                document.getElementById('subUserVolumeLevel').style.width = '0%';
+            } else {
+                document.getElementById('subUserIdHidden').value = '';
+                document.getElementById('subUserName').value = '';
+                document.getElementById('subUserCategory').selectedIndex = 0;
+                document.getElementById('subUserLang').value = 'es';
+                document.getElementById('subUserThreshold').value = 50;
+                document.getElementById('subUserVolumeLevel').style.width = '0%';
+                stopMicPreview();
+            }
+
+            // [v60.ELITE] Cargamos las opciones y secuenciamos el arranque del vúmetro
+            populateModalOptions(subUser).then(() => {
+                // Determinar fuente y canal para el preview
+                let deviceId = '';
+                let channel = 0;
+
+                const modalDevSel = document.getElementById('subModalAudioDeviceSelect');
+                const modalChSel = document.getElementById('subModalAudioDeviceChannelSelect');
+
+                if (subUser && subUser.mic && subUser.mic.deviceId) {
+                    deviceId = subUser.mic.deviceId;
+                    channel = subUser.mic.channel || 0;
+                } else {
+                    // [v60.ELITE] Priorizar la selección actual del modal (que acaba de ser poblado)
+                    // Si no hay selección, fallback al Master.
+                    deviceId = modalDevSel?.value || document.getElementById('audioDeviceSelect')?.value || 'default';
+                    channel = parseInt(modalChSel?.value || document.getElementById('audioDeviceChannelSelect')?.value || '0');
+                }
+
+                if (deviceId) {
+                    console.log(`🎙️ [ELITE] Arrancando preview proactivo: ${deviceId} (Ch ${channel})`);
+                    startMicPreview(deviceId, channel);
+                }
+            });
+        };
+
+        // [v60.Elite] Populate optimizado (Caché + Paralelismo)
+        async function populateModalOptions(subUser = null) {
+            const categorySelect = document.getElementById('subUserCategory');
+            const deviceSelect = document.getElementById('subModalAudioDeviceSelect');
+            const channelSelect = document.getElementById('subModalAudioDeviceChannelSelect');
+
+            // 1. CARGA DE CATEGORÍAS (Priorizar caché local)
+            const fillCats = (cats) => {
+                if (!categorySelect) return;
+                const currentVal = categorySelect.value;
+                categorySelect.innerHTML = '';
+                cats.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c.id || c.name || c;
+                    opt.textContent = c.name || c;
+                    categorySelect.appendChild(opt);
+                });
+                if (subUser) categorySelect.value = subUser.category;
+                else if (currentVal) categorySelect.value = currentVal;
+            };
+
+            if (window.currentCategories && window.currentCategories.length > 0) {
+                fillCats(window.currentCategories);
+            } else if (window.socket && window.socket.connected) {
+                window.socket.emit('request-cats', null, (resp) => {
+                    if (resp && resp.categories) fillCats(resp.categories);
+                });
+            }
+
+            // 2. CARGA DE DISPOSITIVOS (Optimización: No pedir permisos si el Master ya está activo)
+            try {
+                // Solo pedir permiso si no tenemos etiquetas y el Master NO está activo
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const hasLabels = devices.some(d => d.label !== "");
+                const isMasterActive = !!(window.audioCapture && window.audioCapture.activeSource);
+
+                if (!hasLabels && !isMasterActive) {
+                    const preferredId = localStorage.getItem('talkme_preferred_audio_input') || localStorage.getItem('talkme_deviceId') || 'default';
+                    const constraints = window.getEliteConstraints ? window.getEliteConstraints(preferredId, '') : { audio: true };
+                    await navigator.mediaDevices.getUserMedia(constraints).catch(() => { });
+                }
+
+                const inputs = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audioinput');
+
+                if (deviceSelect) {
+                    deviceSelect.innerHTML = '';
+                    inputs.forEach((dev, idx) => {
+                        const opt = document.createElement('option');
+                        opt.value = dev.deviceId;
+                        opt.textContent = dev.label || `Mic ${idx + 1}`;
+                        deviceSelect.appendChild(opt);
+                    });
+
+                    const warningEl = document.getElementById('subHardwareWarning');
+                    if (warningEl) warningEl.style.display = 'none';
+
+                    if (subUser && subUser.mic && subUser.mic.deviceId) {
+                        const exists = inputs.some(d => d.deviceId === subUser.mic.deviceId);
+                        if (!exists) {
+                            // [v60.ELITE] RECONCILIACIÓN FALLIDA: El hardware ya no está
+                            if (warningEl) warningEl.style.display = 'block';
+                            // Añadimos una opción temporal para mostrar el ID/Falta
+                            const opt = document.createElement('option');
+                            opt.value = subUser.mic.deviceId;
+                            opt.textContent = `⚠️ NO DISPONIBLE (${subUser.mic.deviceId.substring(0, 8)}...)`;
+                            opt.disabled = true;
+                            deviceSelect.insertBefore(opt, deviceSelect.firstChild);
+                        }
+                        deviceSelect.value = subUser.mic.deviceId;
+                        await fillSubModalChannels(subUser.mic.deviceId);
+                        if (channelSelect) channelSelect.value = String(subUser.mic.channel || 0);
+                    } else if (deviceSelect.options.length > 0) {
+                        await fillSubModalChannels(deviceSelect.value);
+                    }
+                }
+            } catch (e) {
+                console.warn('Populate hardware failed', e);
+            }
+        }
+
+        // [v60.Elite] Register listeners ONCE in IIFE init
+        (function () {
+            const subDevSel = document.getElementById('subModalAudioDeviceSelect');
+            const subChSel = document.getElementById('subModalAudioDeviceChannelSelect');
+
+            if (subDevSel && !subDevSel._bound) {
+                subDevSel._bound = true;
+                subDevSel.addEventListener('change', async (ev) => {
+                    const val = ev.target.value || '';
+                    if (!val) { if (subChSel) subChSel.innerHTML = '<option value="0">Ch 1</option>'; stopMicPreview(); return; }
+                    await fillSubModalChannels(val);
+                    const ch = subChSel ? (parseInt(subChSel.value, 10) || 0) : 0;
+                    console.log(`🔄 [ELITE] Cambio de dispositivo: ${val} (Ch ${ch})`);
+                    startMicPreview(val, ch);
+                });
+            }
+            if (subChSel && !subChSel._bound) {
+                subChSel._bound = true;
+                subChSel.addEventListener('change', (ev) => {
+                    const devId = subDevSel ? subDevSel.value : '';
+                    const chId = parseInt(ev.target.value, 10) || 0;
+                    console.log(`🔄 [ELITE] Cambio de canal: ${devId} (Ch ${chId})`);
+                    if (devId) startMicPreview(devId, chId);
+                });
+            }
+        })();
+
+        if (btnSave) btnSave.addEventListener('click', async () => {
+            const existingId = document.getElementById('subUserIdHidden')?.value || '';
+            const name = document.getElementById('subUserName')?.value || 'Sub-usuario';
+            const category = document.getElementById('subUserCategory')?.value || 'General';
+            const lang = document.getElementById('subUserLang')?.value || 'es';
+            const deviceId = document.getElementById('subModalAudioDeviceSelect')?.value || '';
+            const channel = parseInt(document.getElementById('subModalAudioDeviceChannelSelect')?.value || '0', 10) || 0;
+            const threshold = parseInt(document.getElementById('subUserThreshold')?.value || '50', 10) / 100;
+
+            let mic = null;
+            if (deviceId) mic = { deviceId: deviceId, channel: channel };
+
+            if (!window || !window.socket) {
+                alert('Socket no disponible');
+                return;
+            }
+
+            // --- VALIDACIÓN DE COLISIÓN DE CANALES FÍSICOS (Evita bloquear drivers ASIO/WASAPI Exclusive) ---
+            let masterDeviceId = localStorage.getItem('talkme_preferred_audio_input') || localStorage.getItem('talkme_deviceId') || 'default';
+            let masterChannel = parseInt(localStorage.getItem('talkme_preferred_audio_channel') || '0', 10);
+            if (window.audioState && typeof window.audioState.get === 'function') {
+                masterDeviceId = window.audioState.get('deviceId') || masterDeviceId;
+                masterChannel = parseInt(window.audioState.get('inputChannel') || 0, 10);
+            }
+
+            // Comprobar si choca con el Master
+            if ((window.areDevicesIdentical ? window.areDevicesIdentical(deviceId, masterDeviceId) : deviceId === masterDeviceId) && channel === masterChannel) {
+                alert('Conflicto de hardware: El canal seleccionado está siendo usado por el Master.');
+                return;
+            }
+
+            // Comprobar si choca con otros subusuarios
+            let assigned = [];
+            if (window.socket && window.socket.connected) {
+                assigned = await new Promise((resolve) => {
+                    try {
+                        let called = false;
+                        const timer = setTimeout(() => { if (!called) { called = true; resolve([]); } }, 600);
+                        window.socket.emit('get-assigned-mics', null, (resp) => {
+                            if (!called) { called = true; clearTimeout(timer); resolve((resp && resp.assigned) ? resp.assigned : []); }
+                        });
+                    } catch (e) { resolve([]); }
+                });
+            }
+
+            // Fallback con cache local
+            try {
+                const currentUsername = localStorage.getItem('talkme_username') || '';
+                const currentUserData = (window.lastUsersData || []).find(u => u.username === currentUsername) || {};
+                const localSubusers = currentUserData.subUsers || JSON.parse(localStorage.getItem('talkme_cached_subusers') || '[]');
+                localSubusers.forEach(su => {
+                    if (su.mic && su.mic.deviceId && !assigned.some(a => a.subUserId === su.subUserId)) {
+                        assigned.push({ deviceId: su.mic.deviceId, channel: parseInt(su.mic.channel, 10), subUserId: su.subUserId });
+                    }
+                });
+            } catch (e) { }
+
+            const conflictSub = assigned.find(a =>
+                (window.areDevicesIdentical ? window.areDevicesIdentical(a.deviceId, deviceId) : a.deviceId === deviceId) &&
+                parseInt(a.channel, 10) === channel &&
+                a.subUserId !== existingId
+            );
+
+            if (conflictSub) {
+                alert('Conflicto de hardware: El canal seleccionado está siendo usado por otro subusuario.');
+                return;
+            }
+
+            if (existingId) {
+                // Edit
+                const updates = { name, category, lang, mic, threshold };
+                window.socket.emit('updateSubUserState', { subUserId: existingId, updates }, (resp) => {
+                    if (resp && resp.ok) {
+                        if (mic && mic.deviceId) {
+                            // [v60.1] Retraso estratégico para permitir que el DOM se estabilice tras el re-render de update-users
+                            setTimeout(() => {
+                                try { window.startSubUserCapture(existingId, mic, lang, threshold, category); } catch (e) { console.warn('startSubUserCapture error', e); }
+                            }, 100);
+                        } else {
+                            try { window.stopSubUserCapture(existingId); } catch (e) { }
+                        }
+                        document.getElementById('subuserModal').classList.add('hidden');
+                        // [v60.ELITE FIX - Sol.6] Liberar stream de previsualización al guardar
+                        try { stopMicPreview(); } catch (e) { }
+                    } else {
+                        alert('Error editando Sub-usuario: ' + (resp && resp.error ? resp.error : 'unknown'));
+                    }
+                });
+            } else {
+                // Create
+                const payload = {
+                    name: name,
+                    category: category,
+                    lang: lang,
+                    color: null,
+                    mic: mic,
+                    threshold: threshold // [v60.ELITE] Normalizar a escala 0-1 para el servidor
+                };
+                window.socket.emit('registerSubUser', payload, (resp) => {
+                    if (resp && resp.success) {
+                        const createdId = resp.subUserId;
+                        // [v60.ELITE] Sincronización Atómica: Esperar a que el DOM re-renderice la lista
+                        setTimeout(() => {
+                            try { window.startSubUserCapture(createdId, mic, lang, threshold, category); } catch (e) { console.warn('startSubUserCapture error', e); }
+                        }, 400); // 400ms para asegurar renderizado completo en redes lentas
+                        document.getElementById('subuserModal').classList.add('hidden');
+                        // [v60.ELITE FIX - Sol.6] Liberar stream de previsualización al guardar
+                        try { stopMicPreview(); } catch (e) { }
+                    } else {
+                        alert('Error creando Sub-usuario: ' + (resp && resp.error ? resp.error : 'unknown'));
+                    }
+                });
+            }
+        });
+        // --- Live mic preview + threshold indicator ---
+        let _testStream = null;
+        let _testCtx = null;
+        let _testSource = null;
+        let _testSplitter = null;
+        let _testAnalyser = null;
+        let _testRaf = null;
+        let _testSmoothedVolume = 0;
+
+        function stopMicPreview() {
+            try {
+                if (_testRaf) cancelAnimationFrame(_testRaf);
+                _testRaf = null;
+
+                // Desconectar puente al masterSplitter si existe
+                if (window.audioCapture && window.audioCapture.activeSplitter && _testAnalyser) {
+                    try { window.audioCapture.activeSplitter.disconnect(_testAnalyser); } catch (e) { }
+                }
+
+                if (_testSource) {
+                    try { _testSource.disconnect(); } catch (e) { }
+                    _testSource = null;
+                }
+
+                if (_testSplitter) {
+                    try { _testSplitter.disconnect(); } catch (e) { }
+                    _testSplitter = null;
+                }
+
+                if (_testAnalyser) {
+                    try { _testAnalyser.disconnect(); } catch (e) { }
+                    _testAnalyser = null;
+                }
+
+                if (_testCtx) {
+                    _testCtx = null;
+                }
+                window._modalInManualPreview = false;
+                if (_testStream) {
+                    if (window.mediaStream !== _testStream) {
+                        _testStream.getTracks().forEach(t => t.stop());
+                    }
+                    _testStream = null;
+                }
+
+                _testSmoothedVolume = 0;
+                const lv = document.getElementById('subUserVolumeLevel');
+                if (lv) lv.style.width = '0%';
+            } catch (e) { }
+        }
+
+        async function startMicPreview(deviceId, channelIndex = 0) {
+            stopMicPreview();
+            if (!deviceId) return;
+
+            // [v60.ELITE] 1. INICIALIZAR CONTEXTO
+            _testCtx = window.audioContext || (typeof window.initAudioCtx === 'function' ? window.initAudioCtx() : null);
+            if (!_testCtx) _testCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (_testCtx.state === 'suspended') await _testCtx.resume();
+
+            // [v60.ELITE] Loop de Renderizado (30fps estables para evitar jank)
+            function runRenderLoop() {
+                if (!_testAnalyser) return;
+                let lastUpdate = 0;
+                const data = new Float32Array(_testAnalyser.fftSize);
+                const loop = (timestamp) => {
+                    if (!_testAnalyser) return;
+                    if (timestamp - lastUpdate < 32) { _testRaf = requestAnimationFrame(loop); return; }
+                    lastUpdate = timestamp;
+
+                    _testAnalyser.getFloatTimeDomainData(data);
+                    let sum = 0;
+                    for (let i = 0; i < data.length; i++) sum += data[i] * data[i];
+                    const rms = Math.sqrt(sum / data.length);
+                    const instantVolume = Math.min(100, Math.round(rms * 1000)); // [v60.ELITE] Paridad Total (Multiplier 1000)
+
+                    if (instantVolume > _testSmoothedVolume) {
+                        _testSmoothedVolume = (instantVolume * 0.7) + (_testSmoothedVolume * 0.3);
+                    } else {
+                        _testSmoothedVolume = (instantVolume * 0.15) + (_testSmoothedVolume * 0.85);
+                    }
+
+                    const pct = Math.min(100, Math.round(_testSmoothedVolume));
+
+                    // 1. Actualizar MODAL (Principal)
+                    const lv = document.getElementById('subUserVolumeLevel');
+                    const thrVal = parseInt(document.getElementById('subUserThreshold').value || '50', 10);
+                    const isOrange = pct >= thrVal;
+
+                    if (lv) {
+                        lv.style.width = pct + '%';
+                        if (isOrange) {
+                            lv.style.setProperty('background', 'var(--accent-orange)', 'important');
+                            lv.style.boxShadow = '0 0 10px var(--accent-orange)';
+                        } else {
+                            lv.style.setProperty('background', 'var(--accent-blue)', 'important');
+                            lv.style.boxShadow = 'none';
+                        }
+                    }
+
+                    // 2. [v60.ELITE] Actualizar SIDEBAR (El Gemelo)
+                    // Si el sub-usuario ya existe, actualizamos su vúmetro en la lista en tiempo real
+                    const subUserId = document.getElementById('subUserIdHidden')?.value;
+                    if (subUserId) {
+                        const sidebarEl = document.getElementById('sub-vu-' + subUserId);
+                        if (sidebarEl) {
+                            sidebarEl.style.width = pct + '%';
+                            sidebarEl.dataset.threshold = thrVal; // Sincronizar umbral en vivo
+                            if (isOrange) {
+                                sidebarEl.style.setProperty('background', 'var(--accent-orange)', 'important');
+                            } else {
+                                sidebarEl.style.setProperty('background', 'var(--accent-blue)', 'important');
+                            }
+                            sidebarEl.style.boxShadow = 'none'; // Sincronización nítida
+                        }
+                    }
+
+                    _testRaf = requestAnimationFrame(loop);
+                };
+                requestAnimationFrame(loop);
+            }
+
+
+            try {
+                // [v60.ELITE] 1. MODO PREVISUALIZACIÓN LOCAL (Soberanía absoluta)
+                // Siempre usamos el motor local para la modal para asegurar respuesta instantánea.
+                window._modalInManualPreview = true;
+
+                const subUserId = document.getElementById('subUserIdHidden')?.value;
+                if (subUserId && window._subUserPipelines && window._subUserPipelines[subUserId]) {
+                    const pipeline = window._subUserPipelines[subUserId];
+                    // Si el hardware coincide, informamos pero seguimos con el loop local para evitar lag.
+                    console.log('🔗 [ELITE] Modo Monitor: Sincronizado con hardware activo');
+                }
+
+                // [v60.ELITE] 1. PUENTE AL MASTER (Solo si el Master está activo)
+                if (window.audioCapture && window.audioCapture.activeSource && window.audioCapture.activeSplitter) {
+                    const masterTrack = window.audioCapture.activeSource.mediaStream.getAudioTracks()[0];
+                    const masterLabel = masterTrack ? masterTrack.label : '';
+                    const deviceSelect = document.getElementById('subModalAudioDeviceSelect');
+                    const selectedLabel = deviceSelect?.options[deviceSelect.selectedIndex]?.text || '';
+
+                    if (masterLabel && selectedLabel === masterLabel) {
+                        console.log('🔌 [ELITE] Graph Injection: Puenteando al motor del Master');
+                        _testSource = window.audioCapture.activeSource;
+                        const masterSplitter = window.audioCapture.activeSplitter;
+                        _testAnalyser = _testCtx.createAnalyser();
+                        _testAnalyser.fftSize = 1024;
+                        const safeChannel = Math.min(channelIndex, (masterSplitter.numberOfOutputs || 1) - 1);
+                        masterSplitter.connect(_testAnalyser, safeChannel, 0);
+                        runRenderLoop();
+                        return;
+                    }
+                }
+
+                // [v60.ELITE] 2. FALLBACK HARDWARE (Captura limpia por defecto)
+                console.log('🎙️ [ELITE] Captura independiente: Abriendo canal privado');
+                if (window.getDeviceStream) {
+                    try { _testStream = await window.getDeviceStream(deviceId, { force: true }); } catch (e) { _testStream = null; }
+                }
+                if (!_testStream) {
+                    const previewConstraints = window.getEliteConstraints ? window.getEliteConstraints(deviceId) : { audio: { deviceId: { exact: deviceId } } };
+                    _testStream = await navigator.mediaDevices.getUserMedia(previewConstraints);
+                }
+
+                _testSource = _testCtx.createMediaStreamSource(_testStream);
+                _testSplitter = _testCtx.createChannelSplitter(_testSource.channelCount || 2);
+                _testAnalyser = _testCtx.createAnalyser();
+                _testAnalyser.fftSize = 1024;
+                _testSource.connect(_testSplitter);
+                const safeChannel = Math.min(channelIndex, (_testSource.channelCount || 1) - 1);
+                _testSplitter.connect(_testAnalyser, safeChannel, 0);
+
+                runRenderLoop();
+
+            } catch (e) {
+                console.error('❌ [ELITE] Error crítico en preview:', e);
+            }
+        }
+
+        // [v60.ELITE] Reactividad Dinámica: Refrescar preview al cambiar placa o canal
+        // Eliminados duplicados innecesarios. Los listeners están registrados en el IIFE superior.
+
+        // threshold moves indicator
+        const thr = document.getElementById('subUserThreshold');
+        if (thr) thr.addEventListener('input', (e) => { });
+
+        // Ensure preview stops when modal closes
+        if (btnClose) btnClose.addEventListener('click', () => { stopMicPreview(); });
+    })();
+</script>
+<script>
+    (function () {
+        // [v60.ELITE] CENTRALIZADOR DE VÚMETROS (Sidebar + Modal)
+        // Escuchamos el evento 'remote-vu' que el motor emite globalmente
+        const vuHandler = (e) => {
+            const d = e.detail || e;
+            if (!d || !d.subUserId) return;
+            const cleanId = String(d.subUserId).trim();
+
+            // [v60.ELITE] FILTRO DE VERACIDAD: Si el evento viene de red (sin d.local) 
+            // y ya tenemos este sub-usuario capturándose localmente, ignoramos la red para evitar lag/fantasmas.
+            const hasLocalPipeline = window._subUserPipelines && window._subUserPipelines[cleanId];
+            if (!d.local && hasLocalPipeline) return;
+
+            // 1. Actualizar BARRA LATERAL (Sidebar)
+            const sidebarId = 'sub-vu-' + cleanId;
+            const sidebarEl = document.getElementById(sidebarId);
+            const targetPct = Math.min(100, Math.round((d.rms || 0) * 1000));
+
+            if (sidebarEl) {
+                // [v60.ELITE] SOBERANÍA: Si estamos editando este usuario en la modal, 
+                // ignoramos los datos de red para la sidebar para evitar colisiones con el motor local.
+                const modalIdHidden = document.getElementById('subUserIdHidden')?.value;
+                if (window._modalInManualPreview && modalIdHidden === cleanId) return;
+
+                // Balística ligera para Sidebar
+                const currentW = parseFloat(sidebarEl.style.width) || 0;
+                const smoothed = currentW + (targetPct - currentW) * 0.4;
+                sidebarEl.style.width = smoothed + '%';
+
+                // Lógica de COLOR BINARIA (Independiente del modo Master)
+                const threshold = parseInt(sidebarEl.dataset.threshold || '50', 10);
+                if (smoothed >= threshold) {
+                    sidebarEl.style.setProperty('background', 'var(--accent-orange)', 'important');
+                } else {
+                    sidebarEl.style.setProperty('background', 'var(--accent-blue)', 'important');
+                }
+                sidebarEl.style.boxShadow = 'none'; // [v60.ELITE] Limpieza: Sin sombras en sidebar para evitar efecto doble
+            }
+
+            // 2. Actualizar MODAL (Soberanía de Previsualización Local)
+            const modalVolumeLevel = document.getElementById('subUserVolumeLevel');
+            if (modalVolumeLevel) {
+                // Si estamos en previsualización manual (moviendo hardware/umbral en la modal), 
+                // ignoramos los eventos de red para evitar parpadeos o tirones.
+                if (window._modalInManualPreview) return;
+
+                const modalIdHidden = document.getElementById('subUserIdHidden')?.value;
+                if (modalIdHidden === cleanId || cleanId === 'preview') {
+                    modalVolumeLevel.style.width = targetPct + '%';
+                    const modalThr = parseInt(document.getElementById('subUserThreshold')?.value || '50', 10);
+
+                    if (targetPct >= modalThr) {
+                        modalVolumeLevel.style.setProperty('background', 'var(--accent-orange)', 'important');
+                        modalVolumeLevel.style.boxShadow = '0 0 10px var(--accent-orange)';
+                    } else {
+                        modalVolumeLevel.style.setProperty('background', 'var(--accent-blue)', 'important');
+                        modalVolumeLevel.style.boxShadow = 'none';
+                    }
+                }
+            }
+        };
+
+        // Suscribirse a ambas fuentes para máxima redundancia
+        window.addEventListener('remote-vu', vuHandler);
+        if (window.audioState && typeof window.audioState.on === 'function') {
+            window.audioState.on('remote-vu', vuHandler);
+        }
+    })();
+</script>

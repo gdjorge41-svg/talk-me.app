@@ -364,5 +364,31 @@
   },
   "settings": {
     "translation_disabled": "Sistemaren itzulpena desgaituta"
+  },
+  "qr_modal": {
+    "tab_wifi": "Konektatu",
+    "tab_cert": "Ziurtagiria",
+    "tab_app": "Sartu",
+    "instruction_wifi": "Eskaneatu Wi-Fi sarera automatikoki konektatzeko",
+    "instruction_cert": "Eskaneatu SSL CA Ziurtagiria deskargatu eta instalatzeko (segurtasun-oharrak kentzen ditu).",
+    "instruction_app": "Eskaneatu Talk.me-ra sartzeko",
+    "loading": "QR kode seguruak denbora errealean sortzen...",
+    "btn_close": "Itxi",
+    "btn_zoom": "Ukitu QR handitzeko",
+    "btn_copied": "Kopiatuta!",
+    "instruction_ethernet": "Zerbitzaria Ethernet kable bidez (LAN) konektatuta dago. Konektatu zure mugikorra sare lokal berera.",
+    "wifi_password_label": "Pasahitza:",
+    "copy_pass_btn": "Kopiatu",
+    "ethernet_title": "Kabledun Tokiko Sarea (Ethernet)",
+    "server_ip_label": "Zerbitzariaren IPa:",
+    "wifi_form_title": "Konfiguratu gonbidatuen Wi-Fi sarea",
+    "wifi_ssid_placeholder": "Wi-Fi sarearen izena (SSID)",
+    "wifi_pass_placeholder": "Wi-Fi pasahitza",
+    "btn_save_wifi": "Gorde eta Sortu QR",
+    "btn_edit_wifi": "Editatu sarea",
+    "saving": "Gordetzen...",
+    "ssid_required": "Wi-Fi sarearen izena beharrezkoa da.",
+    "copy_ip_btn": "Kopiatu IPa",
+    "copied_ip": "IPa kopiatuta!"
   }
 }

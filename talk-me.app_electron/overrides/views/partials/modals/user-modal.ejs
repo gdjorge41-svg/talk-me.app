@@ -1,0 +1,69 @@
+<div class="user-modal" id="userModal">
+    <div class="modal-content">
+        <h1 class="modal-title">
+            <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+        </h1>
+        <p class="modal-subtitle" id="loginSubtitle">
+            Ingresa tu nombre para comenzar a chatear con voz, texto y transcripción en tiempo real
+        </p>
+        <h2 class="login-heading">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+            </svg>
+            <span class="title_login" data-i18n="title_login">Login</span>
+        </h2>
+        <div class="modal-input-group">
+            <input type="text" class="username-input" id="usernameInput" placeholder="Nombre" maxlength="20">
+        </div>
+        <div class="modal-input-group pin-input-wrapper" id="pinInputContainer">
+            <input type="password" class="username-input" id="pinInput" placeholder="PIN de sala" maxlength="20">
+            <button type="button" class="login-toggle-pin-btn" id="btnToggleLoginPin" title="Mostrar/Ocultar PIN">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="category-selection" id="categorySelection">
+            <div class="cat-select-row">
+                <div class="talkme-select-container">
+                    <select id="categorySelect" class="talkme-select">
+                        <option value="" disabled selected>Selecciona Dpto...</option>
+                        <option value="Sonido">Sonido</option>
+                        <option value="Luz/FX">Luz/FX</option>
+                        <option value="Producción">Producción</option>
+                        <option value="Artistas">Artistas</option>
+                    </select>
+                    <div class="talkme-select-arrow">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <button id="btnManageCategoriesLogin" class="btn-manage-cat-login" style="display: none;"
+                    title="Gestionar Categorías">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <button class="btn-start" id="btnStart">Talk</button>
+        <div id="loginIpDisplay" class="login-connect-box"></div>
+        <p class="modal-footer" id="loginFooter">
+            <span id="loginFooterPrefix">Al continuar aceptas nuestros</span>
+            <button id="btnOpenTerms" class="terms-link-btn login-terms-btn"
+                title="Leer los términos de servicio">términos de servicio</button>
+        </p>
+    </div>
+</div>
+<div class="main-logo">
+    <span class="logo-talk">Talk</span><span class="logo-sep">-</span><span class="logo-me">me</span>
+</div>

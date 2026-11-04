@@ -84,5 +84,8 @@
       "executableName": "talk-me",
       "synopsis": "Talk.me Pro Intercom and Translation System"
     }
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
   }
 }

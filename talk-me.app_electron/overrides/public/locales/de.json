@@ -363,5 +363,31 @@
   },
   "settings": {
     "translation_disabled": "Systemübersetzung deaktiviert"
+  },
+  "qr_modal": {
+    "tab_wifi": "Verbinden",
+    "tab_cert": "Zertifikat",
+    "tab_app": "Beitreten",
+    "instruction_wifi": "Scannen, um sich automatisch mit dem WLAN zu verbinden",
+    "instruction_cert": "Scannen, um das SSL-CA-Zertifikat herunterzuladen und zu installieren (entfernt Warnmeldungen).",
+    "instruction_app": "Scannen, um Talk.me beizutreten",
+    "loading": "Sichere QR-Codes werden in Echtzeit generiert...",
+    "btn_close": "Schließen",
+    "btn_zoom": "QR zum Vergrößern antippen",
+    "btn_copied": "Kopiert!",
+    "instruction_ethernet": "Der Server ist über ein Ethernet-Kabel (LAN) verbunden. Verbinden Sie Ihr Telefon mit demselben lokalen Netzwerk.",
+    "wifi_password_label": "Passwort:",
+    "copy_pass_btn": "Kopieren",
+    "ethernet_title": "Kabelgebundenes lokales Netzwerk (Ethernet)",
+    "server_ip_label": "Server-IP:",
+    "wifi_form_title": "Gast-WLAN-Netzwerk konfigurieren",
+    "wifi_ssid_placeholder": "WLAN-Name (SSID)",
+    "wifi_pass_placeholder": "WLAN-Passwort",
+    "btn_save_wifi": "Speichern & QR generieren",
+    "btn_edit_wifi": "Netzwerk bearbeiten",
+    "saving": "Wird gespeichert...",
+    "ssid_required": "WLAN-Netzwerkname erforderlich.",
+    "copy_ip_btn": "IP kopieren",
+    "copied_ip": "IP kopiert!"
   }
 }

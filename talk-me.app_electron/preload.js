@@ -195,9 +195,9 @@ window.addEventListener('DOMContentLoaded', () => {
             -webkit-app-region: no-drag !important;
         }
 
-        /* Ocultar el bloque redundante de "conectar en" de la tarjeta del login/user-modal */
+        /* [v60.QR-ACCESS] Habilitar botón de conexión y acceso QR en el Máster */
         #loginConnectBtn, #loginIpDisplay {
-            display: none !important;
+            display: flex !important;
         }
 
         .main-logo {

@@ -1,0 +1,506 @@
+{
+    "guide_title": "gebruikershandleiding",
+    "search_placeholder": "zoek in de gids...",
+    "cards": [
+        {
+            "id": "audio_modes",
+            "title": "Audiotransmissiemodi",
+            "items": [
+                {
+                    "title": "Push-to-Talk-modus (PTT).",
+                    "description": "Handmatige transmissie via drukknop. Houd de Talk-knop ingedrukt om het microfoonkanaal te openen en real-time audio op te nemen. Wanneer u deze loslaat, wordt de verzending onmiddellijk beëindigd en verwerkt het systeem de transcriptie automatisch.",
+                    "note": "Aanbevolen voor omgevingen met veel lawaai of situaties waarin nauwkeurige controle van de communicatie vereist is."
+                },
+                {
+                    "title": "Automatische modus (volumedetectie)",
+                    "description": "Automatische transmissie op basis van ingangssignaalniveau. Het systeem activeert de audio-opname wanneer het geluid boven de geconfigureerde gevoeligheidsdrempel detecteert en stopt met opnemen na een korte periode van stilte.",
+                    "note": "Ideaal voor een volledig handsfree ervaring."
+                },
+                {
+                    "title": "Instapniveau",
+                    "description": "Geeft het signaalniveau van de geselecteerde audiobron in realtime weer met behulp van een dynamische VU-meter.",
+                    "note": null
+                }
+            ]
+        },
+        {
+            "id": "users",
+            "title": "Gebruikers",
+            "items": [
+                {
+                    "title": "Verbonden gebruikers",
+                    "description": "Toont de lijst met actieve gebruikers, subgebruikers en hun toegewezen categorieën.",
+                    "subitems": [
+                        "De door u aangemaakte subgebruikers kunnen zijn:",
+                        "Bewerkt.",
+                        "Uitgeschakeld.",
+                        "Gemonitord door een individuele VU-meter die aangeeft wanneer ze audio uitzenden."
+                    ]
+                },
+                {
+                    "title": "Subgebruikers aanmaken (+)",
+                    "description": "Hiermee kunt u virtuele gebruikers maken met onafhankelijke interne routering.",
+                    "subitems": [
+                        "Elke subgebruiker kan worden geconfigureerd met:",
+                        "Naam.",
+                        "Categorie.",
+                        "Transcriptie taal.",
+                        "Audiobron.",
+                        "Ingangskanaal.",
+                        "Activeringsdrempel."
+                    ],
+                    "extra": "Wanneer het audioniveau de geconfigureerde drempel overschrijdt, worden de transcriptie en het verzenden van berichten automatisch uitgevoerd.",
+                    "important": "Het is niet mogelijk om tegelijkertijd dezelfde audiobron en hetzelfde kanaal toe te wijzen dat door de primaire gebruiker wordt gebruikt. In geval van een conflict wordt de bron automatisch uitgeschakeld om dubbele transmissies te voorkomen."
+                }
+            ]
+        },
+        {
+            "id": "chat_transmission",
+            "title": "Chat- en uitzendfuncties",
+            "items": [
+                {
+                    "title": "Praatknop",
+                    "description": "Hiermee kunt u live audio streamen. Wanneer u tekst invoert in het invoerveld, verandert de knop automatisch in het pictogram voor het verzenden van een bericht."
+                },
+                {
+                    "title": "Foto's verzenden",
+                    "description": "Hiermee kunt u foto's maken met de camera aan de achterkant van het apparaat of foto's uit de galerij selecteren om ze direct naar de chat te sturen."
+                },
+                {
+                    "title": "Gebarennavigatie (vegen)",
+                    "description": "Veeg naar rechts om het zijpaneel weer te geven en naar links om het te verbergen.",
+                    "note": "Deze actie komt overeen met het gebruik van de navigatieknoppen of het applicatielogo."
+                },
+                {
+                    "title": "Filters",
+                    "description": "Hiermee kunt u selecteren welke categorieën berichten en waarschuwingen u wilt ontvangen.",
+                    "subitems": [
+                        "Kan:",
+                        "Toon alle categorieën.",
+                        "Selecteer één categorie.",
+                        "Combineer meerdere categorieën."
+                    ],
+                    "note": "Elke gebruiker kan zijn filters onafhankelijk aanpassen."
+                },
+                {
+                    "title": "IP- en serverstatus",
+                    "description": "Toont het IP-adres van de server en de huidige status:",
+                    "statuses": {
+                        "green": "Verbonden en operationeel.",
+                        "red": "Verbinding verbroken of geen communicatie."
+                    }
+                },
+                {
+                    "title": "Microfoon-indicator",
+                    "description": "Toont de huidige status van de microfoon:",
+                    "subitems": [
+                        "Tot zwijgen gebracht.",
+                        "Bezit.",
+                        "Audio verzenden."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "audio_hardware",
+            "title": "Audio- en hardwareconfiguratie",
+            "items": [
+                {
+                    "title": "Ingangs- en uitgangsselectie",
+                    "description": "Hiermee kunt u onafhankelijk apparaten voor het vastleggen en afspelen van audio toewijzen.",
+                    "subitems": [
+                        "Om een correcte werking te garanderen:",
+                        "Controleer of toegangsrechten voor de microfoon en luidsprekers zijn verleend.",
+                        "Stel indien nodig apparaten in als standaard in het besturingssysteem.",
+                        "Installeer officiële stuurprogramma's voor uw hardware als de fabrikant dit vereist."
+                    ],
+                    "compatible": "Compatibel met:",
+                    "compatible_list": [
+                        "Fysieke geluidskaarten.",
+                        "USB-interfaces.",
+                        "Bluetooth-apparaten.",
+                        "Virtuele audiokanalen.",
+                        "Professionele routeringssystemen."
+                    ]
+                },
+                {
+                    "title": "Granulaire kanalen",
+                    "description": "Maakt het routeren van audiosignalen naar specifieke fysieke kanalen (kanaal 1, kanaal 2, etc.) mogelijk voor integraties met:",
+                    "subitems": [
+                        "Mengtafels.",
+                        "Virtuele routers.",
+                        "Matrix-systemen.",
+                        "Professionele audio-infrastructuren."
+                    ]
+                },
+                {
+                    "title": "Hardware bijwerken",
+                    "description": "Voert dynamische detectie uit van aangesloten audioapparaten zonder dat u de applicatie opnieuw hoeft te starten."
+                },
+                {
+                    "title": "Vorige verbinding en machtigingen",
+                    "description": "Het wordt aanbevolen om elk type apparaat aan te sluiten (Bluetooth-hoofdtelefoons/microfoons of externe geluidskaarten) **voordat u de server of applicatie start**. Zorg ervoor dat hardware en software van derden op uw besturingssysteem zijn geconfigureerd en dat u de benodigde machtigingen in de webbrowser hebt verleend.",
+                    "important": "Als u tijdens een sessie een apparaat wilt aansluiten, moet u mogelijk het tabblad vernieuwen of op 'Hardware upgraden' klikken. Zorg ervoor dat de microfoon correct wordt geaccepteerd in het machtigingsvenster van de browser."
+                }
+            ]
+        },
+        {
+            "id": "language_transcription",
+            "title": "Taal, transcriptie en woordenschat IA",
+            "items": [
+                {
+                    "title": "Interfacetaal",
+                    "description": "Definieert de toepassingstaal en de primaire taal die door de transcriptie-engine wordt gebruikt."
+                },
+                {
+                    "title": "Fonetisch transcriptiewoordenboek",
+                    "description": "Hiermee kunt u automatisch specifieke termen, namen of merken corrigeren.",
+                    "subitems": [
+                        "Configuratieparameters:",
+                        "Begrepen als: Tekst zoals fonetisch herkend door de AI.",
+                        "Corrigeren naar: Definitieve tekst die in de chat moet worden geïnjecteerd."
+                    ],
+                    "examples": {
+                        "label": "Voorbeelden van fonetische mapping",
+                        "pairs": [
+                            [
+                                "er is een telefoon",
+                                "Iphone"
+                            ],
+                            [
+                                "Miquel",
+                                "Mikel"
+                            ],
+                            [
+                                "zeg meer",
+                                "Dimmer"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "_tag": "trans_number",
+                    "title": "Conversie van Gesproken Getallen naar Cijfers",
+                    "description": "Hiermee kan AI gesproken getallen direct als cijfers transcriberen (bijv. '12' in plaats van 'twaalf', '-6 dB' in plaats van 'min zes decibel').",
+                    "note": "Sterk aanbevolen om het aflezen van kanalen, cues en technische niveaus live te versnellen."
+                }
+            ]
+        },
+        {
+            "id": "babel_translation",
+            "title": "AI-vertaling (Babel Engine)",
+            "items": [
+                {
+                    "title": "Babel-vertaalmachine",
+                    "description": "Het systeem integreert Babel, een geoptimaliseerde neurale machinevertaling (NMT)-engine die 100% lokaal op de Master Server draait. Vertaal berichten die u in andere talen ontvangt in realtime naar de taal van uw interface zonder gegevens naar internet te sturen of afhankelijk te zijn van externe API's."
+                },
+                {
+                    "_tag": "babel_download",
+                    "title": "Download & Beheer van Vertaalengine (MADLAD)",
+                    "description": "De neurale vertaalengine wordt on-demand gedownload (~2,75 GB) om het installatiebestand compact te houden (~400 MB):",
+                    "subitems": [
+                        "Download: Bij inloggen biedt het systeem automatische download aan naar de modellenmap.",
+                        "Uitschakelen: Klik op 'Uitschakelen' om in lichte modus zonder vertaling te werken en meldingen te dempen.",
+                        "Heractiveren: Te allen tijde opnieuw te activeren of te installeren via Pre-Launch of Algemene Instellingen."
+                    ]
+                },
+                {
+                    "title": "Origineel bericht weergeven",
+                    "description": "Hiermee kunt u de originele tekst in een klein, grijs formaat net onder de vertaalde tekst weergeven, waardoor directe verificatie indien nodig wordt vergemakkelijkt."
+                },
+                {
+                    "title": "Filter voor binnenkomende taal",
+                    "description": "Configureer selectief welke talen automatisch moeten worden vertaald. Niet-geselecteerde talen worden in hun oorspronkelijke onbewerkte vorm weergegeven."
+                },
+                {
+                    "title": "Babel Protection (woordenlijst en technisch jargon)",
+                    "description": "Voorkomt dat bepaalde technische gebruiksvoorwaarden of eigennamen door de vertaalmachine worden vervormd. Wanneer u woorden aan deze uitsluitingslijst toevoegt, zal Babel deze respecteren door ze in hun oorspronkelijke vorm te behouden.",
+                    "note": "Speciaal aanbevolen voor entertainmentjargon en netwerken:",
+                    "subitems": [
+                        "Stand-by / Stand-by",
+                        "Fader",
+                        "FOH (voorkant van het huis)",
+                        "Tijdcode/SMPTE",
+                        "Keu / Cuelist"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "messages_flow",
+            "title": "Berichten en communicatiestroom",
+            "items": [
+                {
+                    "title": "Getranscribeerde berichten ontvangen",
+                    "description": "U kunt kiezen tussen:",
+                    "subitems": [
+                        "Toon alleen het transcript.",
+                        "Toon de transcriptie naast de bijbehorende originele audio."
+                    ]
+                },
+                {
+                    "title": "Audio-ontvangst",
+                    "description": "Stel in hoe u inkomende audio wilt ontvangen:",
+                    "subitems": [
+                        "Automatisch afspelen in realtime.",
+                        "Handmatig afspelen op aanvraag."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "hermes_tts",
+            "title": "Offline stemsynthese (Hermes TTS)",
+            "items": [
+                {
+                    "title": "Offline gesproken lezing",
+                    "description": "Maakt het automatisch lezen van inkomende sms-berichten of vertalingen mogelijk. Het maakt uitsluitend gebruik van de native voice-engine van uw besturingssysteem (Web Speech API) en werkt 100% lokaal, privé en zonder dat internet nodig is. Het schijfverbruik is 0 bytes en het heeft vrijwel geen invloed op CPU/RAM."
+                },
+                {
+                    "title": "Instelbare en individuele parameters",
+                    "description": "Configureer de functionaliteit volgens uw voorkeuren op het tabblad Instellingen van uw apparaat:",
+                    "subitems": [
+                        "Luister naar sms-berichten: activeer het lezen van lokale teksten. Als deze is uitgeschakeld, blijven uw taalteksten stil, maar kunt u nog steeds buitenlandse vertalingen horen.",
+                        "Filter voor buitenlandse audio: blokkeert originele audio in andere talen en leest alleen de vertaling ervan.",
+                        "Reactie op actieve filters: Het systeem leest alleen inkomende berichten die overeenkomen met de categorie of het kanaal dat door de gebruiker in zijn chatfilters is geselecteerd (indien gefilterd door een specifieke groep, leest het alleen die uit die groep; als 'Alles' is geselecteerd, leest het ze allemaal).",
+                        "Stemselectie: kies uit de beschikbare stemmen die op uw besturingssysteem zijn geïnstalleerd, of laat deze op Automatisch staan om de taal van de app over te nemen.",
+                        "Geslachtsfilter: filtert compatibele stemmen dynamisch op basis van hun toon (mannelijk, vrouwelijk of allemaal).",
+                        "Leessnelheid: Past het spraaktempo aan tussen extreem langzaam (0,5x) en snel (2,0x)."
+                    ]
+                },
+                {
+                    "title": "Voorvoegsels en contextintroducties",
+                    "description": "De verteller detecteert automatisch het type bericht voor een natuurlijkere lezing: hij zegt '[Naam] schreef...' voor pure tekstberichten, en '[Naam] zei...' bij het afspelen van gesproken berichtvertalingen."
+                },
+                {
+                    "title": "Schild van coëxistentie (Hermes-schild)",
+                    "description": "Om akoestische koppeling met de microfoon te voorkomen en de vloeiende communicatie niet te verstoren, zal Hermes TTS zichzelf automatisch dempen als:",
+                    "subitems": [
+                        "U drukt op de spreekknop of neemt op met uw microfoon.",
+                        "Er is actief afspelen in de eigen audiowachtrij van de chat.",
+                        "Elke onderliggende HTML5-mediaspeler in de DOM is actief."
+                    ]
+                },
+                {
+                    "title": "Slimme gelokaliseerde voorvoegsels",
+                    "description": "Voordat het bericht wordt gelezen, wordt automatisch een dynamisch voorvoegsel samengesteld op basis van de actieve taal om context over de afzender te bieden (bijvoorbeeld: 'Jorge heeft geschreven: [bericht]' of 'Jorge heeft geschreven: [bericht]')."
+                },
+                {
+                    "title": "Lokale persistentie",
+                    "description": "Alle instellingen worden voor elke gebruiker afzonderlijk opgeslagen in de localStorage van de terminal. Het wijzigen van uw stem- of snelheidsopties heeft geen invloed op andere gebruikers op het lokale netwerk of op andere profielen die in dezelfde browser zijn ingelogd."
+                }
+            ]
+        },
+        {
+            "id": "visual_haptic_alerts",
+            "title": "Visuele en haptische waarschuwingen",
+            "items": [
+                {
+                    "title": "Waarschuwingstypen",
+                    "description": "Afhankelijk van de mogelijkheden van het apparaat kunt u het volgende gebruiken:",
+                    "subitems": [
+                        "Visuele waarschuwingen op het scherm.",
+                        "Trillingen.",
+                        "LED-zaklamp."
+                    ]
+                },
+                {
+                    "title": "Waarschuwingsaanpassing",
+                    "description": "Elke waarschuwing heeft een visuele editor waarmee u het volgende kunt doen:",
+                    "subitems": [
+                        "Configureer parameters.",
+                        "Bekijk resultaten.",
+                        "Sla aangepaste instellingen op."
+                    ]
+                },
+                {
+                    "title": "Visuele tijdlijn",
+                    "description": "Dubbelklik op het canvas om sleutelframes te maken en te positioneren die eigenschappen zoals kleur en dekking bepalen."
+                },
+                {
+                    "title": "Versoepeling van bochten",
+                    "description": "Definieer de overgang tussen keyframes met behulp van:",
+                    "subitems": [
+                        "Lineair of stapsgewijs.",
+                        "Gemakkelijk in/gemak uit/gemak in-uit.",
+                        "Kwadratische en kubieke curven."
+                    ]
+                },
+                {
+                    "title": "Haptische en LED-patronen",
+                    "description": "Ontwerp trillings- en verlichtingssequenties op basis van de waarden die in de tijdlijn zijn gedefinieerd.",
+                    "subitems": [
+                        "Waarde groter dan 0,5 → Geactiveerd.",
+                        "Waarde kleiner dan 0,5 → Uitgeschakeld."
+                    ]
+                },
+                {
+                    "title": "Machtigingen",
+                    "description": "Sommige apparaten hebben camerarechten nodig om toegang te krijgen tot de zaklamp.",
+                    "important": "De app zal indien nodig automatisch om dergelijke toestemming vragen."
+                }
+            ]
+        },
+        {
+            "id": "triggers",
+            "title": "Triggers (IN/UIT)",
+            "items": [
+                {
+                    "title": "Triggers UIT",
+                    "description": "Ze maken het mogelijk dat commando's automatisch naar het technische ecosysteem worden verzonden wanneer een bericht wordt ontvangen of een bericht bepaalde trefwoorden bevat."
+                },
+                {
+                    "title": "Triggers IN",
+                    "description": "Ze maken het mogelijk externe signalen te ontvangen om automatische acties binnen het systeem uit te voeren.",
+                    "subitems": [
+                        "Ze kunnen het volgende genereren:",
+                        "Berichten of waarschuwingen.",
+                        "Audio.",
+                        "Afbeeldingen.",
+                        "Complexe geautomatiseerde stromen."
+                    ]
+                },
+                {
+                    "title": "Injectie van triggers IN",
+                    "description": "Selecteer of de gegenereerde inhoud naar een specifiek filter of naar alle beschikbare filters wordt verzonden."
+                },
+                {
+                    "title": "Ondersteunde protocollen",
+                    "description": "Native integratie met:",
+                    "subitems": [
+                        "OSC (Open Geluidscontrole).",
+                        "MIDI.",
+                        "sACN.",
+                        "SMPTE-tijdcode."
+                    ]
+                },
+                {
+                    "title": "Curven op basis van sleutelframes",
+                    "description": "Ze maken het mogelijk de evolutie van een commando in de loop van de tijd te moduleren met behulp van keyframes en interpolatiecurves. Inclusief real-time preview-systeem."
+                },
+                {
+                    "title": "Activeer Alles",
+                    "description": "Activeer of deactiveer alle triggers tegelijkertijd met de knop linksboven."
+                },
+                {
+                    "title": "Zoekfilter",
+                    "description": "Lokaliseer snel specifieke triggers door op naam te zoeken."
+                },
+                {
+                    "_tag": "triggers_timecode",
+                    "title": "SMPTE Timecode met Meerdere Bereiken",
+                    "description": "In Triggers IN met SMPTE Timecode-protocol kunt u meerdere onafhankelijke tijdsintervallen instellen.",
+                    "subitems": [
+                        "Maakt het toevoegen van meerdere tijdvensters mogelijk (bijv. 01:00:00:00 - 01:15:00:00 en 02:00:00:00 - 02:30:00:00).",
+                        "De trigger activeert zodra het binnenkomende signaal binnen een van de gedefinieerde bereiken valt.",
+                        "Inclusief bedieningselementen om bereiken toe te voegen (+), te herschikken en te verwijderen met HH:MM:SS:FF-controle."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "interface_customization",
+            "title": "Interface en maatwerk",
+            "items": [
+                {
+                    "title": "Visuele modus",
+                    "description": "Kies tussen de lichte modus en de donkere modus, afhankelijk van uw voorkeuren."
+                },
+                {
+                    "title": "Aangepast palet",
+                    "description": "Pas de primaire kleuren, achtergrondkleuren en visuele accenten van de applicatie-interface aan."
+                },
+                {
+                    "title": "Standaardinstellingen herstellen",
+                    "description": "Herstelt de oorspronkelijke visuele instellingen en het fabriekspalet van de applicatie."
+                },
+                {
+                    "title": "Instellingen opslaan",
+                    "description": "Bewaart permanent aangebrachte wijzigingen voor toekomstige sessies."
+                },
+                {
+                    "title": "Chataanpassing",
+                    "description": "Past de tekstgrootte, het lettertype en de algehele leesbaarheid van berichten op het scherm aan."
+                }
+            ]
+        },
+        {
+            "id": "network_best_practices",
+            "title": "Goede netwerk- en configuratiepraktijken",
+            "items": [
+                {
+                    "title": "Implementatieschema (stap voor stap)",
+                    "description": "Om deze infrastructuur correct te configureren, volgt u deze professionele richtlijnen:",
+                    "subitems": [
+                        "1. De Master Server starten: Start de Talk-me-server op de hoofdcomputer (Master). Deze moet een actieve licentie hebben.",
+                        "2. Het lokale IP-adres verkrijgen: Ontdek het privé-IP-adres van de server (bijvoorbeeld: 192.168.1.150).",
+                        "3. Bekabelde clientverbinding (Ethernet): Sluit de ondersteunende computers met behulp van een netwerkkabel (RJ45 Cat6 aanbevolen) aan op de router of switch. Toegang door de browser te openen op https://192.168.1.150:3000.",
+                        "4. Clients verbinden via Wi-Fi (mobiele telefoons / tablets): Zorg ervoor dat telefoons en tablets zijn verbonden met het Wi-Fi-netwerk dat door dezelfde router wordt uitgegeven. Open dezelfde URL in de browser van uw mobiele apparaat."
+                    ]
+                },
+                {
+                    "title": "Browserbeveiligingsvereisten (camera en microfoon)",
+                    "description": "Moderne browsers beperken de toegang tot gevoelige apparaten zoals camera's en microfoons wanneer de verbinding niet beveiligd is.",
+                    "important": "Om deze reden moet toegang tot het systeem plaatsvinden via HTTPS, waarbij het zelfondertekende lokale SSL-certificaat wordt geaccepteerd dat door de server tijdens de installatie is gegenereerd."
+                },
+                {
+                    "title": "Volledige soevereiniteit en cloudonafhankelijkheid",
+                    "description": "Talk-me is ontworpen om 100% autonoom te functioneren binnen uw netwerkinfrastructuur. Eenmaal geïnstalleerd, vereist het geen permanente internetverbinding of API's van derden. Als de WAN-toegang (internet) wordt afgesloten, zullen de interne campuscommunicatie, vertaling, lokale transcriptie en waarschuwingen zonder onderbrekingen blijven werken."
+                }
+            ]
+        },
+        {
+            "id": "data_sovereignty",
+            "title": "Gegevenssoevereiniteit en privacy",
+            "items": [
+                {
+                    "title": "Infrastructuur onder uw controle",
+                    "description": "Alle door Talk-me gegenereerde informatie blijft binnen uw werkomgeving. Dit omvat:",
+                    "subitems": [
+                        "Database.",
+                        "Communicatie geschiedenis.",
+                        "Instellingen.",
+                        "Modellen voor kunstmatige intelligentie.",
+                        "Bijbehorende bestanden en bronnen."
+                    ]
+                },
+                {
+                    "title": "Lokale verwerking",
+                    "description": "Analyse-, transcriptie- en vertaalprocessen worden rechtstreeks op uw hardware uitgevoerd als u ondersteunde lokale modellen gebruikt.",
+                    "extra": "De informatie wordt niet voor verwerking naar externe servers verzonden."
+                },
+                {
+                    "title": "Privacy en veiligheid",
+                    "description": "Talk-me is ontworpen volgens een model van technologische soevereiniteit en totale gegevenscontrole.",
+                    "extra": "Uw gesprekken, instellingen en bronnen blijven exclusief gehost op uw infrastructuur, waardoor u volledige controle behoudt over:",
+                    "subitems": [
+                        "Beschikbaarheid van het systeem.",
+                        "De privacy van informatie.",
+                        "De opslag van gegevens.",
+                        "Toegangs- en beveiligingsbeheer."
+                    ]
+                }
+            ]
+        }
+    ],
+    "network_diagram": {
+        "internet": "INTERNET",
+        "optional": "OPTIONEEL",
+        "ethernet_cable": "ETHERNET-KABEL RJ45",
+        "ethernet_red": "Ethernet-netwerk/LAN-kabel",
+        "wifi_label": "WIFI/WLAN",
+        "master_server": "MASTERSERVER",
+        "licensed": "GELICENTIEERD",
+        "router": "ROUTER",
+        "device1": "Apparaat 1: hoofd-pc (kabel)",
+        "device2": "Apparaat 2: PC-ondersteuning (kabel)",
+        "device3": "Apparaat 3: Laptop (wifi)",
+        "device4": "Apparaat 4: Tablet (wifi)",
+        "device5": "Apparaat 5: Mobiele telefoon (Wi-Fi)",
+        "https_url": "https://192.168.1.150:3000"
+    },
+    "common": {
+        "important": "Belangrijk"
+    },
+    "guide_version": "60.2.0"
+}

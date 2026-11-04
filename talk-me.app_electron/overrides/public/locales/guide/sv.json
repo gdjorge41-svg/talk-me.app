@@ -1,0 +1,506 @@
+{
+    "guide_title": "användarguide",
+    "search_placeholder": "sök i guiden...",
+    "cards": [
+        {
+            "id": "audio_modes",
+            "title": "Ljudöverföringslägen",
+            "items": [
+                {
+                    "title": "PTT-läge (Push-to-Talk).",
+                    "description": "Manuell växellåda med tryckknapp. Tryck och håll ned samtalsknappen för att öppna mikrofonkanalen och börja spela in realtidsljud. När du släpper den avslutas överföringen omedelbart och systemet bearbetar transkriptionen automatiskt.",
+                    "note": "Rekommenderas för miljöer med högt brus eller situationer där exakt kontroll av kommunikationen krävs."
+                },
+                {
+                    "title": "Automatiskt läge (volymavkänning)",
+                    "description": "Automatisk växellåda baserad på ingångssignalnivå. Systemet aktiverar ljudupptagning när det upptäcker ljud över den konfigurerade känslighetströskeln och stoppar inspelningen efter en kort period av tystnad.",
+                    "note": "Perfekt för en helt handsfree-upplevelse."
+                },
+                {
+                    "title": "Ingångsnivå",
+                    "description": "Visar signalnivån för den valda ljudkällan i realtid med hjälp av en dynamisk VU-mätare.",
+                    "note": null
+                }
+            ]
+        },
+        {
+            "id": "users",
+            "title": "Användare",
+            "items": [
+                {
+                    "title": "Anslutna användare",
+                    "description": "Visar listan över aktiva användare, underanvändare och deras tilldelade kategorier.",
+                    "subitems": [
+                        "De underanvändare som du skapar kan vara:",
+                        "Redigerat.",
+                        "Eliminerad.",
+                        "Övervakas av en individuell VU-mätare som indikerar när de sänder ljud."
+                    ]
+                },
+                {
+                    "title": "Skapa underanvändare (+)",
+                    "description": "Låter dig skapa virtuella användare med oberoende intern routing.",
+                    "subitems": [
+                        "Varje underanvändare kan konfigureras med:",
+                        "Namn.",
+                        "Kategori.",
+                        "Transkriptionsspråk.",
+                        "Ljudkälla.",
+                        "Ingångskanal.",
+                        "Aktiveringströskel."
+                    ],
+                    "extra": "När ljudnivån överskrider den konfigurerade tröskeln, utförs transkription och meddelandesändning automatiskt.",
+                    "important": "Det är inte möjligt att samtidigt tilldela samma ljudkälla och kanal som används av den primära användaren. I händelse av konflikt kommer källan att inaktiveras automatiskt för att undvika dubbla överföringar."
+                }
+            ]
+        },
+        {
+            "id": "chat_transmission",
+            "title": "Chatt och sändningsfunktioner",
+            "items": [
+                {
+                    "title": "Prata-knapp",
+                    "description": "Låter dig strömma liveljud. När du skriver in text i inmatningsfältet förvandlas knappen automatiskt till ikonen för att skicka meddelande."
+                },
+                {
+                    "title": "Skickar bilder",
+                    "description": "Låter dig ta bilder med enhetens bakre kamera eller välja foton från galleriet för att direkt skicka dem till chatten."
+                },
+                {
+                    "title": "Gestnavigering (svep)",
+                    "description": "Svep åt höger för att visa sidopanelen och vänster för att dölja den.",
+                    "note": "Denna åtgärd motsvarar att använda navigeringsknapparna eller applikationslogotypen."
+                },
+                {
+                    "title": "Filter",
+                    "description": "Låter dig välja vilka kategorier av meddelanden och varningar du vill ta emot.",
+                    "subitems": [
+                        "Kan:",
+                        "Visa alla kategorier.",
+                        "Välj en enskild kategori.",
+                        "Kombinera flera kategorier."
+                    ],
+                    "note": "Varje användare kan anpassa sina filter oberoende."
+                },
+                {
+                    "title": "IP och serverstatus",
+                    "description": "Visar serverns IP-adress och dess aktuella status:",
+                    "statuses": {
+                        "green": "Ansluten och funktionsduglig.",
+                        "red": "Frånkopplad eller ingen kommunikation."
+                    }
+                },
+                {
+                    "title": "Mikrofonindikator",
+                    "description": "Visar aktuell status för mikrofonen:",
+                    "subitems": [
+                        "Tystnad.",
+                        "Tillgång.",
+                        "Sänder ljud."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "audio_hardware",
+            "title": "Ljud- och hårdvarukonfiguration",
+            "items": [
+                {
+                    "title": "Val av ingång och utgång",
+                    "description": "Låter dig självständigt tilldela enheter för ljudupptagning och uppspelning.",
+                    "subitems": [
+                        "För att säkerställa korrekt funktion:",
+                        "Kontrollera att åtkomstbehörigheter till mikrofonen och högtalarna har beviljats.",
+                        "Ställ in enheter som standard i operativsystemet vid behov.",
+                        "Installera officiella drivrutiner för din hårdvara om tillverkaren kräver det."
+                    ],
+                    "compatible": "Kompatibel med:",
+                    "compatible_list": [
+                        "Fysiska ljudkort.",
+                        "USB-gränssnitt.",
+                        "Bluetooth-enheter.",
+                        "Virtuella ljudkanaler.",
+                        "Professionella routingsystem."
+                    ]
+                },
+                {
+                    "title": "Granulära kanaler",
+                    "description": "Tillåter dirigering av ljudsignaler till specifika fysiska kanaler (Kanal 1, Kanal 2, etc.) för integrationer med:",
+                    "subitems": [
+                        "Blandningsbord.",
+                        "Virtuella routrar.",
+                        "Matrissystem.",
+                        "Professionell ljudinfrastruktur."
+                    ]
+                },
+                {
+                    "title": "Uppdatera hårdvara",
+                    "description": "Utför dynamisk detektering av anslutna ljudenheter utan att behöva starta om applikationen."
+                },
+                {
+                    "title": "Tidigare anslutning och behörigheter",
+                    "description": "Det rekommenderas att ansluta vilken typ av enhet som helst (antingen Bluetooth-hörlurar/mikrofoner eller externa ljudkort) **innan servern eller applikationen startas**. Se till att hårdvara och programvara från tredje part är konfigurerad på ditt operativsystem och att du har beviljat nödvändiga behörigheter i webbläsaren.",
+                    "important": "Att ansluta en enhet mitt i sessionen kan kräva att fliken uppdateras eller att man trycker på \"Uppgradera maskinvara\". Se till att mikrofonen är korrekt accepterad i webbläsarens behörighetsfönster."
+                }
+            ]
+        },
+        {
+            "id": "language_transcription",
+            "title": "Språk, transkription och ordförråd IA",
+            "items": [
+                {
+                    "title": "Gränssnittsspråk",
+                    "description": "Definierar applikationsspråket och det primära språket som används av transkriptionsmotorn."
+                },
+                {
+                    "title": "Fonetisk transkriptionsordbok",
+                    "description": "Det låter dig automatiskt korrigera specifika termer, namn eller varumärken.",
+                    "subitems": [
+                        "Konfigurationsparametrar:",
+                        "Förstås som: Text som känns igen fonetiskt av AI:n.",
+                        "Rätt till: Slutlig text som ska injiceras i chatten."
+                    ],
+                    "examples": {
+                        "label": "Exempel på fonetisk kartläggning",
+                        "pairs": [
+                            [
+                                "det finns en telefon",
+                                "Iphone"
+                            ],
+                            [
+                                "miquel",
+                                "Mikel"
+                            ],
+                            [
+                                "säg mer",
+                                "Dimmer"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "_tag": "trans_number",
+                    "title": "Konvertering av Talade Tal till Siffror",
+                    "description": "Låter AI transkribera numeriska uttryck direkt som siffror istället för ord (t.ex. '12' istället för 'tolv', '-6 dB' istället för 'minus sex decibel').",
+                    "note": "Rekommenderas starkt för att snabba upp avläsning av kanaler, cues och tekniska nivåer live."
+                }
+            ]
+        },
+        {
+            "id": "babel_translation",
+            "title": "AI-översättning (Babel Engine)",
+            "items": [
+                {
+                    "title": "Babels översättningsmotor",
+                    "description": "Systemet integrerar Babel, en optimerad neural maskinöversättningsmotor (NMT) som körs 100 % lokalt på Master Server. Översätt meddelanden som tas emot på andra språk i realtid till språket i ditt gränssnitt utan att skicka data till Internet eller beroende på externa API:er."
+                },
+                {
+                    "_tag": "babel_download",
+                    "title": "Nedladdning & Hantering av Översättningsmotor (MADLAD)",
+                    "description": "Den neurala översättningsmotorn laddas ner vid behov (~2.75 GB) för att hålla installationsfilen lätt (~400 MB):",
+                    "subitems": [
+                        "Nedladdning: Vid inloggning erbjuds automatisk nedladdning till modellmappen.",
+                        "Inaktivera: Klicka på 'Inaktivera' för att köra i lättviktsläge utan översättning och dölja prompten.",
+                        "Återaktivera: Kan när som helst aktiveras eller ominstalleras via Pre-Launch eller appens inställningar."
+                    ]
+                },
+                {
+                    "title": "Visa originalmeddelande",
+                    "description": "Det låter dig visa originaltexten i ett litet, nedtonat format precis under den översatta texten, vilket underlättar direkt verifiering om det behövs."
+                },
+                {
+                    "title": "Inkommande språkfilter",
+                    "description": "Konfigurera selektivt vilka språk som ska översättas automatiskt. Omarkerade språk kommer att visas i sin ursprungliga rå form."
+                },
+                {
+                    "title": "Babel Protection (ordlista och teknisk jargong)",
+                    "description": "Förhindrar att vissa termer för teknisk användning eller egennamn förvrängs av översättningsmotorn. När du lägger till ord till denna uteslutningslista kommer Babel att hedra dem genom att behålla dem i sin ursprungliga form.",
+                    "note": "Rekommenderas speciellt för underhållningsjargong och nätverk:",
+                    "subitems": [
+                        "Standby / Standby",
+                        "Fader",
+                        "FOH (Framsidan av huset)",
+                        "Tidskod/SMPTE",
+                        "Cue / Cuelist"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "messages_flow",
+            "title": "Meddelanden och kommunikationsflöde",
+            "items": [
+                {
+                    "title": "Ta emot transkriberade meddelanden",
+                    "description": "Du kan välja mellan:",
+                    "subitems": [
+                        "Visa endast utskriften.",
+                        "Visa transkriptionen bredvid det associerade originalljudet."
+                    ]
+                },
+                {
+                    "title": "Ljudmottagning",
+                    "description": "Ställ in hur du vill ta emot inkommande ljud:",
+                    "subitems": [
+                        "Automatisk uppspelning i realtid.",
+                        "Manuell uppspelning på begäran."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "hermes_tts",
+            "title": "Offline röstsyntes (Hermes TTS)",
+            "items": [
+                {
+                    "title": "Offline röstläsning",
+                    "description": "Tillåter automatisk läsning av inkommande textmeddelanden eller översättningar. Den använder uteslutande den inbyggda röstmotorn i ditt operativsystem (Web Speech API), som fungerar 100 % lokalt, privat och utan att behöva internet. Dess diskförbrukning är 0 byte och den har praktiskt taget ingen inverkan på CPU/RAM."
+                },
+                {
+                    "title": "Justerbara och individuella parametrar",
+                    "description": "Konfigurera funktionen enligt dina preferenser från fliken Inställningar på din enhet:",
+                    "subitems": [
+                        "Lyssna på textmeddelanden: Aktivera läsning av lokala texter. Om den är avstängd förblir dina språktexter tysta men du kommer fortfarande att kunna höra utländska översättningar.",
+                        "Utländskt ljudfilter: Blockerar originalljud på andra språk och läser endast deras översättning.",
+                        "Reaktion på aktiva filter: Systemet läser endast inkommande meddelanden som motsvarar kategorin eller kanalen som valts av användaren i deras chattfilter (om det filtreras av en specifik grupp kommer det bara att läsa de från den gruppen; om \"Alla\" är valt kommer det att läsa dem alla).",
+                        "Röstval: Välj bland tillgängliga röster installerade på ditt operativsystem, eller låt det vara på Automatiskt för att ärva appens språk.",
+                        "Könsfilter: Filtrerar dynamiskt kompatibla röster efter deras ton (Man, Kvinna eller Alla).",
+                        "Läshastighet: Justerar taltakten mellan extremt långsam (0,5x) och snabb (2,0x)."
+                    ]
+                },
+                {
+                    "title": "Prefix och kontextintroduktioner",
+                    "description": "Berättaren känner automatiskt av typen av meddelande för en mer naturlig läsning: den kommer att säga \"[Namn] skrev...\" för rena textmeddelanden och \"[Namn] sa...\" när du spelar upp röstmeddelandeöversättningar."
+                },
+                {
+                    "title": "Shield of Coexistence (Hermes-Shield)",
+                    "description": "För att undvika akustisk koppling med mikrofonen och inte störa vätskekommunikation kommer Hermes TTS automatiskt att stänga av sig själv om:",
+                    "subitems": [
+                        "Du trycker på Talk-knappen eller spelar in med din mikrofon.",
+                        "Det finns aktiv uppspelning i chattens inbyggda ljudkö.",
+                        "Alla underordnade HTML5-mediaspelare i DOM är aktiva."
+                    ]
+                },
+                {
+                    "title": "Smarta lokaliserade prefix",
+                    "description": "Innan du läser meddelandet syntetiseras ett dynamiskt prefix automatiskt enligt det aktiva språket för att ge sammanhang om avsändaren (till exempel: 'Jorge har skrivit: [meddelande]' eller 'Jorge har skrivit: [meddelande]')."
+                },
+                {
+                    "title": "Lokal uthållighet",
+                    "description": "Alla inställningar lagras oberoende för varje användare i terminalens localStorage. Att ändra dina röst- eller hastighetsalternativ påverkar inte andra användare på det lokala nätverket eller andra profiler som är inloggade i samma webbläsare."
+                }
+            ]
+        },
+        {
+            "id": "visual_haptic_alerts",
+            "title": "Visuella och haptiska varningar",
+            "items": [
+                {
+                    "title": "Varningstyper",
+                    "description": "Beroende på enhetens kapacitet kan du använda:",
+                    "subitems": [
+                        "Visuella varningar på skärmen.",
+                        "Vibration.",
+                        "LED ficklampa."
+                    ]
+                },
+                {
+                    "title": "Varningsanpassning",
+                    "description": "Varje varning har en visuell redigerare där du kan:",
+                    "subitems": [
+                        "Konfigurera parametrar.",
+                        "Förhandsgranska resultat.",
+                        "Spara anpassade inställningar."
+                    ]
+                },
+                {
+                    "title": "Visuell tidslinje",
+                    "description": "Dubbelklicka på arbetsytan för att skapa och placera nyckelrutor som styr egenskaper som färg och opacitet."
+                },
+                {
+                    "title": "Lättande kurvor",
+                    "description": "Definiera övergången mellan nyckelbildrutor med:",
+                    "subitems": [
+                        "Linjär eller Steg.",
+                        "Lätt in / Lätt ut / Lätt in-ut.",
+                        "Kvadratiska och kubiska kurvor."
+                    ]
+                },
+                {
+                    "title": "Haptiska och LED-mönster",
+                    "description": "Designa vibrations- och ljussekvenser baserat på de värden som definieras i tidslinjen.",
+                    "subitems": [
+                        "Värde större än 0,5 → Aktiverad.",
+                        "Värde mindre än 0,5 → Inaktiverad."
+                    ]
+                },
+                {
+                    "title": "Behörigheter",
+                    "description": "Vissa enheter kräver kamerabehörighet för att komma åt ficklampan.",
+                    "important": "Appen kommer automatiskt att begära sådana behörigheter när det behövs."
+                }
+            ]
+        },
+        {
+            "id": "triggers",
+            "title": "Utlösare (IN/UT)",
+            "items": [
+                {
+                    "title": "Triggers UT",
+                    "description": "De tillåter att kommandon skickas automatiskt till det tekniska ekosystemet när ett meddelande tas emot eller ett meddelande innehåller vissa nyckelord."
+                },
+                {
+                    "title": "Utlöser IN",
+                    "description": "De tillåter mottagning av externa signaler för att utföra automatiska åtgärder inom systemet.",
+                    "subitems": [
+                        "De kan generera:",
+                        "Meddelanden eller varningar.",
+                        "Ljud.",
+                        "Bilder.",
+                        "Komplexa automatiserade flöden."
+                    ]
+                },
+                {
+                    "title": "Injektion av triggers IN",
+                    "description": "Välj om det genererade innehållet ska skickas till ett specifikt filter eller till alla tillgängliga filter."
+                },
+                {
+                    "title": "Protokoll som stöds",
+                    "description": "Inbyggd integration med:",
+                    "subitems": [
+                        "OSC (Öppna ljudkontroll).",
+                        "MIDI.",
+                        "sACN.",
+                        "SMPTE tidskod."
+                    ]
+                },
+                {
+                    "title": "Kurvor av Keyframes",
+                    "description": "De tillåter utvecklingen av ett kommando att moduleras över tid med hjälp av nyckelbildrutor och interpolationskurvor. Inkluderar förhandsvisningssystem i realtid."
+                },
+                {
+                    "title": "Aktivera alla",
+                    "description": "Aktivera eller avaktivera alla triggers samtidigt med den övre vänstra knappen."
+                },
+                {
+                    "title": "Sökfilter",
+                    "description": "Hitta snabbt specifika utlösare genom att söka på namn."
+                },
+                {
+                    "_tag": "triggers_timecode",
+                    "title": "SMPTE Tidskod med Flera Intervall",
+                    "description": "I Triggers IN med SMPTE Tidskod kan flera oberoende tidsintervall definieras.",
+                    "subitems": [
+                        "Gör det möjligt att lägga till flera tidsfönster (t.ex. 01:00:00:00 - 01:15:00:00 och 02:00:00:00 - 02:30:00:00).",
+                        "Triggern aktiveras om inkommande tidskod faller inom något av de angivna intervallen.",
+                        "Inkluderar kontroller för att lägga till (+), sortera om och ta bort intervall med HH:MM:SS:FF-kontroll."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "interface_customization",
+            "title": "Gränssnitt och anpassning",
+            "items": [
+                {
+                    "title": "Visuellt läge",
+                    "description": "Välj mellan ljust läge och mörkt läge beroende på dina preferenser."
+                },
+                {
+                    "title": "Anpassad palett",
+                    "description": "Anpassa primärfärgerna, bakgrundsfärgerna och visuella accenter i applikationsgränssnittet."
+                },
+                {
+                    "title": "Återställ standardvärden",
+                    "description": "Återställer programmets ursprungliga visuella inställningar och fabrikspalett."
+                },
+                {
+                    "title": "Spara inställningar",
+                    "description": "Lagrar permanent ändringar gjorda för framtida sessioner."
+                },
+                {
+                    "title": "Chattanpassning",
+                    "description": "Justerar textstorlek, teckensnittsvikt och övergripande läsbarhet för meddelanden på skärmen."
+                }
+            ]
+        },
+        {
+            "id": "network_best_practices",
+            "title": "Bra nätverks- och konfigurationsrutiner",
+            "items": [
+                {
+                    "title": "Implementeringsschema (steg för steg)",
+                    "description": "Följ dessa professionella riktlinjer för att konfigurera den här infrastrukturen korrekt:",
+                    "subitems": [
+                        "1. Köra Master Server: Starta Talk-me servern på huvuddatorn (Master). Detta måste ha en aktiv licens.",
+                        "2. Skaffa den lokala IP-adressen: Ta reda på serverns privata IP-adress (ex: 192.168.1.150).",
+                        "3. Kabelansluten klientanslutning (Ethernet): Anslut supportdatorerna med en nätverkskabel (RJ45 Cat6 rekommenderas) till routern eller switchen. Åtkomst genom att öppna webbläsaren på https://192.168.1.150:3000.",
+                        "4. Ansluta klienter via Wi-Fi (Mobiler/Surfplattor): Se till att telefoner och surfplattor är anslutna till Wi-Fi-nätverket som utfärdats av samma router. Öppna samma URL i din mobila enhets webbläsare."
+                    ]
+                },
+                {
+                    "title": "Säkerhetskrav för webbläsare (kamera och mikrofon)",
+                    "description": "Moderna webbläsare begränsar åtkomsten till känsliga enheter som kameror och mikrofoner när anslutningen inte är säker.",
+                    "important": "Av denna anledning måste åtkomst till systemet göras med HTTPS, och acceptera det självsignerade lokala SSL-certifikatet som genereras av servern under installationen."
+                },
+                {
+                    "title": "Fullständig suveränitet och molnoberoende",
+                    "description": "Talk-me har designats för att fungera 100 % autonomt inom din nätverksinfrastruktur. När den väl har installerats kräver den ingen permanent Internetanslutning eller tredje parts API:er. Om WAN (Internet)-åtkomst avbryts kommer intern campuskommunikation, översättning, lokal transkription och varningar att fortsätta att fungera utan avbrott."
+                }
+            ]
+        },
+        {
+            "id": "data_sovereignty",
+            "title": "Datasuveränitet och integritet",
+            "items": [
+                {
+                    "title": "Infrastruktur under din kontroll",
+                    "description": "All information som genereras av Talk-me finns kvar i din arbetsmiljö. Detta inkluderar:",
+                    "subitems": [
+                        "Databas.",
+                        "Kommunikationshistoria.",
+                        "Inställningar.",
+                        "Artificiell intelligens modeller.",
+                        "Tillhörande filer och resurser."
+                    ]
+                },
+                {
+                    "title": "Lokal bearbetning",
+                    "description": "Analys-, transkriptions- och översättningsprocesser körs direkt på din hårdvara när du använder lokala modeller som stöds.",
+                    "extra": "Informationen skickas inte till externa servrar för bearbetning."
+                },
+                {
+                    "title": "Sekretess och säkerhet",
+                    "description": "Talk-me har designats under en modell av teknisk suveränitet och total datakontroll.",
+                    "extra": "Dina konversationer, inställningar och resurser förblir uteslutande på din infrastruktur och behåller fullständig kontroll över:",
+                    "subitems": [
+                        "Systemtillgänglighet.",
+                        "Informationens integritet.",
+                        "Lagring av data.",
+                        "Åtkomst och säkerhetshantering."
+                    ]
+                }
+            ]
+        }
+    ],
+    "network_diagram": {
+        "internet": "INTERNET",
+        "optional": "VALFRITT",
+        "ethernet_cable": "ETHERNET KABEL RJ45",
+        "ethernet_red": "Ethernet-nätverk / LAN-kabel",
+        "wifi_label": "WIFI/WLAN",
+        "master_server": "MASTER SERVER",
+        "licensed": "LICENSIERAD",
+        "router": "ROUTER",
+        "device1": "Enhet 1: Huvuddator (kabel)",
+        "device2": "Enhet 2: PC-stöd (kabel)",
+        "device3": "Enhet 3: Bärbar dator (Wi-Fi)",
+        "device4": "Enhet 4: Surfplatta (Wi-Fi)",
+        "device5": "Enhet 5: Mobiltelefon (Wi-Fi)",
+        "https_url": "https://192.168.1.150:3000"
+    },
+    "common": {
+        "important": "Viktigt"
+    },
+    "guide_version": "60.2.0"
+}

@@ -2105,6 +2105,9 @@ app.post('/api/triggers/save-with-media', uploadTriggers.fields([
 });
 
 const selfsigned = require('selfsigned');
+const certManager = require('./cert-manager');
+const wifiDetector = require('./wifi-detector');
+const QRCode = require('qrcode');
 
 function getLocalIps() {
   const interfaces = os.networkInterfaces();
@@ -2317,25 +2320,7 @@ process.on('exit', () => { whisperMgr.stop(); if (global.updateTelemetry) global
 
 async function initServer() {
   if (generateNewCert) {
-    console.log("🔐 Generando nuevo certificado SSL para las IPs actuales...");
-    const attrs = [{ name: 'commonName', value: 'Talk-me Local' }];
-    let altNames = [{ type: 2, value: 'localhost' }];
-    currentIps.forEach(ip => {
-      altNames.push({ type: 7, ip: ip });
-    });
-
-    const pems = await selfsigned.generate(attrs, {
-      days: 3650,
-      extensions: [{
-        name: 'subjectAltName',
-        altNames: altNames
-      }]
-    });
-
-    fs.writeFileSync(keyPath, pems.private);
-    fs.writeFileSync(certPath, pems.cert);
-    fs.writeFileSync(ipCachePath, JSON.stringify(currentIps));
-    console.log("✅ Certificados generados. NOTA IMPORTANTE PARA iOS: Si es la primera vez o cambió tu IP, deberás pasarte el nuevo archivo 'server.cert' a iOS e instalarlo.");
+    await certManager.generateServerCert(currentIps, keyPath, certPath, ipCachePath);
   }
 
   // Configuración de HTTPS (Requerido para el micro en iPhone/Red Local)
@@ -2794,7 +2779,132 @@ async function initServer() {
   app.use('/uploads/triggers', express.static(TRIGGERS_UPLOADS_DIR));
   app.use(express.static(path.join(__dirname, 'public')));
 
-  // Parse JSON bodies for API endpoints
+  // --- 🔒 [v60.QR-ACCESS] Endpoints de Descarga de Certificado CA y QRs Vectoriales Offline ---
+  app.get('/cert', (req, res) => {
+    try {
+      const caCertPath = certManager.CA_CERT_PATH;
+      if (fs.existsSync(caCertPath)) {
+        res.setHeader('Content-Type', 'application/x-x509-ca-cert');
+        res.setHeader('Content-Disposition', 'attachment; filename="talkme-root-ca.crt"');
+        return res.sendFile(caCertPath);
+      }
+      return res.status(404).send('Certificado CA no encontrado');
+    } catch (err) {
+      return res.status(500).send('Error sirviendo certificado CA: ' + err.message);
+    }
+  });
+
+  app.get('/api/access-qr-data', async (req, res) => {
+    try {
+      const currentIp = (currentIps.find(ip => ip !== '127.0.0.1')) || currentIps[0] || 'localhost';
+      const certUrl = `https://${currentIp}:${PORT}/cert`;
+      const appUrl = `https://${currentIp}:${PORT}`;
+
+      // Validación de Soberanía Máster:
+      // Solo el socket activo del Master o el candidato legítimo/Electron anfitrión tienen permisos de gestión
+      const socketId = req.query.socketId || req.headers['x-socket-id'];
+      const rawClientIp = (req.ip || req.connection.remoteAddress || '').replace('::ffff:', '');
+      const isHostApp = req.headers['x-electron-app'] === 'true';
+      
+      let isMaster = false;
+      if (socketId && categoriesData.masterId === socketId) {
+        isMaster = true;
+      } else if (isHostApp) {
+        isMaster = true;
+      } else if (isHostMachineIp(rawClientIp) && !categoriesData.masterId) {
+        // Asiento vacante en máquina anfitriona
+        isMaster = true;
+      }
+
+      const qrOptions = {
+        type: 'svg',
+        margin: 1,
+        color: { dark: '#000000', light: '#ffffff' }
+      };
+
+      // Detección asíncrona de Wi-Fi con Watchdog y Aislamiento Total
+      const wifiInfo = await wifiDetector.getWifiCredentials(currentIp);
+
+      let wifiQr = null;
+      if (wifiInfo.zxingString) {
+        wifiQr = await QRCode.toString(wifiInfo.zxingString, qrOptions);
+      }
+
+      const [certQr, appQr] = await Promise.all([
+        QRCode.toString(certUrl, qrOptions),
+        QRCode.toString(appUrl, qrOptions)
+      ]);
+
+      return res.json({
+        ok: true,
+        isMaster,
+        mode: wifiInfo.mode,
+        wifiQr: wifiQr,
+        wifiSsid: wifiInfo.ssid,
+        wifiPass: wifiInfo.password,
+        wifiSecurity: wifiInfo.security,
+        certQr,
+        certUrl,
+        appQr,
+        appUrl,
+        serverIp: currentIp
+      });
+    } catch (err) {
+      console.error('❌ Error generando QRs de acceso:', err.message);
+      return res.status(500).json({ ok: false, error: err.message });
+    }
+  });
+
+  // Guardar configuración de Wi-Fi ingresada manualmente por el Máster
+  app.post('/api/save-wifi-config', express.json(), async (req, res) => {
+    try {
+      const socketId = req.body.socketId || req.headers['x-socket-id'];
+      const rawClientIp = (req.ip || req.connection.remoteAddress || '').replace('::ffff:', '');
+      const isHostApp = req.headers['x-electron-app'] === 'true';
+
+      let isMaster = false;
+      if (socketId && categoriesData.masterId === socketId) {
+        isMaster = true;
+      } else if (isHostApp) {
+        isMaster = true;
+      } else if (isHostMachineIp(rawClientIp) && !categoriesData.masterId) {
+        isMaster = true;
+      }
+
+      if (!isMaster) {
+        return res.status(403).json({ ok: false, error: 'Acceso denegado: solo el Máster soberano puede configurar las credenciales de red.' });
+      }
+
+      const { ssid, password, security } = req.body || {};
+      if (!ssid || !ssid.trim()) {
+        return res.status(400).json({ ok: false, error: 'El nombre de la red (SSID) es obligatorio.' });
+      }
+
+      const saved = wifiDetector.saveWifiConfig(ssid, password, security);
+
+      const qrOptions = {
+        type: 'svg',
+        margin: 1,
+        color: { dark: '#000000', light: '#ffffff' }
+      };
+
+      const wifiQr = await QRCode.toString(saved.zxingString, qrOptions);
+
+      return res.json({
+        ok: true,
+        message: 'Credenciales guardadas y código QR generado correctamente.',
+        wifiQr,
+        wifiSsid: saved.ssid,
+        wifiPass: saved.password,
+        wifiSecurity: saved.security
+      });
+    } catch (err) {
+      console.error('❌ Error guardando configuración Wi-Fi:', err.message);
+      return res.status(500).json({ ok: false, error: err.message });
+    }
+  });
+
+    // Parse JSON bodies for API endpoints
   app.use('/api', express.json({ limit: '1mb' }));
 
   // --- Alerts persistence API (per-user) ---

@@ -362,5 +362,31 @@
   },
   "settings": {
     "translation_disabled": "系统翻译已停用"
+  },
+  "qr_modal": {
+    "tab_wifi": "Connect",
+    "tab_cert": "Certificate",
+    "tab_app": "Join",
+    "instruction_wifi": "扫码自动连接 Wi-Fi 网络",
+    "instruction_cert": "扫码下载并安装 SSL CA 根证书（消除安全警告）。",
+    "instruction_app": "扫码进入 Talk.me",
+    "loading": "正在实时生成安全二维码...",
+    "btn_close": "关闭",
+    "btn_zoom": "点击二维码放大查看",
+    "btn_copied": "已复制！",
+    "instruction_ethernet": "The server is connected via Ethernet cable (LAN). Connect your phone to the same local network as the server.",
+    "wifi_password_label": "Password:",
+    "copy_pass_btn": "Copy",
+    "ethernet_title": "Wired Local Network (Ethernet)",
+    "server_ip_label": "Server IP:",
+    "wifi_form_title": "Configure Guest Wi-Fi Network",
+    "wifi_ssid_placeholder": "Wi-Fi Network Name (SSID)",
+    "wifi_pass_placeholder": "Wi-Fi Password",
+    "btn_save_wifi": "Save and Generate QR",
+    "btn_edit_wifi": "Edit network",
+    "saving": "Saving...",
+    "ssid_required": "Wi-Fi network name is required.",
+    "copy_ip_btn": "Copy IP",
+    "copied_ip": "IP Copied!"
   }
 }
