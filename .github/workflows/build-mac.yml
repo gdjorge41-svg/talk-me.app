@@ -24,21 +24,20 @@ jobs:
       - name: 4. Asignar permisos de ejecución a los scripts
         run: |
           chmod +x talk-me.app_electron/prepare-build.sh
-          chmod -R +x talk-me.app_electron/build/pkg-scripts 2>/dev/null || true
-          chmod -R +x talk-me.app_electron/build/dmg-assets 2>/dev/null || true
+          chmod +x talk-me.app_electron/create-dmg-hdiutil.sh
 
-      - name: 5. Compilar instaladores para macOS (.pkg, .dmg y .zip)
+      - name: 5. Compilar bundle nativo macOS y empaquetar con hdiutil
         run: |
           cd talk-me.app_electron
           ./prepare-build.sh
           ./node_modules/.bin/electron-builder --mac --publish never
+          ./create-dmg-hdiutil.sh
 
       - name: 6. Publicar instalador como artefacto descargable
         uses: actions/upload-artifact@v4
         with:
           name: Talk-me-macOS-Installer
           path: |
-            talk-me.app_electron/dist_final/*.pkg
             talk-me.app_electron/dist_final/*.dmg
             talk-me.app_electron/dist_final/*.zip
           retention-days: 14
