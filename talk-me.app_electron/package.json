@@ -57,7 +57,31 @@
       "artifactName": "Talk-me.app_${version}_Installer.${ext}"
     },
     "dmg": {
-      "artifactName": "Talk-me.app_${version}_Setup.${ext}"
+      "artifactName": "Talk-me.app_${version}_Setup.${ext}",
+      "window": {
+        "width": 640,
+        "height": 400
+      },
+      "contents": [
+        {
+          "x": 140,
+          "y": 200,
+          "type": "file"
+        },
+        {
+          "x": 500,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 320,
+          "y": 200,
+          "type": "file",
+          "path": "build/dmg-assets/Abrir_Talk-me.command",
+          "name": "Abrir Talk-me (Auto-Reparar).command"
+        }
+      ]
     },
     "win": {
       "files": [

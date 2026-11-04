@@ -18,3 +18,4 @@ if [ -d "$TARGET_APP" ]; then
 fi
 
 exit 0
+

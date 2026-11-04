@@ -25,6 +25,7 @@ jobs:
         run: |
           chmod +x talk-me.app_electron/prepare-build.sh
           chmod -R +x talk-me.app_electron/build/pkg-scripts 2>/dev/null || true
+          chmod -R +x talk-me.app_electron/build/dmg-assets 2>/dev/null || true
 
       - name: 5. Compilar instaladores para macOS (.pkg, .dmg y .zip)
         run: |
