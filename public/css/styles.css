@@ -9923,7 +9923,7 @@ body:has(#userModal:not(.hidden)) .qr-access-modal {
 
 .qr-svg-wrapper:hover {}
 
-.qr-svg-wrapper svg {
+.qr-svg-wrapper > svg {
     width: 100% !important;
     height: 100% !important;
     max-width: 100% !important;
@@ -10220,6 +10220,15 @@ body:has(#userModal:not(.hidden)) .qr-access-modal {
     padding: 0;
 }
 
+.qr-toggle-pass-btn svg {
+    width: 16px !important;
+    height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    stroke: currentColor;
+    display: block;
+}
+
 .qr-toggle-pass-btn:hover {
     color: var(--accent-primary, #6366f1);
     background: rgba(255, 255, 255, 0.08);
@@ -10248,9 +10257,15 @@ body:has(#userModal:not(.hidden)) .qr-access-modal {
 }
 
 .qr-wifi-btn-save svg {
-    width: 15px;
-    height: 15px;
+    width: 15px !important;
+    height: 15px !important;
+    max-width: 15px !important;
+    max-height: 15px !important;
+    min-width: 15px !important;
+    min-height: 15px !important;
     stroke: currentColor;
+    display: inline-block !important;
+    flex-shrink: 0;
 }
 
 .qr-wifi-btn-save:hover {
