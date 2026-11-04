@@ -29,8 +29,10 @@
     },
     "files": [
       "**/*",
-      "!node_modules",
-      "!node_modules/**"
+      "!storage/temp/**",
+      "!storage/recordings/**",
+      "!storage/models/**",
+      "!storage/message-history.json"
     ],
     "nsis": {
       "include": "installer.nsh",
