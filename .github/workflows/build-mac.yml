@@ -21,10 +21,12 @@ jobs:
           cd talk-me.app_electron
           npm install
 
-      - name: 4. Asignar permisos de ejecución al script
-        run: chmod +x talk-me.app_electron/prepare-build.sh
+      - name: 4. Asignar permisos de ejecución a los scripts
+        run: |
+          chmod +x talk-me.app_electron/prepare-build.sh
+          chmod -R +x talk-me.app_electron/build/pkg-scripts 2>/dev/null || true
 
-      - name: 5. Compilar instalador para macOS (.dmg y .zip)
+      - name: 5. Compilar instaladores para macOS (.pkg, .dmg y .zip)
         run: |
           cd talk-me.app_electron
           ./prepare-build.sh
@@ -35,6 +37,7 @@ jobs:
         with:
           name: Talk-me-macOS-Installer
           path: |
+            talk-me.app_electron/dist_final/*.pkg
             talk-me.app_electron/dist_final/*.dmg
             talk-me.app_electron/dist_final/*.zip
           retention-days: 14

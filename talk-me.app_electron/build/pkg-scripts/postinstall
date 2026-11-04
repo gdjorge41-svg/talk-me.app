@@ -1,0 +1,20 @@
+#!/bin/bash
+# ==============================================================================
+# Script Post-Instalación de Talk.me para macOS (.pkg)
+# Elimina automáticamente el atributo de cuarentena de Gatekeeper (com.apple.quarantine)
+# y asegura la firma ad-hoc válida para Apple Silicon (M1 a M6).
+# ==============================================================================
+
+TARGET_APP="/Applications/Talk-me.app"
+
+if [ -d "$TARGET_APP" ]; then
+    echo "Purgando atributos de cuarentena en $TARGET_APP..."
+    xattr -cr "$TARGET_APP" 2>/dev/null || true
+    xattr -dr com.apple.quarantine "$TARGET_APP" 2>/dev/null || true
+    
+    echo "Asegurando permisos y firma ad-hoc para Apple Silicon..."
+    codesign --force --deep --sign - "$TARGET_APP" 2>/dev/null || true
+    chmod -R 755 "$TARGET_APP" 2>/dev/null || true
+fi
+
+exit 0

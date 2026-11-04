@@ -42,6 +42,7 @@
     },
     "mac": {
       "target": [
+        "pkg",
         "dmg",
         "zip"
       ],
@@ -50,6 +51,10 @@
       "hardenedRuntime": false,
       "gatekeeperAssess": false,
       "identity": "-"
+    },
+    "pkg": {
+      "scripts": "build/pkg-scripts",
+      "artifactName": "Talk-me.app_${version}_Installer.${ext}"
     },
     "dmg": {
       "artifactName": "Talk-me.app_${version}_Setup.${ext}"
