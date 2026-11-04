@@ -29,6 +29,8 @@
     },
     "files": [
       "**/*",
+      "!node_modules",
+      "!node_modules/**",
       "!storage/temp/**",
       "!storage/recordings/**",
       "!storage/models/**",
@@ -53,6 +55,13 @@
       "artifactName": "Talk-me.app_${version}_Setup.${ext}"
     },
     "win": {
+      "files": [
+        "**/*",
+        "!storage/temp/**",
+        "!storage/recordings/**",
+        "!storage/models/**",
+        "!storage/message-history.json"
+      ],
       "target": [
         {
           "target": "nsis",
