@@ -49,7 +49,7 @@
       "category": "public.app-category.business",
       "hardenedRuntime": false,
       "gatekeeperAssess": false,
-      "identity": null
+      "identity": "-"
     },
     "dmg": {
       "artifactName": "Talk-me.app_${version}_Setup.${ext}"

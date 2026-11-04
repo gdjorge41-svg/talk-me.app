@@ -1,15 +1,28 @@
 [
   {
-    "_msgId": "mw2e5akj6ngof",
+    "_msgId": "mw2fzq8ghb5vb",
     "user": "Jorge Firefox",
-    "text": "",
-    "time": "18:28:58",
-    "timestamp": 1793813338819,
+    "text": "🎙️ Mensaje de audio",
+    "time": "19:20:38",
+    "timestamp": 1793816438416,
     "audioData": null,
-    "audioUrl": null,
-    "mimeType": null,
+    "audioUrl": "/recordings/mw2fzq8ghb5vb.wav",
+    "mimeType": "audio/wav",
     "category": "Sonido",
-    "streamId": null,
-    "imageUrl": "/send-images/mw2e5akj6ngof.jpg"
+    "streamId": "str-ethbYODQU4B6liJtAAAD-1793816436725",
+    "imageUrl": null
+  },
+  {
+    "_msgId": "mw2fzwae88cqy",
+    "user": "Jorge Firefox",
+    "text": "Cambia el canal 4 por el 5",
+    "time": "19:20:46",
+    "timestamp": 1793816446262,
+    "audioData": null,
+    "audioUrl": "/recordings/mw2fzwae88cqy.wav",
+    "mimeType": "audio/wav",
+    "category": "Sonido",
+    "streamId": "str-ethbYODQU4B6liJtAAAD-1793816443053",
+    "imageUrl": null
   }
 ]
