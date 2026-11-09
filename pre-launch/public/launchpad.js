@@ -401,6 +401,9 @@ function getLocalizedApiError(errorText, errorCode) {
         if (lowerText.includes("la suscripción rent-to-own ha sido cancelada") || lowerText.includes("rent-to-own ha sido cancelada")) {
             return translations[currentLang].msg_rto_cancelled || errorText;
         }
+        if (lowerText.includes("cuota mensual rent-to-own ha vencido") || lowerText.includes("regulariza la cuota")) {
+            return translations[currentLang].msg_rto_payment_required || errorText;
+        }
         if (lowerText.includes("exceder los 3 strikes de impago")) {
             return translations[currentLang].msg_rto_blocked_3_strikes || errorText;
         }
@@ -500,13 +503,14 @@ function updateExpiryDisplay(lang) {
 
     if (status === 'trial') {
         const expiryRaw = localStorage.getItem('talkme_license_expiry_raw') || localStorage.getItem('talkme_license_expiry');
-        let daysLeft = 30;
+        const initialTrialDays = parseInt(localStorage.getItem('talkme_trial_initial_days') || '30', 10);
+        let daysLeft = initialTrialDays;
         let percentRemaining = 100;
 
         if (expiryRaw) {
             const msRemaining = new Date(expiryRaw).getTime() - Date.now();
             daysLeft = Math.max(0, Math.ceil(msRemaining / (1000 * 60 * 60 * 24)));
-            percentRemaining = Math.min(100, Math.max(0, Math.round((daysLeft / 30) * 100)));
+            percentRemaining = Math.min(100, Math.max(0, Math.round((daysLeft / initialTrialDays) * 100)));
         }
 
         const template = (translations[lang] && translations[lang].trial_alert_banner)
@@ -807,7 +811,7 @@ function renderVersionUpdatesChannel(lang) {
 
     updatesBox.style.display = 'block';
 
-    const currentVer = channelData.current_version || 'v1.0.0';
+    const currentVer = channelData.current_version || 'v0.60.1';
     const status = channelData.status || 'UP_TO_DATE';
     const daysRemaining = channelData.days_remaining || 0;
 
@@ -1380,10 +1384,10 @@ function updateSettingsButtonPulse(providedChannelData) {
                 channelData = JSON.parse(stored);
                 cachedVersionChannelData = channelData;
             }
-        } catch (e) {}
+        } catch (e) { }
     }
 
-    const currentAppVer = 'v1.0.0';
+    const currentAppVer = 'v0.60.1';
     let targetVer = null;
     let isUpdateAvailable = false;
 
@@ -1622,9 +1626,6 @@ function changeLanguage(lang, isStartup = false) {
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (key === 'console_init' && !isStartup) {
-            return;
-        }
         if (translations[lang] && translations[lang][key]) {
             let val = translations[lang][key];
             if (key === 'title_register') {
@@ -1753,68 +1754,85 @@ function changeLanguage(lang, isStartup = false) {
     if (isStartup) {
         downloadModel(lang);
     } else {
-        const verifyLangs = {
-            es: "Verificando idioma...",
-            en: "Verifying language...",
-            eu: "Hizkuntza egiaztatzen...",
-            de: "Sprache wird überprüft...",
-            fr: "Vérification de la langue...",
-            it: "Verifica della lingua...",
-            pt: "Verificando idioma...",
-            ca: "Verificant idioma...",
-            gl: "Verificando idioma...",
-            ru: "Проверка языка...",
-            zh: "正在验证语言...",
-            ja: "言語を確認しています...",
-            ko: "언어 확인 중...",
-            nl: "Taal verifiëren...",
-            pl: "Weryfikowanie języka...",
-            tr: "Dil doğrulanıyor...",
-            uk: "Перевірка мови...",
-            ar: "جاري التحقق من اللغة...",
-            fa: "در حال بررسی زبان...",
-            eo: "Verifikante lingvon...",
-            sv: "Verifierar språk...",
-            vi: "Đang xác minh ngôn ngữ...",
-            uz: "Til tekshirilmoqda...",
-            kk: "Тіл тексерілуде..."
-        };
-        const downloadLangs = {
-            es: "Descargando...",
-            en: "Downloading...",
-            eu: "Deskargatzen...",
-            de: "Herunterladen...",
-            fr: "Téléchargement...",
-            it: "Download...",
-            pt: "Baixando...",
-            ca: "Descarregant...",
-            gl: "Descargando...",
-            ru: "Скачивание...",
-            zh: "正在下载...",
-            ja: "ダウンロード中...",
-            ko: "다운로드 중...",
-            nl: "Downloaden...",
-            pl: "Pobieranie...",
-            tr: "İndiriliyor...",
-            uk: "Завантаження...",
-            ar: "جاري التحميل...",
-            fa: "در حال دانلود...",
-            eo: "Elŝutante...",
-            sv: "Laddar ner...",
-            vi: "Đang tải xuống...",
-            uz: "Yuklab olinmoqda...",
-            kk: "Жүктелуде..."
-        };
+        const secRtoActive = document.getElementById('sec-rto-renewal');
+        const isRtoVisible = secRtoActive && secRtoActive.style.display !== 'none';
+        if (isRtoVisible && typeof _currentRtoDetails === 'object' && _currentRtoDetails !== null) {
+            showRtoRenewalScreen(_currentRtoDetails);
+            const panel = document.getElementById('status-panel');
+            if (panel) panel.innerHTML = '';
+            const t = translations[lang] || translations['es'] || {};
+            const rtoErr = getLocalizedApiError('', 'RTO_PAYMENT_REQUIRED');
+            logStatus((t.log_validation_error || "Error Soberanía: {error}").replace('{error}', rtoErr), 'error');
+        } else {
+            const verifyLangs = {
+                es: "Verificando idioma...",
+                en: "Verifying language...",
+                eu: "Hizkuntza egiaztatzen...",
+                de: "Sprache wird überprüft...",
+                fr: "Vérification de la langue...",
+                it: "Verifica della lingua...",
+                pt: "Verificando idioma...",
+                ca: "Verificant idioma...",
+                gl: "Verificando idioma...",
+                ru: "Проверка языка...",
+                zh: "正在验证语言...",
+                ja: "言語を確認しています...",
+                ko: "언어 확인 중...",
+                nl: "Taal verifiëren...",
+                pl: "Weryfikowanie języka...",
+                tr: "Dil doğrulanıyor...",
+                uk: "Перевірка мови...",
+                ar: "جاري التحقق من اللغة...",
+                fa: "در حال بررسی زبان...",
+                eo: "Verifikante lingvon...",
+                sv: "Verifierar språk...",
+                vi: "Đang xác minh ngôn ngữ...",
+                uz: "Til tekshirilmoqda...",
+                kk: "Тіл тексерілуде..."
+            };
+            const downloadLangs = {
+                es: "Descargando...",
+                en: "Downloading...",
+                eu: "Deskargatzen...",
+                de: "Herunterladen...",
+                fr: "Téléchargement...",
+                it: "Download...",
+                pt: "Baixando...",
+                ca: "Descarregant...",
+                gl: "Descargando...",
+                ru: "Скачивание...",
+                zh: "正在下载...",
+                ja: "ダウンロード中...",
+                ko: "다운로드 중...",
+                nl: "Downloaden...",
+                pl: "Pobieranie...",
+                tr: "İndiriliyor...",
+                uk: "Завантаження...",
+                ar: "جاري التحميل...",
+                fa: "در حال دانلود...",
+                eo: "Elŝutante...",
+                sv: "Laddar ner...",
+                vi: "Đang tải xuống...",
+                uz: "Yuklab olinmoqda...",
+                kk: "Жүктелуде..."
+            };
 
-        const vText = verifyLangs[lang] || verifyLangs['en'] || "Verificando idioma...";
-        const dText = downloadLangs[lang] || downloadLangs['en'] || "Descargando...";
+            const vText = verifyLangs[lang] || verifyLangs['en'] || "Verificando idioma...";
+            const dText = downloadLangs[lang] || downloadLangs['en'] || "Descargando...";
 
-        logStatus(vText, 'success');
-        logStatus(dText, 'success');
+            logStatus(vText, 'success');
+            logStatus(dText, 'success');
 
-        window.speechModelDownloadTimeout = setTimeout(() => {
-            downloadModel(lang);
-        }, 10000);
+            window.speechModelDownloadTimeout = setTimeout(() => {
+                downloadModel(lang);
+            }, 10000);
+        }
+    }
+
+    // Re-renderizar modal de bienvenida Trial si está visible al cambiar de idioma
+    const modalTrial = document.getElementById('modalTrialWelcome');
+    if (modalTrial && modalTrial.style.display !== 'none' && typeof showTrialWelcomeModal === 'function') {
+        showTrialWelcomeModal(window._currentTrialWelcomeData || null);
     }
 
     // Carga de guía dinámica en 24 idiomas
@@ -2169,6 +2187,13 @@ window.onload = async () => {
         try { window.close(); } catch (e) { }
         try { window.open('', '_self', '').close(); } catch (e) { }
         setTimeout(() => {
+            // Si la pestaña sigue abierta (ej. si el navegador bloqueó window.close() o el usuario está probando en local sin Electron):
+            // Si hay más historial en la misma pestaña o es la propia pestaña de localhost:3000, limpiamos ?canceled=true / ?success=true
+            // y regresamos automáticamente al Launchpad para que no se quede clavado en el cartel de "Pestaña lista para cerrar".
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.')) {
+                window.location.href = window.location.origin + '/';
+                return;
+            }
             if (btnElement) {
                 btnElement.disabled = true;
                 btnElement.style.opacity = '0.9';
@@ -2217,7 +2242,51 @@ window.onload = async () => {
             document.body.innerHTML = `
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background-color: #000000; color: #fff; font-family: 'Outfit', 'Inter', sans-serif; text-align: center; padding: 20px; box-sizing: border-box; margin: 0;">
                     <div style="background: #0d0c16; border: 1px solid rgba(123, 104, 238, 0.3); border-radius: 20px; padding: 40px 30px; max-width: 480px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9); width: 100%;">
-                        <div style="font-size: 64px; margin-bottom: 24px; animation: pulse 2s infinite;">🎉</div>
+                        <div style="margin-bottom: 20px; display: inline-flex; justify-content: center; animation: pulse 2s infinite;">
+                            <svg class="anim-party-stage" viewBox="0 0 36 36" width="68" height="68" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" style="filter: drop-shadow(0 6px 18px rgba(123, 104, 238, 0.45));">
+                                <defs>
+                                    <linearGradient id="tmConeGradSuccess" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#8B78FF" />
+                                        <stop offset="100%" stop-color="#5E4AE3" />
+                                    </linearGradient>
+                                    <linearGradient id="tmOrangeGradSuccess" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#FF8552" />
+                                        <stop offset="100%" stop-color="#FF5722" />
+                                    </linearGradient>
+                                    <clipPath id="tmConeClipSuccess">
+                                        <path d="M4.2 29.8 C3.3 30.2 2.8 29.7 3.2 28.8 L12.4 9.6 L23.4 20.6 Z" />
+                                    </clipPath>
+                                </defs>
+                                <g class="party-popper-gun">
+                                    <g clip-path="url(#tmConeClipSuccess)">
+                                        <path d="M2 31 L12.4 9.6 L23.4 20.6 Z" fill="url(#tmConeGradSuccess)" />
+                                        <path d="M5.5 23.5 L15.5 27.5 L13.2 31.5 L3.2 27.5 Z" fill="url(#tmOrangeGradSuccess)" />
+                                        <path d="M8.8 16.5 L21.5 21.5 L19.2 25.2 L6.8 20.2 Z" fill="#B2A8FF" opacity="0.45" />
+                                        <path d="M10.2 13.5 L23.5 18.8 L21.8 21.8 L8.5 16.5 Z" fill="url(#tmOrangeGradSuccess)" />
+                                    </g>
+                                    <path d="M4.2 29.8 C3.3 30.2 2.8 29.7 3.2 28.8 L12.4 9.6 L23.4 20.6 Z" fill="none" stroke="#1E1B36" stroke-width="1.2" stroke-linejoin="round" />
+                                    <ellipse cx="17.9" cy="15.1" rx="7.6" ry="3.4" transform="rotate(45 17.9 15.1)" fill="#141126" stroke="#7B68EE" stroke-width="1.3" />
+                                </g>
+                                <g class="streamer-purple">
+                                    <path d="M16.8 13.8 C15.2 10.5 19.8 9.2 18.2 6.0 C17.2 4.0 19.5 2.5 21.2 2.2" fill="none" stroke="#10B981" stroke-width="2.3" stroke-linecap="round" />
+                                    <path d="M13.5 6.8 L14.8 4.2" fill="none" stroke="#FF6B35" stroke-width="2.2" stroke-linecap="round" />
+                                </g>
+                                <g class="streamer-orange">
+                                    <path d="M19.5 16.2 C22.8 14.5 24.2 19.0 27.5 17.4 C29.5 16.4 31.2 18.2 31.8 19.8" fill="none" stroke="#FF6B35" stroke-width="2.3" stroke-linecap="round" />
+                                    <path d="M25.5 11.2 C27.8 9.5 30.2 11.5 32.2 9.8" fill="none" stroke="#8B78FF" stroke-width="2.2" stroke-linecap="round" />
+                                </g>
+                                <g class="confetti-layer-1">
+                                    <circle cx="22.5" cy="7.5" r="1.6" fill="#FF6B35" />
+                                    <circle cx="27.2" cy="5.2" r="1.4" fill="#10B981" />
+                                    <circle cx="16.2" cy="9.2" r="1.3" fill="#FFFFFF" />
+                                </g>
+                                <g class="confetti-layer-2">
+                                    <circle cx="23.8" cy="13.2" r="1.5" fill="#FFFFFF" />
+                                    <circle cx="30.5" cy="14.5" r="1.6" fill="#10B981" />
+                                    <circle cx="26.8" cy="22.2" r="1.5" fill="#7B68EE" />
+                                </g>
+                            </svg>
+                        </div>
                         <h1 id="landing-title" style="font-size: 24px; font-weight: 800; margin: 0 0 16px 0; background: linear-gradient(135deg, #ffffff 0%, #b2a8ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px;">${l10n.titleSuccess}</h1>
                         <p id="landing-desc" style="font-size: 15px; color: #aaaaaa; line-height: 1.6; margin: 0 0 32px 0;">${l10n.descSuccess}</p>
                         <button id="landing-btn" onclick="closeBrowserTab(this)" style="background: #7B68EE; color: #fff; border: none; padding: 14px 28px; font-size: 14px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 15px rgba(123, 104, 238, 0.3); width: 100%;" onmouseover="this.style.background='#6c5ce7'" onmouseout="this.style.background='#7B68EE'">${l10n.btnSuccess}</button>
@@ -2286,14 +2355,15 @@ window.onload = async () => {
         document.getElementById('log-email').value = cachedEmail;
     }
 
-    // Recover login state if email is cached but no license exists yet
-    if (cachedEmail && !cachedLicense) {
-        const userId = localStorage.getItem('talkme_user_id') || 0;
-        currentUser = { id: userId, email: cachedEmail };
-        document.getElementById('sec-login').style.display = 'none';
-        document.getElementById('sec-stripe').style.display = 'block';
-        document.getElementById('logged-email').innerText = cachedEmail;
-    }
+    // Asegurar que la pantalla por defecto sea Login salvo que haya una sesión activa confirmada
+    document.getElementById('sec-login').style.display = 'block';
+    document.getElementById('sec-stripe').style.display = 'none';
+    document.getElementById('sec-validate').style.display = 'none';
+    document.getElementById('sec-start-server').style.display = 'none';
+    const secRtoInit = document.getElementById('sec-rto-renewal');
+    if (secRtoInit) secRtoInit.style.display = 'none';
+    const dashInit = document.querySelector('.dashboard');
+    if (dashInit) dashInit.classList.remove('has-rto-renewal');
 
     // Ensure settings button is hidden by default until valid session is proven
     const btnInitialSettings = document.getElementById('btnOpenPrelaunchSettings');
@@ -2328,14 +2398,29 @@ window.onload = async () => {
         checkAndPromptTranslateDownload();
         downloadModel(currentLang);
         // Background re-validation (non-blocking) — updates token and expiry silently
-        performAutomaticValidation(cachedLicense, cachedEmail).then(ok => {
-            if (!ok) {
-                // Only kick to login if server explicitly rejects the license
-                localStorage.setItem('talkme_session_active', 'false');
-                const btnKey = document.getElementById('btnOpenPrelaunchSettings');
-                if (btnKey) btnKey.style.display = 'none';
+        const ok = await performAutomaticValidation(cachedLicense, cachedEmail);
+        if (ok === true) {
+            // Licencia re-validada con éxito en segundo plano: mantener sesión activa y botón visible
+            localStorage.setItem('talkme_session_active', 'true');
+            const btnKey = document.getElementById('btnOpenPrelaunchSettings');
+            if (btnKey) {
+                btnKey.style.display = 'flex';
+                btnKey.style.opacity = '1';
+                btnKey.style.pointerEvents = 'auto';
             }
-        }).catch(() => { });
+        } else if (ok === 'RTO_SCREEN') {
+            // Si la cuota RTO venció y se mostró la pantalla de regularización, desmarcar sesión
+            localStorage.setItem('talkme_session_active', 'false');
+            const btnKey = document.getElementById('btnOpenPrelaunchSettings');
+            if (btnKey) btnKey.style.display = 'none';
+        } else {
+            // Servidor rechazó explícitamente la licencia: volver a login y ocultar ajustes
+            localStorage.setItem('talkme_session_active', 'false');
+            const btnKey = document.getElementById('btnOpenPrelaunchSettings');
+            if (btnKey) btnKey.style.display = 'none';
+            document.getElementById('sec-login').style.display = 'block';
+            document.getElementById('sec-start-server').style.display = 'none';
+        }
         return;
     }
 
@@ -2344,7 +2429,7 @@ window.onload = async () => {
         document.getElementById('val-license').value = cachedLicense;
         document.getElementById('sec-login').style.display = 'none';
         const success = await performAutomaticValidation(cachedLicense, cachedEmail);
-        if (success) {
+        if (success === true) {
             localStorage.setItem('talkme_session_active', 'true');
             const btnKey = document.getElementById('btnOpenPrelaunchSettings');
             if (btnKey) {
@@ -2355,6 +2440,12 @@ window.onload = async () => {
             if (typeof updateSettingsButtonPulse === 'function') {
                 updateSettingsButtonPulse();
             }
+        } else if (success === 'RTO_SCREEN') {
+            // [AJUSTE CONTEXTUAL]: Si el usuario está viendo la pantalla de cuota pendiente, desmarcamos talkme_session_active
+            // y eliminamos talkme_license para que si cierra el programa y vuelve a abrir sin pagar,
+            // la aplicación se abra limpiamente desde la pantalla de login.
+            localStorage.setItem('talkme_session_active', 'false');
+            localStorage.removeItem('talkme_license');
         } else {
             document.getElementById('sec-login').style.display = 'block';
             localStorage.setItem('talkme_session_active', 'false');
@@ -2428,7 +2519,7 @@ async function performAutomaticValidation(licenseKey, email) {
             }
 
             downloadModel(currentLang);
-            checkAndPromptTranslateDownload();
+
             localStorage.setItem('talkme_email', email);
             localStorage.setItem('talkme_license', licenseKey);
             // Only save expiry if we actually have a real date
@@ -2443,6 +2534,9 @@ async function performAutomaticValidation(licenseKey, email) {
             } else if (data.expiration_date) {
                 localStorage.setItem('talkme_license_expiry_raw', data.expiration_date);
             }
+            if (data.trial_duration_days) {
+                localStorage.setItem('talkme_trial_initial_days', data.trial_duration_days.toString());
+            }
             localStorage.setItem('talkme_session_active', 'true');
             if (data.plan_type) localStorage.setItem('talkme_plan_type', data.plan_type);
             if (data.device_limit) localStorage.setItem('talkme_device_limit', data.device_limit);
@@ -2450,6 +2544,14 @@ async function performAutomaticValidation(licenseKey, email) {
             if (data.payment_mode) localStorage.setItem('talkme_payment_mode', data.payment_mode);
             if (data.total_price !== undefined) localStorage.setItem('talkme_total_price', data.total_price);
             if (data.total_paid !== undefined) localStorage.setItem('talkme_total_paid', data.total_paid);
+
+            // [MURPHY SHIELD]: Si proviene de un primer registro, desplegar la fiesta de bienvenida
+            // y posponer la comprobación de descarga pesada hasta que el usuario pulse "Ingresar".
+            if (localStorage.getItem('talkme_pending_trial_welcome') === 'true') {
+                showTrialWelcomeModal(data);
+            } else {
+                checkAndPromptTranslateDownload();
+            }
             if (data.version_channel) {
                 cachedVersionChannelData = data.version_channel;
                 _talkmeRealOnline = true; // La validación online exitosa confirma conectividad real
@@ -2459,8 +2561,16 @@ async function performAutomaticValidation(licenseKey, email) {
                 renderVersionUpdatesChannel(currentLang);
             }
             return true;
+        } else {
+            // [MURPHY SHIELD]: Si requiere regularizar RTO o venció cuota, mostrar directamente la pantalla RTO
+            if (data.error_code === 'RTO_PAYMENT_REQUIRED') {
+                const t = translations[currentLang] || translations['es'] || {};
+                logStatus((t.log_validation_error || "Error Soberanía: {error}").replace('{error}', getLocalizedApiError(data.error, data.error_code)), 'error');
+                showRtoRenewalScreen(data.rto_details || {});
+                return 'RTO_SCREEN';
+            }
+            return false;
         }
-        return false;
     } catch (e) {
         return false;
     }
@@ -2499,6 +2609,9 @@ async function register() {
             }
             localStorage.setItem('talkme_license', data.license_key);
             localStorage.setItem('talkme_license_expiry', data.expires_at || '');
+            if (data.expires_at) {
+                localStorage.setItem('talkme_license_expiry_raw', data.expires_at);
+            }
             localStorage.setItem('talkme_license_status', 'trial');
             localStorage.setItem('talkme_payment_mode', 'one_time');
             localStorage.setItem('talkme_total_price', '169.23');
@@ -2506,6 +2619,11 @@ async function register() {
             localStorage.setItem('talkme_plan_type', 'freelance');
             localStorage.setItem('talkme_device_limit', '1');
             localStorage.setItem('talkme_active_bindings', '1');
+
+            // [MURPHY SHIELD]: Activar bandera de bienvenida exclusiva para el primer registro
+            const trialDaysReceived = data.trial_duration_days || 30;
+            localStorage.setItem('talkme_pending_trial_welcome', 'true');
+            localStorage.setItem('talkme_trial_initial_days', trialDaysReceived.toString());
 
             // Auto-rellenar y validar
             document.getElementById('val-license').value = data.license_key;
@@ -2555,9 +2673,15 @@ async function login() {
                 currentLicenseKey = data.license_key;
                 localStorage.setItem('talkme_license', currentLicenseKey);
 
+                document.getElementById('sec-login').style.display = 'none';
                 document.getElementById('sec-validate').style.display = 'block';
                 document.getElementById('user-license-key').innerText = currentLicenseKey;
                 document.getElementById('val-license').value = currentLicenseKey;
+
+                // [INGENIERÍA DEFENSIVA]: Validación automática inmediata tras login exitoso.
+                // Si la licencia tiene RTO pendiente, saltará limpiamente a la pantalla de cuota
+                // o al panel principal sin obligar al usuario a hacer clic manual en el botón de verificar.
+                await validateLicense();
             } else {
                 document.getElementById('sec-stripe').style.display = 'block';
             }
@@ -2584,7 +2708,7 @@ function checkPaymentStatus(safeUserId, safeEmail) {
                     clearInterval(paymentPollingInterval);
                     paymentPollingInterval = null;
                 }
-                logStatus("✅ ¡Pago confirmado por Stripe! Procesando activación...");
+                logStatus((translations[currentLang] && translations[currentLang].log_stripe_confirmed) || "✅ ¡Pago confirmado por Stripe! Procesando activación...");
 
                 currentLicenseKey = data.license_key;
                 localStorage.setItem('talkme_license', currentLicenseKey);
@@ -2608,7 +2732,7 @@ function startPaymentPolling(userId = 0, userEmail = '') {
     const safeUserId = userId || (currentUser && currentUser.id) || localStorage.getItem('talkme_user_id') || 0;
     const safeEmail = userEmail || (currentUser && currentUser.email) || localStorage.getItem('talkme_email') || '';
 
-    logStatus("💳 Esperando confirmación de pago de Stripe. No cierres esta ventana...");
+    logStatus((translations[currentLang] && translations[currentLang].log_waiting_stripe) || "💳 Esperando confirmación de pago de Stripe. No cierres esta ventana...");
 
     // Verificación inmediata inicial
     checkPaymentStatus(safeUserId, safeEmail);
@@ -2639,7 +2763,13 @@ async function buyLicense(planType = 'freelance', paymentMode = 'one_time') {
         });
         const data = await res.json();
         if (data.url) {
-            window.location.href = data.url;
+            // [INGENIERÍA DEFENSIVA]: Abrir mediante window.open() para que:
+            // 1. En navegador (pre-launch) sea una ventana creada por script y window.close() pueda cerrarla automáticamente.
+            // 2. En Electron (setWindowOpenHandler) se abra limpiamente en el navegador externo sin navegar la ventana principal.
+            const popup = window.open(data.url, '_blank');
+            if (!popup) {
+                window.location.href = data.url;
+            }
             // Iniciar sondeo de confirmación de pago
             startPaymentPolling(userId, email);
         } else {
@@ -2693,6 +2823,9 @@ async function validateLicense(isFromPayment = false, retryCount = 0) {
             } else if (data.expiration_date) {
                 localStorage.setItem('talkme_license_expiry_raw', data.expiration_date);
             }
+            if (data.trial_duration_days) {
+                localStorage.setItem('talkme_trial_initial_days', data.trial_duration_days.toString());
+            }
             localStorage.setItem('talkme_session_active', 'true');
             if (data.plan_type) localStorage.setItem('talkme_plan_type', data.plan_type);
             if (data.payment_mode) localStorage.setItem('talkme_payment_mode', data.payment_mode);
@@ -2710,6 +2843,10 @@ async function validateLicense(isFromPayment = false, retryCount = 0) {
             }
             document.getElementById('sec-validate').style.display = 'none';
             document.getElementById('sec-stripe').style.display = 'none';
+            const secRtoOk = document.getElementById('sec-rto-renewal');
+            if (secRtoOk) secRtoOk.style.display = 'none';
+            const dashOk = document.querySelector('.dashboard');
+            if (dashOk) dashOk.classList.remove('has-rto-renewal');
             document.getElementById('sec-start-server').style.display = 'block';
             document.getElementById('motor-status').innerText = translations[currentLang].btn_validate_active;
             document.getElementById('motor-status').style.color = '#00ff88';
@@ -2729,11 +2866,18 @@ async function validateLicense(isFromPayment = false, retryCount = 0) {
                 updateSettingsButtonPulse();
             }
             downloadModel(currentLang);
-            checkAndPromptTranslateDownload();
+
+            // [MURPHY SHIELD]: Si proviene de un primer registro, desplegar la fiesta de bienvenida
+            // y posponer la comprobación de descarga pesada hasta que el usuario pulse "Ingresar".
+            if (localStorage.getItem('talkme_pending_trial_welcome') === 'true') {
+                showTrialWelcomeModal(data);
+            } else {
+                checkAndPromptTranslateDownload();
+            }
         } else {
             // Reintento silencioso si la llamada proviene inmediatamente de una confirmación de pago
             if (isFromPayment && retryCount < 3) {
-                logStatus("⌛ Sincronizando activación de pago con el servidor central...", 'warning');
+                logStatus((translations[currentLang] && translations[currentLang].log_syncing_payment) || "⌛ Sincronizando activación de pago con el servidor central...", 'warning');
                 setTimeout(() => {
                     validateLicense(true, retryCount + 1);
                 }, 1500);
@@ -2741,6 +2885,12 @@ async function validateLicense(isFromPayment = false, retryCount = 0) {
             }
 
             logStatus((translations[currentLang].log_validation_error || "Error Soberanía: {error}").replace('{error}', getLocalizedApiError(data.error, data.error_code)), 'error');
+
+            // [MURPHY SHIELD]: Intercepción quirúrgica si se requiere renovación de cuota Rent-to-Own
+            if (data.error_code === 'RTO_PAYMENT_REQUIRED') {
+                showRtoRenewalScreen(data.rto_details || {});
+                return;
+            }
 
             // Si el error es por expiración, bloqueo por versión no cubierta, abuso de prueba o impagos de suscripción
             const blockedCodes = ['LICENSE_EXPIRED', 'UPGRADE_REQUIRED', 'VERSION_OUT_OF_COVERAGE', 'TRIAL_ALREADY_USED', 'RTO_BLOCKED_PAYMENT_REQUIRED', 'RTO_BLOCKED_3_STRIKES'];
@@ -3211,8 +3361,8 @@ async function startMainServer() {
         const res = await fetch('/api/start-main-server', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                modelsPath, 
+            body: JSON.stringify({
+                modelsPath,
                 lang: currentLang || 'es',
                 translateEnabled: translateEnabled
             })
@@ -3644,6 +3794,34 @@ function closeDeregisterConfirm() {
     document.getElementById('deregisterConfirmModal').style.display = 'none';
 }
 
+function clearLocalSessionState() {
+    const keysToRemove = [
+        'talkme_email',
+        'talkme_user_id',
+        'talkme_license',
+        'talkme_license_expiry',
+        'talkme_license_expiry_raw',
+        'talkme_license_status',
+        'talkme_plan_type',
+        'talkme_payment_mode',
+        'talkme_device_limit',
+        'talkme_active_bindings',
+        'talkme_total_price',
+        'talkme_total_paid',
+        'talkme_pending_trial_welcome',
+        'talkme_version_channel'
+    ];
+    keysToRemove.forEach(k => localStorage.removeItem(k));
+    localStorage.setItem('talkme_session_active', 'false');
+    _currentRtoDetails = null;
+    currentUser = null;
+    currentLicenseKey = null;
+    const secRto = document.getElementById('sec-rto-renewal');
+    if (secRto) secRto.style.display = 'none';
+    const dash = document.querySelector('.dashboard');
+    if (dash) dash.classList.remove('has-rto-renewal');
+}
+
 async function executeDeregisterDevice() {
     closeDeregisterConfirm();
     const licenseKey = localStorage.getItem('talkme_license');
@@ -3657,12 +3835,7 @@ async function executeDeregisterDevice() {
         });
         const data = await res.json();
         if (data.success) {
-            localStorage.removeItem('talkme_email');
-            localStorage.removeItem('talkme_user_id');
-            localStorage.removeItem('talkme_license');
-            localStorage.removeItem('talkme_license_expiry');
-            localStorage.removeItem('talkme_license_expiry_raw');
-            localStorage.setItem('talkme_session_active', 'false');
+            clearLocalSessionState();
 
             togglePrelaunchSettings();
             const successMsg = (translations[lang] && translations[lang].msg_device_deregistered_success) || data.message;
@@ -3708,11 +3881,7 @@ function closeLogoutWarning() {
 }
 
 function executeLogout() {
-    localStorage.removeItem('talkme_email');
-    localStorage.removeItem('talkme_user_id');
-    localStorage.removeItem('talkme_license');
-    localStorage.removeItem('talkme_license_expiry');
-    localStorage.removeItem('talkme_license_expiry_raw');
+    clearLocalSessionState();
     closeLogoutWarning();
     document.getElementById('prelaunchSettingsModal').classList.add('hidden');
     document.getElementById('prelaunchSettingsModal').style.display = 'none';
@@ -4061,9 +4230,9 @@ async function selectModelsPath(context = 'tab') {
             checkPrelaunchTabModels();
         }
     } catch (e) {
-        const currentPath = (document.getElementById('inputModelsPathModal') && document.getElementById('inputModelsPathModal').value) || 
-                            (document.getElementById('inputModelsPath') && document.getElementById('inputModelsPath').value) || 
-                            'C:\\\\TalkMe\\\\Models';
+        const currentPath = (document.getElementById('inputModelsPathModal') && document.getElementById('inputModelsPathModal').value) ||
+            (document.getElementById('inputModelsPath') && document.getElementById('inputModelsPath').value) ||
+            'C:\\\\TalkMe\\\\Models';
         const t = translations[currentLang] || translations['en'];
         const newPath = prompt(t.prompt_models_path || 'Enter the models storage path:', currentPath);
         if (newPath !== null && newPath.trim() !== '') {
@@ -4522,7 +4691,7 @@ function _safeGetTermsCache(key) {
 function _safeSetTermsCache(key, val) {
     try {
         localStorage.setItem(key, val);
-    } catch (e) {}
+    } catch (e) { }
     window._termsMemoryCache[key] = val;
 }
 
@@ -4611,40 +4780,40 @@ async function openLauncherTermsModal(e, tipo) {
 
     // ── NIVEL 2: Sondeo Silencioso en Background con AbortController (3.5s) y Anti-Caché ──
     if (_termsFetchController) {
-        try { _termsFetchController.abort(); } catch (e) {}
+        try { _termsFetchController.abort(); } catch (e) { }
     }
     _termsFetchController = new AbortController();
     const timeoutId = setTimeout(() => {
-        try { _termsFetchController.abort(); } catch (e) {}
+        try { _termsFetchController.abort(); } catch (e) { }
     }, 3500);
 
     fetch(`${archivoTerms}?_t=${Date.now()}`, {
         cache: 'no-store',
         signal: _termsFetchController.signal
     })
-    .then(async (res) => {
-        clearTimeout(timeoutId);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return await res.text();
-    })
-    .then((remoteHtml) => {
-        // ── NIVEL 3: Validación de Integridad y Actualización Suave ──
-        if (remoteHtml && typeof remoteHtml === 'string' && remoteHtml.length > 200) {
-            const currentCached = _safeGetTermsCache(cacheKey);
-            if (remoteHtml !== currentCached) {
-                _safeSetTermsCache(cacheKey, remoteHtml);
-                const updatedBlock = _extractTermsLangBlock(remoteHtml, activeLang);
-                if (updatedBlock) {
-                    contentArea.innerHTML = updatedBlock;
-                    console.log(`✅ [TermsModal] Términos (${tipoFinal}) actualizados dinámicamente desde repositorio central.`);
+        .then(async (res) => {
+            clearTimeout(timeoutId);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return await res.text();
+        })
+        .then((remoteHtml) => {
+            // ── NIVEL 3: Validación de Integridad y Actualización Suave ──
+            if (remoteHtml && typeof remoteHtml === 'string' && remoteHtml.length > 200) {
+                const currentCached = _safeGetTermsCache(cacheKey);
+                if (remoteHtml !== currentCached) {
+                    _safeSetTermsCache(cacheKey, remoteHtml);
+                    const updatedBlock = _extractTermsLangBlock(remoteHtml, activeLang);
+                    if (updatedBlock) {
+                        contentArea.innerHTML = updatedBlock;
+                        console.log(`✅ [TermsModal] Términos (${tipoFinal}) actualizados dinámicamente desde repositorio central.`);
+                    }
                 }
             }
-        }
-    })
-    .catch((err) => {
-        clearTimeout(timeoutId);
-        // Silencio absoluto ante cortes de red o timeout: el usuario continúa leyendo la copia local sana
-    });
+        })
+        .catch((err) => {
+            clearTimeout(timeoutId);
+            // Silencio absoluto ante cortes de red o timeout: el usuario continúa leyendo la copia local sana
+        });
 }
 
 function closeLauncherTermsModal(accept) {
@@ -5283,46 +5452,46 @@ function renderPrelaunchGuide(guideData, container, lang) {
     });
 
     // Contenedor de estado vacío cuando no hay coincidencias en la guía de pre-launch
-        const emptyStateI18n = {
-            es: 'No se encontraron resultados',
-            en: 'No results found',
-            eu: 'Ez da emaitzarik aurkitu',
-            de: 'Keine Ergebnisse gefunden',
-            ar: 'لم يتم العثور على نتائج',
-            ca: 'No s\'han trobat resultats',
-            zh: '未找到结果',
-            ko: '결과를 찾을 수 없습니다',
-            eo: 'Neniuj rezultoj trovitaj',
-            fa: 'نتیجه‌ای یافت نشد',
-            fr: 'Aucun résultat trouvé',
-            gl: 'Non se atoparon resultados',
-            nl: 'Geen resultaten gevonden',
-            it: 'Nessun resultado trovato',
-            ja: '結果が見つかりませんでした',
-            kk: 'Нәтиже табылмады',
-            pl: 'Nie znaleziono wyników',
-            pt: 'Nenhum resultado encontrado',
-            ru: 'Результаты не найдены',
-            sv: 'Inga resultat hittades',
-            tr: 'Sonuç bulunamadı',
-            uk: 'Результатів не знайдено',
-            uz: 'Hech qanday natija topilmadi',
-            vi: 'Không tìm thấy kết quả'
-        };
+    const emptyStateI18n = {
+        es: 'No se encontraron resultados',
+        en: 'No results found',
+        eu: 'Ez da emaitzarik aurkitu',
+        de: 'Keine Ergebnisse gefunden',
+        ar: 'لم يتم العثور على نتائج',
+        ca: 'No s\'han trobat resultats',
+        zh: '未找到结果',
+        ko: '결과를 찾을 수 없습니다',
+        eo: 'Neniuj rezultoj trovitaj',
+        fa: 'نتیجه‌ای یافت نشد',
+        fr: 'Aucun résultat trouvé',
+        gl: 'Non se atoparon resultados',
+        nl: 'Geen resultaten gevonden',
+        it: 'Nessun resultado trovato',
+        ja: '結果が見つかりませんでした',
+        kk: 'Нәтиже табылмады',
+        pl: 'Nie znaleziono wyników',
+        pt: 'Nenhum resultado encontrado',
+        ru: 'Результаты не найдены',
+        sv: 'Inga resultat hittades',
+        tr: 'Sonuç bulunamadı',
+        uk: 'Результатів не знайдено',
+        uz: 'Hech qanday natija topilmadi',
+        vi: 'Không tìm thấy kết quả'
+    };
 
-        const guideEmptyTitle = emptyStateI18n[lang] || emptyStateI18n['es'];
-        const emptyState = document.createElement('div');
-        emptyState.id = 'prelaunchGuideEmptyState';
-        emptyState.style.cssText = 'display: none; text-align: center; padding: 40px 20px; color: var(--text-secondary, rgba(255,255,255,0.45)); font-size: 0.9rem;';
-        emptyState.innerHTML = `
+    const guideEmptyTitle = emptyStateI18n[lang] || emptyStateI18n['es'];
+    const emptyState = document.createElement('div');
+    emptyState.id = 'prelaunchGuideEmptyState';
+    emptyState.style.cssText = 'display: none; text-align: center; padding: 40px 20px; color: var(--text-secondary, rgba(255,255,255,0.45)); font-size: 0.9rem;';
+    emptyState.innerHTML = `
             <svg viewBox="0 0 24 24" width="40" height="40" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.4; margin-bottom: 12px;">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
             <div style="font-weight: 600; color: var(--text-primary, #ffffff); margin-bottom: 4px;">${guideEmptyTitle}</div>
         `;
-        container.appendChild(emptyState);
-    }
+    container.appendChild(emptyState);
+}
 
 /**
  * 📜 Sistema Legal & Licencias Dinámico de Pre-Launch (24 Idiomas)
@@ -6253,5 +6422,323 @@ async function pollTranslateDownloadProgress() {
         console.warn("⚠️ [POLL-TRANSLATE-PROGRESS] Error:", e.message);
     } finally {
         _isPollingTranslate = false;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CONTROLADORES DE INTERFAZ: BIENVENIDA TRIAL & RENOVACIÓN RTO
+// Cero código muerto, arquitectura modular pura y Ley de Murphy
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Despliega la modal de celebración de prueba gratuita tras registrarse.
+ */
+function showTrialWelcomeModal(validateData) {
+    if (typeof validateData === 'number') {
+        validateData = {
+            trial_duration_days: validateData,
+            expires_raw: new Date(Date.now() + validateData * 86400000).toISOString(),
+            license_key: localStorage.getItem('talkme_license') || 'TLKM-TRIAL-2026'
+        };
+    }
+    if (validateData) {
+        window._currentTrialWelcomeData = validateData;
+    } else if (window._currentTrialWelcomeData) {
+        validateData = window._currentTrialWelcomeData;
+    }
+    const modal = document.getElementById('modalTrialWelcome');
+    if (!modal) return;
+
+    const lang = currentLang || 'es';
+    const t = translations[lang] || translations['es'] || {};
+    let rawExpiry = (validateData && (validateData.expires_raw || validateData.expires_at)) || localStorage.getItem('talkme_license_expiry_raw') || localStorage.getItem('talkme_license_expiry');
+
+    let computedDays = 0;
+    if (rawExpiry) {
+        const expTime = new Date(rawExpiry).getTime();
+        if (!isNaN(expTime) && expTime > Date.now()) {
+            computedDays = Math.max(1, Math.round((expTime - Date.now()) / (1000 * 60 * 60 * 24)));
+        }
+    }
+
+    const trialDays = parseInt(
+        (validateData && validateData.trial_duration_days) ||
+        localStorage.getItem('talkme_trial_initial_days') ||
+        computedDays ||
+        '30',
+        10
+    );
+    const remainingDays = computedDays > 0 ? computedDays : trialDays;
+    if (!rawExpiry || isNaN(new Date(rawExpiry).getTime())) {
+        rawExpiry = new Date(Date.now() + remainingDays * 86400000).toISOString();
+    }
+    const licenseKey = (validateData && validateData.license_key) || localStorage.getItem('talkme_license') || 'TLKM-TRIAL-2026';
+
+    // 1. Textos e insignias dinámicas usando el diccionario i18n
+    const badgeEl = document.getElementById('trialWelcomeBadge');
+    if (badgeEl) {
+        const badgeTpl = t.trial_welcome_badge || "{days} DÍAS DE ACCESO TOTAL";
+        badgeEl.innerText = badgeTpl.replace('{days}', trialDays);
+    }
+
+    const titleEl = document.getElementById('trialWelcomeTitle');
+    if (titleEl) {
+        titleEl.innerText = t.trial_welcome_title || "¡Bienvenido a bordo de Talk-me!";
+    }
+
+    const bodyEl = document.getElementById('trialWelcomeTextDynamic');
+    if (bodyEl) {
+        const bodyTpl = t.trial_welcome_body || "¡Tu cuenta ya está activa! Para celebrarlo, te regalamos {days} días para que pruebes, experimentes y disfrutes de la potencia de la plataforma sin restricciones. ¡Despegamos!";
+        bodyEl.innerHTML = bodyTpl.replace('{days}', `<strong>${trialDays}</strong>`);
+    }
+
+    // Asegurar sincronización de etiquetas estáticas dentro del modal en los 24 idiomas
+    modal.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (key && t[key] && el.id !== 'trialWelcomeTitle') {
+            el.innerText = t[key];
+        }
+    });
+
+    // 2. Clave y fecha calculada con el formateador de fechas oficial
+    const keyEl = document.getElementById('trialWelcomeLicenseKey');
+    if (keyEl) keyEl.innerText = licenseKey;
+
+    const expiryEl = document.getElementById('trialWelcomeExpiryText');
+    if (expiryEl) {
+        const formattedDate = formatExpiryDate(rawExpiry, lang);
+        const validTpl = t.trial_valid_until || "Válida hasta: <strong>{date}</strong> ({days} días restantes)";
+        expiryEl.innerHTML = validTpl.replace('{date}', formattedDate).replace('{days}', remainingDays);
+    }
+
+    modal.style.display = 'flex';
+}
+
+/**
+ * Cierra suavemente la modal de bienvenida al pulsar "Ingresar".
+ */
+function dismissTrialWelcome() {
+    localStorage.removeItem('talkme_pending_trial_welcome');
+    localStorage.setItem('talkme_trial_welcomed', 'true');
+
+    const modal = document.getElementById('modalTrialWelcome');
+    if (modal) {
+        modal.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.96)';
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modal.style.opacity = '1';
+            modal.style.transform = 'scale(1)';
+            // Desbloquear la verificación del motor de traducción de fondo
+            if (typeof checkAndPromptTranslateDownload === 'function') {
+                checkAndPromptTranslateDownload();
+            }
+        }, 300);
+    }
+}
+
+/**
+ * Copia la clave de licencia de bienvenida al portapapeles.
+ */
+function copyTrialWelcomeLicense() {
+    const key = document.getElementById('trialWelcomeLicenseKey');
+    if (key && key.innerText) {
+        const lang = currentLang || 'es';
+        const t = translations[lang] || translations['es'] || {};
+        navigator.clipboard.writeText(key.innerText).then(() => {
+            const btn = document.querySelector('.trial-btn-copy');
+            if (btn) {
+                const prev = t.trial_btn_copy || btn.innerText;
+                btn.innerText = t.trial_btn_copied || '¡COPIADA!';
+                setTimeout(() => { btn.innerText = (translations[currentLang] && translations[currentLang].trial_btn_copy) || prev; }, 1500);
+            }
+        }).catch(() => {
+            alert(key.innerText);
+        });
+    }
+}
+
+let _currentRtoDetails = null;
+
+/**
+ * Muestra la pantalla contextual en 2 columnas cuando la cuota mensual RTO ha vencido.
+ */
+function showRtoRenewalScreen(details) {
+    _currentRtoDetails = details;
+    const secLogin = document.getElementById('sec-login');
+    const secRegister = document.getElementById('sec-register');
+    const secValidate = document.getElementById('sec-validate');
+    const secStripe = document.getElementById('sec-stripe');
+    const secRto = document.getElementById('sec-rto-renewal');
+    const btnKey = document.getElementById('btnOpenPrelaunchSettings');
+    const customAlert = document.getElementById('customAlertModal');
+
+    // Cerrar cualquier alerta modal emergente para que no tape la pantalla RTO
+    if (customAlert) {
+        customAlert.classList.add('hidden');
+        customAlert.style.display = 'none';
+    }
+
+    if (secLogin) secLogin.style.display = 'none';
+    if (secRegister) secRegister.style.display = 'none';
+    if (secValidate) secValidate.style.display = 'none';
+    if (secStripe) secStripe.style.display = 'none';
+    if (btnKey) btnKey.style.display = 'none';
+
+    if (!secRto) return;
+
+    const lang = currentLang || 'es';
+    const t = translations[lang] || translations['es'] || {};
+    const email = details.email || localStorage.getItem('talkme_email') || 'usuario@talk-me.app';
+    const licenseKey = details.license_key || localStorage.getItem('talkme_license') || 'N/A';
+    const planType = (details.plan_type === 'enterprise')
+        ? (t.rto_plan_enterprise || 'ENTERPRISE (5 Servidores)')
+        : (t.rto_plan_freelance || 'FREELANCE (1 Servidor)');
+    const paidCount = parseInt(details.paid_count || 0, 10);
+    const totalCount = parseInt(details.total_count || 14, 10);
+    const remainingCount = Math.max(0, totalCount - paidCount);
+    const monthlyPrice = parseFloat(details.monthly_price || (details.plan_type === 'enterprise' ? 49.90 : 9.99));
+    const buyoutPrice = parseFloat(details.buyout_price || (remainingCount * monthlyPrice).toFixed(2));
+    const totalPaidNum = parseFloat(details.total_paid !== undefined ? details.total_paid : (paidCount * monthlyPrice));
+    const totalNetNum = totalCount * monthlyPrice;
+    const percent = Math.min(100, Math.round((paidCount / totalCount) * 100));
+
+    // Inyección de datos localizados en los 24 idiomas
+    const emailEl = document.getElementById('rto-user-email');
+    if (emailEl) emailEl.innerText = email;
+
+    const keyEl = document.getElementById('rto-license-key-text');
+    if (keyEl) keyEl.innerText = licenseKey;
+
+    const planEl = document.getElementById('rto-plan-type-text');
+    if (planEl) planEl.innerText = planType;
+
+    const percentEl = document.getElementById('rto-progress-percent');
+    if (percentEl) {
+        const progTpl = t.rto_progress_paid || "Progreso: {percent}% pagado";
+        percentEl.innerText = progTpl.replace('{percent}', percent);
+    }
+
+    const fractionEl = document.getElementById('rto-fraction-text');
+    if (fractionEl) {
+        const fracTpl = t.rto_installments_fraction || "{paid} de {total} cuotas";
+        fractionEl.innerText = fracTpl.replace('{paid}', paidCount).replace('{total}', totalCount);
+    }
+
+    const fillEl = document.getElementById('rto-progress-fill');
+    if (fillEl) fillEl.style.width = `${percent}%`;
+
+    const legendEl = document.getElementById('rto-summary-legend');
+    if (legendEl) {
+        const legTpl = t.rto_summary_legend || "{paid_amount} abonados de {total_amount} • Restan <strong>{remaining} meses</strong> para propiedad vitalicia.";
+        legendEl.innerHTML = legTpl
+            .replace('{paid_amount}', formatCurrency(totalPaidNum, lang))
+            .replace('{total_amount}', formatCurrency(totalNetNum, lang))
+            .replace('{remaining}', remainingCount);
+    }
+
+    const col1Desc = document.getElementById('rto-col1-desc');
+    if (col1Desc) {
+        const col1Tpl = t.rto_col1_desc || "Paga la cuota <strong>{next}</strong> para reactivar tu servidor durante 30 días más.";
+        col1Desc.innerHTML = col1Tpl.replace('{next}', paidCount + 1);
+    }
+
+    const monthlyBtnLabel = document.getElementById('rto-btn-monthly-label');
+    if (monthlyBtnLabel) {
+        const btn1Tpl = t.rto_btn_pay_installment || "Pagar Cuota {next} ({price})";
+        monthlyBtnLabel.innerText = btn1Tpl
+            .replace('{next}', paidCount + 1)
+            .replace('{price}', formatCurrency(monthlyPrice, lang));
+    }
+
+    const buyoutBtnLabel = document.getElementById('rto-buyout-amount-label');
+    if (buyoutBtnLabel) {
+        buyoutBtnLabel.innerText = `(${formatCurrency(buyoutPrice, lang)})`;
+    }
+
+    const dashboardEl = document.querySelector('.dashboard');
+    if (dashboardEl) {
+        dashboardEl.classList.add('has-rto-renewal');
+    }
+
+    secRto.style.display = 'block';
+}
+
+/**
+ * Ejecuta el pago de la cuota mensual ordinaria RTO a través de la pasarela Stripe exacta.
+ */
+async function executeRtoMonthlyPayment() {
+    const licenseKey = (_currentRtoDetails && _currentRtoDetails.license_key) || localStorage.getItem('talkme_license') || '';
+    const lang = currentLang || 'es';
+    logStatus(translations[lang].log_redirecting_stripe || "Redirigiendo a la pasarela segura de Stripe...");
+
+    try {
+        const res = await fetch('/api/create-rto-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                licenseKey: licenseKey,
+                type: 'monthly',
+                lang: lang,
+                origin: window.location.origin
+            })
+        });
+        const data = await res.json();
+        if (data.success && data.url) {
+            const popup = window.open(data.url, '_blank');
+            if (!popup) {
+                window.location.href = data.url;
+            }
+            const email = (_currentRtoDetails && _currentRtoDetails.email) || localStorage.getItem('talkme_email') || '';
+            const userId = (_currentRtoDetails && _currentRtoDetails.user_id) || localStorage.getItem('talkme_user_id') || 0;
+            startPaymentPolling(userId, email);
+        } else {
+            const plan = (_currentRtoDetails && _currentRtoDetails.plan_type) || 'freelance';
+            buyLicense(plan, 'rent_to_own');
+        }
+    } catch (e) {
+        console.warn("⚠️ Error solicitando sesión RTO, ejecutando fallback:", e);
+        const plan = (_currentRtoDetails && _currentRtoDetails.plan_type) || 'freelance';
+        buyLicense(plan, 'rent_to_own');
+    }
+}
+
+/**
+ * Ejecuta la liquidación de golpe (Buyout) descontando estrictamente las cuotas ya amortizadas.
+ */
+async function executeRtoBuyoutPayment() {
+    const licenseKey = (_currentRtoDetails && _currentRtoDetails.license_key) || localStorage.getItem('talkme_license') || '';
+    const lang = currentLang || 'es';
+    logStatus(translations[lang].log_redirecting_stripe || "Redirigiendo a la pasarela segura de Stripe...");
+
+    try {
+        const res = await fetch('/api/create-rto-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                licenseKey: licenseKey,
+                type: 'buyout',
+                lang: lang,
+                origin: window.location.origin
+            })
+        });
+        const data = await res.json();
+        if (data.success && data.url) {
+            const popup = window.open(data.url, '_blank');
+            if (!popup) {
+                window.location.href = data.url;
+            }
+            const email = (_currentRtoDetails && _currentRtoDetails.email) || localStorage.getItem('talkme_email') || '';
+            const userId = (_currentRtoDetails && _currentRtoDetails.user_id) || localStorage.getItem('talkme_user_id') || 0;
+            startPaymentPolling(userId, email);
+        } else {
+            const plan = (_currentRtoDetails && _currentRtoDetails.plan_type) || 'freelance';
+            buyLicense(plan, 'one_time');
+        }
+    } catch (e) {
+        console.warn("⚠️ Error solicitando buyout RTO, ejecutando fallback:", e);
+        const plan = (_currentRtoDetails && _currentRtoDetails.plan_type) || 'freelance';
+        buyLicense(plan, 'one_time');
     }
 }

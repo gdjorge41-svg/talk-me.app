@@ -1,506 +1,518 @@
 {
-    "guide_title": "guía de usuario",
-    "search_placeholder": "buscar na guía...",
-    "cards": [
+  "guide_title": "guía de usuario",
+  "search_placeholder": "buscar na guía...",
+  "cards": [
+    {
+      "id": "audio_modes",
+      "title": "Modos de transmisión de audio",
+      "items": [
         {
-            "id": "audio_modes",
-            "title": "Modos de transmisión de audio",
-            "items": [
-                {
-                    "title": "Modo pulsar para falar (PTT).",
-                    "description": "Transmisión manual mediante pulsador. Manteña premido o botón Falar para abrir a canle do micrófono e comezar a capturar audio en tempo real. Cando o soltas, a transmisión remata inmediatamente e o sistema procesa a transcrición automaticamente.",
-                    "note": "Recomendado para ambientes con alto ruído ou situacións onde se require un control preciso da comunicación."
-                },
-                {
-                    "title": "Modo automático (detección de volume)",
-                    "description": "Transmisión automática baseada no nivel de sinal de entrada. O sistema activa a captura de son cando detecta un son por riba do limiar de sensibilidade configurado e deixa de gravar despois dun breve período de silencio.",
-                    "note": "Ideal para unha experiencia totalmente mans libres."
-                },
-                {
-                    "title": "Nivel de entrada",
-                    "description": "Mostra o nivel de sinal da fonte de audio seleccionada en tempo real mediante un medidor de VU dinámico.",
-                    "note": null
-                }
-            ]
+          "title": "Modo pulsar para falar (PTT).",
+          "description": "Transmisión manual mediante pulsador. Manteña premido o botón Falar para abrir a canle do micrófono e comezar a capturar audio en tempo real. Cando o soltas, a transmisión remata inmediatamente e o sistema procesa a transcrición automaticamente.",
+          "note": "Recomendado para ambientes con alto ruído ou situacións onde se require un control preciso da comunicación."
         },
         {
-            "id": "users",
-            "title": "Usuarios",
-            "items": [
-                {
-                    "title": "Usuarios conectados",
-                    "description": "Mostra a lista de usuarios activos, subusuarios e as súas categorías asignadas.",
-                    "subitems": [
-                        "Os subusuarios creados por ti poden ser:",
-                        "Editado.",
-                        "Eliminado.",
-                        "Monitorizado por un medidor de VU individual que indica cando están transmitindo audio."
-                    ]
-                },
-                {
-                    "title": "Crear subusuarios (+)",
-                    "description": "Permite crear usuarios virtuais con enrutamento interno independente.",
-                    "subitems": [
-                        "Cada subusuario pódese configurar con:",
-                        "Nome.",
-                        "Categoría.",
-                        "Linguaxe de transcrición.",
-                        "Fonte de audio.",
-                        "Canle de entrada.",
-                        "Limiar de activación."
-                    ],
-                    "extra": "Cando o nivel de audio supera o limiar configurado, a transcrición e o envío de mensaxes realízanse automaticamente.",
-                    "important": "Non é posible asignar simultáneamente a mesma fonte de audio e canle que utiliza o usuario principal. En caso de conflito, a fonte desactivarase automaticamente para evitar transmisións duplicadas."
-                }
-            ]
+          "title": "Modo automático (detección de volume)",
+          "description": "Transmisión automática baseada no nivel de sinal de entrada. O sistema activa a captura de son cando detecta un son por riba do limiar de sensibilidade configurado e deixa de gravar despois dun breve período de silencio.",
+          "note": "Ideal para unha experiencia totalmente mans libres."
         },
         {
-            "id": "chat_transmission",
-            "title": "Funcións de chat e transmisión",
-            "items": [
-                {
-                    "title": "Botón Falar",
-                    "description": "Permíteche transmitir audio en directo. Cando introduce texto no campo de entrada, o botón transfórmase automaticamente na icona de enviar mensaxe."
-                },
-                {
-                    "title": "Envío de fotografías",
-                    "description": "Permítelle capturar imaxes coa cámara traseira do dispositivo ou seleccionar fotos da galería para envialas instantáneamente ao chat."
-                },
-                {
-                    "title": "Navegación por xestos (pasar o dedo)",
-                    "description": "Pasa o dedo cara á dereita para mostrar o panel lateral e á esquerda para ocultalo.",
-                    "note": "Esta acción é equivalente a usar os botóns de navegación ou o logotipo da aplicación."
-                },
-                {
-                    "title": "Filtros",
-                    "description": "Permítelle seleccionar que categorías de mensaxes e alertas quere recibir.",
-                    "subitems": [
-                        "Pode:",
-                        "Mostrar todas as categorías.",
-                        "Seleccione unha única categoría.",
-                        "Combina varias categorías."
-                    ],
-                    "note": "Cada usuario pode personalizar os seus filtros de forma independente."
-                },
-                {
-                    "title": "IP e estado do servidor",
-                    "description": "Mostra o enderezo IP do servidor e o seu estado actual:",
-                    "statuses": {
-                        "green": "Conectado e operativo.",
-                        "red": "Desconectado ou sen comunicación."
-                    }
-                },
-                {
-                    "title": "Indicador de micrófono",
-                    "description": "Mostra o estado actual do micrófono:",
-                    "subitems": [
-                        "Silenciado.",
-                        "Activo.",
-                        "Transmisión de audio."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "audio_hardware",
-            "title": "Configuración de audio e hardware",
-            "items": [
-                {
-                    "title": "Selección de entrada e saída",
-                    "description": "Permítelle asignar de forma independente dispositivos de captura e reprodución de audio.",
-                    "subitems": [
-                        "Para garantir o correcto funcionamento:",
-                        "Verifique que se conceden permisos de acceso ao micrófono e aos altofalantes.",
-                        "Establece os dispositivos como predeterminados no sistema operativo cando sexa necesario.",
-                        "Instala controladores oficiais para o teu hardware se o fabricante o require."
-                    ],
-                    "compatible": "Compatible con:",
-                    "compatible_list": [
-                        "Tarxetas de son físicas.",
-                        "interfaces USB.",
-                        "Dispositivos Bluetooth.",
-                        "Canles virtuais de audio.",
-                        "Sistemas de enrutamento profesionais."
-                    ]
-                },
-                {
-                    "title": "Canles granulares",
-                    "description": "Permite enrutar os sinais de audio a canles físicos específicos (Canle 1, Canle 2, etc.) para integracións con:",
-                    "subitems": [
-                        "Mesas de mestura.",
-                        "Routers virtuais.",
-                        "Sistemas matriciales.",
-                        "Infraestruturas de audio profesionais."
-                    ]
-                },
-                {
-                    "title": "Actualizar hardware",
-                    "description": "Realiza a detección dinámica dos dispositivos de audio conectados sen necesidade de reiniciar a aplicación."
-                },
-                {
-                    "title": "Conexión e permisos anteriores",
-                    "description": "Recoméndase conectar calquera tipo de dispositivo (xa sexa auriculares/micrófonos Bluetooth ou tarxetas de son externas) **antes de iniciar o servidor ou a aplicación**. Asegúrese de que o hardware e o software de terceiros estean configurados no seu sistema operativo e de que concedeu os permisos necesarios no navegador web.",
-                    "important": "Para conectar un dispositivo durante a sesión, pode ser necesario actualizar a pestana ou premer \"Actualizar hardware\". Asegúrate de que o micrófono está correctamente aceptado na xanela de permisos do navegador."
-                }
-            ]
-        },
-        {
-            "id": "language_transcription",
-            "title": "Lingua, Transcrición e Vocabulario IA",
-            "items": [
-                {
-                    "title": "Linguaxe da interface",
-                    "description": "Define o idioma da aplicación e o idioma principal empregado polo motor de transcrición."
-                },
-                {
-                    "title": "Dicionario de transcrición fonética",
-                    "description": "Permítelle corrixir automaticamente termos, nomes ou marcas específicos.",
-                    "subitems": [
-                        "Parámetros de configuración:",
-                        "Enténdese como: texto recoñecido foneticamente pola IA.",
-                        "Corrixir a: texto final que se inxectará no chat."
-                    ],
-                    "examples": {
-                        "label": "Exemplos de Mapeo Fonético",
-                        "pairs": [
-                            [
-                                "hai un teléfono",
-                                "Iphone"
-                            ],
-                            [
-                                "miquel",
-                                "Mikel"
-                            ],
-                            [
-                                "dicir mer",
-                                "Dimmer"
-                            ]
-                        ]
-                    }
-                },
-                {
-                    "_tag": "trans_number",
-                    "title": "Conversión de Números Falados a Díxitos",
-                    "description": "Permite que a IA transcriba expresións numéricas directamente como cifras no canto de palabras (por exemplo: '12' en vez de 'doce', '-6 dB' en vez de 'menos seis decibeis').",
-                    "note": "Moi recomendado para axilizar a lectura de canles e niveis técnicos en directo."
-                }
-            ]
-        },
-        {
-            "id": "babel_translation",
-            "title": "Tradución AI (Babel Engine)",
-            "items": [
-                {
-                    "title": "Motor de tradución Babel",
-                    "description": "O sistema integra Babel, un motor optimizado de tradución automática neuronal (NMT) que funciona 100% localmente no servidor principal. Traduce as mensaxes recibidas noutros idiomas en tempo real ao idioma da túa interface sen enviar datos a Internet nin depender de API externas."
-                },
-                {
-                    "_tag": "babel_download",
-                    "title": "Descarga e Xestión do Motor de Tradución (MADLAD)",
-                    "description": "O motor de tradución neuronal descárgase baixo demanda (~2.75 GB) para manter o instalador lixeiro (~400 MB):",
-                    "subitems": [
-                        "Descarga: Ao iniciar sesión, o sistema ofrece descargalo automaticamente na carpeta de modelos.",
-                        "Desactivación: Podes premer en 'Desactivar' para operar en modo lixeiro sen tradución e silenciar o aviso.",
-                        "Reactivación: Podes volver activalo ou reinstalalo en calquera momento desde Axustes de Pre-Launch ou da aplicación."
-                    ]
-                },
-                {
-                    "title": "Mostrar a mensaxe orixinal",
-                    "description": "Permítelle mostrar o texto orixinal nun formato pequeno e atenuado xusto debaixo do texto traducido, facilitando a verificación directa se é necesario."
-                },
-                {
-                    "title": "Filtro de idioma entrante",
-                    "description": "Configura selectivamente que idiomas se deben traducir automaticamente. Os idiomas non seleccionados mostraranse na súa forma bruta orixinal."
-                },
-                {
-                    "title": "Babel Protection (Glosario e xerga técnica)",
-                    "description": "Evita que determinados termos de uso técnico ou nomes propios sexan distorsionados polo motor de tradución. Cando engadas palabras a esta lista de exclusións, Babel honraaas mantendo na súa forma orixinal.",
-                    "note": "Especialmente recomendado para a xerga e as redes de entretemento:",
-                    "subitems": [
-                        "Standby / Standby",
-                        "Fader",
-                        "FOH (Fronte da casa)",
-                        "Código de tempo/SMPTE",
-                        "Cue / Cuelist"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "messages_flow",
-            "title": "Mensaxes e fluxo de comunicación",
-            "items": [
-                {
-                    "title": "Recepción de mensaxes transcritas",
-                    "description": "Podes escoller entre:",
-                    "subitems": [
-                        "Mostra só a transcrición.",
-                        "Mostra a transcrición xunto ao audio orixinal asociado."
-                    ]
-                },
-                {
-                    "title": "Recepción de audio",
-                    "description": "Establece como queres recibir o audio entrante:",
-                    "subitems": [
-                        "Reprodución automática en tempo real.",
-                        "Reprodución manual baixo demanda."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "hermes_tts",
-            "title": "Síntese de voz sen conexión (Hermes TTS)",
-            "items": [
-                {
-                    "title": "Lectura de voz sen conexión",
-                    "description": "Permite a lectura automática de mensaxes de texto ou traducións entrantes. Utiliza exclusivamente o motor de voz nativo do teu sistema operativo (Web Speech API), operando 100% localmente, de forma privada e sen necesidade de internet. O seu consumo de disco é de 0 bytes e ten un impacto practicamente nulo na CPU/RAM."
-                },
-                {
-                    "title": "Parámetros axustables e individuais",
-                    "description": "Configura a funcionalidade segundo as túas preferencias desde a pestana Configuración do teu dispositivo:",
-                    "subitems": [
-                        "Escoitar mensaxes de texto: activa a lectura de textos locais. Se está desactivado, os textos do teu idioma permanecerán en silencio pero aínda poderás escoitar traducións estranxeiras.",
-                        "Filtro de audio estranxeiro: bloquea os audios orixinais noutros idiomas e só le a súa tradución.",
-                        "Reacción aos filtros activos: o sistema le só as mensaxes entrantes que corresponden á categoría ou canle seleccionada polo usuario nos seus filtros de chat (se se filtra por un grupo específico, só lerá as dese grupo; se se selecciona \"Todos\", lerá todas).",
-                        "Selección de voz: escolle entre as voces dispoñibles instaladas no teu sistema operativo ou déixao en Automático para herdar o idioma da aplicación.",
-                        "Filtro de xénero: filtra dinámicamente as voces compatibles segundo o seu ton (Masculino, Feminino ou Todas).",
-                        "Velocidade de lectura: axusta o ritmo da fala entre extremadamente lento (0,5x) e rápido (2,0x)."
-                    ]
-                },
-                {
-                    "title": "Introducións de prefixos e contexto",
-                    "description": "O narrador detecta automaticamente o tipo de mensaxe para unha lectura máis natural: dirá \"[Nome] escribiu...\" para as mensaxes de texto puros e \"[Nome] dixo...\" ao reproducir traducións de mensaxes de voz."
-                },
-                {
-                    "title": "Escudo da Convivencia (Hermes-Shield)",
-                    "description": "Para evitar o acoplamento acústico co micrófono e non interferir coa comunicación fluída, Hermes TTS silenciarase automaticamente se:",
-                    "subitems": [
-                        "Estás premendo o botón Falar ou gravando co teu micrófono.",
-                        "Hai reprodución activa na cola de audio nativa do chat.",
-                        "Calquera reprodutor multimedia HTML5 secundario no DOM está activo."
-                    ]
-                },
-                {
-                    "title": "Prefixos localizados intelixentes",
-                    "description": "Antes de ler a mensaxe, sintetizase automaticamente un prefixo dinámico segundo a lingua activa para proporcionar contexto sobre o remitente (por exemplo: 'Jorge escribiu: [mensaxe]' ou 'Jorge escribiu: [mensaxe]')."
-                },
-                {
-                    "title": "Persistencia local",
-                    "description": "Todos os axustes gárdanse de forma independente para cada usuario no LocalStorage do terminal. Cambiar as opcións de voz ou velocidade non afectará a outros usuarios da rede local nin a outros perfís iniciados no mesmo navegador."
-                }
-            ]
-        },
-        {
-            "id": "visual_haptic_alerts",
-            "title": "Alertas visuais e hápticas",
-            "items": [
-                {
-                    "title": "Tipos de alerta",
-                    "description": "Dependendo das capacidades do dispositivo, podes usar:",
-                    "subitems": [
-                        "Alertas visuais na pantalla.",
-                        "Vibración.",
-                        "Lanterna LED."
-                    ]
-                },
-                {
-                    "title": "Personalización de alertas",
-                    "description": "Cada alerta ten un editor visual onde podes:",
-                    "subitems": [
-                        "Configurar parámetros.",
-                        "Vista previa dos resultados.",
-                        "Garda a configuración personalizada."
-                    ]
-                },
-                {
-                    "title": "Cronoloxía visual",
-                    "description": "Fai dobre clic no lenzo para crear e colocar fotogramas clave que controlan propiedades como a cor e a opacidade."
-                },
-                {
-                    "title": "Curvas de alivio",
-                    "description": "Defina a transición entre fotogramas clave usando:",
-                    "subitems": [
-                        "Lineal ou escalonado.",
-                        "Ease In / Ease Out / Ease In-Out.",
-                        "Curvas cuadráticas e cúbicas."
-                    ]
-                },
-                {
-                    "title": "Patróns hápticos e LED",
-                    "description": "Deseña secuencias de vibración e iluminación a partir dos valores definidos na liña do tempo.",
-                    "subitems": [
-                        "Valor superior a 0,5 → Activado.",
-                        "Valor inferior a 0,5 → Desactivado."
-                    ]
-                },
-                {
-                    "title": "Permisos",
-                    "description": "Algúns dispositivos requiren permisos da cámara para acceder á lanterna.",
-                    "important": "A aplicación solicitará automaticamente tales permisos cando sexa necesario."
-                }
-            ]
-        },
-        {
-            "id": "triggers",
-            "title": "Disparadores (IN/OUT)",
-            "items": [
-                {
-                    "title": "Disparadores OUT",
-                    "description": "Permiten enviar comandos automaticamente ao ecosistema técnico cando se recibe unha mensaxe ou unha mensaxe contén determinadas palabras clave."
-                },
-                {
-                    "title": "Disparadores IN",
-                    "description": "Permiten recibir sinais externos para executar accións automáticas dentro do sistema.",
-                    "subitems": [
-                        "Poden xerar:",
-                        "Mensaxes ou alertas.",
-                        "Audios.",
-                        "Imaxes.",
-                        "Fluxos automatizados complexos."
-                    ]
-                },
-                {
-                    "title": "Inxección de disparadores IN",
-                    "description": "Seleccione se o contido xerado se enviará a un filtro específico ou a todos os filtros dispoñibles."
-                },
-                {
-                    "title": "Protocolos compatibles",
-                    "description": "Integración nativa con:",
-                    "subitems": [
-                        "OSC (Control de son aberto).",
-                        "MIDI.",
-                        "sACN.",
-                        "Código de tempo SMPTE."
-                    ]
-                },
-                {
-                    "title": "Curvas por fotogramas clave",
-                    "description": "Permiten modular a evolución dun comando ao longo do tempo mediante cadros clave e curvas de interpolación. Inclúe sistema de vista previa en tempo real."
-                },
-                {
-                    "title": "Activar Todo",
-                    "description": "Activa ou desactiva todos os disparadores á vez usando o botón superior esquerdo."
-                },
-                {
-                    "title": "Filtro de busca",
-                    "description": "Busca rapidamente activadores específicos buscando polo nome."
-                },
-                {
-                    "_tag": "triggers_timecode",
-                    "title": "Timecode SMPTE Multi-Rango",
-                    "description": "En Triggers IN con protocolo Timecode SMPTE, é posible configurar múltiples intervalos horarios independentes.",
-                    "subitems": [
-                        "Permite engadir múltiples ventás de tempo (ex: 01:00:00:00 - 01:15:00:00 e 02:00:00:00 - 02:30:00:00).",
-                        "O trigger executarase se o sinal entrante cae dentro de calquera dos rangos definidos.",
-                        "Inclúe controis dedicados para engadir (+), reordenar e eliminar rangos con validación HH:MM:SS:FF."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "interface_customization",
-            "title": "Interface e Personalización",
-            "items": [
-                {
-                    "title": "Modo Visual",
-                    "description": "Seleccione entre o modo claro e o modo escuro dependendo das súas preferencias."
-                },
-                {
-                    "title": "Paleta personalizada",
-                    "description": "Personaliza as cores primarias, as cores de fondo e os acentos visuais da interface da aplicación."
-                },
-                {
-                    "title": "Restaurar valores predeterminados",
-                    "description": "Recupera a configuración visual orixinal e a paleta de fábrica da aplicación."
-                },
-                {
-                    "title": "Gardar configuración",
-                    "description": "Almacena permanentemente os cambios realizados para sesións futuras."
-                },
-                {
-                    "title": "Personalización do chat",
-                    "description": "Axusta o tamaño do texto, o peso da fonte e a lexibilidade xeral das mensaxes en pantalla."
-                }
-            ]
-        },
-        {
-            "id": "network_best_practices",
-            "title": "Boas prácticas de configuración e rede",
-            "items": [
-                {
-                    "title": "Esquema de implantación (paso a paso)",
-                    "description": "Para configurar esta infraestrutura correctamente, siga estas pautas profesionais:",
-                    "subitems": [
-                        "1. Execución do servidor principal: inicia o servidor Talk-me no ordenador principal (Master). Este debe ter unha licenza activa.",
-                        "2. Obtención da IP Local: Descubra o enderezo IP privado do servidor (ex.: 192.168.1.150).",
-                        "3. Conexión de cliente con cable (Ethernet): Conecte os ordenadores de soporte mediante un cable de rede (recoméndase RJ45 Cat6) ao enrutador ou conmutador. Acceda abrindo o navegador en https://192.168.1.150:3000.",
-                        "4. Conectar clientes mediante Wi-Fi (móbiles/tabletas): asegúrate de que os teléfonos e as tabletas estean conectados á rede wifi emitida polo mesmo enrutador. Abre o mesmo URL no navegador do teu dispositivo móbil."
-                    ]
-                },
-                {
-                    "title": "Requisitos de seguridade do navegador (cámara e micrófono)",
-                    "description": "Os navegadores modernos restrinxen o acceso a dispositivos sensibles como cámaras e micrófonos cando a conexión non é segura.",
-                    "important": "Por este motivo, o acceso ao sistema debe realizarse mediante HTTPS, aceptando o certificado SSL local autoasinado xerado polo servidor durante a instalación."
-                },
-                {
-                    "title": "Soberanía completa e independencia da nube",
-                    "description": "Talk-me foi deseñado para funcionar de forma 100 % autónoma dentro da túa infraestrutura de rede. Unha vez instalado, non require unha conexión permanente a Internet nin API de terceiros. Se se corta o acceso WAN (Internet), a comunicación interna do campus, a tradución, a transcrición local e as alertas continuarán funcionando sen interrupcións."
-                }
-            ]
-        },
-        {
-            "id": "data_sovereignty",
-            "title": "Soberanía e Privacidade de Datos",
-            "items": [
-                {
-                    "title": "Infraestrutura baixo o teu control",
-                    "description": "Toda a información xerada por Talk-me permanece no teu ambiente de traballo. Isto inclúe:",
-                    "subitems": [
-                        "Base de datos.",
-                        "Historia das comunicacións.",
-                        "Configuración.",
-                        "Modelos de intelixencia artificial.",
-                        "Ficheiros e recursos asociados."
-                    ]
-                },
-                {
-                    "title": "Tramitación local",
-                    "description": "Os procesos de análise, transcrición e tradución execútanse directamente no teu hardware cando usas modelos locais compatibles.",
-                    "extra": "A información non se envía a servidores externos para o seu procesamento."
-                },
-                {
-                    "title": "Privacidade e seguridade",
-                    "description": "Talk-me foi deseñado baixo un modelo de soberanía tecnolóxica e control total dos datos.",
-                    "extra": "As túas conversas, configuracións e recursos permanecen aloxados exclusivamente na túa infraestrutura, mantendo un control total sobre:",
-                    "subitems": [
-                        "Dispoñibilidade do sistema.",
-                        "A privacidade da información.",
-                        "O almacenamento de datos.",
-                        "Xestión de acceso e seguridade."
-                    ]
-                }
-            ]
+          "title": "Nivel de entrada",
+          "description": "Mostra o nivel de sinal da fonte de audio seleccionada en tempo real mediante un medidor de VU dinámico.",
+          "note": null
         }
-    ],
-    "network_diagram": {
-        "internet": "INTERNET",
-        "optional": "OPCIONAL",
-        "ethernet_cable": "CABLE ETHERNET RJ45",
-        "ethernet_red": "Cable de rede Ethernet/LAN",
-        "wifi_label": "WIFI/WLAN",
-        "master_server": "SERVIDOR MESTRE",
-        "licensed": "LICENCIADO",
-        "router": "ENRUTADOR",
-        "device1": "Dispositivo 1: PC principal (cable)",
-        "device2": "Dispositivo 2: soporte para PC (cable)",
-        "device3": "Dispositivo 3: Portátil (Wi-Fi)",
-        "device4": "Dispositivo 4: tableta (wifi)",
-        "device5": "Dispositivo 5: teléfono móbil (wifi)",
-        "https_url": "https://192.168.1.150:3000"
+      ]
     },
-    "common": {
-        "important": "Importante"
+    {
+      "id": "users",
+      "title": "Usuarios",
+      "items": [
+        {
+          "title": "Usuarios conectados",
+          "description": "Mostra a lista de usuarios activos, subusuarios e as súas categorías asignadas.",
+          "subitems": [
+            "Os subusuarios creados por ti poden ser:",
+            "Editado.",
+            "Eliminado.",
+            "Monitorizado por un medidor de VU individual que indica cando están transmitindo audio."
+          ]
+        },
+        {
+          "title": "Crear subusuarios (+)",
+          "description": "Permite crear usuarios virtuais con enrutamento interno independente.",
+          "subitems": [
+            "Cada subusuario pódese configurar con:",
+            "Nome.",
+            "Categoría.",
+            "Linguaxe de transcrición.",
+            "Fonte de audio.",
+            "Canle de entrada.",
+            "Limiar de activación."
+          ],
+          "extra": "Cando o nivel de audio supera o limiar configurado, a transcrición e o envío de mensaxes realízanse automaticamente.",
+          "important": "Non é posible asignar simultáneamente a mesma fonte de audio e canle que utiliza o usuario principal. En caso de conflito, a fonte desactivarase automaticamente para evitar transmisións duplicadas."
+        }
+      ]
     },
-    "guide_version": "60.2.0"
+    {
+      "id": "chat_transmission",
+      "title": "Funcións de chat e transmisión",
+      "items": [
+        {
+          "title": "Botón Falar",
+          "description": "Permíteche transmitir audio en directo. Cando introduce texto no campo de entrada, o botón transfórmase automaticamente na icona de enviar mensaxe."
+        },
+        {
+          "title": "Envío de fotografías",
+          "description": "Permítelle capturar imaxes coa cámara traseira do dispositivo ou seleccionar fotos da galería para envialas instantáneamente ao chat."
+        },
+        {
+          "title": "Navegación por xestos (pasar o dedo)",
+          "description": "Pasa o dedo cara á dereita para mostrar o panel lateral e á esquerda para ocultalo.",
+          "note": "Esta acción é equivalente a usar os botóns de navegación ou o logotipo da aplicación."
+        },
+        {
+          "title": "Filtros",
+          "description": "Permítelle seleccionar que categorías de mensaxes e alertas quere recibir.",
+          "subitems": [
+            "Pode:",
+            "Mostrar todas as categorías.",
+            "Seleccione unha única categoría.",
+            "Combina varias categorías."
+          ],
+          "note": "Cada usuario pode personalizar os seus filtros de forma independente."
+        },
+        {
+          "title": "IP e estado do servidor",
+          "description": "Mostra o enderezo IP do servidor e o seu estado actual:",
+          "statuses": {
+            "green": "Conectado e operativo.",
+            "red": "Desconectado ou sen comunicación."
+          }
+        },
+        {
+          "title": "Indicador de micrófono",
+          "description": "Mostra o estado actual do micrófono:",
+          "subitems": [
+            "Silenciado.",
+            "Activo.",
+            "Transmisión de audio."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio_hardware",
+      "title": "Configuración de audio e hardware",
+      "items": [
+        {
+          "title": "Selección de entrada e saída",
+          "description": "Permítelle asignar de forma independente dispositivos de captura e reprodución de audio.",
+          "subitems": [
+            "Para garantir o correcto funcionamento:",
+            "Verifique que se conceden permisos de acceso ao micrófono e aos altofalantes.",
+            "Establece os dispositivos como predeterminados no sistema operativo cando sexa necesario.",
+            "Instala controladores oficiais para o teu hardware se o fabricante o require."
+          ],
+          "compatible": "Compatible con:",
+          "compatible_list": [
+            "Tarxetas de son físicas.",
+            "interfaces USB.",
+            "Dispositivos Bluetooth.",
+            "Canles virtuais de audio.",
+            "Sistemas de enrutamento profesionais."
+          ]
+        },
+        {
+          "title": "Canles granulares",
+          "description": "Permite enrutar os sinais de audio a canles físicos específicos (Canle 1, Canle 2, etc.) para integracións con:",
+          "subitems": [
+            "Mesas de mestura.",
+            "Routers virtuais.",
+            "Sistemas matriciales.",
+            "Infraestruturas de audio profesionais."
+          ]
+        },
+        {
+          "title": "Actualizar hardware",
+          "description": "Realiza a detección dinámica dos dispositivos de audio conectados sen necesidade de reiniciar a aplicación."
+        },
+        {
+          "title": "Conexión e permisos anteriores",
+          "description": "Recoméndase conectar calquera tipo de dispositivo (xa sexa auriculares/micrófonos Bluetooth ou tarxetas de son externas) **antes de iniciar o servidor ou a aplicación**. Asegúrese de que o hardware e o software de terceiros estean configurados no seu sistema operativo e de que concedeu os permisos necesarios no navegador web.",
+          "important": "Para conectar un dispositivo durante a sesión, pode ser necesario actualizar a pestana ou premer \"Actualizar hardware\". Asegúrate de que o micrófono está correctamente aceptado na xanela de permisos do navegador."
+        }
+      ]
+    },
+    {
+      "id": "language_transcription",
+      "title": "Lingua, Transcrición e Vocabulario IA",
+      "items": [
+        {
+          "title": "Linguaxe da interface",
+          "description": "Define o idioma da aplicación e o idioma principal empregado polo motor de transcrición."
+        },
+        {
+          "title": "Dicionario de transcrición fonética",
+          "description": "Permítelle corrixir automaticamente termos, nomes ou marcas específicos.",
+          "subitems": [
+            "Parámetros de configuración:",
+            "Enténdese como: texto recoñecido foneticamente pola IA.",
+            "Corrixir a: texto final que se inxectará no chat."
+          ],
+          "examples": {
+            "label": "Exemplos de Mapeo Fonético",
+            "pairs": [
+              [
+                "hai un teléfono",
+                "Iphone"
+              ],
+              [
+                "miquel",
+                "Mikel"
+              ],
+              [
+                "dicir mer",
+                "Dimmer"
+              ]
+            ]
+          }
+        },
+        {
+          "_tag": "elastic_engines_asr",
+          "title": "Motores Elásticos de Transcrición por Idioma",
+          "description": "O recoñecemento de voz carga en memoria únicamente os modelos acústicos dos idiomas activos na sala.",
+          "subitems": [
+            "Modelos Preinstalados: Inclúe de serie modelos de baixa latencia para Español e Inglés.",
+            "Ampliación Flexible: Detecta e engade novos modelos na carpeta correspondente sen reinstalar.",
+            "Xestión de RAM: Os modelos inactivos non consumen memoria operativa mentres non se utilicen."
+          ]
+        },
+        {
+          "_tag": "trans_number",
+          "title": "Conversión de Números Falados a Díxitos",
+          "description": "Permite que a IA transcriba expresións numéricas directamente como cifras no canto de palabras (por exemplo: '12' en vez de 'doce', '-6 dB' en vez de 'menos seis decibeis').",
+          "note": "Moi recomendado para axilizar a lectura de canles e niveis técnicos en directo."
+        }
+      ]
+    },
+    {
+      "id": "babel_translation",
+      "title": "Tradución AI (Babel Engine)",
+      "items": [
+        {
+          "title": "Motor de tradución Babel",
+          "description": "O sistema integra Babel, un motor optimizado de tradución automática neuronal (NMT) que funciona 100% localmente no servidor principal. Traduce as mensaxes recibidas noutros idiomas en tempo real ao idioma da túa interface sen enviar datos a Internet nin depender de API externas."
+        },
+        {
+          "_tag": "elastic_engines_babel",
+          "title": "Arquitectura de Motores Elásticos: Tradución Neuronal Modular",
+          "description": "Talk.me implementa unha arquitectura modular elástica que mantén a aplicación lixeira (~200 MB), descargando unicamente os motores necesarios para cada produción.",
+          "subitems": [
+            "Descarga baixo demanda: O motor neuronal MADLAD (~2,75 GB) descárgase cun só clic ao requirir tradución.",
+            "Modo Lixeiro (Desactivar): Para eventos nun único idioma, preme 'Desactivar' para anular a carga en segundo plano.",
+            "Xestión flexible: Reactiva, descarga ou elimina modelos en calquera momento dende os Axustes.",
+            "Soberanía Offline (Air-Gapped): Funciona ao 100% en local sen requirir conexión a internet tras a descarga."
+          ],
+          "important": "En xiras ou recintos sen cobertura, descarga con antelación os motores elásticos para garantir o traballo sen conexión."
+        },
+        {
+          "title": "Mostrar a mensaxe orixinal",
+          "description": "Permítelle mostrar o texto orixinal nun formato pequeno e atenuado xusto debaixo do texto traducido, facilitando a verificación directa se é necesario."
+        },
+        {
+          "title": "Filtro de idioma entrante",
+          "description": "Configura selectivamente que idiomas se deben traducir automaticamente. Os idiomas non seleccionados mostraranse na súa forma bruta orixinal."
+        },
+        {
+          "title": "Babel Protection (Glosario e xerga técnica)",
+          "description": "Evita que determinados termos de uso técnico ou nomes propios sexan distorsionados polo motor de tradución. Cando engadas palabras a esta lista de exclusións, Babel honraaas mantendo na súa forma orixinal.",
+          "note": "Especialmente recomendado para a xerga e as redes de entretemento:",
+          "subitems": [
+            "Standby / Standby",
+            "Fader",
+            "FOH (Fronte da casa)",
+            "Código de tempo/SMPTE",
+            "Cue / Cuelist"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "messages_flow",
+      "title": "Mensaxes e fluxo de comunicación",
+      "items": [
+        {
+          "title": "Recepción de mensaxes transcritas",
+          "description": "Podes escoller entre:",
+          "subitems": [
+            "Mostra só a transcrición.",
+            "Mostra a transcrición xunto ao audio orixinal asociado."
+          ]
+        },
+        {
+          "title": "Recepción de audio",
+          "description": "Establece como queres recibir o audio entrante:",
+          "subitems": [
+            "Reprodución automática en tempo real.",
+            "Reprodución manual baixo demanda."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hermes_tts",
+      "title": "Síntese de voz sen conexión (Hermes TTS)",
+      "items": [
+        {
+          "title": "Lectura de voz sen conexión",
+          "description": "Permite a lectura automática de mensaxes de texto ou traducións entrantes. Utiliza exclusivamente o motor de voz nativo do teu sistema operativo (Web Speech API), operando 100% localmente, de forma privada e sen necesidade de internet. O seu consumo de disco é de 0 bytes e ten un impacto practicamente nulo na CPU/RAM."
+        },
+        {
+          "title": "Parámetros axustables e individuais",
+          "description": "Configura a funcionalidade segundo as túas preferencias desde a pestana Configuración do teu dispositivo:",
+          "subitems": [
+            "Escoitar mensaxes de texto: activa a lectura de textos locais. Se está desactivado, os textos do teu idioma permanecerán en silencio pero aínda poderás escoitar traducións estranxeiras.",
+            "Filtro de audio estranxeiro: bloquea os audios orixinais noutros idiomas e só le a súa tradución.",
+            "Reacción aos filtros activos: o sistema le só as mensaxes entrantes que corresponden á categoría ou canle seleccionada polo usuario nos seus filtros de chat (se se filtra por un grupo específico, só lerá as dese grupo; se se selecciona \"Todos\", lerá todas).",
+            "Selección de voz: escolle entre as voces dispoñibles instaladas no teu sistema operativo ou déixao en Automático para herdar o idioma da aplicación.",
+            "Filtro de xénero: filtra dinámicamente as voces compatibles segundo o seu ton (Masculino, Feminino ou Todas).",
+            "Velocidade de lectura: axusta o ritmo da fala entre extremadamente lento (0,5x) e rápido (2,0x)."
+          ]
+        },
+        {
+          "title": "Introducións de prefixos e contexto",
+          "description": "O narrador detecta automaticamente o tipo de mensaxe para unha lectura máis natural: dirá \"[Nome] escribiu...\" para as mensaxes de texto puros e \"[Nome] dixo...\" ao reproducir traducións de mensaxes de voz."
+        },
+        {
+          "title": "Escudo da Convivencia (Hermes-Shield)",
+          "description": "Para evitar o acoplamento acústico co micrófono e non interferir coa comunicación fluída, Hermes TTS silenciarase automaticamente se:",
+          "subitems": [
+            "Estás premendo o botón Falar ou gravando co teu micrófono.",
+            "Hai reprodución activa na cola de audio nativa do chat.",
+            "Calquera reprodutor multimedia HTML5 secundario no DOM está activo."
+          ]
+        },
+        {
+          "title": "Prefixos localizados intelixentes",
+          "description": "Antes de ler a mensaxe, sintetizase automaticamente un prefixo dinámico segundo a lingua activa para proporcionar contexto sobre o remitente (por exemplo: 'Jorge escribiu: [mensaxe]' ou 'Jorge escribiu: [mensaxe]')."
+        },
+        {
+          "title": "Persistencia local",
+          "description": "Todos os axustes gárdanse de forma independente para cada usuario no LocalStorage do terminal. Cambiar as opcións de voz ou velocidade non afectará a outros usuarios da rede local nin a outros perfís iniciados no mesmo navegador."
+        }
+      ]
+    },
+    {
+      "id": "visual_haptic_alerts",
+      "title": "Alertas visuais e hápticas",
+      "items": [
+        {
+          "title": "Tipos de alerta",
+          "description": "Dependendo das capacidades do dispositivo, podes usar:",
+          "subitems": [
+            "Alertas visuais na pantalla.",
+            "Vibración.",
+            "Lanterna LED."
+          ]
+        },
+        {
+          "title": "Personalización de alertas",
+          "description": "Cada alerta ten un editor visual onde podes:",
+          "subitems": [
+            "Configurar parámetros.",
+            "Vista previa dos resultados.",
+            "Garda a configuración personalizada."
+          ]
+        },
+        {
+          "title": "Cronoloxía visual",
+          "description": "Fai dobre clic no lenzo para crear e colocar fotogramas clave que controlan propiedades como a cor e a opacidade."
+        },
+        {
+          "title": "Curvas de alivio",
+          "description": "Defina a transición entre fotogramas clave usando:",
+          "subitems": [
+            "Lineal ou escalonado.",
+            "Ease In / Ease Out / Ease In-Out.",
+            "Curvas cuadráticas e cúbicas."
+          ]
+        },
+        {
+          "title": "Patróns hápticos e LED",
+          "description": "Deseña secuencias de vibración e iluminación a partir dos valores definidos na liña do tempo.",
+          "subitems": [
+            "Valor superior a 0,5 → Activado.",
+            "Valor inferior a 0,5 → Desactivado."
+          ]
+        },
+        {
+          "title": "Permisos",
+          "description": "Algúns dispositivos requiren permisos da cámara para acceder á lanterna.",
+          "important": "A aplicación solicitará automaticamente tales permisos cando sexa necesario."
+        }
+      ]
+    },
+    {
+      "id": "triggers",
+      "title": "Disparadores (IN/OUT)",
+      "items": [
+        {
+          "title": "Disparadores OUT",
+          "description": "Permiten enviar comandos automaticamente ao ecosistema técnico cando se recibe unha mensaxe ou unha mensaxe contén determinadas palabras clave."
+        },
+        {
+          "title": "Disparadores IN",
+          "description": "Permiten recibir sinais externos para executar accións automáticas dentro do sistema.",
+          "subitems": [
+            "Poden xerar:",
+            "Mensaxes ou alertas.",
+            "Audios.",
+            "Imaxes.",
+            "Fluxos automatizados complexos."
+          ]
+        },
+        {
+          "title": "Inxección de disparadores IN",
+          "description": "Seleccione se o contido xerado se enviará a un filtro específico ou a todos os filtros dispoñibles."
+        },
+        {
+          "title": "Protocolos compatibles",
+          "description": "Integración nativa con:",
+          "subitems": [
+            "OSC (Control de son aberto).",
+            "MIDI.",
+            "sACN.",
+            "Código de tempo SMPTE."
+          ]
+        },
+        {
+          "title": "Curvas por fotogramas clave",
+          "description": "Permiten modular a evolución dun comando ao longo do tempo mediante cadros clave e curvas de interpolación. Inclúe sistema de vista previa en tempo real."
+        },
+        {
+          "title": "Activar Todo",
+          "description": "Activa ou desactiva todos os disparadores á vez usando o botón superior esquerdo."
+        },
+        {
+          "title": "Filtro de busca",
+          "description": "Busca rapidamente activadores específicos buscando polo nome."
+        },
+        {
+          "_tag": "triggers_timecode",
+          "title": "Timecode SMPTE Multi-Rango",
+          "description": "En Triggers IN con protocolo Timecode SMPTE, é posible configurar múltiples intervalos horarios independentes.",
+          "subitems": [
+            "Permite engadir múltiples ventás de tempo (ex: 01:00:00:00 - 01:15:00:00 e 02:00:00:00 - 02:30:00:00).",
+            "O trigger executarase se o sinal entrante cae dentro de calquera dos rangos definidos.",
+            "Inclúe controis dedicados para engadir (+), reordenar e eliminar rangos con validación HH:MM:SS:FF."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interface_customization",
+      "title": "Interface e Personalización",
+      "items": [
+        {
+          "title": "Modo Visual",
+          "description": "Seleccione entre o modo claro e o modo escuro dependendo das súas preferencias."
+        },
+        {
+          "title": "Paleta personalizada",
+          "description": "Personaliza as cores primarias, as cores de fondo e os acentos visuais da interface da aplicación."
+        },
+        {
+          "title": "Restaurar valores predeterminados",
+          "description": "Recupera a configuración visual orixinal e a paleta de fábrica da aplicación."
+        },
+        {
+          "title": "Gardar configuración",
+          "description": "Almacena permanentemente os cambios realizados para sesións futuras."
+        },
+        {
+          "title": "Personalización do chat",
+          "description": "Axusta o tamaño do texto, o peso da fonte e a lexibilidade xeral das mensaxes en pantalla."
+        }
+      ]
+    },
+    {
+      "id": "network_best_practices",
+      "title": "Boas prácticas de configuración e rede",
+      "items": [
+        {
+          "title": "Esquema de implantación (paso a paso)",
+          "description": "Para configurar esta infraestrutura correctamente, siga estas pautas profesionais:",
+          "subitems": [
+            "1. Execución do servidor principal: inicia o servidor Talk-me no ordenador principal (Master). Este debe ter unha licenza activa.",
+            "2. Obtención da IP Local: Descubra o enderezo IP privado do servidor (ex.: 192.168.1.150).",
+            "3. Conexión de cliente con cable (Ethernet): Conecte os ordenadores de soporte mediante un cable de rede (recoméndase RJ45 Cat6) ao enrutador ou conmutador. Acceda abrindo o navegador en https://192.168.1.150:3000.",
+            "4. Conectar clientes mediante Wi-Fi (móbiles/tabletas): asegúrate de que os teléfonos e as tabletas estean conectados á rede wifi emitida polo mesmo enrutador. Abre o mesmo URL no navegador do teu dispositivo móbil."
+          ]
+        },
+        {
+          "title": "Requisitos de seguridade do navegador (cámara e micrófono)",
+          "description": "Os navegadores modernos restrinxen o acceso a dispositivos sensibles como cámaras e micrófonos cando a conexión non é segura.",
+          "important": "Por este motivo, o acceso ao sistema debe realizarse mediante HTTPS, aceptando o certificado SSL local autoasinado xerado polo servidor durante a instalación."
+        },
+        {
+          "title": "Soberanía completa e independencia da nube",
+          "description": "Talk-me foi deseñado para funcionar de forma 100 % autónoma dentro da túa infraestrutura de rede. Unha vez instalado, non require unha conexión permanente a Internet nin API de terceiros. Se se corta o acceso WAN (Internet), a comunicación interna do campus, a tradución, a transcrición local e as alertas continuarán funcionando sen interrupcións."
+        }
+      ]
+    },
+    {
+      "id": "data_sovereignty",
+      "title": "Soberanía e Privacidade de Datos",
+      "items": [
+        {
+          "title": "Infraestrutura baixo o teu control",
+          "description": "Toda a información xerada por Talk-me permanece no teu ambiente de traballo. Isto inclúe:",
+          "subitems": [
+            "Base de datos.",
+            "Historia das comunicacións.",
+            "Configuración.",
+            "Modelos de intelixencia artificial.",
+            "Ficheiros e recursos asociados."
+          ]
+        },
+        {
+          "title": "Tramitación local",
+          "description": "Os procesos de análise, transcrición e tradución execútanse directamente no teu hardware cando usas modelos locais compatibles.",
+          "extra": "A información non se envía a servidores externos para o seu procesamento."
+        },
+        {
+          "title": "Privacidade e seguridade",
+          "description": "Talk-me foi deseñado baixo un modelo de soberanía tecnolóxica e control total dos datos, garantindo:",
+          "extra": "As túas conversas, configuracións e recursos permanecen aloxados exclusivamente na túa infraestrutura local baixo soberanía absoluta.",
+          "subitems": [
+            "Dispoñibilidade do sistema.",
+            "A privacidade da información.",
+            "O almacenamento de datos.",
+            "Xestión de acceso e seguridade."
+          ]
+        }
+      ]
+    }
+  ],
+  "network_diagram": {
+    "internet": "INTERNET",
+    "optional": "OPCIONAL",
+    "ethernet_cable": "CABLE ETHERNET RJ45",
+    "ethernet_red": "Cable de rede Ethernet/LAN",
+    "wifi_label": "WIFI/WLAN",
+    "master_server": "SERVIDOR MESTRE",
+    "licensed": "LICENCIADO",
+    "router": "ENRUTADOR",
+    "device1": "Dispositivo 1: PC principal (cable)",
+    "device2": "Dispositivo 2: soporte para PC (cable)",
+    "device3": "Dispositivo 3: Portátil (Wi-Fi)",
+    "device4": "Dispositivo 4: tableta (wifi)",
+    "device5": "Dispositivo 5: teléfono móbil (wifi)",
+    "https_url": "https://192.168.1.150:3000"
+  },
+  "common": {
+    "important": "Importante"
+  },
+  "guide_version": "60.2.0"
 }

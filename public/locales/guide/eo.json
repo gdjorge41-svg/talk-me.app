@@ -1,506 +1,518 @@
 {
-    "guide_title": "uzantgvidilo",
-    "search_placeholder": "serĉi en la gvidilo...",
-    "cards": [
+  "guide_title": "uzantgvidilo",
+  "search_placeholder": "serĉi en la gvidilo...",
+  "cards": [
+    {
+      "id": "audio_modes",
+      "title": "Aŭdio-Transsendo-Reĝimoj",
+      "items": [
         {
-            "id": "audio_modes",
-            "title": "Aŭdio-Transsendo-Reĝimoj",
-            "items": [
-                {
-                    "title": "Reĝimo Push-to-Talk (PTT).",
-                    "description": "Mana transdono per prembutono. Premu kaj tenu la butonon Parolado por malfermi la mikrofonan kanalon kaj komenci kapti realtempan audion. Kiam vi liberigas ĝin, la dissendo finiĝas tuj kaj la sistemo prilaboras la transskribon aŭtomate.",
-                    "note": "Rekomendita por medioj kun alta bruo aŭ situacioj kie preciza kontrolo de komunikado estas postulata."
-                },
-                {
-                    "title": "Aŭtomata Reĝimo (Volumdetekto)",
-                    "description": "Aŭtomata dissendo bazita sur eniga signalnivelo. La sistemo aktivigas sonkapton kiam ĝi detektas sonon super la agordita sentema sojlo kaj ĉesas registri post mallonga periodo de silento.",
-                    "note": "Ideala por tute senmana sperto."
-                },
-                {
-                    "title": "Enira Nivelo",
-                    "description": "Montras la signalnivelon de la elektita sonfonto en reala tempo uzante dinamikan VU-mezurilon.",
-                    "note": null
-                }
-            ]
+          "title": "Reĝimo Push-to-Talk (PTT).",
+          "description": "Mana transdono per prembutono. Premu kaj tenu la butonon Parolado por malfermi la mikrofonan kanalon kaj komenci kapti realtempan audion. Kiam vi liberigas ĝin, la dissendo finiĝas tuj kaj la sistemo prilaboras la transskribon aŭtomate.",
+          "note": "Rekomendita por medioj kun alta bruo aŭ situacioj kie preciza kontrolo de komunikado estas postulata."
         },
         {
-            "id": "users",
-            "title": "Uzantoj",
-            "items": [
-                {
-                    "title": "Konektitaj Uzantoj",
-                    "description": "Montras la liston de aktivaj uzantoj, subuzantoj kaj iliaj asignitaj kategorioj.",
-                    "subitems": [
-                        "La subuzantoj kreitaj de vi povas esti:",
-                        "Redaktita.",
-                        "Forigita.",
-                        "Monitorita de individua VU-mezurilo, kiu indikas kiam ili elsendas aŭdion."
-                    ]
-                },
-                {
-                    "title": "Krei subuzantoj (+)",
-                    "description": "Permesas al vi krei virtualajn uzantojn kun sendependa interna vojigo.",
-                    "subitems": [
-                        "Ĉiu subuzanto povas esti agordita per:",
-                        "Nomo.",
-                        "Kategorio.",
-                        "Transskriba lingvo.",
-                        "Sonfonto.",
-                        "Enira kanalo.",
-                        "Aktiviga sojlo."
-                    ],
-                    "extra": "Kiam la aŭdnivelo superas la agordita sojlo, transskribo kaj sendado de mesaĝoj estas faritaj aŭtomate.",
-                    "important": "Ne eblas samtempe atribui la saman sonfonton kaj kanalon uzatan de la ĉefa uzanto. En kazo de konflikto, la fonto estos aŭtomate malŝaltita por eviti duplikatajn dissendojn."
-                }
-            ]
+          "title": "Aŭtomata Reĝimo (Volumdetekto)",
+          "description": "Aŭtomata dissendo bazita sur eniga signalnivelo. La sistemo aktivigas sonkapton kiam ĝi detektas sonon super la agordita sentema sojlo kaj ĉesas registri post mallonga periodo de silento.",
+          "note": "Ideala por tute senmana sperto."
         },
         {
-            "id": "chat_transmission",
-            "title": "Babilado kaj Elsendo Trajtoj",
-            "items": [
-                {
-                    "title": "Parolu butonon",
-                    "description": "Ebligas al vi elsendi vivan audion. Kiam vi enigas tekston en la enigkampon, la butono aŭtomate transformiĝas en la ikonon de sendi mesaĝon."
-                },
-                {
-                    "title": "Sendante Fotojn",
-                    "description": "Ebligas al vi kapti bildojn per la malantaŭa fotilo de la aparato aŭ elekti fotojn el la galerio por tuj sendi ilin al la babilejo."
-                },
-                {
-                    "title": "Gesta Navigado (Svingu)",
-                    "description": "Glitu dekstren por montri la flankan panelon kaj maldekstren por kaŝi ĝin.",
-                    "note": "Ĉi tiu ago estas ekvivalenta al uzado de la navigaj butonoj aŭ la aplikaĵa emblemo."
-                },
-                {
-                    "title": "Filtriloj",
-                    "description": "Permesas al vi elekti kiujn kategoriojn de mesaĝoj kaj atentigoj vi volas ricevi.",
-                    "subitems": [
-                        "Povas:",
-                        "Montru ĉiujn kategoriojn.",
-                        "Elektu ununuran kategorion.",
-                        "Kombinu plurajn kategoriojn."
-                    ],
-                    "note": "Ĉiu uzanto povas personecigi siajn filtrilojn sendepende."
-                },
-                {
-                    "title": "IP kaj Servilo-Statuso",
-                    "description": "Montras la IP-adreson de la servilo kaj ĝian aktualan staton:",
-                    "statuses": {
-                        "green": "Konektita kaj funkcianta.",
-                        "red": "Malkonektita aŭ neniu komunikado."
-                    }
-                },
-                {
-                    "title": "Mikrofono Indikilo",
-                    "description": "Montras la aktualan staton de la mikrofono:",
-                    "subitems": [
-                        "Silentita.",
-                        "Aktivo.",
-                        "Transdono de audio."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "audio_hardware",
-            "title": "Aŭdio kaj Aparataro Agordo",
-            "items": [
-                {
-                    "title": "Elekto de Enigo kaj Eligo",
-                    "description": "Permesas vin sendepende asigni sonajn kaptajn kaj reproduktajn aparatojn.",
-                    "subitems": [
-                        "Por certigi ĝustan funkciadon:",
-                        "Kontrolu, ke alirpermesoj al la mikrofono kaj laŭtparoliloj estas donitaj.",
-                        "Agordu aparatojn kiel defaŭltajn en la operaciumo kiam necese.",
-                        "Instalu oficialajn ŝoforojn por via aparataro se la fabrikanto postulas ĝin."
-                    ],
-                    "compatible": "Kongrua kun:",
-                    "compatible_list": [
-                        "Fizikaj sonkartoj.",
-                        "USB-interfacoj.",
-                        "Bluetooth-aparatoj.",
-                        "Virtualaj aŭdaj kanaloj.",
-                        "Profesiaj enrutaj sistemoj."
-                    ]
-                },
-                {
-                    "title": "Granulaj Kanaloj",
-                    "description": "Permesas direkti sonsignalojn al specifaj fizikaj kanaloj (Kanalo 1, Kanalo 2, ktp.) por integriĝoj kun:",
-                    "subitems": [
-                        "Mikstabloj.",
-                        "Virtualaj enkursigiloj.",
-                        "Matricaj sistemoj.",
-                        "Profesiaj aŭdaj infrastrukturoj."
-                    ]
-                },
-                {
-                    "title": "Ĝisdatigi aparataron",
-                    "description": "Elfaras dinamikan detekton de konektitaj sonaparatoj sen neceso rekomenci la aplikaĵon."
-                },
-                {
-                    "title": "Antaŭa Konekto kaj Permesoj",
-                    "description": "Oni rekomendas konekti ajnan tipon de aparato (ĉu Bluetooth-aŭdiloj/mikrofonoj aŭ eksteraj sonkartoj) **antaŭ ol ekfunkciigi la servilon aŭ aplikaĵon**. Certigu, ke triaj aparataro kaj programaro estas agordita en via operaciumo, kaj ke vi donis la necesajn permesojn en la retumilo.",
-                    "important": "Konekti aparaton meze de sesio povas postuli refreŝigi la langeton aŭ bati 'Ĝisdatigi aparataron'. Certigu, ke la mikrofono estas ĝuste akceptita en la permesa fenestro de la retumilo."
-                }
-            ]
-        },
-        {
-            "id": "language_transcription",
-            "title": "Lingvo, Transskribo kaj Vortprovizo IA",
-            "items": [
-                {
-                    "title": "Interfaco Lingvo",
-                    "description": "Difinas la aplikaĵlingvon kaj la ĉefan lingvon uzatan de la transskriba motoro."
-                },
-                {
-                    "title": "Fonetika Transskriba Vortaro",
-                    "description": "Ĝi permesas vin aŭtomate korekti specifajn terminojn, nomojn aŭ markojn.",
-                    "subitems": [
-                        "Parametroj de agordo:",
-                        "Komprenita kiel: Teksto kiel fonetike rekonita de la AI.",
-                        "Korekti al: Fina teksto injektenda en la babilejon."
-                    ],
-                    "examples": {
-                        "label": "Ekzemploj de Fonetika Mapado",
-                        "pairs": [
-                            [
-                                "estas telefono",
-                                "Iphone"
-                            ],
-                            [
-                                "miquel",
-                                "Mikelo"
-                            ],
-                            [
-                                "diru mer",
-                                "Dimmer"
-                            ]
-                        ]
-                    }
-                },
-                {
-                    "_tag": "trans_number",
-                    "title": "Konverti Parolitajn Nombrojn al Ciferoj",
-                    "description": "Ebligas al artefarita intelekto transskribi nombrojn rekte kiel ciferojn anstataŭ vortoj (ekzemple: '12' anstataŭ 'dek du', '-6 dB' anstataŭ 'minus ses decibeloj').",
-                    "note": "Tre rekomendinda por rapide legi kanalojn, signalojn kaj teknikajn nivelojn dumvive."
-                }
-            ]
-        },
-        {
-            "id": "babel_translation",
-            "title": "AI Tradukado (Babel Engine)",
-            "items": [
-                {
-                    "title": "Babel Traduka Motoro",
-                    "description": "La sistemo integras Babelo, optimumigitan neŭralan maŝintradukadon (NMT) motoron kiu funkcias 100% loke sur la Majstra Servilo. Traduku mesaĝojn ricevitajn en aliaj lingvoj en reala tempo al la lingvo de via interfaco sen sendi datumojn al Interreto aŭ depende de eksteraj API-oj."
-                },
-                {
-                    "_tag": "babel_download",
-                    "title": "Elŝuto kaj Administrado de Tradukmotoro (MADLAD)",
-                    "description": "La neŭrala tradukmotoro estas elŝutata laŭpete (~2.75 GB) por konservi la instalilon malpeza (~400 MB):",
-                    "subitems": [
-                        "Elŝuto: Dum ensaluto, la sistemo proponas aŭtomatan elŝuton en la modelan dosierujon.",
-                        "Malŝalti: Alklaku 'Malŝalti' por funkcii en malpeza reĝimo sen tradukado kaj kaŝi la averton.",
-                        "Reaktivigo: Vi povas reŝalti aŭ reinstali ĝin iam ajn per Pre-Launch aŭ aplikaj agordoj."
-                    ]
-                },
-                {
-                    "title": "Montru Originalan Mesaĝon",
-                    "description": "Ĝi ebligas al vi montri la originalan tekston en malgranda, malklarigita formato tuj sub la tradukita teksto, faciligante rektan konfirmon se necese."
-                },
-                {
-                    "title": "Envenanta Lingva Filtrilo",
-                    "description": "Elekteme agordu kiuj lingvoj estu tradukitaj aŭtomate. Neelektitaj lingvoj estos montrataj en sia originala kruda formo."
-                },
-                {
-                    "title": "Babela Protekto (Glosaro kaj Teknika Ĵargono)",
-                    "description": "Malhelpas certajn terminojn de teknika uzo aŭ proprajn nomojn esti distordita de la tradukmotoro. Kiam vi aldonas vortojn al ĉi tiu ekskludlisto, Babelo honoros ilin konservante ilin en ilia originala formo.",
-                    "note": "Speciale rekomendite por distra ĵargono kaj retoj:",
-                    "subitems": [
-                        "Standby / Standby",
-                        "Fader",
-                        "FOH (Fronto de Domo)",
-                        "Tempokodo/SMPTE",
-                        "Cue / Cuelist"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "messages_flow",
-            "title": "Mesaĝoj kaj Komunika Fluo",
-            "items": [
-                {
-                    "title": "Ricevante Transskribitajn Mesaĝojn",
-                    "description": "Vi povas elekti inter:",
-                    "subitems": [
-                        "Montru nur la transskribon.",
-                        "Montru la transskribon apud la rilata originala audio."
-                    ]
-                },
-                {
-                    "title": "Sona Ricevo",
-                    "description": "Agordu kiel vi volas ricevi envenantan audion:",
-                    "subitems": [
-                        "Aŭtomata reprodukto en reala tempo.",
-                        "Mana reproduktado laŭ postulo."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "hermes_tts",
-            "title": "Senreta Voĉa Sintezo (Hermes TTS)",
-            "items": [
-                {
-                    "title": "Senkonekta Voĉa Legado",
-                    "description": "Permesas aŭtomatigitan legadon de envenantaj tekstmesaĝoj aŭ tradukoj. Ĝi ekskluzive uzas la denaskan voĉmotoron de via operaciumo (Web Speech API), funkcianta 100% loke, private kaj sen postulo de interreto. Ĝia disko-konsumo estas 0 bajtoj kaj ĝi havas preskaŭ nulan efikon sur CPU/RAM."
-                },
-                {
-                    "title": "Alĝustigeblaj kaj Individuaj Parametroj",
-                    "description": "Agordu la funkciojn laŭ viaj preferoj de la langeto Agordoj de via aparato:",
-                    "subitems": [
-                        "Aŭskultu tekstmesaĝojn: Aktivigu la legadon de lokaj tekstoj. Se ĝi estas malŝaltita, viaj lingvaj tekstoj restos silentaj sed vi ankoraŭ povos aŭdi fremdajn tradukojn.",
-                        "Fremda Aŭdio-Filtrilo: Blokas originalajn sonaĵojn en aliaj lingvoj kaj nur legas ilian tradukon.",
-                        "Reago al Aktivaj Filtriloj: La sistemo legas nur envenantajn mesaĝojn kiuj respondas al la kategorio aŭ kanalo elektita de la uzanto en iliaj babilfiltriloj (se filtrite de specifa grupo, ĝi nur legos tiujn de tiu grupo; se 'Ĉio' estas elektita, ĝi legos ilin ĉiujn).",
-                        "Voĉa Elekto: Elektu el la disponeblaj voĉoj instalitaj en via operaciumo, aŭ lasu ĝin Aŭtomata por heredi la lingvon de la aplikaĵo.",
-                        "Seksa Filtrilo: Dinamike filtras kongruajn voĉojn laŭ ilia tono (Vira, Ina aŭ Ĉiuj).",
-                        "Legado-Rapideco: Ĝustigas la rapidecon de parolado inter ekstreme malrapida (0.5x) kaj rapida (2.0x)."
-                    ]
-                },
-                {
-                    "title": "Prefiksoj kaj Kuntekstaj Enkondukoj",
-                    "description": "La rakontanto aŭtomate detektas la specon de mesaĝo por pli natura legado: ĝi diros '[Nomo] skribis...' por puraj tekstmesaĝoj, kaj '[Nomo] diris...' dum ludado de tradukoj de voĉmesaĝoj."
-                },
-                {
-                    "title": "Ŝildo de Kunekzisto (Hermes-Shield)",
-                    "description": "Por eviti akustikan kuniĝon kun la mikrofono kaj ne malhelpi fluidan komunikadon, Hermes TTS aŭtomate silentigos sin se:",
-                    "subitems": [
-                        "Vi premas la butonon Parolado aŭ registras per via mikrofono.",
-                        "Estas aktiva reproduktado en la denaska aŭdvico de la babilejo.",
-                        "Ajna infana HTML5 plurmedia ludilo en la DOM estas aktiva."
-                    ]
-                },
-                {
-                    "title": "Inteligentaj Lokigitaj Prefiksoj",
-                    "description": "Antaŭ legi la mesaĝon, dinamika prefikso estas aŭtomate sintezita laŭ la aktiva lingvo por doni kuntekston pri la sendinto (ekzemple: 'Jorgo skribis: [mesaĝo]' aŭ 'Jorgo skribis: [mesaĝo]')."
-                },
-                {
-                    "title": "Loka Persisto",
-                    "description": "Ĉiuj agordoj estas konservitaj sendepende por ĉiu uzanto en la loka Stokado de la terminalo. Ŝanĝi vian voĉon aŭ rapidajn opciojn ne influos aliajn uzantojn en la loka reto aŭ aliajn profilojn ensalutitajn en la sama retumilo."
-                }
-            ]
-        },
-        {
-            "id": "visual_haptic_alerts",
-            "title": "Vidaj kaj Haptaj Atentigoj",
-            "items": [
-                {
-                    "title": "Tipoj de Atentigo",
-                    "description": "Depende de la kapabloj de la aparato, vi povas uzi:",
-                    "subitems": [
-                        "Vidaj atentigoj sur ekrano.",
-                        "Vibro.",
-                        "LED-poŝlampo."
-                    ]
-                },
-                {
-                    "title": "Alerta Personigo",
-                    "description": "Ĉiu atentigo havas vidan redaktilon, kie vi povas:",
-                    "subitems": [
-                        "Agordi parametrojn.",
-                        "Antaŭrigardi rezultojn.",
-                        "Konservu kutimajn agordojn."
-                    ]
-                },
-                {
-                    "title": "Vida Templinio",
-                    "description": "Duoble alklaku la kanvason por krei kaj poziciigi ŝlosilkadrojn kiuj kontrolas trajtojn kiel koloron kaj opakecon."
-                },
-                {
-                    "title": "Malpezigi kurbojn",
-                    "description": "Difinu la transiron inter ŝlosilkadroj uzante:",
-                    "subitems": [
-                        "Lineara aŭ Paŝo.",
-                        "Ease In / Ease Out / Ease In-Out.",
-                        "Kvadrataj kaj kubaj kurboj."
-                    ]
-                },
-                {
-                    "title": "Haptaj kaj LED-Ŝablonoj",
-                    "description": "Dezajnu vibradon kaj lumsekvencojn bazitajn sur la valoroj difinitaj en la templinio.",
-                    "subitems": [
-                        "Valoro pli granda ol 0,5 → Aktivigita.",
-                        "Valoro malpli ol 0,5 → Malŝaltita."
-                    ]
-                },
-                {
-                    "title": "Permesoj",
-                    "description": "Iuj aparatoj postulas fotilajn permesojn por aliri la poŝlampon.",
-                    "important": "La programo aŭtomate petos tiajn permesojn kiam necese."
-                }
-            ]
-        },
-        {
-            "id": "triggers",
-            "title": "ellasiloj (EN/EL)",
-            "items": [
-                {
-                    "title": "Ekfunkciigas",
-                    "description": "Ili permesas aŭtomate sendi komandojn al la teknika ekosistemo kiam mesaĝo estas ricevita aŭ mesaĝo enhavas certajn ŝlosilvortojn."
-                },
-                {
-                    "title": "Ellasiloj EN",
-                    "description": "Ili permesas ricevi eksterajn signalojn por efektivigi aŭtomatajn agojn ene de la sistemo.",
-                    "subitems": [
-                        "Ili povas generi:",
-                        "Mesaĝoj aŭ atentigoj.",
-                        "Aŭdaĵoj.",
-                        "Bildoj.",
-                        "Kompleksaj aŭtomatigitaj fluoj."
-                    ]
-                },
-                {
-                    "title": "Injekto de Triggers IN",
-                    "description": "Elektu ĉu la generita enhavo estos sendita al specifa filtrilo aŭ al ĉiuj disponeblaj filtriloj."
-                },
-                {
-                    "title": "Subtenataj Protokoloj",
-                    "description": "Indiĝena integriĝo kun:",
-                    "subitems": [
-                        "OSC (Malferma Sona Kontrolo).",
-                        "MIDI.",
-                        "sACN.",
-                        "SMPTE Tempokodo."
-                    ]
-                },
-                {
-                    "title": "Kurboj per Ŝlosilkadroj",
-                    "description": "Ili permesas la evoluon de komando esti modulita dum tempo uzante ŝlosilkadrojn kaj interpolajn kurbojn. Inkluzivas realtempan antaŭrigardan sistemon."
-                },
-                {
-                    "title": "Aktivigu Ĉion",
-                    "description": "Aktivigu aŭ malaktivigu ĉiujn ellasilon samtempe uzante la supran maldekstran butonon."
-                },
-                {
-                    "title": "Serĉa Filtrilo",
-                    "description": "Rapide lokalizi specifajn ellasilon serĉante laŭ nomo."
-                },
-                {
-                    "_tag": "triggers_timecode",
-                    "title": "SMPTE-Tempolodo kun Pluraj Intervaloj",
-                    "description": "En Triggers IN kun SMPTE-protokolo, eblas agordi plurajn sendependajn horajn intervalojn.",
-                    "subitems": [
-                        "Permesas aldoni plurajn tempofenestrojn (ekz: 01:00:00:00 - 01:15:00:00 kaj 02:00:00:00 - 02:30:00:00).",
-                        "La ellasilo aŭtomate funkcios se la enira signalo falas en iun ajn difinitan intervalon.",
-                        "Inkluzivas butonojn por aldoni (+), reordigi kaj forigi intervalojn kun validigo HH:MM:SS:FF."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "interface_customization",
-            "title": "Interfaco kaj personigo",
-            "items": [
-                {
-                    "title": "Vida Reĝimo",
-                    "description": "Elektu inter Luma Reĝimo kaj Malhela Reĝimo laŭ viaj preferoj."
-                },
-                {
-                    "title": "Propra Paletro",
-                    "description": "Agordu la primarajn kolorojn, fonkolorojn kaj vidajn supersignojn de la aplika interfaco."
-                },
-                {
-                    "title": "Restarigi defaŭltojn",
-                    "description": "Reakiras la originajn vidajn agordojn kaj fabrikan paletron de la aplikaĵo."
-                },
-                {
-                    "title": "Konservu Agordojn",
-                    "description": "Konstante konservas ŝanĝojn faritajn por estontaj sesioj."
-                },
-                {
-                    "title": "Babilejo-Personigo",
-                    "description": "Ĝustigas la tekstgrandecon, tiparpezon kaj ĝeneralan legeblecon de surekranaj mesaĝoj."
-                }
-            ]
-        },
-        {
-            "id": "network_best_practices",
-            "title": "Bonaj Retaj kaj Agordaj Praktikoj",
-            "items": [
-                {
-                    "title": "Deploja Skemo (Paŝo post Paŝo)",
-                    "description": "Por ĝuste agordi ĉi tiun infrastrukturon, sekvu ĉi tiujn profesiajn gvidliniojn:",
-                    "subitems": [
-                        "1. Funkcianta la Majstran Servilon: Komencu la Talk-me-servilon sur la ĉefa komputilo (Majstro). Ĉi tio devas havi aktivan permesilon.",
-                        "2. Akiro de la Loka IP: Eltrovu la privatan IP-adreson de la servilo (ekz: 192.168.1.150).",
-                        "3. Kabligita Klienta Konekto (Ethernet): Konektu la subtenajn komputilojn uzante retan kablon (RJ45 Cat6 rekomendita) al la enkursigilo aŭ ŝaltilo. Aliru malfermante la retumilon ĉe https://192.168.1.150:3000.",
-                        "4. Konekti Klientojn per Wi-Fi (Poŝtelefonoj / Tablojdoj): Certiĝu, ke telefonoj kaj tablojdoj estas konektitaj al la Wi-Fi-reto eldonita de la sama enkursigilo. Malfermu la saman URL en la retumilo de via poŝtelefono."
-                    ]
-                },
-                {
-                    "title": "Sekurecaj Postuloj de Retumilo (Fotilo kaj Mikrofono)",
-                    "description": "Modernaj retumiloj limigas aliron al sentemaj aparatoj kiel fotiloj kaj mikrofonoj kiam la konekto ne estas sekura.",
-                    "important": "Tial, aliro al la sistemo devas esti farita per HTTPS, akceptante la memsubskribitan lokan SSL-atestilon generitan de la servilo dum instalado."
-                },
-                {
-                    "title": "Kompleta Suvereneco kaj Nuba Sendependeco",
-                    "description": "Talk-me estis desegnita por funkcii 100% aŭtonomie ene de via reta infrastrukturo. Unufoje instalita, ĝi ne postulas konstantan interretan konekton aŭ triajn APIojn. Se WAN (Interreto) aliro estas tranĉita, interna kampusa komunikado, tradukado, loka transskribo kaj atentigoj daŭre funkcios sen interrompo."
-                }
-            ]
-        },
-        {
-            "id": "data_sovereignty",
-            "title": "Suvereneco kaj Privateco de datumoj",
-            "items": [
-                {
-                    "title": "Infrastrukturo Sub Via Kontrolo",
-                    "description": "Ĉiuj informoj generitaj de Talk-me restas en via labormedio. Ĉi tio inkluzivas:",
-                    "subitems": [
-                        "Datumbazo.",
-                        "Komunikada historio.",
-                        "Agordoj.",
-                        "Modeloj de artefarita inteligenteco.",
-                        "Rilataj dosieroj kaj rimedoj."
-                    ]
-                },
-                {
-                    "title": "Loka Pretigo",
-                    "description": "Analizaj, transskribaj kaj tradukaj procezoj funkcias rekte sur via aparataro kiam vi uzas subtenatajn lokajn modelojn.",
-                    "extra": "La informoj ne estas senditaj al eksteraj serviloj por prilaborado."
-                },
-                {
-                    "title": "Privateco kaj Sekureco",
-                    "description": "Talk-me estis desegnita sub modelo de teknologia suvereneco kaj totala datuma kontrolo.",
-                    "extra": "Viaj konversacioj, agordoj kaj rimedoj restas gastigitaj ekskluzive en via infrastrukturo, konservante kompletan kontrolon pri:",
-                    "subitems": [
-                        "Disponebleco de la sistemo.",
-                        "La privateco de informoj.",
-                        "La stokado de datumoj.",
-                        "Administrado de aliro kaj sekureco."
-                    ]
-                }
-            ]
+          "title": "Enira Nivelo",
+          "description": "Montras la signalnivelon de la elektita sonfonto en reala tempo uzante dinamikan VU-mezurilon.",
+          "note": null
         }
-    ],
-    "network_diagram": {
-        "internet": "INTERRETO",
-        "optional": "OPCIA",
-        "ethernet_cable": "ETHERNETA KABLO RJ45",
-        "ethernet_red": "Ethernet Reto / LAN-Kablo",
-        "wifi_label": "WIFI/WLAN",
-        "master_server": "MASTER SERVILIO",
-        "licensed": "LICENSITA",
-        "router": "RITIGILO",
-        "device1": "Aparato 1: Ĉefa PC (Kablo)",
-        "device2": "Aparato 2: Komputila Subteno (Kablo)",
-        "device3": "Aparato 3: Tekkomputilo (Wi-Fi)",
-        "device4": "Aparato 4: Tablojdo (Wi-Fi)",
-        "device5": "Aparato 5: Poŝtelefono (Wi-Fi)",
-        "https_url": "https://192.168.1.150:3000"
+      ]
     },
-    "common": {
-        "important": "Grava"
+    {
+      "id": "users",
+      "title": "Uzantoj",
+      "items": [
+        {
+          "title": "Konektitaj Uzantoj",
+          "description": "Montras la liston de aktivaj uzantoj, subuzantoj kaj iliaj asignitaj kategorioj.",
+          "subitems": [
+            "La subuzantoj kreitaj de vi povas esti:",
+            "Redaktita.",
+            "Forigita.",
+            "Monitorita de individua VU-mezurilo, kiu indikas kiam ili elsendas aŭdion."
+          ]
+        },
+        {
+          "title": "Krei subuzantoj (+)",
+          "description": "Permesas al vi krei virtualajn uzantojn kun sendependa interna vojigo.",
+          "subitems": [
+            "Ĉiu subuzanto povas esti agordita per:",
+            "Nomo.",
+            "Kategorio.",
+            "Transskriba lingvo.",
+            "Sonfonto.",
+            "Enira kanalo.",
+            "Aktiviga sojlo."
+          ],
+          "extra": "Kiam la aŭdnivelo superas la agordita sojlo, transskribo kaj sendado de mesaĝoj estas faritaj aŭtomate.",
+          "important": "Ne eblas samtempe atribui la saman sonfonton kaj kanalon uzatan de la ĉefa uzanto. En kazo de konflikto, la fonto estos aŭtomate malŝaltita por eviti duplikatajn dissendojn."
+        }
+      ]
     },
-    "guide_version": "60.2.0"
+    {
+      "id": "chat_transmission",
+      "title": "Babilado kaj Elsendo Trajtoj",
+      "items": [
+        {
+          "title": "Parolu butonon",
+          "description": "Ebligas al vi elsendi vivan audion. Kiam vi enigas tekston en la enigkampon, la butono aŭtomate transformiĝas en la ikonon de sendi mesaĝon."
+        },
+        {
+          "title": "Sendante Fotojn",
+          "description": "Ebligas al vi kapti bildojn per la malantaŭa fotilo de la aparato aŭ elekti fotojn el la galerio por tuj sendi ilin al la babilejo."
+        },
+        {
+          "title": "Gesta Navigado (Svingu)",
+          "description": "Glitu dekstren por montri la flankan panelon kaj maldekstren por kaŝi ĝin.",
+          "note": "Ĉi tiu ago estas ekvivalenta al uzado de la navigaj butonoj aŭ la aplikaĵa emblemo."
+        },
+        {
+          "title": "Filtriloj",
+          "description": "Permesas al vi elekti kiujn kategoriojn de mesaĝoj kaj atentigoj vi volas ricevi.",
+          "subitems": [
+            "Povas:",
+            "Montru ĉiujn kategoriojn.",
+            "Elektu ununuran kategorion.",
+            "Kombinu plurajn kategoriojn."
+          ],
+          "note": "Ĉiu uzanto povas personecigi siajn filtrilojn sendepende."
+        },
+        {
+          "title": "IP kaj Servilo-Statuso",
+          "description": "Montras la IP-adreson de la servilo kaj ĝian aktualan staton:",
+          "statuses": {
+            "green": "Konektita kaj funkcianta.",
+            "red": "Malkonektita aŭ neniu komunikado."
+          }
+        },
+        {
+          "title": "Mikrofono Indikilo",
+          "description": "Montras la aktualan staton de la mikrofono:",
+          "subitems": [
+            "Silentita.",
+            "Aktivo.",
+            "Transdono de audio."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio_hardware",
+      "title": "Aŭdio kaj Aparataro Agordo",
+      "items": [
+        {
+          "title": "Elekto de Enigo kaj Eligo",
+          "description": "Permesas vin sendepende asigni sonajn kaptajn kaj reproduktajn aparatojn.",
+          "subitems": [
+            "Por certigi ĝustan funkciadon:",
+            "Kontrolu, ke alirpermesoj al la mikrofono kaj laŭtparoliloj estas donitaj.",
+            "Agordu aparatojn kiel defaŭltajn en la operaciumo kiam necese.",
+            "Instalu oficialajn ŝoforojn por via aparataro se la fabrikanto postulas ĝin."
+          ],
+          "compatible": "Kongrua kun:",
+          "compatible_list": [
+            "Fizikaj sonkartoj.",
+            "USB-interfacoj.",
+            "Bluetooth-aparatoj.",
+            "Virtualaj aŭdaj kanaloj.",
+            "Profesiaj enrutaj sistemoj."
+          ]
+        },
+        {
+          "title": "Granulaj Kanaloj",
+          "description": "Permesas direkti sonsignalojn al specifaj fizikaj kanaloj (Kanalo 1, Kanalo 2, ktp.) por integriĝoj kun:",
+          "subitems": [
+            "Mikstabloj.",
+            "Virtualaj enkursigiloj.",
+            "Matricaj sistemoj.",
+            "Profesiaj aŭdaj infrastrukturoj."
+          ]
+        },
+        {
+          "title": "Ĝisdatigi aparataron",
+          "description": "Elfaras dinamikan detekton de konektitaj sonaparatoj sen neceso rekomenci la aplikaĵon."
+        },
+        {
+          "title": "Antaŭa Konekto kaj Permesoj",
+          "description": "Oni rekomendas konekti ajnan tipon de aparato (ĉu Bluetooth-aŭdiloj/mikrofonoj aŭ eksteraj sonkartoj) **antaŭ ol ekfunkciigi la servilon aŭ aplikaĵon**. Certigu, ke triaj aparataro kaj programaro estas agordita en via operaciumo, kaj ke vi donis la necesajn permesojn en la retumilo.",
+          "important": "Konekti aparaton meze de sesio povas postuli refreŝigi la langeton aŭ bati 'Ĝisdatigi aparataron'. Certigu, ke la mikrofono estas ĝuste akceptita en la permesa fenestro de la retumilo."
+        }
+      ]
+    },
+    {
+      "id": "language_transcription",
+      "title": "Lingvo, Transskribo kaj Vortprovizo IA",
+      "items": [
+        {
+          "title": "Interfaco Lingvo",
+          "description": "Difinas la aplikaĵlingvon kaj la ĉefan lingvon uzatan de la transskriba motoro."
+        },
+        {
+          "title": "Fonetika Transskriba Vortaro",
+          "description": "Ĝi permesas vin aŭtomate korekti specifajn terminojn, nomojn aŭ markojn.",
+          "subitems": [
+            "Parametroj de agordo:",
+            "Komprenita kiel: Teksto kiel fonetike rekonita de la AI.",
+            "Korekti al: Fina teksto injektenda en la babilejon."
+          ],
+          "examples": {
+            "label": "Ekzemploj de Fonetika Mapado",
+            "pairs": [
+              [
+                "estas telefono",
+                "Iphone"
+              ],
+              [
+                "miquel",
+                "Mikelo"
+              ],
+              [
+                "diru mer",
+                "Dimmer"
+              ]
+            ]
+          }
+        },
+        {
+          "_tag": "elastic_engines_asr",
+          "title": "Elastikaj Voĉtransskribaj Motoroj laŭ Lingvo",
+          "description": "Voĉrekono ŝargas en memoron nur la akustikajn modelojn de la lingvoj aktive uzataj en la ĉambro.",
+          "subitems": [
+            "Antaŭinstalitaj modeloj: Inkluzivas tre rapidajn modelojn por la hispana kaj la angla.",
+            "Fleksebla ekspansio: Automate rekonas novajn lingvomodelojn en la dosierujo sen reinstalo.",
+            "RAM-ŝparado: Neaktivaj modeloj ne konsumas memoron ĝis partoprenanto de tiu lingvo aliĝas."
+          ]
+        },
+        {
+          "_tag": "trans_number",
+          "title": "Konverti Parolitajn Nombrojn al Ciferoj",
+          "description": "Ebligas al artefarita intelekto transskribi nombrojn rekte kiel ciferojn anstataŭ vortoj (ekzemple: '12' anstataŭ 'dek du', '-6 dB' anstataŭ 'minus ses decibeloj').",
+          "note": "Tre rekomendinda por rapide legi kanalojn, signalojn kaj teknikajn nivelojn dumvive."
+        }
+      ]
+    },
+    {
+      "id": "babel_translation",
+      "title": "AI Tradukado (Babel Engine)",
+      "items": [
+        {
+          "title": "Babel Traduka Motoro",
+          "description": "La sistemo integras Babelo, optimumigitan neŭralan maŝintradukadon (NMT) motoron kiu funkcias 100% loke sur la Majstra Servilo. Traduku mesaĝojn ricevitajn en aliaj lingvoj en reala tempo al la lingvo de via interfaco sen sendi datumojn al Interreto aŭ depende de eksteraj API-oj."
+        },
+        {
+          "_tag": "elastic_engines_babel",
+          "title": "Elastika Motora Arkitekturo: Modula Neŭrala Tradukado",
+          "description": "Talk.me uzas elastan modulan arkitekturon, kiu apartigas la bazan apon de pezaj AI-motoroj, tenante la instalilon tre kompakta (~200 MB).",
+          "subitems": [
+            "Elŝuto laŭpete: La neŭrala motoro MADLAD (~2,75 GB) elŝutiĝas loke per ununura klako kiam plurlingva tradukado estas bezonata.",
+            "Malpeza Reĝimo (Malaktivigi): Por unulingvaj produktadoj, klaku 'Malaktivigi' por liberigi CPU kaj RAM al 0%.",
+            "Fleksebla administrado: Reaktivigu, elŝutu aŭ forigu modelojn iam ajn en la Agordoj.",
+            "Senreta Suvereneco (Air-Gapped): Post elŝuto, ĝi neniam petas interreton kaj funkcias 100% loke."
+          ],
+          "important": "En turneoj aŭ fermitaj ejoj sen kovrado, elŝutu la elastajn motorojn antaŭe por certigi senretan funkciadon."
+        },
+        {
+          "title": "Montru Originalan Mesaĝon",
+          "description": "Ĝi ebligas al vi montri la originalan tekston en malgranda, malklarigita formato tuj sub la tradukita teksto, faciligante rektan konfirmon se necese."
+        },
+        {
+          "title": "Envenanta Lingva Filtrilo",
+          "description": "Elekteme agordu kiuj lingvoj estu tradukitaj aŭtomate. Neelektitaj lingvoj estos montrataj en sia originala kruda formo."
+        },
+        {
+          "title": "Babela Protekto (Glosaro kaj Teknika Ĵargono)",
+          "description": "Malhelpas certajn terminojn de teknika uzo aŭ proprajn nomojn esti distordita de la tradukmotoro. Kiam vi aldonas vortojn al ĉi tiu ekskludlisto, Babelo honoros ilin konservante ilin en ilia originala formo.",
+          "note": "Speciale rekomendite por distra ĵargono kaj retoj:",
+          "subitems": [
+            "Standby / Standby",
+            "Fader",
+            "FOH (Fronto de Domo)",
+            "Tempokodo/SMPTE",
+            "Cue / Cuelist"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "messages_flow",
+      "title": "Mesaĝoj kaj Komunika Fluo",
+      "items": [
+        {
+          "title": "Ricevante Transskribitajn Mesaĝojn",
+          "description": "Vi povas elekti inter:",
+          "subitems": [
+            "Montru nur la transskribon.",
+            "Montru la transskribon apud la rilata originala audio."
+          ]
+        },
+        {
+          "title": "Sona Ricevo",
+          "description": "Agordu kiel vi volas ricevi envenantan audion:",
+          "subitems": [
+            "Aŭtomata reprodukto en reala tempo.",
+            "Mana reproduktado laŭ postulo."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hermes_tts",
+      "title": "Senreta Voĉa Sintezo (Hermes TTS)",
+      "items": [
+        {
+          "title": "Senkonekta Voĉa Legado",
+          "description": "Permesas aŭtomatigitan legadon de envenantaj tekstmesaĝoj aŭ tradukoj. Ĝi ekskluzive uzas la denaskan voĉmotoron de via operaciumo (Web Speech API), funkcianta 100% loke, private kaj sen postulo de interreto. Ĝia disko-konsumo estas 0 bajtoj kaj ĝi havas preskaŭ nulan efikon sur CPU/RAM."
+        },
+        {
+          "title": "Alĝustigeblaj kaj Individuaj Parametroj",
+          "description": "Agordu la funkciojn laŭ viaj preferoj de la langeto Agordoj de via aparato:",
+          "subitems": [
+            "Aŭskultu tekstmesaĝojn: Aktivigu la legadon de lokaj tekstoj. Se ĝi estas malŝaltita, viaj lingvaj tekstoj restos silentaj sed vi ankoraŭ povos aŭdi fremdajn tradukojn.",
+            "Fremda Aŭdio-Filtrilo: Blokas originalajn sonaĵojn en aliaj lingvoj kaj nur legas ilian tradukon.",
+            "Reago al Aktivaj Filtriloj: La sistemo legas nur envenantajn mesaĝojn kiuj respondas al la kategorio aŭ kanalo elektita de la uzanto en iliaj babilfiltriloj (se filtrite de specifa grupo, ĝi nur legos tiujn de tiu grupo; se 'Ĉio' estas elektita, ĝi legos ilin ĉiujn).",
+            "Voĉa Elekto: Elektu el la disponeblaj voĉoj instalitaj en via operaciumo, aŭ lasu ĝin Aŭtomata por heredi la lingvon de la aplikaĵo.",
+            "Seksa Filtrilo: Dinamike filtras kongruajn voĉojn laŭ ilia tono (Vira, Ina aŭ Ĉiuj).",
+            "Legado-Rapideco: Ĝustigas la rapidecon de parolado inter ekstreme malrapida (0.5x) kaj rapida (2.0x)."
+          ]
+        },
+        {
+          "title": "Prefiksoj kaj Kuntekstaj Enkondukoj",
+          "description": "La rakontanto aŭtomate detektas la specon de mesaĝo por pli natura legado: ĝi diros '[Nomo] skribis...' por puraj tekstmesaĝoj, kaj '[Nomo] diris...' dum ludado de tradukoj de voĉmesaĝoj."
+        },
+        {
+          "title": "Ŝildo de Kunekzisto (Hermes-Shield)",
+          "description": "Por eviti akustikan kuniĝon kun la mikrofono kaj ne malhelpi fluidan komunikadon, Hermes TTS aŭtomate silentigos sin se:",
+          "subitems": [
+            "Vi premas la butonon Parolado aŭ registras per via mikrofono.",
+            "Estas aktiva reproduktado en la denaska aŭdvico de la babilejo.",
+            "Ajna infana HTML5 plurmedia ludilo en la DOM estas aktiva."
+          ]
+        },
+        {
+          "title": "Inteligentaj Lokigitaj Prefiksoj",
+          "description": "Antaŭ legi la mesaĝon, dinamika prefikso estas aŭtomate sintezita laŭ la aktiva lingvo por doni kuntekston pri la sendinto (ekzemple: 'Jorgo skribis: [mesaĝo]' aŭ 'Jorgo skribis: [mesaĝo]')."
+        },
+        {
+          "title": "Loka Persisto",
+          "description": "Ĉiuj agordoj estas konservitaj sendepende por ĉiu uzanto en la loka Stokado de la terminalo. Ŝanĝi vian voĉon aŭ rapidajn opciojn ne influos aliajn uzantojn en la loka reto aŭ aliajn profilojn ensalutitajn en la sama retumilo."
+        }
+      ]
+    },
+    {
+      "id": "visual_haptic_alerts",
+      "title": "Vidaj kaj Haptaj Atentigoj",
+      "items": [
+        {
+          "title": "Tipoj de Atentigo",
+          "description": "Depende de la kapabloj de la aparato, vi povas uzi:",
+          "subitems": [
+            "Vidaj atentigoj sur ekrano.",
+            "Vibro.",
+            "LED-poŝlampo."
+          ]
+        },
+        {
+          "title": "Alerta Personigo",
+          "description": "Ĉiu atentigo havas vidan redaktilon, kie vi povas:",
+          "subitems": [
+            "Agordi parametrojn.",
+            "Antaŭrigardi rezultojn.",
+            "Konservu kutimajn agordojn."
+          ]
+        },
+        {
+          "title": "Vida Templinio",
+          "description": "Duoble alklaku la kanvason por krei kaj poziciigi ŝlosilkadrojn kiuj kontrolas trajtojn kiel koloron kaj opakecon."
+        },
+        {
+          "title": "Malpezigi kurbojn",
+          "description": "Difinu la transiron inter ŝlosilkadroj uzante:",
+          "subitems": [
+            "Lineara aŭ Paŝo.",
+            "Ease In / Ease Out / Ease In-Out.",
+            "Kvadrataj kaj kubaj kurboj."
+          ]
+        },
+        {
+          "title": "Haptaj kaj LED-Ŝablonoj",
+          "description": "Dezajnu vibradon kaj lumsekvencojn bazitajn sur la valoroj difinitaj en la templinio.",
+          "subitems": [
+            "Valoro pli granda ol 0,5 → Aktivigita.",
+            "Valoro malpli ol 0,5 → Malŝaltita."
+          ]
+        },
+        {
+          "title": "Permesoj",
+          "description": "Iuj aparatoj postulas fotilajn permesojn por aliri la poŝlampon.",
+          "important": "La programo aŭtomate petos tiajn permesojn kiam necese."
+        }
+      ]
+    },
+    {
+      "id": "triggers",
+      "title": "ellasiloj (EN/EL)",
+      "items": [
+        {
+          "title": "Ekfunkciigas",
+          "description": "Ili permesas aŭtomate sendi komandojn al la teknika ekosistemo kiam mesaĝo estas ricevita aŭ mesaĝo enhavas certajn ŝlosilvortojn."
+        },
+        {
+          "title": "Ellasiloj EN",
+          "description": "Ili permesas ricevi eksterajn signalojn por efektivigi aŭtomatajn agojn ene de la sistemo.",
+          "subitems": [
+            "Ili povas generi:",
+            "Mesaĝoj aŭ atentigoj.",
+            "Aŭdaĵoj.",
+            "Bildoj.",
+            "Kompleksaj aŭtomatigitaj fluoj."
+          ]
+        },
+        {
+          "title": "Injekto de Triggers IN",
+          "description": "Elektu ĉu la generita enhavo estos sendita al specifa filtrilo aŭ al ĉiuj disponeblaj filtriloj."
+        },
+        {
+          "title": "Subtenataj Protokoloj",
+          "description": "Indiĝena integriĝo kun:",
+          "subitems": [
+            "OSC (Malferma Sona Kontrolo).",
+            "MIDI.",
+            "sACN.",
+            "SMPTE Tempokodo."
+          ]
+        },
+        {
+          "title": "Kurboj per Ŝlosilkadroj",
+          "description": "Ili permesas la evoluon de komando esti modulita dum tempo uzante ŝlosilkadrojn kaj interpolajn kurbojn. Inkluzivas realtempan antaŭrigardan sistemon."
+        },
+        {
+          "title": "Aktivigu Ĉion",
+          "description": "Aktivigu aŭ malaktivigu ĉiujn ellasilon samtempe uzante la supran maldekstran butonon."
+        },
+        {
+          "title": "Serĉa Filtrilo",
+          "description": "Rapide lokalizi specifajn ellasilon serĉante laŭ nomo."
+        },
+        {
+          "_tag": "triggers_timecode",
+          "title": "SMPTE-Tempolodo kun Pluraj Intervaloj",
+          "description": "En Triggers IN kun SMPTE-protokolo, eblas agordi plurajn sendependajn horajn intervalojn.",
+          "subitems": [
+            "Permesas aldoni plurajn tempofenestrojn (ekz: 01:00:00:00 - 01:15:00:00 kaj 02:00:00:00 - 02:30:00:00).",
+            "La ellasilo aŭtomate funkcios se la enira signalo falas en iun ajn difinitan intervalon.",
+            "Inkluzivas butonojn por aldoni (+), reordigi kaj forigi intervalojn kun validigo HH:MM:SS:FF."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interface_customization",
+      "title": "Interfaco kaj personigo",
+      "items": [
+        {
+          "title": "Vida Reĝimo",
+          "description": "Elektu inter Luma Reĝimo kaj Malhela Reĝimo laŭ viaj preferoj."
+        },
+        {
+          "title": "Propra Paletro",
+          "description": "Agordu la primarajn kolorojn, fonkolorojn kaj vidajn supersignojn de la aplika interfaco."
+        },
+        {
+          "title": "Restarigi defaŭltojn",
+          "description": "Reakiras la originajn vidajn agordojn kaj fabrikan paletron de la aplikaĵo."
+        },
+        {
+          "title": "Konservu Agordojn",
+          "description": "Konstante konservas ŝanĝojn faritajn por estontaj sesioj."
+        },
+        {
+          "title": "Babilejo-Personigo",
+          "description": "Ĝustigas la tekstgrandecon, tiparpezon kaj ĝeneralan legeblecon de surekranaj mesaĝoj."
+        }
+      ]
+    },
+    {
+      "id": "network_best_practices",
+      "title": "Bonaj Retaj kaj Agordaj Praktikoj",
+      "items": [
+        {
+          "title": "Deploja Skemo (Paŝo post Paŝo)",
+          "description": "Por ĝuste agordi ĉi tiun infrastrukturon, sekvu ĉi tiujn profesiajn gvidliniojn:",
+          "subitems": [
+            "1. Funkcianta la Majstran Servilon: Komencu la Talk-me-servilon sur la ĉefa komputilo (Majstro). Ĉi tio devas havi aktivan permesilon.",
+            "2. Akiro de la Loka IP: Eltrovu la privatan IP-adreson de la servilo (ekz: 192.168.1.150).",
+            "3. Kabligita Klienta Konekto (Ethernet): Konektu la subtenajn komputilojn uzante retan kablon (RJ45 Cat6 rekomendita) al la enkursigilo aŭ ŝaltilo. Aliru malfermante la retumilon ĉe https://192.168.1.150:3000.",
+            "4. Konekti Klientojn per Wi-Fi (Poŝtelefonoj / Tablojdoj): Certiĝu, ke telefonoj kaj tablojdoj estas konektitaj al la Wi-Fi-reto eldonita de la sama enkursigilo. Malfermu la saman URL en la retumilo de via poŝtelefono."
+          ]
+        },
+        {
+          "title": "Sekurecaj Postuloj de Retumilo (Fotilo kaj Mikrofono)",
+          "description": "Modernaj retumiloj limigas aliron al sentemaj aparatoj kiel fotiloj kaj mikrofonoj kiam la konekto ne estas sekura.",
+          "important": "Tial, aliro al la sistemo devas esti farita per HTTPS, akceptante la memsubskribitan lokan SSL-atestilon generitan de la servilo dum instalado."
+        },
+        {
+          "title": "Kompleta Suvereneco kaj Nuba Sendependeco",
+          "description": "Talk-me estis desegnita por funkcii 100% aŭtonomie ene de via reta infrastrukturo. Unufoje instalita, ĝi ne postulas konstantan interretan konekton aŭ triajn APIojn. Se WAN (Interreto) aliro estas tranĉita, interna kampusa komunikado, tradukado, loka transskribo kaj atentigoj daŭre funkcios sen interrompo."
+        }
+      ]
+    },
+    {
+      "id": "data_sovereignty",
+      "title": "Suvereneco kaj Privateco de datumoj",
+      "items": [
+        {
+          "title": "Infrastrukturo Sub Via Kontrolo",
+          "description": "Ĉiuj informoj generitaj de Talk-me restas en via labormedio. Ĉi tio inkluzivas:",
+          "subitems": [
+            "Datumbazo.",
+            "Komunikada historio.",
+            "Agordoj.",
+            "Modeloj de artefarita inteligenteco.",
+            "Rilataj dosieroj kaj rimedoj."
+          ]
+        },
+        {
+          "title": "Loka Pretigo",
+          "description": "Analizaj, transskribaj kaj tradukaj procezoj funkcias rekte sur via aparataro kiam vi uzas subtenatajn lokajn modelojn.",
+          "extra": "La informoj ne estas senditaj al eksteraj serviloj por prilaborado."
+        },
+        {
+          "title": "Privateco kaj Sekureco",
+          "description": "Talk-me estas dizajnita laŭ modelo de teknologia suvereneco kaj kompleta regado de datumoj, garantiante:",
+          "extra": "Viaj konversacioj, agordoj kaj rimedoj restas gastigitaj ekskluzive en via loka infrastrukturo sub absoluta suvereneco.",
+          "subitems": [
+            "Disponebleco de la sistemo.",
+            "La privateco de informoj.",
+            "La stokado de datumoj.",
+            "Administrado de aliro kaj sekureco."
+          ]
+        }
+      ]
+    }
+  ],
+  "network_diagram": {
+    "internet": "INTERRETO",
+    "optional": "OPCIA",
+    "ethernet_cable": "ETHERNETA KABLO RJ45",
+    "ethernet_red": "Ethernet Reto / LAN-Kablo",
+    "wifi_label": "WIFI/WLAN",
+    "master_server": "MASTER SERVILIO",
+    "licensed": "LICENSITA",
+    "router": "RITIGILO",
+    "device1": "Aparato 1: Ĉefa PC (Kablo)",
+    "device2": "Aparato 2: Komputila Subteno (Kablo)",
+    "device3": "Aparato 3: Tekkomputilo (Wi-Fi)",
+    "device4": "Aparato 4: Tablojdo (Wi-Fi)",
+    "device5": "Aparato 5: Poŝtelefono (Wi-Fi)",
+    "https_url": "https://192.168.1.150:3000"
+  },
+  "common": {
+    "important": "Grava"
+  },
+  "guide_version": "60.2.0"
 }

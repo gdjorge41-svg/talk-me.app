@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talk-me - Launchpad</title>
     <!-- Tipografía 100% Local Offline (Inter & Outfit) -->
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="fonts.css?v=60.18">
+    <link rel="stylesheet" href="styles.css?v=60.18">
 </head>
 
 <body>
@@ -876,7 +876,7 @@
             <div class="modal-actions-row">
                 <button onclick="closeDeregisterConfirm()" class="btn-cancel modal-btn-half"
                     data-i18n="btn_cancel">Cancelar</button>
-                <button onclick="executeDeregisterDevice()" class="btn-primary modal-btn-half modal-btn-half--danger"
+                <button onclick="executeDeregisterDevice()" class="btn-alert-acept modal-btn-half modal-btn-half--danger"
                     data-i18n="btn_confirm_logout">Confirmar</button>
             </div>
         </div>
@@ -1159,6 +1159,111 @@
             </div>
         </div>
 
+        <!-- 4b. Renovación Contextual Rent-to-Own (Acceso en Pausa) -->
+        <div id="sec-rto-renewal" class="section" style="display: none;">
+            <div class="rto-renewal-card">
+                <!-- Cabecera Oficial: Standby Metabólico (Pausa + Órbita Esmeralda) -->
+                <div class="rto-fav-header">
+                    <div class="standby-pulse-glow" style="display: flex; align-items: center; justify-content: center;">
+                        <svg viewBox="0 0 36 36" width="46" height="46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="18" r="14" stroke="rgba(16, 185, 129, 0.18)" stroke-width="2.5"></circle>
+                            <path class="standby-orbit-arc" d="M 18,4 A 14,14 0 1,1 5.86,25" stroke="#10B981" stroke-width="2.8" stroke-dasharray="75 18"></path>
+                            <circle cx="18" cy="4" r="2.2" fill="#6ee7b7"></circle>
+                            <g class="standby-pause-bars">
+                                <line x1="15" y1="12" x2="15" y2="24" stroke="#6ee7b7" stroke-width="3" stroke-linecap="round"></line>
+                                <line x1="21" y1="12" x2="21" y2="24" stroke="#6ee7b7" stroke-width="3" stroke-linecap="round"></line>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="rto-fav-header-info">
+                        <h2 class="rto-fav-title" data-i18n="rto_expired_title">Cuota RTO Pendiente</h2>
+                        <p class="rto-fav-email" id="rto-user-email">usuario@talk-me.app</p>
+                    </div>
+                </div>
+
+                <!-- Insignia Oficial Solicitada -->
+                <span class="rto-badge-warning-custom" data-i18n="rto_expired_badge">SUSCRIPCIÓN EN PAUSA • ACCESO BLOQUEADO</span>
+
+                <!-- Explicación -->
+                <p data-i18n="rto_expired_desc" style="color: rgba(255, 255, 255, 0.85); font-size: 12.5px; line-height: 1.4; margin: 0 0 10px 0;">
+                    Tu mensualidad ha vencido. Puedes abonar la cuota correspondiente para reanudar el servicio o liquidar las cuotas restantes de golpe y obtener tu <strong>licencia vitalicia</strong>.
+                </p>
+
+                <!-- Bloque de Detalles: Licencia + Plan + Barra de Progreso Dinámica -->
+                <div class="rto-license-box-fav">
+                    <div class="rto-meta-row-fav">
+                        <span data-i18n="rto_lbl_license" style="color: rgba(255,255,255,0.5);">Licencia:</span>
+                        <span id="rto-license-key-text" style="color: #6ee7b7; font-weight: 700; font-family: Consolas, Monaco, 'Courier New', monospace; letter-spacing: 0.5px;">N/A</span>
+                    </div>
+                    <div class="rto-meta-row-fav">
+                        <span data-i18n="rto_lbl_plan" style="color: rgba(255,255,255,0.5);">Plan:</span>
+                        <span id="rto-plan-type-text" style="color: #fff; font-weight: 700;">FREELANCE (1 Servidor)</span>
+                    </div>
+
+                    <div class="rto-progress-wrapper-fav">
+                        <div class="rto-progress-header-fav">
+                            <span id="rto-progress-percent" style="color: #10B981; font-weight: 800;">Progreso: 0% pagado</span>
+                            <span id="rto-fraction-text" style="color: rgba(255,255,255,0.8);">0 de 14 cuotas</span>
+                        </div>
+                        <div class="rto-progress-track-fav">
+                            <div class="rto-progress-fill-fav" id="rto-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <p id="rto-summary-legend" style="font-size: 11px; color: #94A3B8; line-height: 1.4; margin-top: 6px;">
+                            Restan meses para propiedad vitalicia.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rejilla en 2 Columnas Paralelas -->
+                <div class="rto-2col-grid">
+                    <!-- Columna 1: Pagar Cuota Siguiente -->
+                    <div class="rto-col-card">
+                        <div>
+                            <div class="rto-col-badge">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span data-i18n="rto_col1_badge">Mensualidad</span>
+                            </div>
+                            <p class="rto-col-desc" id="rto-col1-desc">Paga la cuota siguiente para reactivar tu servidor durante 30 días más.</p>
+                        </div>
+                        <button class="btn-col-monthly" id="btnRtoPayMonthly" onclick="executeRtoMonthlyPayment()">
+                            <span id="rto-btn-monthly-label">Pagar Cuota (9.99 €)</span>
+                        </button>
+                    </div>
+
+                    <!-- Columna 2: Liquidación de Golpe Buyout con RAYO SVG VERDE -->
+                    <div class="rto-col-card featured">
+                        <div>
+                            <div class="rto-col-badge">
+                                <svg viewBox="0 0 24 24" width="13" height="13" fill="#10B981" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                                <span data-i18n="rto_col2_badge">Hacerla Vitalicia Hoy</span>
+                            </div>
+                            <p class="rto-col-desc" data-i18n="rto_col2_desc">Liquida las cuotas restantes de golpe en una sola transacción y conviértela en perpetua para siempre.</p>
+                        </div>
+                        <button class="btn-col-buyout" id="btnRtoBuyout" onclick="executeRtoBuyoutPayment()">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="#10B981" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                            <span data-i18n="rto_btn_buyout">Liquidar Todo</span>
+                            <span id="rto-buyout-amount-label">(99.90 €)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Texto de Garantía Requerido -->
+                <p class="rto-reassurance-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span data-i18n="rto_reassurance_text">Al completar el pago, tu servidor se reactivará automáticamente.</span>
+                </p>
+
+                <!-- Comprobación manual -->
+                <div class="rto-check-link-fav" onclick="validateLicense(true)" data-i18n="rto_check_activation_now">
+                    ¿Ya has regularizado el pago? Comprobar activación ahora
+                </div>
+            </div>
+        </div>
+
         <!-- 4. Validate License (Shows if logged in and has key) -->
         <div id="sec-validate" class="section">
             <h2 class="section-heading-row">
@@ -1401,6 +1506,93 @@
         </div>
     </div>
 
+    <!-- ══════════════════════════════════════════════════════════
+         OBJETIVO 1: MODAL TRIAL BIENVENIDA (FIESTA ONE-SHOT)
+         Aparece exclusivamente tras registrarse por primera vez
+         ══════════════════════════════════════════════════════════ -->
+    <div class="trial-welcome-overlay" id="modalTrialWelcome" style="display: none;">
+        <div class="trial-welcome-card">
+            <!-- Icono SVG Corporativo Unificado con success.html (Serpentinas Animadas) -->
+            <div class="trial-welcome-icon-wrap">
+                <svg class="anim-party-stage" viewBox="0 0 36 36" width="68" height="68" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+                    <defs>
+                        <linearGradient id="tmConeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8B78FF" />
+                            <stop offset="100%" stop-color="#5E4AE3" />
+                        </linearGradient>
+                        <linearGradient id="tmOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FF8552" />
+                            <stop offset="100%" stop-color="#FF5722" />
+                        </linearGradient>
+                        <clipPath id="tmConeClip">
+                            <path d="M4.2 29.8 C3.3 30.2 2.8 29.7 3.2 28.8 L12.4 9.6 L23.4 20.6 Z" />
+                        </clipPath>
+                    </defs>
+                    <g class="party-popper-gun">
+                        <g clip-path="url(#tmConeClip)">
+                            <path d="M2 31 L12.4 9.6 L23.4 20.6 Z" fill="url(#tmConeGrad)" />
+                            <path d="M5.5 23.5 L15.5 27.5 L13.2 31.5 L3.2 27.5 Z" fill="url(#tmOrangeGrad)" />
+                            <path d="M8.8 16.5 L21.5 21.5 L19.2 25.2 L6.8 20.2 Z" fill="#B2A8FF" opacity="0.45" />
+                            <path d="M10.2 13.5 L23.5 18.8 L21.8 21.8 L8.5 16.5 Z" fill="url(#tmOrangeGrad)" />
+                        </g>
+                        <path d="M4.2 29.8 C3.3 30.2 2.8 29.7 3.2 28.8 L12.4 9.6 L23.4 20.6 Z" fill="none" stroke="#1E1B36" stroke-width="1.2" stroke-linejoin="round" />
+                        <ellipse cx="17.9" cy="15.1" rx="7.6" ry="3.4" transform="rotate(45 17.9 15.1)" fill="#141126" stroke="#7B68EE" stroke-width="1.3" />
+                    </g>
+                    <g class="streamer-purple">
+                        <path d="M16.8 13.8 C15.2 10.5 19.8 9.2 18.2 6.0 C17.2 4.0 19.5 2.5 21.2 2.2" fill="none" stroke="#10B981" stroke-width="2.3" stroke-linecap="round" />
+                        <path d="M13.5 6.8 L14.8 4.2" fill="none" stroke="#FF6B35" stroke-width="2.2" stroke-linecap="round" />
+                    </g>
+                    <g class="streamer-orange">
+                        <path d="M19.5 16.2 C22.8 14.5 24.2 19.0 27.5 17.4 C29.5 16.4 31.2 18.2 31.8 19.8" fill="none" stroke="#FF6B35" stroke-width="2.3" stroke-linecap="round" />
+                        <path d="M25.5 11.2 C27.8 9.5 30.2 11.5 32.2 9.8" fill="none" stroke="#8B78FF" stroke-width="2.2" stroke-linecap="round" />
+                    </g>
+                    <g class="confetti-layer-1">
+                        <circle cx="22.5" cy="7.5" r="1.6" fill="#FF6B35" />
+                        <circle cx="27.2" cy="5.2" r="1.4" fill="#10B981" />
+                        <circle cx="16.2" cy="9.2" r="1.3" fill="#FFFFFF" />
+                    </g>
+                    <g class="confetti-layer-2">
+                        <circle cx="23.8" cy="13.2" r="1.5" fill="#FFFFFF" />
+                        <circle cx="30.5" cy="14.5" r="1.6" fill="#10B981" />
+                        <circle cx="26.8" cy="22.2" r="1.5" fill="#7B68EE" />
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Badge Dinámico -->
+            <span class="trial-welcome-badge" id="trialWelcomeBadge">30 DÍAS DE ACCESO TOTAL</span>
+
+            <!-- Título H1 Unificado y Centrado -->
+            <h1 class="trial-welcome-title" id="trialWelcomeTitle" data-i18n="trial_welcome_title">¡Bienvenido a bordo de Talk-me!</h1>
+
+            <!-- Texto Dinámico de Regalo -->
+            <p class="trial-welcome-body" id="trialWelcomeTextDynamic">
+                ¡Tu cuenta ya está activa! Para celebrarlo, te regalamos <strong><span id="trialWelcomeDaysCount">30</span> días</strong> para que pruebes, experimentes y disfrutes de la potencia de la plataforma sin restricciones. ¡Despegamos!
+            </p>
+
+            <!-- Caja de Licencia Híbrida: Monospace + Compacta -->
+            <div class="trial-hybrid-box">
+                <div class="trial-hybrid-header">
+                    <span class="trial-hybrid-label" data-i18n="trial_hybrid_label">Licencia Oficial de Evaluación</span>
+                    <span class="trial-hybrid-status-badge" data-i18n="trial_hybrid_active">ACTIVA</span>
+                </div>
+                <div class="trial-hybrid-row">
+                    <span class="trial-hybrid-key" id="trialWelcomeLicenseKey">N/A</span>
+                    <button class="trial-btn-copy" onclick="copyTrialWelcomeLicense()" data-i18n="trial_btn_copy">COPIAR</button>
+                </div>
+                <div class="trial-hybrid-duration">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span id="trialWelcomeExpiryText">Válida hasta: <strong>Cargando...</strong></span>
+                </div>
+            </div>
+
+            <!-- Botón "Ingresar" SIN FLECHA (Estilo Pre-Launch Exacto) -->
+            <button class="btn-prelaunch-green" onclick="dismissTrialWelcome()">
+                <span data-i18n="trial_btn_enter">Ingresar</span>
+            </button>
+        </div>
+    </div>
+
     <!-- Barra de Progresión de Horizonte Cuántico (Quantum Sweep Engine) -->
     <div id="launchProgressBarContainer" class="launch-progress-container" aria-hidden="true">
         <div class="launch-progress-track">
@@ -1410,9 +1602,9 @@
         </div>
     </div>
 
-    <script src="translations.js"></script>
-    <script src="starfield.js"></script>
-    <script src="launchpad.js"></script>
+    <script src="translations.js?v=60.18"></script>
+    <script src="starfield.js?v=60.18"></script>
+    <script src="launchpad.js?v=60.18"></script>
 </body>
 
 </html>

@@ -1,506 +1,518 @@
 {
-    "guide_title": "erabiltzailearen gida",
-    "search_placeholder": "bilatu gidan...",
-    "cards": [
+  "guide_title": "erabiltzailearen gida",
+  "search_placeholder": "bilatu gidan...",
+  "cards": [
+    {
+      "id": "audio_modes",
+      "title": "Audio transmisio moduak",
+      "items": [
         {
-            "id": "audio_modes",
-            "title": "Audio transmisio moduak",
-            "items": [
-                {
-                    "title": "Push-to-Talk (PTT) modua",
-                    "description": "Eskuzko transmisioa sakagailu bidez. Luze sakatu Talk botoia mikrofonoaren kanala irekitzeko eta denbora errealeko audioa ateratzen hasteko. Askatzen duzunean, transmisioa berehala amaitzen da eta sistemak automatikoki prozesatzen du transkripzioa.",
-                    "note": "Zarata handiko inguruneetarako edo komunikazioaren kontrol zehatza behar den egoeretarako gomendatua."
-                },
-                {
-                    "title": "Modu automatikoa (bolumena hautematea)",
-                    "description": "Transmisio automatikoa sarrerako seinale mailan oinarrituta. Sistemak audioa harrapatzea aktibatzen du konfiguratutako sentikortasun-atalasetik gorako soinua hautematen duenean eta isilune labur baten ondoren grabatzeari uzten dio.",
-                    "note": "Esku libreko esperientzia guztiz aproposa."
-                },
-                {
-                    "title": "Sarrera Maila",
-                    "description": "Hautatutako audio-iturriaren seinale-maila denbora errealean bistaratzen du VU neurgailu dinamiko bat erabiliz.",
-                    "note": null
-                }
-            ]
+          "title": "Push-to-Talk (PTT) modua",
+          "description": "Eskuzko transmisioa sakagailu bidez. Luze sakatu Talk botoia mikrofonoaren kanala irekitzeko eta denbora errealeko audioa ateratzen hasteko. Askatzen duzunean, transmisioa berehala amaitzen da eta sistemak automatikoki prozesatzen du transkripzioa.",
+          "note": "Zarata handiko inguruneetarako edo komunikazioaren kontrol zehatza behar den egoeretarako gomendatua."
         },
         {
-            "id": "users",
-            "title": "Erabiltzaileak",
-            "items": [
-                {
-                    "title": "Konektatutako Erabiltzaileak",
-                    "description": "Erabiltzaile aktiboen, azpierabiltzaileen eta esleitutako kategorien zerrenda bistaratzen du.",
-                    "subitems": [
-                        "Zuk sortutako azpierabiltzaileak hauek izan daitezke:",
-                        "Editatua.",
-                        "Ezabatua.",
-                        "Audioa noiz transmititzen ari diren adierazten duen VU neurgailu indibidual batek kontrolatzen du."
-                    ]
-                },
-                {
-                    "title": "Sortu azpierabiltzaileak (+)",
-                    "description": "Barne bideratze independentea duten erabiltzaile birtualak sortzeko aukera ematen du.",
-                    "subitems": [
-                        "Azpi-erabiltzaile bakoitza hauekin konfigura daiteke:",
-                        "Izena.",
-                        "Kategoria.",
-                        "Transkripzio hizkuntza.",
-                        "Audio iturria.",
-                        "Sarrera kanala.",
-                        "Aktibatzeko atalasea."
-                    ],
-                    "extra": "Audio-mailak konfiguratutako atalasea gainditzen duenean, transkripzioa eta mezuen bidalketa automatikoki egiten dira.",
-                    "important": "Ezin da aldi berean esleitu erabiltzaile nagusiak erabiltzen duen audio-iturri eta kanal bera. Gatazkaren kasuan, iturria automatikoki desgaituko da transmisio bikoiztuak saihesteko."
-                }
-            ]
+          "title": "Modu automatikoa (bolumena hautematea)",
+          "description": "Transmisio automatikoa sarrerako seinale mailan oinarrituta. Sistemak audioa harrapatzea aktibatzen du konfiguratutako sentikortasun-atalasetik gorako soinua hautematen duenean eta isilune labur baten ondoren grabatzeari uzten dio.",
+          "note": "Esku libreko esperientzia guztiz aproposa."
         },
         {
-            "id": "chat_transmission",
-            "title": "Txata eta Igorpen Ezaugarriak",
-            "items": [
-                {
-                    "title": "Hitz egin botoia",
-                    "description": "Zuzeneko audioa erreproduzitzeko aukera ematen dizu. Testua idazteko eremuan idazten duzunean, botoia automatikoki bidaltzeko mezua ikono bihurtzen da."
-                },
-                {
-                    "title": "Argazkiak bidaltzea",
-                    "description": "Gailuaren atzeko kamerarekin irudiak ateratzeko edo galeriako argazkiak hautatzeko aukera ematen dizu txatetara berehala bidaltzeko."
-                },
-                {
-                    "title": "Keinu bidezko nabigazioa (pasatu)",
-                    "description": "Irristatu eskuinera alboko panela erakusteko eta ezkerrera ezkutatzeko.",
-                    "note": "Ekintza hau nabigazio-botoiak edo aplikazioaren logotipoa erabiltzearen baliokidea da."
-                },
-                {
-                    "title": "Iragazkiak",
-                    "description": "Jaso nahi dituzun mezuen eta abisuen kategoria hautatzeko aukera ematen du.",
-                    "subitems": [
-                        "Ahal:",
-                        "Erakutsi kategoria guztiak.",
-                        "Hautatu kategoria bakarra.",
-                        "Konbinatu hainbat kategoria."
-                    ],
-                    "note": "Erabiltzaile bakoitzak bere iragazkiak pertsonaliza ditzake modu independentean."
-                },
-                {
-                    "title": "IP eta zerbitzariaren egoera",
-                    "description": "Zerbitzariaren IP helbidea eta egungo egoera erakusten ditu:",
-                    "statuses": {
-                        "green": "Konektatua eta operatiboa.",
-                        "red": "Deskonektatuta edo komunikaziorik gabe."
-                    }
-                },
-                {
-                    "title": "Mikrofonoaren adierazlea",
-                    "description": "Mikrofonoaren uneko egoera erakusten du:",
-                    "subitems": [
-                        "Isildua.",
-                        "Aktiboa.",
-                        "Audioa transmititzen."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "audio_hardware",
-            "title": "Audio eta Hardwarearen konfigurazioa",
-            "items": [
-                {
-                    "title": "Sarrera eta irteera hautaketa",
-                    "description": "Audioa harrapatzeko eta erreproduzitzeko gailuak modu independentean esleitzeko aukera ematen dizu.",
-                    "subitems": [
-                        "Funtzionamendu zuzena ziurtatzeko:",
-                        "Egiaztatu mikrofonorako eta bozgorailuetarako sarbide-baimenak ematen direla.",
-                        "Ezarri gailuak sistema eragilean lehenetsi gisa beharrezkoa denean.",
-                        "Instalatu zure hardwarerako kontrolatzaile ofizialak fabrikatzaileak hala eskatzen badu."
-                    ],
-                    "compatible": "Bateragarria:",
-                    "compatible_list": [
-                        "Soinu-txartel fisikoak.",
-                        "USB interfazeak.",
-                        "Bluetooth gailuak.",
-                        "Audio kanal birtualak.",
-                        "Bideratze sistema profesionalak."
-                    ]
-                },
-                {
-                    "title": "Kanal Granularrak",
-                    "description": "Audio-seinaleak kanal fisiko zehatzetara bideratzeko aukera ematen du (1. kanala, 2. kanala, etab.) hauekin integratzeko:",
-                    "subitems": [
-                        "Nahasketa mahaiak.",
-                        "Bideratzaile birtualak.",
-                        "Matrize-sistemak.",
-                        "Audio azpiegitura profesionalak."
-                    ]
-                },
-                {
-                    "title": "Eguneratu Hardwarea",
-                    "description": "Konektatutako audio-gailuen detekzio dinamikoa egiten du aplikazioa berrabiarazi beharrik gabe."
-                },
-                {
-                    "title": "Aurreko Konexioa eta Baimenak",
-                    "description": "Edozein gailu mota konektatzea gomendatzen da (Bluetooth entzungailuak/mikrofonoak edo kanpoko soinu-txartelak) **zerbitzaria edo aplikazioa hasi aurretik**. Ziurtatu hirugarrenen hardwarea eta softwarea zure sistema eragilean konfiguratuta daudela eta web arakatzailean beharrezko baimenak eman dituzula.",
-                    "important": "Gailu bat saio erdian konektatzeko, baliteke fitxa freskatzea edo \"Berritu hardwarea\" sakatzea. Ziurtatu mikrofonoa behar bezala onartzen dela arakatzailearen baimenen leihoan."
-                }
-            ]
-        },
-        {
-            "id": "language_transcription",
-            "title": "Hizkuntza, Transkripzioa eta Hiztegia IA",
-            "items": [
-                {
-                    "title": "Interfaze Hizkuntza",
-                    "description": "Aplikazio-hizkuntza eta transkripzio-motorrak erabiltzen duen hizkuntza nagusia definitzen ditu."
-                },
-                {
-                    "title": "Transkripzio Fonetikoa Hiztegia",
-                    "description": "Termino, izen edo marka zehatzak automatikoki zuzentzeko aukera ematen du.",
-                    "subitems": [
-                        "Konfigurazio-parametroak:",
-                        "Honela ulertuta: AIak fonetikoki aitortutako testua.",
-                        "Zuzendu: Txatean sartu beharreko azken testua."
-                    ],
-                    "examples": {
-                        "label": "Mapeo Fonetikoaren adibideak",
-                        "pairs": [
-                            [
-                                "telefono bat dago",
-                                "Iphone"
-                            ],
-                            [
-                                "miquel",
-                                "Mikel"
-                            ],
-                            [
-                                "esan mer",
-                                "Dimmer"
-                            ]
-                        ]
-                    }
-                },
-                {
-                    "_tag": "trans_number",
-                    "title": "Ahozko Zenbakiak Zifratara Bihurtzea",
-                    "description": "AItzari zenbakizko adierazpenak zuzenean zifra gisa transkribatzea ahalbidetzen dio (adibidez: '12' 'hamabi' beharrean, '-6 dB' 'gutxiago sei dezibelio' beharrean).",
-                    "note": "Gomendagarria kanal, seinale eta maila teknikoen irakurketa azkartzeko."
-                }
-            ]
-        },
-        {
-            "id": "babel_translation",
-            "title": "AI itzulpena (Babel Engine)",
-            "items": [
-                {
-                    "title": "Babel Itzulpen Motorra",
-                    "description": "Sistemak Babel integratzen du, zerbitzari nagusian lokalean %100 exekutatzen den itzulpen automatiko neuronal optimizatua (NMT). Itzuli denbora errealean beste hizkuntza batzuetan jasotako mezuak zure interfazearen hizkuntzara, datuak Internetera bidali gabe edo kanpoko APIen arabera."
-                },
-                {
-                    "_tag": "babel_download",
-                    "title": "Itzulpen Motorea Deskargatzea eta Kudeatzea (MADLAD)",
-                    "description": "Itzulpen motore neuronala eskatuta deskargatzen da (~2.75 GB) hasierako instalatzailea arin mantentzeko (~400 MB). Libreki kudeatu daiteke:",
-                    "subitems": [
-                        "Deskarga: Saioa hastean, sistemak eredu karpetan automatikoki deskargatzeko aukera ematen du.",
-                        "Desaktibatu: 'Desaktibatu' sakatu dezakezu itzulpenik gabe modu arinean aritzeko eta oharra isilarazteko.",
-                        "Berriro aktibatu: Edozein unetan berriro aktibatu edo instalatu daiteke Pre-Launch edo aplikazioko ezarpenetatik."
-                    ]
-                },
-                {
-                    "title": "Erakutsi jatorrizko mezua",
-                    "description": "Jatorrizko testua testu itzuliaren azpian lausotutako formatu txiki batean bistaratzeko aukera ematen du, behar izanez gero zuzeneko egiaztapena erraztuz."
-                },
-                {
-                    "title": "Sarrerako hizkuntza-iragazkia",
-                    "description": "Konfiguratu selektiboki zein hizkuntzak itzuli behar diren automatikoki. Aukeratu gabeko hizkuntzak jatorrizko forma gordinean bistaratuko dira."
-                },
-                {
-                    "title": "Babel Protection (glosarioa eta jargoi teknikoa)",
-                    "description": "Itzulpen-motorrak erabilera teknikoko zenbait termino edo izen propio desitxuratzea eragozten du. Bazterketa-zerrenda honetara hitzak gehitzen dituzunean, Babelek ohore egingo ditu jatorrizko forman mantenduz.",
-                    "note": "Bereziki gomendagarria aisialdirako jargon eta sareetarako:",
-                    "subitems": [
-                        "Standby / Stand-by",
-                        "Fader",
-                        "FOH (Etxe aurrealdea)",
-                        "Denbora-kodea/SMPTE",
-                        "Cue / Cuelist"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "messages_flow",
-            "title": "Mezuak eta Komunikazio Fluxua",
-            "items": [
-                {
-                    "title": "Transkriptutako mezuak jasotzea",
-                    "description": "Hauen artean aukeratu dezakezu:",
-                    "subitems": [
-                        "Erakutsi transkripzioa soilik.",
-                        "Erakutsi transkripzioa lotutako jatorrizko audioaren ondoan."
-                    ]
-                },
-                {
-                    "title": "Audio-Harrera",
-                    "description": "Ezarri sarrerako audioa nola jaso nahi duzun:",
-                    "subitems": [
-                        "Erreprodukzio automatikoa denbora errealean.",
-                        "Eskuzko erreprodukzioa eskatuta."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "hermes_tts",
-            "title": "Lineaz kanpoko ahotsaren sintesia (Hermes TTS)",
-            "items": [
-                {
-                    "title": "Lineaz kanpoko ahots-irakurketa",
-                    "description": "Sarrerako testu-mezuak edo itzulpenak automatikoki irakurtzeko aukera ematen du. Zure sistema eragilearen jatorrizko ahots-motorra (Web Speech API) soilik erabiltzen du, %100 lokalean, pribatuan eta Internet beharrik gabe. Bere diskoaren kontsumoa 0 byte da eta ia zero eragin du CPU/RAMean."
-                },
-                {
-                    "title": "Parametro erregulagarriak eta indibidualak",
-                    "description": "Konfiguratu funtzionalitateak zure hobespenen arabera zure gailuko Ezarpenak fitxatik:",
-                    "subitems": [
-                        "Testu-mezuak entzun: tokiko testuen irakurketa aktibatzeko. Desaktibatuta badago, zure hizkuntzako testuak isilik geratuko dira baina hala ere atzerriko itzulpenak entzun ahal izango dituzu.",
-                        "Atzerriko audio-iragazkia: beste hizkuntza batzuetako jatorrizko audioak blokeatzen ditu eta haien itzulpena soilik irakurtzen du.",
-                        "Iragazki aktiboekiko erreakzioa: sistemak erabiltzaileak bere txat-iragazkietan hautatutako kategoria edo kanalari dagozkion sarrerako mezuak soilik irakurtzen ditu (talde zehatz batek iragazten badu, talde horretakoak bakarrik irakurriko ditu; 'Guztiak' hautatzen bada, guztiak irakurriko ditu).",
-                        "Ahots-hautapena: Aukeratu zure sistema eragilean instalatutako ahots erabilgarrietatik, edo utzi Automatikoa aktibatuta aplikazioaren hizkuntza heredatzeko.",
-                        "Genero-iragazkia: dinamikoki iragazten ditu ahots bateragarriak haien tonuaren arabera (gizonezkoa, emakumezkoa edo guztiak).",
-                        "Irakurketa-abiadura: oso motel (0,5x) eta azkar (2,0x) artean doitzen du hizketa-erritmoa."
-                    ]
-                },
-                {
-                    "title": "Aurrizkiak eta Testuinguruaren Sarrerak",
-                    "description": "Narratzaileak automatikoki detektatzen du zein den mezu mota irakurketa naturalago baterako: testu-mezu hutsetarako \"[Izenak] idatzi zuen...\" esango du eta \"[Izenak] esan zuen...\" ahots-mezuen itzulpenak erreproduzitzerakoan."
-                },
-                {
-                    "title": "Elkarbizitzaren ezkutua (Hermes-Shield)",
-                    "description": "Mikrofonoarekin akoplamendu akustikoa saihesteko eta komunikazio arina ez oztopatzeko, Hermes TTS automatikoki isilduko da:",
-                    "subitems": [
-                        "Hitz egin botoia sakatzen ari zara edo mikrofonoarekin grabatzen ari zara.",
-                        "Erreprodukzio aktiboa dago txataren jatorrizko audio-ilaran.",
-                        "DOMeko edozein haur HTML5 multimedia erreproduzitzaile aktibo dago."
-                    ]
-                },
-                {
-                    "title": "Aurrizki lokalizatu adimendunak",
-                    "description": "Mezua irakurri aurretik, aurrizki dinamiko bat sintetizatzen da automatikoki hizkuntza aktiboaren arabera, igorleari buruzko testuingurua emateko (adibidez: 'Jorgek idatzi du: [mezua]' edo 'Jorgek idatzi du: [mezua]')."
-                },
-                {
-                    "title": "Tokiko Iraunkortasuna",
-                    "description": "Ezarpen guztiak modu independentean gordetzen dira erabiltzaile bakoitzarentzat terminaleko biltegiratze lokalean. Zure ahotsa edo abiadura aukerak aldatzeak ez die eragingo sare lokaleko beste erabiltzaileei edo arakatzaile berean saioa hasitako beste profil batzuei."
-                }
-            ]
-        },
-        {
-            "id": "visual_haptic_alerts",
-            "title": "Alerta bisualak eta haptikoak",
-            "items": [
-                {
-                    "title": "Alerta motak",
-                    "description": "Gailuaren gaitasunen arabera, honako hauek erabil ditzakezu:",
-                    "subitems": [
-                        "Ikus-alertak pantailan.",
-                        "Dardara.",
-                        "LED linterna."
-                    ]
-                },
-                {
-                    "title": "Alerta pertsonalizatzea",
-                    "description": "Alerta bakoitzak editore bisual bat dauka non:",
-                    "subitems": [
-                        "Konfiguratu parametroak.",
-                        "Aurreikusi emaitzak.",
-                        "Gorde ezarpen pertsonalizatuak."
-                    ]
-                },
-                {
-                    "title": "Ikusizko denbora-lerroa",
-                    "description": "Egin klik bikoitza mihisean kolorea eta opakutasuna bezalako propietateak kontrolatzen dituzten gako-fotogramak sortzeko eta kokatzeko."
-                },
-                {
-                    "title": "Kurbak arintzea",
-                    "description": "Definitu gako-fotogramen arteko trantsizioa erabiliz:",
-                    "subitems": [
-                        "Lineala edo Urratsa.",
-                        "Ease In / Ease Out / Ease In-Out.",
-                        "Kurba koadratikoak eta kubikoak."
-                    ]
-                },
-                {
-                    "title": "Haptic eta LED ereduak",
-                    "description": "Diseinatu bibrazio- eta argi-sekuentziak denbora-lerroan definitutako balioetan oinarrituta.",
-                    "subitems": [
-                        "0,5 baino balio handiagoa → Aktibatuta.",
-                        "0,5 baino balio txikiagoa → Desgaituta."
-                    ]
-                },
-                {
-                    "title": "Baimenak",
-                    "description": "Gailu batzuek kameraren baimena behar dute linterna atzitzeko.",
-                    "important": "Aplikazioak automatikoki eskatuko ditu baimen horiek beharrezkoa denean."
-                }
-            ]
-        },
-        {
-            "id": "triggers",
-            "title": "Abiarazleak (IN/OUT)",
-            "items": [
-                {
-                    "title": "Triggers OUT",
-                    "description": "Komandoak ekosistema teknikora automatikoki bidaltzeko aukera ematen dute mezu bat jasotzen denean edo mezu batek gako-hitz jakin batzuk dituenean."
-                },
-                {
-                    "title": "Aktibatzen du IN",
-                    "description": "Kanpo seinaleak jasotzea ahalbidetzen dute sistemaren barruan ekintza automatikoak egiteko.",
-                    "subitems": [
-                        "Sor ditzakete:",
-                        "Mezuak edo alertak.",
-                        "Audioak.",
-                        "Irudiak.",
-                        "Fluxu automatizatu konplexuak."
-                    ]
-                },
-                {
-                    "title": "Triggers IN injekzioa",
-                    "description": "Hautatu sortutako edukia iragazki zehatz batera edo erabilgarri dauden iragazki guztietara bidaliko den."
-                },
-                {
-                    "title": "Onartutako protokoloak",
-                    "description": "Jatorrizko integrazioa hauekin:",
-                    "subitems": [
-                        "OSC (Open Sound Control).",
-                        "MIDI.",
-                        "sACN.",
-                        "SMPTE Denbora-kodea."
-                    ]
-                },
-                {
-                    "title": "Gako-fotogramen kurbak",
-                    "description": "Komando baten bilakaera denboran zehar modulatzeko aukera ematen dute gako-fotogramak eta interpolazio-kurbak erabiliz. Denbora errealeko aurrebista sistema barne hartzen du."
-                },
-                {
-                    "title": "Aktibatu Guztiak",
-                    "description": "Aktibatu edo desaktibatu abiarazle guztiak aldi berean goiko ezkerreko botoia erabiliz."
-                },
-                {
-                    "title": "Bilaketa-iragazkia",
-                    "description": "Bilatu azkar abiarazle zehatzak izenaren arabera bilatuz."
-                },
-                {
-                    "_tag": "triggers_timecode",
-                    "title": "SMPTE Denbora-Kode Anitzeko Tarteak",
-                    "description": "SMPTE Timecode protokoloa duten Triggers IN-etan, ordu tarte independente anitz konfigura daitezke.",
-                    "subitems": [
-                        "Denbora leiho anitz gehitzea ahalbidetzen du (adib: 01:00:00:00 - 01:15:00:00 eta 02:00:00:00 - 02:30:00:00).",
-                        "Triggerr-a automatikoki exekutatuko da sarrerako seinalea zehaztutako tarteetako batean badago.",
-                        "Tarteak gehitzeko (+), berrantolatzeko eta ezabatzeko kontrol dedikatuak ditu HH:MM:SS:FF formatuarekin."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "interface_customization",
-            "title": "Interfazea eta Pertsonalizazioa",
-            "items": [
-                {
-                    "title": "Ikusizko modua",
-                    "description": "Aukeratu argi modua eta modu iluna artean zure hobespenen arabera."
-                },
-                {
-                    "title": "Paleta pertsonalizatua",
-                    "description": "Pertsonalizatu aplikazioaren interfazearen kolore nagusiak, atzeko koloreak eta azentu bisualak."
-                },
-                {
-                    "title": "Lehenetsiak leheneratu",
-                    "description": "Aplikazioaren jatorrizko ezarpen bisualak eta fabrikako paleta berreskuratzen ditu."
-                },
-                {
-                    "title": "Gorde ezarpenak",
-                    "description": "Etorkizuneko saioetarako egindako aldaketak beti gordetzen ditu."
-                },
-                {
-                    "title": "Txataren pertsonalizazioa",
-                    "description": "Testuaren tamaina, letra-tipoaren pisua eta pantailako mezuen irakurgarritasun orokorra doitzen ditu."
-                }
-            ]
-        },
-        {
-            "id": "network_best_practices",
-            "title": "Sare eta Konfigurazio Praktika Egokiak",
-            "items": [
-                {
-                    "title": "Hedapen-eskema (urratsez urrats)",
-                    "description": "Azpiegitura hau behar bezala konfiguratzeko, jarraitu profesionalen jarraibide hauek:",
-                    "subitems": [
-                        "1. Zerbitzari Nagusia exekutatzen: Hasi Talk-me zerbitzaria ordenagailu nagusian (Master). Honek lizentzia aktiboa izan behar du.",
-                        "2. Tokiko IPa lortzea: zerbitzariaren IP helbide pribatua ezagutu (adib.: 192.168.1.150).",
-                        "3. Kable bidezko Bezeroaren Konexioa (Ethernet): Konektatu laguntza-ordenagailuak sareko kable bat erabiliz (RJ45 Cat6 gomendatua) bideratzaile edo etengailura. Sar zaitez arakatzailea irekiz https://192.168.1.150:3000 helbidean.",
-                        "4. Bezeroak Wi-Fi bidez konektatzea (Mugikorrak / Tabletak): Ziurtatu telefonoak eta tabletak bideratzaile berak emandako Wi-Fi sarera konektatuta daudela. Ireki URL bera zure gailu mugikorreko arakatzailean."
-                    ]
-                },
-                {
-                    "title": "Arakatzailearen segurtasun-baldintzak (kamera eta mikrofonoa)",
-                    "description": "Arakatzaile modernoek gailu sentikorretarako sarbidea mugatzen dute, hala nola kamerak eta mikrofonoak, konexioa segurua ez denean.",
-                    "important": "Hori dela eta, sistemarako sarbidea HTTPS erabiliz egin behar da, instalazioan zerbitzariak sortutako SSL lokal auto-sinatua onartuz."
-                },
-                {
-                    "title": "Burujabetza osoa eta Hodeiaren Independentzia",
-                    "description": "Talk-me zure sare-azpiegituran %100 autonomiaz funtzionatzeko diseinatu da. Instalatu ondoren, ez du Interneterako konexio iraunkorrik edo hirugarrenen APIrik behar. WAN (Internet) sarbidea mozten bada, campuseko barneko komunikazioak, itzulpenak, tokiko transkripzioak eta alertak etenik gabe funtzionatzen jarraituko dute."
-                }
-            ]
-        },
-        {
-            "id": "data_sovereignty",
-            "title": "Datuen burujabetza eta pribatutasuna",
-            "items": [
-                {
-                    "title": "Zure kontrolpean dagoen azpiegitura",
-                    "description": "Talk-me-k sortutako informazio guztia zure lan-ingurunean geratzen da. Honek barne hartzen ditu:",
-                    "subitems": [
-                        "Datu-basea.",
-                        "Komunikazioen historia.",
-                        "Ezarpenak.",
-                        "Adimen artifizialaren ereduak.",
-                        "Lotutako fitxategiak eta baliabideak."
-                    ]
-                },
-                {
-                    "title": "Tokiko Prozesamendua",
-                    "description": "Analisi, transkripzio eta itzulpen prozesuak zuzenean zure hardwarean exekutatzen dira onartzen diren tokiko ereduak erabiltzen dituzunean.",
-                    "extra": "Informazioa ez da kanpoko zerbitzarietara bidaltzen prozesatzeko."
-                },
-                {
-                    "title": "Pribatutasuna eta segurtasuna",
-                    "description": "Talk-me burujabetza teknologikoaren eta datuen erabateko kontrol eredu baten arabera diseinatu da.",
-                    "extra": "Elkarrizketak, ezarpenak eta baliabideak zure azpiegituran soilik ostatatuta geratzen dira, hauen kontrol osoa mantenduz:",
-                    "subitems": [
-                        "Sistemaren erabilgarritasuna.",
-                        "Informazioaren pribatutasuna.",
-                        "Datuen biltegiratzea.",
-                        "Sarbide eta segurtasun kudeaketa."
-                    ]
-                }
-            ]
+          "title": "Sarrera Maila",
+          "description": "Hautatutako audio-iturriaren seinale-maila denbora errealean bistaratzen du VU neurgailu dinamiko bat erabiliz.",
+          "note": null
         }
-    ],
-    "network_diagram": {
-        "internet": "INTERNET",
-        "optional": "AUKERAKOA",
-        "ethernet_cable": "ETHERNET KABLE RJ45",
-        "ethernet_red": "Ethernet Sarea / LAN kablea",
-        "wifi_label": "WIFI/WLAN",
-        "master_server": "ZERBITZI MAIUSUA",
-        "licensed": "LIZENTZIATUA",
-        "router": "BIDETZAILEA",
-        "device1": "1. gailua: PC nagusia (kablea)",
-        "device2": "2. gailua: ordenagailuaren euskarria (kablea)",
-        "device3": "3. gailua: ordenagailu eramangarria (Wi-Fi)",
-        "device4": "4. gailua: tableta (Wi-Fi)",
-        "device5": "5. gailua: Telefono mugikorra (Wi-Fi)",
-        "https_url": "https://192.168.1.150:3000"
+      ]
     },
-    "common": {
-        "important": "Garrantzitsua"
+    {
+      "id": "users",
+      "title": "Erabiltzaileak",
+      "items": [
+        {
+          "title": "Konektatutako Erabiltzaileak",
+          "description": "Erabiltzaile aktiboen, azpierabiltzaileen eta esleitutako kategorien zerrenda bistaratzen du.",
+          "subitems": [
+            "Zuk sortutako azpierabiltzaileak hauek izan daitezke:",
+            "Editatua.",
+            "Ezabatua.",
+            "Audioa noiz transmititzen ari diren adierazten duen VU neurgailu indibidual batek kontrolatzen du."
+          ]
+        },
+        {
+          "title": "Sortu azpierabiltzaileak (+)",
+          "description": "Barne bideratze independentea duten erabiltzaile birtualak sortzeko aukera ematen du.",
+          "subitems": [
+            "Azpi-erabiltzaile bakoitza hauekin konfigura daiteke:",
+            "Izena.",
+            "Kategoria.",
+            "Transkripzio hizkuntza.",
+            "Audio iturria.",
+            "Sarrera kanala.",
+            "Aktibatzeko atalasea."
+          ],
+          "extra": "Audio-mailak konfiguratutako atalasea gainditzen duenean, transkripzioa eta mezuen bidalketa automatikoki egiten dira.",
+          "important": "Ezin da aldi berean esleitu erabiltzaile nagusiak erabiltzen duen audio-iturri eta kanal bera. Gatazkaren kasuan, iturria automatikoki desgaituko da transmisio bikoiztuak saihesteko."
+        }
+      ]
     },
-    "guide_version": "60.2.0"
+    {
+      "id": "chat_transmission",
+      "title": "Txata eta Igorpen Ezaugarriak",
+      "items": [
+        {
+          "title": "Hitz egin botoia",
+          "description": "Zuzeneko audioa erreproduzitzeko aukera ematen dizu. Testua idazteko eremuan idazten duzunean, botoia automatikoki bidaltzeko mezua ikono bihurtzen da."
+        },
+        {
+          "title": "Argazkiak bidaltzea",
+          "description": "Gailuaren atzeko kamerarekin irudiak ateratzeko edo galeriako argazkiak hautatzeko aukera ematen dizu txatetara berehala bidaltzeko."
+        },
+        {
+          "title": "Keinu bidezko nabigazioa (pasatu)",
+          "description": "Irristatu eskuinera alboko panela erakusteko eta ezkerrera ezkutatzeko.",
+          "note": "Ekintza hau nabigazio-botoiak edo aplikazioaren logotipoa erabiltzearen baliokidea da."
+        },
+        {
+          "title": "Iragazkiak",
+          "description": "Jaso nahi dituzun mezuen eta abisuen kategoria hautatzeko aukera ematen du.",
+          "subitems": [
+            "Ahal:",
+            "Erakutsi kategoria guztiak.",
+            "Hautatu kategoria bakarra.",
+            "Konbinatu hainbat kategoria."
+          ],
+          "note": "Erabiltzaile bakoitzak bere iragazkiak pertsonaliza ditzake modu independentean."
+        },
+        {
+          "title": "IP eta zerbitzariaren egoera",
+          "description": "Zerbitzariaren IP helbidea eta egungo egoera erakusten ditu:",
+          "statuses": {
+            "green": "Konektatua eta operatiboa.",
+            "red": "Deskonektatuta edo komunikaziorik gabe."
+          }
+        },
+        {
+          "title": "Mikrofonoaren adierazlea",
+          "description": "Mikrofonoaren uneko egoera erakusten du:",
+          "subitems": [
+            "Isildua.",
+            "Aktiboa.",
+            "Audioa transmititzen."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio_hardware",
+      "title": "Audio eta Hardwarearen konfigurazioa",
+      "items": [
+        {
+          "title": "Sarrera eta irteera hautaketa",
+          "description": "Audioa harrapatzeko eta erreproduzitzeko gailuak modu independentean esleitzeko aukera ematen dizu.",
+          "subitems": [
+            "Funtzionamendu zuzena ziurtatzeko:",
+            "Egiaztatu mikrofonorako eta bozgorailuetarako sarbide-baimenak ematen direla.",
+            "Ezarri gailuak sistema eragilean lehenetsi gisa beharrezkoa denean.",
+            "Instalatu zure hardwarerako kontrolatzaile ofizialak fabrikatzaileak hala eskatzen badu."
+          ],
+          "compatible": "Bateragarria:",
+          "compatible_list": [
+            "Soinu-txartel fisikoak.",
+            "USB interfazeak.",
+            "Bluetooth gailuak.",
+            "Audio kanal birtualak.",
+            "Bideratze sistema profesionalak."
+          ]
+        },
+        {
+          "title": "Kanal Granularrak",
+          "description": "Audio-seinaleak kanal fisiko zehatzetara bideratzeko aukera ematen du (1. kanala, 2. kanala, etab.) hauekin integratzeko:",
+          "subitems": [
+            "Nahasketa mahaiak.",
+            "Bideratzaile birtualak.",
+            "Matrize-sistemak.",
+            "Audio azpiegitura profesionalak."
+          ]
+        },
+        {
+          "title": "Eguneratu Hardwarea",
+          "description": "Konektatutako audio-gailuen detekzio dinamikoa egiten du aplikazioa berrabiarazi beharrik gabe."
+        },
+        {
+          "title": "Aurreko Konexioa eta Baimenak",
+          "description": "Edozein gailu mota konektatzea gomendatzen da (Bluetooth entzungailuak/mikrofonoak edo kanpoko soinu-txartelak) **zerbitzaria edo aplikazioa hasi aurretik**. Ziurtatu hirugarrenen hardwarea eta softwarea zure sistema eragilean konfiguratuta daudela eta web arakatzailean beharrezko baimenak eman dituzula.",
+          "important": "Gailu bat saio erdian konektatzeko, baliteke fitxa freskatzea edo \"Berritu hardwarea\" sakatzea. Ziurtatu mikrofonoa behar bezala onartzen dela arakatzailearen baimenen leihoan."
+        }
+      ]
+    },
+    {
+      "id": "language_transcription",
+      "title": "Hizkuntza, Transkripzioa eta Hiztegia IA",
+      "items": [
+        {
+          "title": "Interfaze Hizkuntza",
+          "description": "Aplikazio-hizkuntza eta transkripzio-motorrak erabiltzen duen hizkuntza nagusia definitzen ditu."
+        },
+        {
+          "title": "Transkripzio Fonetikoa Hiztegia",
+          "description": "Termino, izen edo marka zehatzak automatikoki zuzentzeko aukera ematen du.",
+          "subitems": [
+            "Konfigurazio-parametroak:",
+            "Honela ulertuta: AIak fonetikoki aitortutako testua.",
+            "Zuzendu: Txatean sartu beharreko azken testua."
+          ],
+          "examples": {
+            "label": "Mapeo Fonetikoaren adibideak",
+            "pairs": [
+              [
+                "telefono bat dago",
+                "Iphone"
+              ],
+              [
+                "miquel",
+                "Mikel"
+              ],
+              [
+                "esan mer",
+                "Dimmer"
+              ]
+            ]
+          }
+        },
+        {
+          "_tag": "elastic_engines_asr",
+          "title": "Transkripzio Motor Elastikoak Hizkuntzaren Arabera",
+          "description": "Ahots-ezagutzak aretoan aktibo dauden hizkuntzen ereduak soilik kargatzen ditu ordenagailuaren memoria ez gainkargatzeko.",
+          "subitems": [
+            "Aurrez instalatutako ereduak: Latentzia ultra-baxuko gaztelania eta ingeles ereduak barne hartzen ditu.",
+            "Hedapen Malgua: Aplikazioa berriro instalatu gabe hizkuntza-eredu berriak dinamikoki kargatzen ditu.",
+            "RAM Kontsumo Adimentsua: Erabiltzen ez diren ereduek ez dute memoriarik hartzen hizkuntza horretako partaiderik ez badago."
+          ]
+        },
+        {
+          "_tag": "trans_number",
+          "title": "Ahozko Zenbakiak Zifratara Bihurtzea",
+          "description": "AItzari zenbakizko adierazpenak zuzenean zifra gisa transkribatzea ahalbidetzen dio (adibidez: '12' 'hamabi' beharrean, '-6 dB' 'gutxiago sei dezibelio' beharrean).",
+          "note": "Gomendagarria kanal, seinale eta maila teknikoen irakurketa azkartzeko."
+        }
+      ]
+    },
+    {
+      "id": "babel_translation",
+      "title": "AI itzulpena (Babel Engine)",
+      "items": [
+        {
+          "title": "Babel Itzulpen Motorra",
+          "description": "Sistemak Babel integratzen du, zerbitzari nagusian lokalean %100 exekutatzen den itzulpen automatiko neuronal optimizatua (NMT). Itzuli denbora errealean beste hizkuntza batzuetan jasotako mezuak zure interfazearen hizkuntzara, datuak Internetera bidali gabe edo kanpoko APIen arabera."
+        },
+        {
+          "_tag": "elastic_engines_babel",
+          "title": "Motor Elastikoen Arkitektura: Itzulpen Neuronal Modularra",
+          "description": "Talk.me-k arkitektura modular elastikoa erabiltzen du, aplikazioa arin mantenduz (~200 MB) eta beharrezko inferentzia-motorrak soilik deskargatuz.",
+          "subitems": [
+            "Eskariaren araberako deskarga: MADLAD motor neuronala (~2,75 GB) klik bakarrarekin deskargatzen da eredu-karpetan.",
+            "Modu Arina (Desaktibatu): Ekoizpena hizkuntza bakarrean bada, sakatu 'Desaktibatu' CPU eta RAM kargaゼロan mantentzeko.",
+            "Kudeaketa malgua: Ereduak edozein unetan berraktibatu, deskargatu edo ezabatu ditzakezu Ezarpenetatik.",
+            "Lineaz kanpoko burujabetza (Air-Gapped): Behin deskargatuta, ez du internetik eskatzen eta %100 lokalean dabil."
+          ],
+          "important": "Estaldurarik gabeko bira edo aretoetan, aldez aurretik deskargatu motor elastikoak konexiorik gabe seguru aritzeko."
+        },
+        {
+          "title": "Erakutsi jatorrizko mezua",
+          "description": "Jatorrizko testua testu itzuliaren azpian lausotutako formatu txiki batean bistaratzeko aukera ematen du, behar izanez gero zuzeneko egiaztapena erraztuz."
+        },
+        {
+          "title": "Sarrerako hizkuntza-iragazkia",
+          "description": "Konfiguratu selektiboki zein hizkuntzak itzuli behar diren automatikoki. Aukeratu gabeko hizkuntzak jatorrizko forma gordinean bistaratuko dira."
+        },
+        {
+          "title": "Babel Protection (glosarioa eta jargoi teknikoa)",
+          "description": "Itzulpen-motorrak erabilera teknikoko zenbait termino edo izen propio desitxuratzea eragozten du. Bazterketa-zerrenda honetara hitzak gehitzen dituzunean, Babelek ohore egingo ditu jatorrizko forman mantenduz.",
+          "note": "Bereziki gomendagarria aisialdirako jargon eta sareetarako:",
+          "subitems": [
+            "Standby / Stand-by",
+            "Fader",
+            "FOH (Etxe aurrealdea)",
+            "Denbora-kodea/SMPTE",
+            "Cue / Cuelist"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "messages_flow",
+      "title": "Mezuak eta Komunikazio Fluxua",
+      "items": [
+        {
+          "title": "Transkriptutako mezuak jasotzea",
+          "description": "Hauen artean aukeratu dezakezu:",
+          "subitems": [
+            "Erakutsi transkripzioa soilik.",
+            "Erakutsi transkripzioa lotutako jatorrizko audioaren ondoan."
+          ]
+        },
+        {
+          "title": "Audio-Harrera",
+          "description": "Ezarri sarrerako audioa nola jaso nahi duzun:",
+          "subitems": [
+            "Erreprodukzio automatikoa denbora errealean.",
+            "Eskuzko erreprodukzioa eskatuta."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hermes_tts",
+      "title": "Lineaz kanpoko ahotsaren sintesia (Hermes TTS)",
+      "items": [
+        {
+          "title": "Lineaz kanpoko ahots-irakurketa",
+          "description": "Sarrerako testu-mezuak edo itzulpenak automatikoki irakurtzeko aukera ematen du. Zure sistema eragilearen jatorrizko ahots-motorra (Web Speech API) soilik erabiltzen du, %100 lokalean, pribatuan eta Internet beharrik gabe. Bere diskoaren kontsumoa 0 byte da eta ia zero eragin du CPU/RAMean."
+        },
+        {
+          "title": "Parametro erregulagarriak eta indibidualak",
+          "description": "Konfiguratu funtzionalitateak zure hobespenen arabera zure gailuko Ezarpenak fitxatik:",
+          "subitems": [
+            "Testu-mezuak entzun: tokiko testuen irakurketa aktibatzeko. Desaktibatuta badago, zure hizkuntzako testuak isilik geratuko dira baina hala ere atzerriko itzulpenak entzun ahal izango dituzu.",
+            "Atzerriko audio-iragazkia: beste hizkuntza batzuetako jatorrizko audioak blokeatzen ditu eta haien itzulpena soilik irakurtzen du.",
+            "Iragazki aktiboekiko erreakzioa: sistemak erabiltzaileak bere txat-iragazkietan hautatutako kategoria edo kanalari dagozkion sarrerako mezuak soilik irakurtzen ditu (talde zehatz batek iragazten badu, talde horretakoak bakarrik irakurriko ditu; 'Guztiak' hautatzen bada, guztiak irakurriko ditu).",
+            "Ahots-hautapena: Aukeratu zure sistema eragilean instalatutako ahots erabilgarrietatik, edo utzi Automatikoa aktibatuta aplikazioaren hizkuntza heredatzeko.",
+            "Genero-iragazkia: dinamikoki iragazten ditu ahots bateragarriak haien tonuaren arabera (gizonezkoa, emakumezkoa edo guztiak).",
+            "Irakurketa-abiadura: oso motel (0,5x) eta azkar (2,0x) artean doitzen du hizketa-erritmoa."
+          ]
+        },
+        {
+          "title": "Aurrizkiak eta Testuinguruaren Sarrerak",
+          "description": "Narratzaileak automatikoki detektatzen du zein den mezu mota irakurketa naturalago baterako: testu-mezu hutsetarako \"[Izenak] idatzi zuen...\" esango du eta \"[Izenak] esan zuen...\" ahots-mezuen itzulpenak erreproduzitzerakoan."
+        },
+        {
+          "title": "Elkarbizitzaren ezkutua (Hermes-Shield)",
+          "description": "Mikrofonoarekin akoplamendu akustikoa saihesteko eta komunikazio arina ez oztopatzeko, Hermes TTS automatikoki isilduko da:",
+          "subitems": [
+            "Hitz egin botoia sakatzen ari zara edo mikrofonoarekin grabatzen ari zara.",
+            "Erreprodukzio aktiboa dago txataren jatorrizko audio-ilaran.",
+            "DOMeko edozein haur HTML5 multimedia erreproduzitzaile aktibo dago."
+          ]
+        },
+        {
+          "title": "Aurrizki lokalizatu adimendunak",
+          "description": "Mezua irakurri aurretik, aurrizki dinamiko bat sintetizatzen da automatikoki hizkuntza aktiboaren arabera, igorleari buruzko testuingurua emateko (adibidez: 'Jorgek idatzi du: [mezua]' edo 'Jorgek idatzi du: [mezua]')."
+        },
+        {
+          "title": "Tokiko Iraunkortasuna",
+          "description": "Ezarpen guztiak modu independentean gordetzen dira erabiltzaile bakoitzarentzat terminaleko biltegiratze lokalean. Zure ahotsa edo abiadura aukerak aldatzeak ez die eragingo sare lokaleko beste erabiltzaileei edo arakatzaile berean saioa hasitako beste profil batzuei."
+        }
+      ]
+    },
+    {
+      "id": "visual_haptic_alerts",
+      "title": "Alerta bisualak eta haptikoak",
+      "items": [
+        {
+          "title": "Alerta motak",
+          "description": "Gailuaren gaitasunen arabera, honako hauek erabil ditzakezu:",
+          "subitems": [
+            "Ikus-alertak pantailan.",
+            "Dardara.",
+            "LED linterna."
+          ]
+        },
+        {
+          "title": "Alerta pertsonalizatzea",
+          "description": "Alerta bakoitzak editore bisual bat dauka non:",
+          "subitems": [
+            "Konfiguratu parametroak.",
+            "Aurreikusi emaitzak.",
+            "Gorde ezarpen pertsonalizatuak."
+          ]
+        },
+        {
+          "title": "Ikusizko denbora-lerroa",
+          "description": "Egin klik bikoitza mihisean kolorea eta opakutasuna bezalako propietateak kontrolatzen dituzten gako-fotogramak sortzeko eta kokatzeko."
+        },
+        {
+          "title": "Kurbak arintzea",
+          "description": "Definitu gako-fotogramen arteko trantsizioa erabiliz:",
+          "subitems": [
+            "Lineala edo Urratsa.",
+            "Ease In / Ease Out / Ease In-Out.",
+            "Kurba koadratikoak eta kubikoak."
+          ]
+        },
+        {
+          "title": "Haptic eta LED ereduak",
+          "description": "Diseinatu bibrazio- eta argi-sekuentziak denbora-lerroan definitutako balioetan oinarrituta.",
+          "subitems": [
+            "0,5 baino balio handiagoa → Aktibatuta.",
+            "0,5 baino balio txikiagoa → Desgaituta."
+          ]
+        },
+        {
+          "title": "Baimenak",
+          "description": "Gailu batzuek kameraren baimena behar dute linterna atzitzeko.",
+          "important": "Aplikazioak automatikoki eskatuko ditu baimen horiek beharrezkoa denean."
+        }
+      ]
+    },
+    {
+      "id": "triggers",
+      "title": "Abiarazleak (IN/OUT)",
+      "items": [
+        {
+          "title": "Triggers OUT",
+          "description": "Komandoak ekosistema teknikora automatikoki bidaltzeko aukera ematen dute mezu bat jasotzen denean edo mezu batek gako-hitz jakin batzuk dituenean."
+        },
+        {
+          "title": "Aktibatzen du IN",
+          "description": "Kanpo seinaleak jasotzea ahalbidetzen dute sistemaren barruan ekintza automatikoak egiteko.",
+          "subitems": [
+            "Sor ditzakete:",
+            "Mezuak edo alertak.",
+            "Audioak.",
+            "Irudiak.",
+            "Fluxu automatizatu konplexuak."
+          ]
+        },
+        {
+          "title": "Triggers IN injekzioa",
+          "description": "Hautatu sortutako edukia iragazki zehatz batera edo erabilgarri dauden iragazki guztietara bidaliko den."
+        },
+        {
+          "title": "Onartutako protokoloak",
+          "description": "Jatorrizko integrazioa hauekin:",
+          "subitems": [
+            "OSC (Open Sound Control).",
+            "MIDI.",
+            "sACN.",
+            "SMPTE Denbora-kodea."
+          ]
+        },
+        {
+          "title": "Gako-fotogramen kurbak",
+          "description": "Komando baten bilakaera denboran zehar modulatzeko aukera ematen dute gako-fotogramak eta interpolazio-kurbak erabiliz. Denbora errealeko aurrebista sistema barne hartzen du."
+        },
+        {
+          "title": "Aktibatu Guztiak",
+          "description": "Aktibatu edo desaktibatu abiarazle guztiak aldi berean goiko ezkerreko botoia erabiliz."
+        },
+        {
+          "title": "Bilaketa-iragazkia",
+          "description": "Bilatu azkar abiarazle zehatzak izenaren arabera bilatuz."
+        },
+        {
+          "_tag": "triggers_timecode",
+          "title": "SMPTE Denbora-Kode Anitzeko Tarteak",
+          "description": "SMPTE Timecode protokoloa duten Triggers IN-etan, ordu tarte independente anitz konfigura daitezke.",
+          "subitems": [
+            "Denbora leiho anitz gehitzea ahalbidetzen du (adib: 01:00:00:00 - 01:15:00:00 eta 02:00:00:00 - 02:30:00:00).",
+            "Triggerr-a automatikoki exekutatuko da sarrerako seinalea zehaztutako tarteetako batean badago.",
+            "Tarteak gehitzeko (+), berrantolatzeko eta ezabatzeko kontrol dedikatuak ditu HH:MM:SS:FF formatuarekin."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interface_customization",
+      "title": "Interfazea eta Pertsonalizazioa",
+      "items": [
+        {
+          "title": "Ikusizko modua",
+          "description": "Aukeratu argi modua eta modu iluna artean zure hobespenen arabera."
+        },
+        {
+          "title": "Paleta pertsonalizatua",
+          "description": "Pertsonalizatu aplikazioaren interfazearen kolore nagusiak, atzeko koloreak eta azentu bisualak."
+        },
+        {
+          "title": "Lehenetsiak leheneratu",
+          "description": "Aplikazioaren jatorrizko ezarpen bisualak eta fabrikako paleta berreskuratzen ditu."
+        },
+        {
+          "title": "Gorde ezarpenak",
+          "description": "Etorkizuneko saioetarako egindako aldaketak beti gordetzen ditu."
+        },
+        {
+          "title": "Txataren pertsonalizazioa",
+          "description": "Testuaren tamaina, letra-tipoaren pisua eta pantailako mezuen irakurgarritasun orokorra doitzen ditu."
+        }
+      ]
+    },
+    {
+      "id": "network_best_practices",
+      "title": "Sare eta Konfigurazio Praktika Egokiak",
+      "items": [
+        {
+          "title": "Hedapen-eskema (urratsez urrats)",
+          "description": "Azpiegitura hau behar bezala konfiguratzeko, jarraitu profesionalen jarraibide hauek:",
+          "subitems": [
+            "1. Zerbitzari Nagusia exekutatzen: Hasi Talk-me zerbitzaria ordenagailu nagusian (Master). Honek lizentzia aktiboa izan behar du.",
+            "2. Tokiko IPa lortzea: zerbitzariaren IP helbide pribatua ezagutu (adib.: 192.168.1.150).",
+            "3. Kable bidezko Bezeroaren Konexioa (Ethernet): Konektatu laguntza-ordenagailuak sareko kable bat erabiliz (RJ45 Cat6 gomendatua) bideratzaile edo etengailura. Sar zaitez arakatzailea irekiz https://192.168.1.150:3000 helbidean.",
+            "4. Bezeroak Wi-Fi bidez konektatzea (Mugikorrak / Tabletak): Ziurtatu telefonoak eta tabletak bideratzaile berak emandako Wi-Fi sarera konektatuta daudela. Ireki URL bera zure gailu mugikorreko arakatzailean."
+          ]
+        },
+        {
+          "title": "Arakatzailearen segurtasun-baldintzak (kamera eta mikrofonoa)",
+          "description": "Arakatzaile modernoek gailu sentikorretarako sarbidea mugatzen dute, hala nola kamerak eta mikrofonoak, konexioa segurua ez denean.",
+          "important": "Hori dela eta, sistemarako sarbidea HTTPS erabiliz egin behar da, instalazioan zerbitzariak sortutako SSL lokal auto-sinatua onartuz."
+        },
+        {
+          "title": "Burujabetza osoa eta Hodeiaren Independentzia",
+          "description": "Talk-me zure sare-azpiegituran %100 autonomiaz funtzionatzeko diseinatu da. Instalatu ondoren, ez du Interneterako konexio iraunkorrik edo hirugarrenen APIrik behar. WAN (Internet) sarbidea mozten bada, campuseko barneko komunikazioak, itzulpenak, tokiko transkripzioak eta alertak etenik gabe funtzionatzen jarraituko dute."
+        }
+      ]
+    },
+    {
+      "id": "data_sovereignty",
+      "title": "Datuen burujabetza eta pribatutasuna",
+      "items": [
+        {
+          "title": "Zure kontrolpean dagoen azpiegitura",
+          "description": "Talk-me-k sortutako informazio guztia zure lan-ingurunean geratzen da. Honek barne hartzen ditu:",
+          "subitems": [
+            "Datu-basea.",
+            "Komunikazioen historia.",
+            "Ezarpenak.",
+            "Adimen artifizialaren ereduak.",
+            "Lotutako fitxategiak eta baliabideak."
+          ]
+        },
+        {
+          "title": "Tokiko Prozesamendua",
+          "description": "Analisi, transkripzio eta itzulpen prozesuak zuzenean zure hardwarean exekutatzen dira onartzen diren tokiko ereduak erabiltzen dituzunean.",
+          "extra": "Informazioa ez da kanpoko zerbitzarietara bidaltzen prozesatzeko."
+        },
+        {
+          "title": "Pribatutasuna eta segurtasuna",
+          "description": "Talk-me burujabetza teknologikoaren eta datuen kontrol osoaren ereduan diseinatu da, hau bermatuz:",
+          "extra": "Zure elkarrizketak, ezarpenak eta baliabideak soilik zure azpiegitura lokalean geratzen dira erabateko burujabetzapean.",
+          "subitems": [
+            "Sistemaren erabilgarritasuna.",
+            "Informazioaren pribatutasuna.",
+            "Datuen biltegiratzea.",
+            "Sarbide eta segurtasun kudeaketa."
+          ]
+        }
+      ]
+    }
+  ],
+  "network_diagram": {
+    "internet": "INTERNET",
+    "optional": "AUKERAKOA",
+    "ethernet_cable": "ETHERNET KABLE RJ45",
+    "ethernet_red": "Ethernet Sarea / LAN kablea",
+    "wifi_label": "WIFI/WLAN",
+    "master_server": "ZERBITZI MAIUSUA",
+    "licensed": "LIZENTZIATUA",
+    "router": "BIDETZAILEA",
+    "device1": "1. gailua: PC nagusia (kablea)",
+    "device2": "2. gailua: ordenagailuaren euskarria (kablea)",
+    "device3": "3. gailua: ordenagailu eramangarria (Wi-Fi)",
+    "device4": "4. gailua: tableta (Wi-Fi)",
+    "device5": "5. gailua: Telefono mugikorra (Wi-Fi)",
+    "https_url": "https://192.168.1.150:3000"
+  },
+  "common": {
+    "important": "Garrantzitsua"
+  },
+  "guide_version": "60.2.0"
 }

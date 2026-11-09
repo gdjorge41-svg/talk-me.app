@@ -105,6 +105,63 @@
             }
         }
 
+        .anim-party-stage {
+            overflow: visible;
+            filter: drop-shadow(0 6px 18px rgba(123, 104, 238, 0.45));
+        }
+
+        .party-popper-gun {
+            transform-origin: 8px 25px;
+            animation: gunOneShot 1.1s cubic-bezier(0.18, 0.9, 0.32, 1.2) forwards;
+        }
+
+        @keyframes gunOneShot {
+            0% { transform: scale(0.92) rotate(-7deg); }
+            30% { transform: scale(1.1) rotate(3.5deg); }
+            60% { transform: scale(0.98) rotate(-1deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .streamer-purple {
+            transform-origin: 16.5px 14px;
+            animation: streamerEmeraldFlow 2.6s ease-in-out infinite;
+        }
+
+        @keyframes streamerEmeraldFlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(1.2px, -2.2px) rotate(-4deg) scale(1.06); }
+        }
+
+        .streamer-orange {
+            transform-origin: 19.5px 16px;
+            animation: streamerOrangeFlow 2.8s ease-in-out infinite 0.25s;
+        }
+
+        @keyframes streamerOrangeFlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(2.2px, -1.2px) rotate(4.5deg) scale(1.06); }
+        }
+
+        .confetti-layer-1 {
+            transform-origin: 18px 14px;
+            animation: confettiFloatA 2.8s ease-in-out infinite;
+        }
+
+        .confetti-layer-2 {
+            transform-origin: 20px 16px;
+            animation: confettiFloatB 3.1s ease-in-out infinite 0.35s;
+        }
+
+        @keyframes confettiFloatA {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.92; }
+            50% { transform: translate(1.6px, -2px) scale(1.08); opacity: 1; }
+        }
+
+        @keyframes confettiFloatB {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.92; }
+            50% { transform: translate(2px, -1.4px) scale(1.08); opacity: 1; }
+        }
+
         h1 {
             font-family: 'Outfit', sans-serif;
             font-size: 24px;
@@ -162,7 +219,51 @@
 <body>
     <div class="container">
         <div class="card">
-            <div class="icon-wrapper">🎉</div>
+            <div class="icon-wrapper">
+                <svg class="anim-party-stage" viewBox="0 0 36 36" width="68" height="68" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+                    <defs>
+                        <linearGradient id="tmConeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8B78FF" />
+                            <stop offset="100%" stop-color="#5E4AE3" />
+                        </linearGradient>
+                        <linearGradient id="tmOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FF8552" />
+                            <stop offset="100%" stop-color="#FF5722" />
+                        </linearGradient>
+                        <clipPath id="tmConeClip">
+                            <path d="M4.2 29.8 C3.3 30.2 2.8 29.7 3.2 28.8 L12.4 9.6 L23.4 20.6 Z" />
+                        </clipPath>
+                    </defs>
+                    <g class="party-popper-gun">
+                        <g clip-path="url(#tmConeClip)">
+                            <path d="M2 31 L12.4 9.6 L23.4 20.6 Z" fill="url(#tmConeGrad)" />
+                            <path d="M5.5 23.5 L15.5 27.5 L13.2 31.5 L3.2 27.5 Z" fill="url(#tmOrangeGrad)" />
+                            <path d="M8.8 16.5 L21.5 21.5 L19.2 25.2 L6.8 20.2 Z" fill="#B2A8FF" opacity="0.45" />
+                            <path d="M10.2 13.5 L23.5 18.8 L21.8 21.8 L8.5 16.5 Z" fill="url(#tmOrangeGrad)" />
+                        </g>
+                        <path d="M4.2 29.8 C3.3 30.2 2.8 29.7 3.2 28.8 L12.4 9.6 L23.4 20.6 Z" fill="none" stroke="#1E1B36" stroke-width="1.2" stroke-linejoin="round" />
+                        <ellipse cx="17.9" cy="15.1" rx="7.6" ry="3.4" transform="rotate(45 17.9 15.1)" fill="#141126" stroke="#7B68EE" stroke-width="1.3" />
+                    </g>
+                    <g class="streamer-purple">
+                        <path d="M16.8 13.8 C15.2 10.5 19.8 9.2 18.2 6.0 C17.2 4.0 19.5 2.5 21.2 2.2" fill="none" stroke="#10B981" stroke-width="2.3" stroke-linecap="round" />
+                        <path d="M13.5 6.8 L14.8 4.2" fill="none" stroke="#FF6B35" stroke-width="2.2" stroke-linecap="round" />
+                    </g>
+                    <g class="streamer-orange">
+                        <path d="M19.5 16.2 C22.8 14.5 24.2 19.0 27.5 17.4 C29.5 16.4 31.2 18.2 31.8 19.8" fill="none" stroke="#FF6B35" stroke-width="2.3" stroke-linecap="round" />
+                        <path d="M25.5 11.2 C27.8 9.5 30.2 11.5 32.2 9.8" fill="none" stroke="#8B78FF" stroke-width="2.2" stroke-linecap="round" />
+                    </g>
+                    <g class="confetti-layer-1">
+                        <circle cx="22.5" cy="7.5" r="1.6" fill="#FF6B35" />
+                        <circle cx="27.2" cy="5.2" r="1.4" fill="#10B981" />
+                        <circle cx="16.2" cy="9.2" r="1.3" fill="#FFFFFF" />
+                    </g>
+                    <g class="confetti-layer-2">
+                        <circle cx="23.8" cy="13.2" r="1.5" fill="#FFFFFF" />
+                        <circle cx="30.5" cy="14.5" r="1.6" fill="#10B981" />
+                        <circle cx="26.8" cy="22.2" r="1.5" fill="#7B68EE" />
+                    </g>
+                </svg>
+            </div>
             <h1 id="landing-title">¡Pago Completado con Éxito!</h1>
             <p id="landing-desc">Tu licencia ha sido activada correctamente. Ya puedes cerrar esta pestaña del navegador
                 y regresar a la aplicación de escritorio de Talk-me, la cual se activará automáticamente para que puedas

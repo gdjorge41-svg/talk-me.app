@@ -1,506 +1,518 @@
 {
-    "guide_title": "foydalanuvchi qoʻllanmasi",
-    "search_placeholder": "qoʻllanmadan qidirish...",
-    "cards": [
+  "guide_title": "foydalanuvchi qoʻllanmasi",
+  "search_placeholder": "qoʻllanmadan qidirish...",
+  "cards": [
+    {
+      "id": "audio_modes",
+      "title": "Ovoz uzatish rejimlari",
+      "items": [
         {
-            "id": "audio_modes",
-            "title": "Ovoz uzatish rejimlari",
-            "items": [
-                {
-                    "title": "Push-to-Talk (PTT) rejimi",
-                    "description": "Bosish tugmasi bilan qo'lda uzatish. Mikrofon kanalini ochish va real vaqtda audio yozishni boshlash uchun Talk tugmasini bosing va ushlab turing. Uni qo'yib yuborsangiz, uzatish darhol tugaydi va tizim transkripsiyani avtomatik ravishda qayta ishlaydi.",
-                    "note": "Yuqori shovqinli muhitlar yoki aloqani aniq nazorat qilish talab qilinadigan vaziyatlar uchun tavsiya etiladi."
-                },
-                {
-                    "title": "Avtomatik rejim (ovoz balandligini aniqlash)",
-                    "description": "Kirish signali darajasiga asoslangan avtomatik uzatish. Tizim sozlangan sezgirlik chegarasidan yuqori ovozni aniqlaganida audio yozib olishni faollashtiradi va qisqa vaqt sukutdan keyin yozishni toʻxtatadi.",
-                    "note": "To'liq qo'llarsiz tajriba uchun ideal."
-                },
-                {
-                    "title": "Kirish darajasi",
-                    "description": "Tanlangan audio manbaning signal darajasini dinamik VU o'lchagich yordamida real vaqtda ko'rsatadi.",
-                    "note": null
-                }
-            ]
+          "title": "Push-to-Talk (PTT) rejimi",
+          "description": "Bosish tugmasi bilan qo'lda uzatish. Mikrofon kanalini ochish va real vaqtda audio yozishni boshlash uchun Talk tugmasini bosing va ushlab turing. Uni qo'yib yuborsangiz, uzatish darhol tugaydi va tizim transkripsiyani avtomatik ravishda qayta ishlaydi.",
+          "note": "Yuqori shovqinli muhitlar yoki aloqani aniq nazorat qilish talab qilinadigan vaziyatlar uchun tavsiya etiladi."
         },
         {
-            "id": "users",
-            "title": "Foydalanuvchilar",
-            "items": [
-                {
-                    "title": "Ulangan foydalanuvchilar",
-                    "description": "Faol foydalanuvchilar, pastki foydalanuvchilar va ularga tayinlangan toifalar ro'yxatini ko'rsatadi.",
-                    "subitems": [
-                        "Siz yaratgan subusers quyidagilar bo'lishi mumkin:",
-                        "Tahrirlangan.",
-                        "Yo'q qilingan.",
-                        "Ovozni qachon uzatayotganini ko'rsatadigan individual VU metr tomonidan nazorat qilinadi."
-                    ]
-                },
-                {
-                    "title": "Subusers yaratish (+)",
-                    "description": "Mustaqil ichki marshrutga ega virtual foydalanuvchilarni yaratishga imkon beradi.",
-                    "subitems": [
-                        "Har bir subuserni sozlash mumkin:",
-                        "Ism.",
-                        "Turkum.",
-                        "Transkripsiya tili.",
-                        "Audio manba.",
-                        "Kirish kanali.",
-                        "Faollashtirish chegarasi."
-                    ],
-                    "extra": "Ovoz balandligi sozlangan chegaradan oshib ketganda, transkripsiya va xabar yuborish avtomatik ravishda amalga oshiriladi.",
-                    "important": "Bir vaqtning o'zida asosiy foydalanuvchi tomonidan ishlatiladigan bir xil audio manba va kanalni belgilash mumkin emas. Qarama-qarshilik bo'lsa, takroriy uzatishni oldini olish uchun manba avtomatik ravishda o'chiriladi."
-                }
-            ]
+          "title": "Avtomatik rejim (ovoz balandligini aniqlash)",
+          "description": "Kirish signali darajasiga asoslangan avtomatik uzatish. Tizim sozlangan sezgirlik chegarasidan yuqori ovozni aniqlaganida audio yozib olishni faollashtiradi va qisqa vaqt sukutdan keyin yozishni toʻxtatadi.",
+          "note": "To'liq qo'llarsiz tajriba uchun ideal."
         },
         {
-            "id": "chat_transmission",
-            "title": "Chat va eshittirish xususiyatlari",
-            "items": [
-                {
-                    "title": "Gapirish tugmasi",
-                    "description": "Jonli audioni uzatish imkonini beradi. Kirish maydoniga matn kiritganingizda, tugma avtomatik ravishda xabar yuborish belgisiga aylanadi."
-                },
-                {
-                    "title": "Fotosuratlarni yuborish",
-                    "description": "Qurilmaning orqa kamerasi yordamida suratga olish yoki ularni darhol chatga yuborish uchun galereyadan suratlarni tanlash imkonini beradi."
-                },
-                {
-                    "title": "Imo-ishorali navigatsiya (surish)",
-                    "description": "Yon panelni ko'rsatish uchun o'ngga, yashirish uchun esa chapga suring.",
-                    "note": "Bu harakat navigatsiya tugmalari yoki ilova logotipidan foydalanishga teng."
-                },
-                {
-                    "title": "Filtrlar",
-                    "description": "Qaysi toifadagi xabarlar va ogohlantirishlarni olishni xohlayotganingizni tanlash imkonini beradi.",
-                    "subitems": [
-                        "Mumkin:",
-                        "Barcha toifalarni ko'rsatish.",
-                        "Bitta toifani tanlang.",
-                        "Bir nechta toifalarni birlashtiring."
-                    ],
-                    "note": "Har bir foydalanuvchi o'z filtrlarini mustaqil ravishda sozlashi mumkin."
-                },
-                {
-                    "title": "IP va server holati",
-                    "description": "Serverning IP manzilini va uning joriy holatini ko'rsatadi:",
-                    "statuses": {
-                        "green": "Ulangan va ishlaydi.",
-                        "red": "Aloqa uzilgan yoki aloqa yo'q."
-                    }
-                },
-                {
-                    "title": "Mikrofon ko'rsatkichi",
-                    "description": "Mikrofonning joriy holatini ko'rsatadi:",
-                    "subitems": [
-                        "Ovozsiz.",
-                        "Aktiv.",
-                        "Ovoz uzatish."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "audio_hardware",
-            "title": "Audio va apparat konfiguratsiyasi",
-            "items": [
-                {
-                    "title": "Kirish va chiqishni tanlash",
-                    "description": "Audio yozib olish va ijro etish qurilmalarini mustaqil ravishda belgilash imkonini beradi.",
-                    "subitems": [
-                        "To'g'ri ishlashni ta'minlash uchun:",
-                        "Mikrofon va karnaylarga kirish ruxsati berilganligini tekshiring.",
-                        "Zarur bo'lganda qurilmalarni operatsion tizimda sukut bo'yicha o'rnating.",
-                        "Agar ishlab chiqaruvchi talab qilsa, uskunangiz uchun rasmiy drayverlarni o'rnating."
-                    ],
-                    "compatible": "Quyidagilar bilan mos keladi:",
-                    "compatible_list": [
-                        "Jismoniy ovoz kartalari.",
-                        "USB interfeyslari.",
-                        "Bluetooth qurilmalari.",
-                        "Virtual audio kanallar.",
-                        "Professional marshrutlash tizimlari."
-                    ]
-                },
-                {
-                    "title": "Granular kanallar",
-                    "description": "Quyidagilar bilan integratsiya qilish uchun audio signallarni muayyan jismoniy kanallarga (1-kanal, 2-kanal va boshqalar) yo‘naltirish imkonini beradi:",
-                    "subitems": [
-                        "Aralash jadvallari.",
-                        "Virtual routerlar.",
-                        "Matritsali tizimlar.",
-                        "Professional audio infratuzilmalar."
-                    ]
-                },
-                {
-                    "title": "Uskunani yangilash",
-                    "description": "Ilovani qayta ishga tushirmasdan ulangan audio qurilmalarni dinamik aniqlashni amalga oshiradi."
-                },
-                {
-                    "title": "Oldingi ulanish va ruxsatlar",
-                    "description": "**Server yoki ilovani ishga tushirishdan oldin har qanday turdagi qurilmani (Bluetooth naushniklar/mikrofonlar yoki tashqi ovoz kartalari) ulash tavsiya etiladi**. Operatsion tizimingizda uchinchi tomon apparat va dasturlari sozlanganligiga va veb-brauzerda kerakli ruxsatnomalarni berganingizga ishonch hosil qiling.",
-                    "important": "Qurilmani seans o‘rtasida ulash uchun yorliqni yangilash yoki “Uskunani yangilash” tugmasini bosish talab qilinishi mumkin. Brauzerning ruxsatlar oynasida mikrofon to'g'ri qabul qilinganligiga ishonch hosil qiling."
-                }
-            ]
-        },
-        {
-            "id": "language_transcription",
-            "title": "Til, transkripsiya va lug'at IA",
-            "items": [
-                {
-                    "title": "Interfeys tili",
-                    "description": "Ilova tilini va transkripsiya mexanizmi tomonidan ishlatiladigan asosiy tilni belgilaydi."
-                },
-                {
-                    "title": "Fonetik transkripsiya lug'ati",
-                    "description": "Bu sizga aniq atamalar, nomlar yoki brendlarni avtomatik ravishda tuzatishga imkon beradi.",
-                    "subitems": [
-                        "Konfiguratsiya parametrlari:",
-                        "Quyidagi kabi tushuniladi: AI tomonidan fonetik jihatdan tan olingan matn.",
-                        "Toʻgʻrilash: chatga kiritiladigan yakuniy matn."
-                    ],
-                    "examples": {
-                        "label": "Fonetik xaritaga misollar",
-                        "pairs": [
-                            [
-                                "telefon bor",
-                                "Iphone"
-                            ],
-                            [
-                                "miquel",
-                                "Mikel"
-                            ],
-                            [
-                                "ayting mer",
-                                "Dimmer"
-                            ]
-                        ]
-                    }
-                },
-                {
-                    "_tag": "trans_number",
-                    "title": "Aytilgan Sonlarni Raqamlarga Aylantirish",
-                    "description": "Sun'iy intellektga aytilgan sonli iboralarni so'zlar o'rniga to'g'ridan-to'g'ri raqamlar shaklida transkripsiya qilish imkonini beradi (masalan: 'o'n ikki' o'rniga '12', 'minus olti detsibell' o'rniga '-6 dB').",
-                    "note": "Jonli efirda kanallar, ishoralar va texnik parametrlarni tezda o'qish uchun tavsiya etiladi."
-                }
-            ]
-        },
-        {
-            "id": "babel_translation",
-            "title": "AI tarjimasi (Babel Engine)",
-            "items": [
-                {
-                    "title": "Bobil tarjima mexanizmi",
-                    "description": "Tizim Babel, optimallashtirilgan neyron mashina tarjimasi (NMT) dvigatelini birlashtiradi, u Master Serverda 100% mahalliy ishlaydi. Real vaqt rejimida boshqa tillarda olingan xabarlarni Internetga maʼlumotlarni joʻnatmasdan yoki tashqi API’larga bogʻliq holda interfeysingiz tiliga tarjima qiling."
-                },
-                {
-                    "_tag": "babel_download",
-                    "title": "Tarjima Dvigatelini Yuklab Olish Va Boshqarish (MADLAD)",
-                    "description": "Dastlabki o'rnatuvchini ixcham saqlash (~400 MB) uchun neyrotarjima moduli talab bo'yicha yuklab olinadi (~2.75 GB):",
-                    "subitems": [
-                        "Yuklab olish: Tizimga kirishda modellar papkasiga avtomatik yuklab olish taklif etiladi.",
-                        "O'chirish: Tarjimasiz yengil rejimda ishlash va bildirishnomani yashirish uchun 'O'chirish' tugmasini bosing.",
-                        "Qayta faollashtirish: Har qanday vaqtda Pre-Launch yoki ilova sozlamalaridan qayta yoqish mumkin."
-                    ]
-                },
-                {
-                    "title": "Asl xabarni ko'rsatish",
-                    "description": "U asl matnni tarjima qilingan matn ostida kichik, xira formatda ko‘rsatish imkonini beradi, agar kerak bo‘lsa, to‘g‘ridan-to‘g‘ri tekshirishni osonlashtiradi."
-                },
-                {
-                    "title": "Kiruvchi til filtri",
-                    "description": "Qaysi tillar avtomatik tarzda tarjima qilinishi kerakligini tanlab sozlang. Tanlanmagan tillar asl xom shaklida ko'rsatiladi."
-                },
-                {
-                    "title": "Bobil himoyasi (lug'at va texnik jargon)",
-                    "description": "Tarjima mexanizmi tomonidan texnik foydalanishning muayyan shartlari yoki tegishli nomlar buzilishining oldini oladi. Ushbu istisnolar ro'yxatiga so'zlarni qo'shsangiz, Bobil ularni asl shaklida saqlab, hurmat qiladi.",
-                    "note": "Ayniqsa, ko'ngilochar jargon va tarmoqlar uchun tavsiya etiladi:",
-                    "subitems": [
-                        "Kutish rejimi / Kutish rejimi",
-                        "Fader",
-                        "FOH (uyning old tomoni)",
-                        "Vaqt kodi/SMPTE",
-                        "Cue / Kuelist"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "messages_flow",
-            "title": "Xabarlar va aloqa oqimi",
-            "items": [
-                {
-                    "title": "Transkripsiya qilingan xabarlarni qabul qilish",
-                    "description": "Siz quyidagilarni tanlashingiz mumkin:",
-                    "subitems": [
-                        "Faqat transkriptni ko'rsating.",
-                        "Bog'langan original audio yonida transkripsiyani ko'rsating."
-                    ]
-                },
-                {
-                    "title": "Audio qabul qilish",
-                    "description": "Kiruvchi audioni qanday qabul qilishni sozlang:",
-                    "subitems": [
-                        "Haqiqiy vaqtda avtomatik ijro etish.",
-                        "Talab bo'yicha qo'lda ijro etish."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "hermes_tts",
-            "title": "Oflayn ovoz sintezi (Hermes TTS)",
-            "items": [
-                {
-                    "title": "Oflayn ovozli o'qish",
-                    "description": "Kiruvchi matnli xabarlar yoki tarjimalarni avtomatik o'qish imkonini beradi. U faqat operatsion tizimingizning mahalliy ovozli dvigatelidan (Web Speech API) foydalanadi, u 100% mahalliy, shaxsiy va internetni talab qilmasdan ishlaydi. Uning disk iste'moli 0 baytni tashkil qiladi va u CPU/RAMga deyarli nolga ta'sir qiladi."
-                },
-                {
-                    "title": "Sozlanishi va individual parametrlari",
-                    "description": "Qurilmangizning Sozlamalar yorlig'idan o'zingizning xohishingizga ko'ra funksionallikni sozlang:",
-                    "subitems": [
-                        "Matnli xabarlarni tinglash: Mahalliy matnlarni o'qishni faollashtiring. Agar u oʻchirilgan boʻlsa, tildagi matnlaringiz jim boʻlib qoladi, lekin siz hali ham xorijiy tarjimalarni eshitishingiz mumkin boʻladi.",
-                        "Xorijiy audio filtri: boshqa tillardagi original audiolarni bloklaydi va faqat ularning tarjimasini oʻqiydi.",
-                        "Faol filtrlarga munosabat: Tizim faqat chat filtrlarida foydalanuvchi tanlagan toifa yoki kanalga mos keladigan kiruvchi xabarlarni o‘qiydi (agar ma’lum bir guruh tomonidan filtrlangan bo‘lsa, u faqat shu guruhdagilarni o‘qiydi; “Hammasi” tanlansa, hammasini o‘qiydi).",
-                        "Ovozni tanlash: Operatsion tizimingizda o‘rnatilgan mavjud ovozlardan tanlang yoki ilova tilini meros qilib olish uchun uni Avtomatik rejimda qoldiring.",
-                        "Jins filtri: mos keluvchi ovozlarni ohangiga (Erkak, Ayol yoki Hamma) qarab dinamik ravishda filtrlaydi.",
-                        "O'qish tezligi: nutq tezligini juda sekin (0,5x) va tez (2,0x) o'rtasida sozlaydi."
-                    ]
-                },
-                {
-                    "title": "Prefikslar va kontekstli kirishlar",
-                    "description": "Hikoyachi tabiiyroq o'qish uchun xabar turini avtomatik ravishda aniqlaydi: u sof matnli xabarlar uchun \"[Ism] yozdi...\" deb aytadi va ovozli xabarlarni tarjima qilishda \"[Ism] aytdi...\" deb aytadi."
-                },
-                {
-                    "title": "Birgalikda yashash qalqoni (Germes qalqoni)",
-                    "description": "Mikrofon bilan akustik ulanishning oldini olish va suyuqlik aloqasiga xalaqit bermaslik uchun Hermes TTS avtomatik ravishda o'zini o'chiradi, agar:",
-                    "subitems": [
-                        "Siz Talk tugmasini bosyapsiz yoki mikrofoningiz bilan yozyapsiz.",
-                        "Chatning mahalliy audio navbatida faol ijro mavjud.",
-                        "DOMdagi har qanday bola HTML5 media pleer faol."
-                    ]
-                },
-                {
-                    "title": "Smart mahalliylashtirilgan prefikslar",
-                    "description": "Xabarni oʻqishdan oldin joʻnatuvchi haqidagi kontekstni taʼminlash uchun faol tilga muvofiq dinamik prefiks avtomatik ravishda sintezlanadi (masalan: “Xorxe yozdi: [xabar]” yoki “Xorxe yozdi: [xabar]”)."
-                },
-                {
-                    "title": "Mahalliy qat'iylik",
-                    "description": "Barcha sozlamalar terminalning localStorage-da har bir foydalanuvchi uchun mustaqil ravishda saqlanadi. Ovoz yoki tezlik parametrlarini o'zgartirish mahalliy tarmoqdagi boshqa foydalanuvchilarga yoki bir xil brauzerda tizimga kirgan boshqa profillarga ta'sir qilmaydi."
-                }
-            ]
-        },
-        {
-            "id": "visual_haptic_alerts",
-            "title": "Vizual va sensorli ogohlantirishlar",
-            "items": [
-                {
-                    "title": "Ogohlantirish turlari",
-                    "description": "Qurilmaning imkoniyatlariga qarab siz quyidagilardan foydalanishingiz mumkin:",
-                    "subitems": [
-                        "Ekrandagi vizual ogohlantirishlar.",
-                        "Tebranish.",
-                        "LED chiroq."
-                    ]
-                },
-                {
-                    "title": "Ogohlantirishni moslashtirish",
-                    "description": "Har bir ogohlantirish vizual muharririga ega bo'lib, unda siz:",
-                    "subitems": [
-                        "Parametrlarni sozlash.",
-                        "Natijalarni oldindan ko'rish.",
-                        "Shaxsiy sozlamalarni saqlang."
-                    ]
-                },
-                {
-                    "title": "Vizual vaqt jadvali",
-                    "description": "Rang va shaffoflik kabi xususiyatlarni boshqaradigan kalit kadrlarni yaratish va joylashtirish uchun tuval ustiga ikki marta bosing."
-                },
-                {
-                    "title": "Egri chiziqlarni yumshatish",
-                    "description": "Asosiy kadrlar orasidagi o'tishni quyidagilardan foydalanib aniqlang:",
-                    "subitems": [
-                        "Chiziqli yoki qadam.",
-                        "Oson kirish / chiqish / kirishni osonlashtirish.",
-                        "Kvadrat va kubik egri chiziqlar."
-                    ]
-                },
-                {
-                    "title": "Haptik va LED naqshlari",
-                    "description": "Vaqt jadvalida belgilangan qiymatlar asosida tebranish va yoritish ketma-ketligini loyihalash.",
-                    "subitems": [
-                        "Qiymat 0,5 dan katta → Faollashtirilgan.",
-                        "Qiymat 0,5 dan kam → O'chirilgan."
-                    ]
-                },
-                {
-                    "title": "Ruxsatlar",
-                    "description": "Ba'zi qurilmalar chiroqqa kirish uchun kamera ruxsatini talab qiladi.",
-                    "important": "Ilova kerak bo'lganda bunday ruxsatlarni avtomatik ravishda so'raydi."
-                }
-            ]
-        },
-        {
-            "id": "triggers",
-            "title": "Triggerlar (IN/OUT)",
-            "items": [
-                {
-                    "title": "OUT tetiklaydi",
-                    "description": "Ular xabar qabul qilinganda yoki xabarda ma'lum kalit so'zlar mavjud bo'lganda, buyruqlarni avtomatik ravishda texnik ekotizimga yuborish imkonini beradi."
-                },
-                {
-                    "title": "IN ni ishga tushiradi",
-                    "description": "Ular tizim ichida avtomatik harakatlarni bajarish uchun tashqi signallarni qabul qilishga imkon beradi.",
-                    "subitems": [
-                        "Ular yaratishi mumkin:",
-                        "Xabarlar yoki ogohlantirishlar.",
-                        "Audiolar.",
-                        "Tasvirlar.",
-                        "Murakkab avtomatlashtirilgan oqimlar."
-                    ]
-                },
-                {
-                    "title": "Triggerlarni INga kiritish",
-                    "description": "Yaratilgan kontent muayyan filtrga yoki barcha mavjud filtrlarga yuborilishini tanlang."
-                },
-                {
-                    "title": "Qo'llab-quvvatlanadigan protokollar",
-                    "description": "Mahalliy integratsiya:",
-                    "subitems": [
-                        "OSC (Ochiq ovozni boshqarish).",
-                        "MIDI.",
-                        "sACN.",
-                        "SMPTE vaqt kodi."
-                    ]
-                },
-                {
-                    "title": "Asosiy kadrlar boʻyicha egri chiziqlar",
-                    "description": "Ular buyruqning evolyutsiyasini asosiy kadrlar va interpolyatsiya egri chiziqlari yordamida vaqt o'tishi bilan modulyatsiya qilish imkonini beradi. Haqiqiy vaqtda oldindan ko'rish tizimini o'z ichiga oladi."
-                },
-                {
-                    "title": "Hammasini faollashtirish",
-                    "description": "Yuqori chap tugma yordamida bir vaqtning o'zida barcha triggerlarni yoqing yoki o'chiring."
-                },
-                {
-                    "title": "Qidiruv filtri",
-                    "description": "Nomi bo'yicha qidirish orqali aniq triggerlarni tezda toping."
-                },
-                {
-                    "_tag": "triggers_timecode",
-                    "title": "Ko'p Oraliqli SMPTE Taymkodi",
-                    "description": "SMPTE taymkodiga ega Triggers IN protokolida bir nechta mustaqil vaqt oraliqlarini sozlash mumkin.",
-                    "subitems": [
-                        "Bir nechta vaqt oralig'ini qo'shish imkonini beradi (masalan: 01:00:00:00 - 01:15:00:00 va 02:00:00:00 - 02:30:00:00).",
-                        "Kiruvchi signal belgilangan oraliqlarning biriga to'g'ri kelsa, trigger avtomatik ishga tushadi.",
-                        "HH:MM:SS:FF tekshiruvi bilan oraliqlarni qo'shish (+), tartiblash va o'chirish boshqaruvlarini o'z ichiga oladi."
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "interface_customization",
-            "title": "Interfeys va moslashtirish",
-            "items": [
-                {
-                    "title": "Vizual rejim",
-                    "description": "O'zingizning afzalliklaringizga qarab, yorug'lik rejimi va qorong'i rejim o'rtasida tanlang."
-                },
-                {
-                    "title": "Maxsus palitrasi",
-                    "description": "Ilova interfeysining asosiy ranglarini, fon ranglarini va vizual aksanlarini moslashtiring."
-                },
-                {
-                    "title": "Standart sozlamalarni tiklash",
-                    "description": "Ilovaning asl vizual sozlamalari va zavod palitrasini tiklaydi."
-                },
-                {
-                    "title": "Sozlamalarni saqlash",
-                    "description": "Kelgusi sessiyalar uchun kiritilgan o'zgarishlarni doimiy ravishda saqlaydi."
-                },
-                {
-                    "title": "Chatni moslashtirish",
-                    "description": "Ekrandagi xabarlarning matn o'lchamini, shrift og'irligini va umumiy o'qilishini sozlaydi."
-                }
-            ]
-        },
-        {
-            "id": "network_best_practices",
-            "title": "Yaxshi tarmoq va konfiguratsiya amaliyotlari",
-            "items": [
-                {
-                    "title": "Joylashtirish sxemasi (bosqichma-bosqich)",
-                    "description": "Ushbu infratuzilmani to'g'ri sozlash uchun quyidagi professional ko'rsatmalarga amal qiling:",
-                    "subitems": [
-                        "1. Asosiy serverni ishga tushirish: Asosiy kompyuterda Talk-me serverini ishga tushiring (Master). Bu faol litsenziyaga ega bo'lishi kerak.",
-                        "2. Mahalliy IP-ni olish: Serverning shaxsiy IP-manzilini bilib oling (masalan: 192.168.1.150).",
-                        "3. Simli mijoz ulanishi (Ethernet): Yo'riqnoma yoki kalitga tarmoq kabeli (RJ45 Cat6 tavsiya etiladi) yordamida qo'llab-quvvatlovchi kompyuterlarni ulang. Https://192.168.1.150:3000 manzilida brauzerni ochish orqali kiring.",
-                        "4. Mijozlarni Wi-Fi (Mobil / Planshet) orqali ulash: Telefonlar va planshetlar bir xil router tomonidan chiqarilgan Wi-Fi tarmog'iga ulanganligiga ishonch hosil qiling. Mobil qurilmangiz brauzerida bir xil URL manzilini oching."
-                    ]
-                },
-                {
-                    "title": "Brauzer xavfsizligi talablari (kamera va mikrofon)",
-                    "description": "Zamonaviy brauzerlar ulanish xavfsiz bo'lmaganda kameralar va mikrofonlar kabi nozik qurilmalarga kirishni cheklaydi.",
-                    "important": "Shu sababli tizimga kirish HTTPS yordamida, o'rnatish vaqtida server tomonidan yaratilgan o'z-o'zidan imzolangan mahalliy SSL sertifikatini qabul qilgan holda amalga oshirilishi kerak."
-                },
-                {
-                    "title": "To'liq suverenitet va bulutli mustaqillik",
-                    "description": "Talk-me sizning tarmoq infratuzilmangiz doirasida 100% avtonom ishlashga moʻljallangan. O'rnatilgandan so'ng, u doimiy Internet ulanishini yoki uchinchi tomon API-larini talab qilmaydi. Agar WAN (Internet)ga kirish uzilib qolsa, kampus ichidagi aloqa, tarjima, mahalliy transkripsiya va ogohlantirishlar uzluksiz ishlashda davom etadi."
-                }
-            ]
-        },
-        {
-            "id": "data_sovereignty",
-            "title": "Ma'lumotlar suvereniteti va maxfiyligi",
-            "items": [
-                {
-                    "title": "Infratuzilma sizning nazoratingiz ostida",
-                    "description": "Talk-me tomonidan yaratilgan barcha ma'lumotlar sizning ish muhitingizda qoladi. Bunga quyidagilar kiradi:",
-                    "subitems": [
-                        "Ma'lumotlar bazasi.",
-                        "Aloqa tarixi.",
-                        "Sozlamalar.",
-                        "Sun'iy intellekt modellari.",
-                        "Bog'langan fayllar va manbalar."
-                    ]
-                },
-                {
-                    "title": "Mahalliy qayta ishlash",
-                    "description": "Qo'llab-quvvatlanadigan mahalliy modellardan foydalanganda tahlil, transkripsiya va tarjima jarayonlari to'g'ridan-to'g'ri uskunangizda ishlaydi.",
-                    "extra": "Ma'lumotlar qayta ishlash uchun tashqi serverlarga yuborilmaydi."
-                },
-                {
-                    "title": "Maxfiylik va xavfsizlik",
-                    "description": "Talk-me texnologik suverenitet va umumiy ma'lumotlarni nazorat qilish modeli ostida ishlab chiqilgan.",
-                    "extra": "Suhbatlaringiz, sozlamalaringiz va resurslaringiz faqat infratuzilmangizda joylashgan bo‘lib, quyidagilar ustidan to‘liq nazoratni saqlab qoladi:",
-                    "subitems": [
-                        "Tizim mavjudligi.",
-                        "Ma'lumotlarning maxfiyligi.",
-                        "Ma'lumotlarni saqlash.",
-                        "Kirish va xavfsizlikni boshqarish."
-                    ]
-                }
-            ]
+          "title": "Kirish darajasi",
+          "description": "Tanlangan audio manbaning signal darajasini dinamik VU o'lchagich yordamida real vaqtda ko'rsatadi.",
+          "note": null
         }
-    ],
-    "network_diagram": {
-        "internet": "INTERNET",
-        "optional": "ixtiyoriy",
-        "ethernet_cable": "ETHERNET kabeli RJ45",
-        "ethernet_red": "Ethernet tarmog'i / LAN kabeli",
-        "wifi_label": "WIFI/WLAN",
-        "master_server": "MASTER SERVER",
-        "licensed": "LITSENZIYaLANGAN",
-        "router": "ROUTER",
-        "device1": "1-qurilma: Asosiy kompyuter (Kabel)",
-        "device2": "2-qurilma: Kompyuterni qo‘llab-quvvatlash (kabel)",
-        "device3": "3-qurilma: Noutbuk (Wi-Fi)",
-        "device4": "4-qurilma: Planshet (Wi-Fi)",
-        "device5": "5-qurilma: Mobil telefon (Wi-Fi)",
-        "https_url": "https://192.168.1.150:3000"
+      ]
     },
-    "common": {
-        "important": "Muhim"
+    {
+      "id": "users",
+      "title": "Foydalanuvchilar",
+      "items": [
+        {
+          "title": "Ulangan foydalanuvchilar",
+          "description": "Faol foydalanuvchilar, pastki foydalanuvchilar va ularga tayinlangan toifalar ro'yxatini ko'rsatadi.",
+          "subitems": [
+            "Siz yaratgan subusers quyidagilar bo'lishi mumkin:",
+            "Tahrirlangan.",
+            "Yo'q qilingan.",
+            "Ovozni qachon uzatayotganini ko'rsatadigan individual VU metr tomonidan nazorat qilinadi."
+          ]
+        },
+        {
+          "title": "Subusers yaratish (+)",
+          "description": "Mustaqil ichki marshrutga ega virtual foydalanuvchilarni yaratishga imkon beradi.",
+          "subitems": [
+            "Har bir subuserni sozlash mumkin:",
+            "Ism.",
+            "Turkum.",
+            "Transkripsiya tili.",
+            "Audio manba.",
+            "Kirish kanali.",
+            "Faollashtirish chegarasi."
+          ],
+          "extra": "Ovoz balandligi sozlangan chegaradan oshib ketganda, transkripsiya va xabar yuborish avtomatik ravishda amalga oshiriladi.",
+          "important": "Bir vaqtning o'zida asosiy foydalanuvchi tomonidan ishlatiladigan bir xil audio manba va kanalni belgilash mumkin emas. Qarama-qarshilik bo'lsa, takroriy uzatishni oldini olish uchun manba avtomatik ravishda o'chiriladi."
+        }
+      ]
     },
-    "guide_version": "60.2.0"
+    {
+      "id": "chat_transmission",
+      "title": "Chat va eshittirish xususiyatlari",
+      "items": [
+        {
+          "title": "Gapirish tugmasi",
+          "description": "Jonli audioni uzatish imkonini beradi. Kirish maydoniga matn kiritganingizda, tugma avtomatik ravishda xabar yuborish belgisiga aylanadi."
+        },
+        {
+          "title": "Fotosuratlarni yuborish",
+          "description": "Qurilmaning orqa kamerasi yordamida suratga olish yoki ularni darhol chatga yuborish uchun galereyadan suratlarni tanlash imkonini beradi."
+        },
+        {
+          "title": "Imo-ishorali navigatsiya (surish)",
+          "description": "Yon panelni ko'rsatish uchun o'ngga, yashirish uchun esa chapga suring.",
+          "note": "Bu harakat navigatsiya tugmalari yoki ilova logotipidan foydalanishga teng."
+        },
+        {
+          "title": "Filtrlar",
+          "description": "Qaysi toifadagi xabarlar va ogohlantirishlarni olishni xohlayotganingizni tanlash imkonini beradi.",
+          "subitems": [
+            "Mumkin:",
+            "Barcha toifalarni ko'rsatish.",
+            "Bitta toifani tanlang.",
+            "Bir nechta toifalarni birlashtiring."
+          ],
+          "note": "Har bir foydalanuvchi o'z filtrlarini mustaqil ravishda sozlashi mumkin."
+        },
+        {
+          "title": "IP va server holati",
+          "description": "Serverning IP manzilini va uning joriy holatini ko'rsatadi:",
+          "statuses": {
+            "green": "Ulangan va ishlaydi.",
+            "red": "Aloqa uzilgan yoki aloqa yo'q."
+          }
+        },
+        {
+          "title": "Mikrofon ko'rsatkichi",
+          "description": "Mikrofonning joriy holatini ko'rsatadi:",
+          "subitems": [
+            "Ovozsiz.",
+            "Aktiv.",
+            "Ovoz uzatish."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio_hardware",
+      "title": "Audio va apparat konfiguratsiyasi",
+      "items": [
+        {
+          "title": "Kirish va chiqishni tanlash",
+          "description": "Audio yozib olish va ijro etish qurilmalarini mustaqil ravishda belgilash imkonini beradi.",
+          "subitems": [
+            "To'g'ri ishlashni ta'minlash uchun:",
+            "Mikrofon va karnaylarga kirish ruxsati berilganligini tekshiring.",
+            "Zarur bo'lganda qurilmalarni operatsion tizimda sukut bo'yicha o'rnating.",
+            "Agar ishlab chiqaruvchi talab qilsa, uskunangiz uchun rasmiy drayverlarni o'rnating."
+          ],
+          "compatible": "Quyidagilar bilan mos keladi:",
+          "compatible_list": [
+            "Jismoniy ovoz kartalari.",
+            "USB interfeyslari.",
+            "Bluetooth qurilmalari.",
+            "Virtual audio kanallar.",
+            "Professional marshrutlash tizimlari."
+          ]
+        },
+        {
+          "title": "Granular kanallar",
+          "description": "Quyidagilar bilan integratsiya qilish uchun audio signallarni muayyan jismoniy kanallarga (1-kanal, 2-kanal va boshqalar) yo‘naltirish imkonini beradi:",
+          "subitems": [
+            "Aralash jadvallari.",
+            "Virtual routerlar.",
+            "Matritsali tizimlar.",
+            "Professional audio infratuzilmalar."
+          ]
+        },
+        {
+          "title": "Uskunani yangilash",
+          "description": "Ilovani qayta ishga tushirmasdan ulangan audio qurilmalarni dinamik aniqlashni amalga oshiradi."
+        },
+        {
+          "title": "Oldingi ulanish va ruxsatlar",
+          "description": "**Server yoki ilovani ishga tushirishdan oldin har qanday turdagi qurilmani (Bluetooth naushniklar/mikrofonlar yoki tashqi ovoz kartalari) ulash tavsiya etiladi**. Operatsion tizimingizda uchinchi tomon apparat va dasturlari sozlanganligiga va veb-brauzerda kerakli ruxsatnomalarni berganingizga ishonch hosil qiling.",
+          "important": "Qurilmani seans o‘rtasida ulash uchun yorliqni yangilash yoki “Uskunani yangilash” tugmasini bosish talab qilinishi mumkin. Brauzerning ruxsatlar oynasida mikrofon to'g'ri qabul qilinganligiga ishonch hosil qiling."
+        }
+      ]
+    },
+    {
+      "id": "language_transcription",
+      "title": "Til, transkripsiya va lug'at IA",
+      "items": [
+        {
+          "title": "Interfeys tili",
+          "description": "Ilova tilini va transkripsiya mexanizmi tomonidan ishlatiladigan asosiy tilni belgilaydi."
+        },
+        {
+          "title": "Fonetik transkripsiya lug'ati",
+          "description": "Bu sizga aniq atamalar, nomlar yoki brendlarni avtomatik ravishda tuzatishga imkon beradi.",
+          "subitems": [
+            "Konfiguratsiya parametrlari:",
+            "Quyidagi kabi tushuniladi: AI tomonidan fonetik jihatdan tan olingan matn.",
+            "Toʻgʻrilash: chatga kiritiladigan yakuniy matn."
+          ],
+          "examples": {
+            "label": "Fonetik xaritaga misollar",
+            "pairs": [
+              [
+                "telefon bor",
+                "Iphone"
+              ],
+              [
+                "miquel",
+                "Mikel"
+              ],
+              [
+                "ayting mer",
+                "Dimmer"
+              ]
+            ]
+          }
+        },
+        {
+          "_tag": "elastic_engines_asr",
+          "title": "Tilga Asoslangan Elastik Ovozni Yozib Olish Dvigatellari",
+          "description": "Ovozni aniqlash tizimi xotirani tejash uchun faqat xonada faol bo'lgan tillarning akustik modellarini RAMga yuklaydi.",
+          "subitems": [
+            "O'rnatilgan modellar: Ispan va ingliz tillari uchun tezkor modellar mavjud.",
+            "Oson kengaytirish: Dasturni qayta o'rnatmasdan yangi til modellarini avtomatik taniydi.",
+            "RAM tejamkorligi: Nofaol modellar tegishli foydalanuvchi qo'shilmaguncha operativ xotirani egallamaydi."
+          ]
+        },
+        {
+          "_tag": "trans_number",
+          "title": "Aytilgan Sonlarni Raqamlarga Aylantirish",
+          "description": "Sun'iy intellektga aytilgan sonli iboralarni so'zlar o'rniga to'g'ridan-to'g'ri raqamlar shaklida transkripsiya qilish imkonini beradi (masalan: 'o'n ikki' o'rniga '12', 'minus olti detsibell' o'rniga '-6 dB').",
+          "note": "Jonli efirda kanallar, ishoralar va texnik parametrlarni tezda o'qish uchun tavsiya etiladi."
+        }
+      ]
+    },
+    {
+      "id": "babel_translation",
+      "title": "AI tarjimasi (Babel Engine)",
+      "items": [
+        {
+          "title": "Bobil tarjima mexanizmi",
+          "description": "Tizim Babel, optimallashtirilgan neyron mashina tarjimasi (NMT) dvigatelini birlashtiradi, u Master Serverda 100% mahalliy ishlaydi. Real vaqt rejimida boshqa tillarda olingan xabarlarni Internetga maʼlumotlarni joʻnatmasdan yoki tashqi API’larga bogʻliq holda interfeysingiz tiliga tarjima qiling."
+        },
+        {
+          "_tag": "elastic_engines_babel",
+          "title": "Elastik Dvigatellar Arxitekturasi: Modulli Neyron Tarjima",
+          "description": "Talk.me asosiy dasturni og'ir AI modellaridan ajratib turuvchi elastik modulli arxitekturaga ega bo'lib, o'lchamni ixcham (~200 MB) saqlaydi.",
+          "subitems": [
+            "Talab bo'yicha yuklash: Ko'p tilli tarjima kerak bo'lganda MADLAD neyron dvigateli (~2.75 GB) bir bosish bilan yuklanadi.",
+            "Yengil rejim (O'chirish): Agar tadbir bir tilda bo'lsa, 'O'chirish' tugmasini bosing va CPU/RAM yuklamasini 0% ga tushiring.",
+            "Moslashuvchan boshqaruv: Sozlamalar bo'limida modellarni istalgan vaqtda qayta yoqish, yuklash yoki o'chirish mumkin.",
+            "Oflayn xavfsizlik (Air-Gapped): Yuklab olingandan so'ng internet talab qilinmaydi va 100% lokal serverda ishlaydi."
+          ],
+          "important": "Aloqa bo'lmagan joylarda ishlash uchun elastik dvigatellarni oldindan yuklab olish tavsiya etiladi."
+        },
+        {
+          "title": "Asl xabarni ko'rsatish",
+          "description": "U asl matnni tarjima qilingan matn ostida kichik, xira formatda ko‘rsatish imkonini beradi, agar kerak bo‘lsa, to‘g‘ridan-to‘g‘ri tekshirishni osonlashtiradi."
+        },
+        {
+          "title": "Kiruvchi til filtri",
+          "description": "Qaysi tillar avtomatik tarzda tarjima qilinishi kerakligini tanlab sozlang. Tanlanmagan tillar asl xom shaklida ko'rsatiladi."
+        },
+        {
+          "title": "Bobil himoyasi (lug'at va texnik jargon)",
+          "description": "Tarjima mexanizmi tomonidan texnik foydalanishning muayyan shartlari yoki tegishli nomlar buzilishining oldini oladi. Ushbu istisnolar ro'yxatiga so'zlarni qo'shsangiz, Bobil ularni asl shaklida saqlab, hurmat qiladi.",
+          "note": "Ayniqsa, ko'ngilochar jargon va tarmoqlar uchun tavsiya etiladi:",
+          "subitems": [
+            "Kutish rejimi / Kutish rejimi",
+            "Fader",
+            "FOH (uyning old tomoni)",
+            "Vaqt kodi/SMPTE",
+            "Cue / Kuelist"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "messages_flow",
+      "title": "Xabarlar va aloqa oqimi",
+      "items": [
+        {
+          "title": "Transkripsiya qilingan xabarlarni qabul qilish",
+          "description": "Siz quyidagilarni tanlashingiz mumkin:",
+          "subitems": [
+            "Faqat transkriptni ko'rsating.",
+            "Bog'langan original audio yonida transkripsiyani ko'rsating."
+          ]
+        },
+        {
+          "title": "Audio qabul qilish",
+          "description": "Kiruvchi audioni qanday qabul qilishni sozlang:",
+          "subitems": [
+            "Haqiqiy vaqtda avtomatik ijro etish.",
+            "Talab bo'yicha qo'lda ijro etish."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hermes_tts",
+      "title": "Oflayn ovoz sintezi (Hermes TTS)",
+      "items": [
+        {
+          "title": "Oflayn ovozli o'qish",
+          "description": "Kiruvchi matnli xabarlar yoki tarjimalarni avtomatik o'qish imkonini beradi. U faqat operatsion tizimingizning mahalliy ovozli dvigatelidan (Web Speech API) foydalanadi, u 100% mahalliy, shaxsiy va internetni talab qilmasdan ishlaydi. Uning disk iste'moli 0 baytni tashkil qiladi va u CPU/RAMga deyarli nolga ta'sir qiladi."
+        },
+        {
+          "title": "Sozlanishi va individual parametrlari",
+          "description": "Qurilmangizning Sozlamalar yorlig'idan o'zingizning xohishingizga ko'ra funksionallikni sozlang:",
+          "subitems": [
+            "Matnli xabarlarni tinglash: Mahalliy matnlarni o'qishni faollashtiring. Agar u oʻchirilgan boʻlsa, tildagi matnlaringiz jim boʻlib qoladi, lekin siz hali ham xorijiy tarjimalarni eshitishingiz mumkin boʻladi.",
+            "Xorijiy audio filtri: boshqa tillardagi original audiolarni bloklaydi va faqat ularning tarjimasini oʻqiydi.",
+            "Faol filtrlarga munosabat: Tizim faqat chat filtrlarida foydalanuvchi tanlagan toifa yoki kanalga mos keladigan kiruvchi xabarlarni o‘qiydi (agar ma’lum bir guruh tomonidan filtrlangan bo‘lsa, u faqat shu guruhdagilarni o‘qiydi; “Hammasi” tanlansa, hammasini o‘qiydi).",
+            "Ovozni tanlash: Operatsion tizimingizda o‘rnatilgan mavjud ovozlardan tanlang yoki ilova tilini meros qilib olish uchun uni Avtomatik rejimda qoldiring.",
+            "Jins filtri: mos keluvchi ovozlarni ohangiga (Erkak, Ayol yoki Hamma) qarab dinamik ravishda filtrlaydi.",
+            "O'qish tezligi: nutq tezligini juda sekin (0,5x) va tez (2,0x) o'rtasida sozlaydi."
+          ]
+        },
+        {
+          "title": "Prefikslar va kontekstli kirishlar",
+          "description": "Hikoyachi tabiiyroq o'qish uchun xabar turini avtomatik ravishda aniqlaydi: u sof matnli xabarlar uchun \"[Ism] yozdi...\" deb aytadi va ovozli xabarlarni tarjima qilishda \"[Ism] aytdi...\" deb aytadi."
+        },
+        {
+          "title": "Birgalikda yashash qalqoni (Germes qalqoni)",
+          "description": "Mikrofon bilan akustik ulanishning oldini olish va suyuqlik aloqasiga xalaqit bermaslik uchun Hermes TTS avtomatik ravishda o'zini o'chiradi, agar:",
+          "subitems": [
+            "Siz Talk tugmasini bosyapsiz yoki mikrofoningiz bilan yozyapsiz.",
+            "Chatning mahalliy audio navbatida faol ijro mavjud.",
+            "DOMdagi har qanday bola HTML5 media pleer faol."
+          ]
+        },
+        {
+          "title": "Smart mahalliylashtirilgan prefikslar",
+          "description": "Xabarni oʻqishdan oldin joʻnatuvchi haqidagi kontekstni taʼminlash uchun faol tilga muvofiq dinamik prefiks avtomatik ravishda sintezlanadi (masalan: “Xorxe yozdi: [xabar]” yoki “Xorxe yozdi: [xabar]”)."
+        },
+        {
+          "title": "Mahalliy qat'iylik",
+          "description": "Barcha sozlamalar terminalning localStorage-da har bir foydalanuvchi uchun mustaqil ravishda saqlanadi. Ovoz yoki tezlik parametrlarini o'zgartirish mahalliy tarmoqdagi boshqa foydalanuvchilarga yoki bir xil brauzerda tizimga kirgan boshqa profillarga ta'sir qilmaydi."
+        }
+      ]
+    },
+    {
+      "id": "visual_haptic_alerts",
+      "title": "Vizual va sensorli ogohlantirishlar",
+      "items": [
+        {
+          "title": "Ogohlantirish turlari",
+          "description": "Qurilmaning imkoniyatlariga qarab siz quyidagilardan foydalanishingiz mumkin:",
+          "subitems": [
+            "Ekrandagi vizual ogohlantirishlar.",
+            "Tebranish.",
+            "LED chiroq."
+          ]
+        },
+        {
+          "title": "Ogohlantirishni moslashtirish",
+          "description": "Har bir ogohlantirish vizual muharririga ega bo'lib, unda siz:",
+          "subitems": [
+            "Parametrlarni sozlash.",
+            "Natijalarni oldindan ko'rish.",
+            "Shaxsiy sozlamalarni saqlang."
+          ]
+        },
+        {
+          "title": "Vizual vaqt jadvali",
+          "description": "Rang va shaffoflik kabi xususiyatlarni boshqaradigan kalit kadrlarni yaratish va joylashtirish uchun tuval ustiga ikki marta bosing."
+        },
+        {
+          "title": "Egri chiziqlarni yumshatish",
+          "description": "Asosiy kadrlar orasidagi o'tishni quyidagilardan foydalanib aniqlang:",
+          "subitems": [
+            "Chiziqli yoki qadam.",
+            "Oson kirish / chiqish / kirishni osonlashtirish.",
+            "Kvadrat va kubik egri chiziqlar."
+          ]
+        },
+        {
+          "title": "Haptik va LED naqshlari",
+          "description": "Vaqt jadvalida belgilangan qiymatlar asosida tebranish va yoritish ketma-ketligini loyihalash.",
+          "subitems": [
+            "Qiymat 0,5 dan katta → Faollashtirilgan.",
+            "Qiymat 0,5 dan kam → O'chirilgan."
+          ]
+        },
+        {
+          "title": "Ruxsatlar",
+          "description": "Ba'zi qurilmalar chiroqqa kirish uchun kamera ruxsatini talab qiladi.",
+          "important": "Ilova kerak bo'lganda bunday ruxsatlarni avtomatik ravishda so'raydi."
+        }
+      ]
+    },
+    {
+      "id": "triggers",
+      "title": "Triggerlar (IN/OUT)",
+      "items": [
+        {
+          "title": "OUT tetiklaydi",
+          "description": "Ular xabar qabul qilinganda yoki xabarda ma'lum kalit so'zlar mavjud bo'lganda, buyruqlarni avtomatik ravishda texnik ekotizimga yuborish imkonini beradi."
+        },
+        {
+          "title": "IN ni ishga tushiradi",
+          "description": "Ular tizim ichida avtomatik harakatlarni bajarish uchun tashqi signallarni qabul qilishga imkon beradi.",
+          "subitems": [
+            "Ular yaratishi mumkin:",
+            "Xabarlar yoki ogohlantirishlar.",
+            "Audiolar.",
+            "Tasvirlar.",
+            "Murakkab avtomatlashtirilgan oqimlar."
+          ]
+        },
+        {
+          "title": "Triggerlarni INga kiritish",
+          "description": "Yaratilgan kontent muayyan filtrga yoki barcha mavjud filtrlarga yuborilishini tanlang."
+        },
+        {
+          "title": "Qo'llab-quvvatlanadigan protokollar",
+          "description": "Mahalliy integratsiya:",
+          "subitems": [
+            "OSC (Ochiq ovozni boshqarish).",
+            "MIDI.",
+            "sACN.",
+            "SMPTE vaqt kodi."
+          ]
+        },
+        {
+          "title": "Asosiy kadrlar boʻyicha egri chiziqlar",
+          "description": "Ular buyruqning evolyutsiyasini asosiy kadrlar va interpolyatsiya egri chiziqlari yordamida vaqt o'tishi bilan modulyatsiya qilish imkonini beradi. Haqiqiy vaqtda oldindan ko'rish tizimini o'z ichiga oladi."
+        },
+        {
+          "title": "Hammasini faollashtirish",
+          "description": "Yuqori chap tugma yordamida bir vaqtning o'zida barcha triggerlarni yoqing yoki o'chiring."
+        },
+        {
+          "title": "Qidiruv filtri",
+          "description": "Nomi bo'yicha qidirish orqali aniq triggerlarni tezda toping."
+        },
+        {
+          "_tag": "triggers_timecode",
+          "title": "Ko'p Oraliqli SMPTE Taymkodi",
+          "description": "SMPTE taymkodiga ega Triggers IN protokolida bir nechta mustaqil vaqt oraliqlarini sozlash mumkin.",
+          "subitems": [
+            "Bir nechta vaqt oralig'ini qo'shish imkonini beradi (masalan: 01:00:00:00 - 01:15:00:00 va 02:00:00:00 - 02:30:00:00).",
+            "Kiruvchi signal belgilangan oraliqlarning biriga to'g'ri kelsa, trigger avtomatik ishga tushadi.",
+            "HH:MM:SS:FF tekshiruvi bilan oraliqlarni qo'shish (+), tartiblash va o'chirish boshqaruvlarini o'z ichiga oladi."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interface_customization",
+      "title": "Interfeys va moslashtirish",
+      "items": [
+        {
+          "title": "Vizual rejim",
+          "description": "O'zingizning afzalliklaringizga qarab, yorug'lik rejimi va qorong'i rejim o'rtasida tanlang."
+        },
+        {
+          "title": "Maxsus palitrasi",
+          "description": "Ilova interfeysining asosiy ranglarini, fon ranglarini va vizual aksanlarini moslashtiring."
+        },
+        {
+          "title": "Standart sozlamalarni tiklash",
+          "description": "Ilovaning asl vizual sozlamalari va zavod palitrasini tiklaydi."
+        },
+        {
+          "title": "Sozlamalarni saqlash",
+          "description": "Kelgusi sessiyalar uchun kiritilgan o'zgarishlarni doimiy ravishda saqlaydi."
+        },
+        {
+          "title": "Chatni moslashtirish",
+          "description": "Ekrandagi xabarlarning matn o'lchamini, shrift og'irligini va umumiy o'qilishini sozlaydi."
+        }
+      ]
+    },
+    {
+      "id": "network_best_practices",
+      "title": "Yaxshi tarmoq va konfiguratsiya amaliyotlari",
+      "items": [
+        {
+          "title": "Joylashtirish sxemasi (bosqichma-bosqich)",
+          "description": "Ushbu infratuzilmani to'g'ri sozlash uchun quyidagi professional ko'rsatmalarga amal qiling:",
+          "subitems": [
+            "1. Asosiy serverni ishga tushirish: Asosiy kompyuterda Talk-me serverini ishga tushiring (Master). Bu faol litsenziyaga ega bo'lishi kerak.",
+            "2. Mahalliy IP-ni olish: Serverning shaxsiy IP-manzilini bilib oling (masalan: 192.168.1.150).",
+            "3. Simli mijoz ulanishi (Ethernet): Yo'riqnoma yoki kalitga tarmoq kabeli (RJ45 Cat6 tavsiya etiladi) yordamida qo'llab-quvvatlovchi kompyuterlarni ulang. Https://192.168.1.150:3000 manzilida brauzerni ochish orqali kiring.",
+            "4. Mijozlarni Wi-Fi (Mobil / Planshet) orqali ulash: Telefonlar va planshetlar bir xil router tomonidan chiqarilgan Wi-Fi tarmog'iga ulanganligiga ishonch hosil qiling. Mobil qurilmangiz brauzerida bir xil URL manzilini oching."
+          ]
+        },
+        {
+          "title": "Brauzer xavfsizligi talablari (kamera va mikrofon)",
+          "description": "Zamonaviy brauzerlar ulanish xavfsiz bo'lmaganda kameralar va mikrofonlar kabi nozik qurilmalarga kirishni cheklaydi.",
+          "important": "Shu sababli tizimga kirish HTTPS yordamida, o'rnatish vaqtida server tomonidan yaratilgan o'z-o'zidan imzolangan mahalliy SSL sertifikatini qabul qilgan holda amalga oshirilishi kerak."
+        },
+        {
+          "title": "To'liq suverenitet va bulutli mustaqillik",
+          "description": "Talk-me sizning tarmoq infratuzilmangiz doirasida 100% avtonom ishlashga moʻljallangan. O'rnatilgandan so'ng, u doimiy Internet ulanishini yoki uchinchi tomon API-larini talab qilmaydi. Agar WAN (Internet)ga kirish uzilib qolsa, kampus ichidagi aloqa, tarjima, mahalliy transkripsiya va ogohlantirishlar uzluksiz ishlashda davom etadi."
+        }
+      ]
+    },
+    {
+      "id": "data_sovereignty",
+      "title": "Ma'lumotlar suvereniteti va maxfiyligi",
+      "items": [
+        {
+          "title": "Infratuzilma sizning nazoratingiz ostida",
+          "description": "Talk-me tomonidan yaratilgan barcha ma'lumotlar sizning ish muhitingizda qoladi. Bunga quyidagilar kiradi:",
+          "subitems": [
+            "Ma'lumotlar bazasi.",
+            "Aloqa tarixi.",
+            "Sozlamalar.",
+            "Sun'iy intellekt modellari.",
+            "Bog'langan fayllar va manbalar."
+          ]
+        },
+        {
+          "title": "Mahalliy qayta ishlash",
+          "description": "Qo'llab-quvvatlanadigan mahalliy modellardan foydalanganda tahlil, transkripsiya va tarjima jarayonlari to'g'ridan-to'g'ri uskunangizda ishlaydi.",
+          "extra": "Ma'lumotlar qayta ishlash uchun tashqi serverlarga yuborilmaydi."
+        },
+        {
+          "title": "Maxfiylik va xavfsizlik",
+          "description": "Talk-me texnologik suverenitet va ma'lumotlarni to'liq nazorat qilish modeli asosida ishlab chiqilgan bo'lib, quyidagilarni kafolatlaydi:",
+          "extra": "Sizning barcha suhbatlaringiz, sozlamalaringiz va resurslaringiz to'liq suverenitet ostida faqat lokal infratuzilmangizda saqlanadi.",
+          "subitems": [
+            "Tizim mavjudligi.",
+            "Ma'lumotlarning maxfiyligi.",
+            "Ma'lumotlarni saqlash.",
+            "Kirish va xavfsizlikni boshqarish."
+          ]
+        }
+      ]
+    }
+  ],
+  "network_diagram": {
+    "internet": "INTERNET",
+    "optional": "ixtiyoriy",
+    "ethernet_cable": "ETHERNET kabeli RJ45",
+    "ethernet_red": "Ethernet tarmog'i / LAN kabeli",
+    "wifi_label": "WIFI/WLAN",
+    "master_server": "MASTER SERVER",
+    "licensed": "LITSENZIYaLANGAN",
+    "router": "ROUTER",
+    "device1": "1-qurilma: Asosiy kompyuter (Kabel)",
+    "device2": "2-qurilma: Kompyuterni qo‘llab-quvvatlash (kabel)",
+    "device3": "3-qurilma: Noutbuk (Wi-Fi)",
+    "device4": "4-qurilma: Planshet (Wi-Fi)",
+    "device5": "5-qurilma: Mobil telefon (Wi-Fi)",
+    "https_url": "https://192.168.1.150:3000"
+  },
+  "common": {
+    "important": "Muhim"
+  },
+  "guide_version": "60.2.0"
 }

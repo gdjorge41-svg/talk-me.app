@@ -67,10 +67,17 @@ app.get('/', (req, res) => {
         console.log(`💸 Stripe payment success query intercepted in Launcher. Redirecting to production secure portal: https://www.talk-me.app/pre-launch/success.html`);
         return res.redirect(`https://www.talk-me.app/pre-launch/success.html?success=true&session_id=${sessionId}`);
     }
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
     res.sendFile(path.join(__dirname, 'public', 'launch.html'));
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+    etag: false,
+    lastModified: false,
+    setHeaders: (res) => {
+        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    }
+}));
 
 // Configuración de la API
 const API_URL = 'https://www.talk-me.app/talkme_api.php';
@@ -86,7 +93,7 @@ const axiosConfig = {
 
 // --- CONFIGURACIÓN DE VERSIÓN DEL CLIENTE ---
 const CLIENT_VERSION = 1;
-const CLIENT_VERSION_NAME = 'v1.0.0';
+const CLIENT_VERSION_NAME = 'v0.60.1';
 
 
 // --- CACHÉ DE PRECIOS Y VERSIONES (STALE-WHILE-REVALIDATE) ---
@@ -97,7 +104,7 @@ function resolvePrelaunchWritablePath(filename) {
         try {
             if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
             return path.join(targetDir, filename);
-        } catch (_) {}
+        } catch (_) { }
     }
     return path.join(__dirname, filename);
 }
@@ -128,10 +135,10 @@ const DEFAULT_PRICING_PAYLOAD = {
         }
     },
     latest_release: {
-        version: 'v1.0.0',
+        version: 'v0.60.1',
         major_channel: 1,
         release_date: '2026-09-01',
-        download_url: 'https://www.talk-me.app/download/v1.0.0/TalkMe_Setup.exe'
+        download_url: 'https://www.talk-me.app/download/v0.60.1/TalkMe_Setup.exe'
     },
     upgrade_promo: {
         promo_code: 'FIDELIDAD50',
@@ -302,6 +309,24 @@ app.post('/api/login', async (req, res) => {
 
 let lastPendingCheckout = null;
 
+app.post('/api/create-rto-session', async (req, res) => {
+    let { licenseKey, type, lang, origin } = req.body;
+    try {
+        console.log(`💳 [RTO SESSION] Solicitando pasarela Stripe para licencia ${licenseKey} (tipo: ${type}, lang: ${lang})`);
+        const response = await axios.post(`${API_URL}?action=create_rto_payment_session`, {
+            license_key: licenseKey,
+            type: type || 'monthly',
+            lang: lang || 'es',
+            origin: origin || 'https://www.talk-me.app'
+        }, axiosConfig);
+
+        res.json(response.data || {});
+    } catch (error) {
+        console.error("❌ Error solicitando sesión RTO a API remota:", error.message);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 app.post('/api/create-checkout-session', async (req, res) => {
     let { userId, userEmail, planType, paymentMode, lang, origin } = req.body;
 
@@ -452,8 +477,8 @@ function getTargetModelsDir() {
     // Fallback defensivo anti-EACCES: evitar siempre Program Files
     const os = require('os');
     const isWin = process.platform === 'win32';
-    const appData = process.env.APPDATA || (isWin 
-        ? path.join(os.homedir(), 'AppData', 'Roaming') 
+    const appData = process.env.APPDATA || (isWin
+        ? path.join(os.homedir(), 'AppData', 'Roaming')
         : path.join(os.homedir(), 'Library', 'Application Support'));
     const defaultModelsDir = path.join(appData, 'Talk-me', 'models');
     try {
@@ -486,6 +511,30 @@ app.get('/api/default-models-path', (req, res) => {
 
 
 
+// Helper defensivo (Ley de Murphy): Liberar slot de hardware en Aruba cuando se cambia de usuario en el mismo PC o se supera el límite de desvinculaciones en pruebas
+async function forceReleaseHardwareSlotOnAruba(hwId, incomingLicenseKey = '') {
+    try {
+        const metricsRes = await axios.post(`${API_URL}?action=admin_metrics`, {}, { ...axiosConfig, timeout: 8000 });
+        if (metricsRes.data && metricsRes.data.success && Array.isArray(metricsRes.data.licenses)) {
+            for (const lic of metricsRes.data.licenses) {
+                const fps = String(lic.hw_fingerprints || '').split(',').map(s => s.trim()).filter(Boolean);
+                const isBoundHere = fps.includes(hwId);
+                const isTargetToUnlink = isBoundHere && (!incomingLicenseKey || lic.license_key !== incomingLicenseKey);
+                if (isTargetToUnlink) {
+                    const prevStatus = lic.status;
+                    console.log(`🔄 [MURPHY-HW-RELEASE] Liberando vínculo residual de ${lic.license_key} (${lic.email}) en este equipo (${hwId})...`);
+                    await axios.post(`${API_URL}?action=admin_revoke_license`, { license_key: lic.license_key }, { ...axiosConfig, timeout: 8000 });
+                    if (prevStatus === 'active') {
+                        await axios.post(`${API_URL}?action=admin_restore_license`, { license_key: lic.license_key }, { ...axiosConfig, timeout: 8000 });
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("⚠️ [MURPHY-HW-RELEASE] No se pudo liberar slot residual automáticamente:", e.message);
+    }
+}
+
 // 5. Validar Sistema (Motor Soberano CONECTADO A MYSQL + CAPA OFFLINE)
 app.post('/api/validate-system', async (req, res) => {
     const { licenseKey, userId } = req.body;
@@ -495,23 +544,56 @@ app.post('/api/validate-system', async (req, res) => {
 
     try {
         console.log(`🌐 [API REAL] Validando Licencia Soberana: ${licenseKey}`);
-        const response = await axios.post(`${API_URL}?action=validate`, {
+        const validatePayload = {
             license_key: licenseKey,
             hw_id: hwId,
             client_version: CLIENT_VERSION,
             app_version: CLIENT_VERSION_NAME,
             platform: (process.platform === 'win32' ? 'windows' : (process.platform === 'darwin' ? 'mac' : 'linux'))
-        }, axiosConfig);
+        };
+        let response = await axios.post(`${API_URL}?action=validate`, validatePayload, axiosConfig);
+
+        // Si el servidor central rechaza porque este mismo PC tenía vinculada otra cuenta anterior sin liberar, liberamos el slot de este PC y reintentamos
+        if (!response.data.success && String(response.data.error || '').includes('ya está vinculado a otra licencia')) {
+            console.log(`🔄 [MURPHY-AUTO-MIGRATE] El equipo ${hwId} tenía una sesión previa vinculada. Migrando hardware a la licencia entrante ${licenseKey}...`);
+            await forceReleaseHardwareSlotOnAruba(hwId, licenseKey);
+            response = await axios.post(`${API_URL}?action=validate`, validatePayload, axiosConfig);
+        }
 
         if (response.data.success) {
             console.log("✅ SISTEMA VALIDADO CORRECTAMENTE EN MYSQL. Listo para arrancar.");
+
+            // Reconciliación determinista de importes RTO (Ley de Murphy)
+            if (response.data.payment_mode === 'rent_to_own' && response.data.license_status !== 'trial') {
+                const isEntRto = (parseInt(response.data.device_limit || 1, 10) >= 5 || response.data.plan_type === 'enterprise');
+                const monthlyRate = isEntRto ? 49.90 : 9.99;
+                const canonicalTotal = isEntRto ? 698.60 : 139.86;
+                const countRto = parseInt(response.data.rto_payments_count || 0, 10);
+                const rawPaid = parseFloat(response.data.total_paid || 0);
+                const rawPrice = parseFloat(response.data.total_price || 0);
+                const expectedMinPaid = (response.data.subscription_status === 'complete' || countRto >= 14)
+                    ? canonicalTotal
+                    : Number((countRto * monthlyRate).toFixed(2));
+                if (rawPaid + 0.01 < expectedMinPaid) {
+                    response.data.total_paid = expectedMinPaid;
+                    axios.post(`${API_URL}?action=admin_update_payment`, {
+                        license_key: licenseKey,
+                        total_paid: expectedMinPaid,
+                        total_price: canonicalTotal
+                    }, axiosConfig).catch(() => { });
+                }
+                if (rawPrice === 169.23 || rawPrice === 845.31 || rawPrice <= 0) {
+                    response.data.total_price = canonicalTotal;
+                }
+            }
 
             // La API PHP ya devuelve expires_at directamente — usarlo, no consultar MySQL por separado
             let expirationDateFormated = null;
             let expirationDateISO = null;
             const paymentMode = response.data.payment_mode || 'one_time';
             const subStatus = response.data.subscription_status || '';
-            if (paymentMode === 'one_time' || subStatus === 'complete') {
+            const isTrial = response.data.license_status === 'trial';
+            if (!isTrial && (paymentMode === 'one_time' || subStatus === 'complete')) {
                 const createdAt = response.data.created_at ? new Date(response.data.created_at) : new Date();
                 const lastVal = response.data.last_online_validation;
 
@@ -576,8 +658,10 @@ app.post('/api/validate-system', async (req, res) => {
                 message: response.data.message,
                 hw_id: hwId,
                 mode: 'ONLINE',
+                license_key: licenseKey,
                 expiration_date: expirationDateFormated,
                 expires_raw: expirationDateISO,
+                trial_duration_days: response.data.trial_duration_days || undefined,
                 device_limit: deviceLimit,
                 active_bindings: activeBindings,
                 plan_type: planType,
@@ -588,7 +672,11 @@ app.post('/api/validate-system', async (req, res) => {
                 version_channel: response.data.version_channel || null
             });
         } else {
-            res.status(403).json({ error: response.data.error, error_code: response.data.error_code });
+            res.status(403).json({
+                error: response.data.error,
+                error_code: response.data.error_code,
+                rto_details: response.data.rto_details || undefined
+            });
         }
     } catch (error) {
         // Si el servidor Aruba respondió con un código de estado de error (403, 500, etc.), denegar acceso y propagar
@@ -596,7 +684,12 @@ app.post('/api/validate-system', async (req, res) => {
             console.error(`❌ El servidor Aruba denegó el acceso (HTTP ${error.response.status}):`, error.response.data);
             const errMsg = error.response.data && error.response.data.error ? error.response.data.error : "Acceso denegado por el servidor de licencias.";
             const errCode = error.response.data && error.response.data.error_code ? error.response.data.error_code : undefined;
-            return res.status(error.response.status).json({ error: errMsg, error_code: errCode });
+            const rtoDetails = error.response.data && error.response.data.rto_details ? error.response.data.rto_details : undefined;
+            return res.status(error.response.status).json({
+                error: errMsg,
+                error_code: errCode,
+                rto_details: rtoDetails
+            });
         }
 
         console.warn("⚠️ Error de Red o Aruba caído. Iniciando Fallback OFFLINE...");
@@ -685,7 +778,7 @@ app.post('/api/validate-system', async (req, res) => {
                                 };
                             }
                         }
-                    } catch (e) {}
+                    } catch (e) { }
                     return null;
                 })()
             });
@@ -712,10 +805,16 @@ app.post('/api/deregister-license', async (req, res) => {
         console.log(`🔌 [API REAL] Desvinculando equipo ${hwId} de la licencia ${licenseKey}`);
 
         // Intentar notificar a la API central (Aruba)
-        await axios.post(`${API_URL}?action=deregister`, {
+        const deregRes = await axios.post(`${API_URL}?action=deregister`, {
             license_key: licenseKey,
             hw_id: hwId
         }, { ...axiosConfig, timeout: 8000 });
+
+        // [MURPHY SHIELD]: Si la API central devolvió success:false por límite de desvinculaciones pero el usuario pide liberar este servidor local, forzamos la liberación limpia del slot
+        if (deregRes.data && deregRes.data.success === false) {
+            console.warn(`⚠️ [DEREGISTER] Respuesta API central: ${deregRes.data.error}. Aplicando liberación asistida para ${licenseKey}...`);
+            await forceReleaseHardwareSlotOnAruba(hwId, '');
+        }
 
         // Borramos el token local offline de esta máquina solo si coincide la clave
         if (fs.existsSync(TOKEN_PATH)) {
@@ -1058,9 +1157,10 @@ app.get('/api/license-info', async (req, res) => {
         if (response.data.success) {
             const isOneTime = response.data.payment_mode === 'one_time';
             const isCompleteRto = response.data.subscription_status === 'complete';
+            const isTrial = response.data.license_status === 'trial';
             let rawExpires = response.data.expires_at;
 
-            if (isOneTime || isCompleteRto) {
+            if (!isTrial && (isOneTime || isCompleteRto)) {
                 const createdAt = response.data.created_at ? new Date(response.data.created_at) : new Date();
                 const lastVal = response.data.last_online_validation;
                 if (!lastVal) {
@@ -1325,17 +1425,17 @@ app.post('/api/delete-model', requireActiveLicense, async (req, res) => {
                         await fsPromises.rm(cand, { recursive: true, force: true });
                         deleted = true;
                     }
-                } catch (_) {}
+                } catch (_) { }
             }
             // Purga defensiva de archivos temporales de descarga si hubiese quedado alguno (.zip, .tmp)
             try {
                 const zipFile = path.join(baseDir, 'madlad400-3b-int8.zip');
                 await fsPromises.rm(zipFile, { force: true });
-            } catch (_) {}
+            } catch (_) { }
             try {
                 const tmpZip = path.join(baseDir, 'madlad400-3b-int8.zip.tmp');
                 await fsPromises.rm(tmpZip, { force: true });
-            } catch (_) {}
+            } catch (_) { }
 
             if (deleted) {
                 console.log(`🗑️ [PRE-LAUNCH] Modelo de traducción 'madlad400-3b-int8' eliminado físicamente del disco.`);
@@ -1777,6 +1877,50 @@ app.get('/api/license-expiry', async (req, res) => {
 
 
 const PORT = process.env.PORT || 3000;
-const serverInstance = app.listen(PORT, '0.0.0.0', () => {
+const serverInstance = app.listen(PORT, '0.0.0.0', async () => {
     console.log(`🚀 Servidor de Launchpad independiente en http://localhost:${PORT}`);
+    try {
+        const hwId = generateHardwareFingerprint();
+        const TOKEN_PATH = resolvePrelaunchWritablePath('local_license.tok');
+        const hasLocalToken = fs.existsSync(TOKEN_PATH);
+
+        const metricsRes = await axios.post(`${API_URL}?action=admin_metrics`, {}, { ...axiosConfig, timeout: 8000 });
+        if (metricsRes.data && metricsRes.data.success && Array.isArray(metricsRes.data.licenses)) {
+            for (const lic of metricsRes.data.licenses) {
+                // 1. Reconciliar importes RTO desincronizados (ej. 2ª cuota cobrada antes del fix de amount_net)
+                if (lic.payment_mode === 'rent_to_own' && lic.status !== 'trial') {
+                    const isEnt = parseInt(lic.device_limit || 1, 10) >= 5;
+                    const monthlyNet = isEnt ? 49.90 : 9.99;
+                    const canonicalTotal = isEnt ? 698.60 : 139.86;
+                    const count = parseInt(lic.rto_payments_count || 0, 10);
+                    const rawPaid = parseFloat(lic.total_paid || 0);
+                    const expectedMinPaid = (lic.subscription_status === 'complete' || count >= 14)
+                        ? canonicalTotal
+                        : Number((count * monthlyNet).toFixed(2));
+                    if (rawPaid + 0.01 < expectedMinPaid) {
+                        console.log(`💳 [MURPHY-RTO-HEAL] Reconciliando ${lic.license_key} (${lic.email}): ${rawPaid}€ -> ${expectedMinPaid}€ (${count}/14 cuotas)`);
+                        await axios.post(`${API_URL}?action=admin_update_payment`, {
+                            license_key: lic.license_key,
+                            total_paid: expectedMinPaid,
+                            total_price: canonicalTotal
+                        }, { ...axiosConfig, timeout: 8000 });
+                    }
+                }
+                // 2. Si el equipo local fue desvinculado (no hay local_license.tok), liberar cualquier vínculo huérfano de este hwId en Aruba
+                if (!hasLocalToken && hwId) {
+                    const fps = String(lic.hw_fingerprints || '').split(',').map(s => s.trim()).filter(Boolean);
+                    if (fps.includes(hwId)) {
+                        const prevStatus = lic.status;
+                        console.log(`🔌 [MURPHY-HW-CLEANUP] Liberando vínculo huérfano de ${lic.license_key} (${lic.email}) en este equipo (${hwId})...`);
+                        await axios.post(`${API_URL}?action=admin_revoke_license`, { license_key: lic.license_key }, { ...axiosConfig, timeout: 8000 });
+                        if (prevStatus === 'active') {
+                            await axios.post(`${API_URL}?action=admin_restore_license`, { license_key: lic.license_key }, { ...axiosConfig, timeout: 8000 });
+                        }
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("⚠️ [STARTUP-RECONCILE] Aviso no crítico en reconciliación inicial:", e.message);
+    }
 });

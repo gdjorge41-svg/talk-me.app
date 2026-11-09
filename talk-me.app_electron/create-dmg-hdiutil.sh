@@ -84,7 +84,11 @@ echo ""
 echo "========================================================"
 echo " [4/4] Creando imagen DMG con hdiutil nativo de Apple..."
 echo "========================================================"
-DMG_OUTPUT="dist_final/Talk-me.app_60.2.0_Setup.dmg"
+# Resolver dinámicamente la versión desde package.json o fallback defensivo
+APP_VERSION=$(node -p "require('./package.json').version" 2>/dev/null || echo "0.60.1")
+# Limpiar prefijo 'v' si existiera
+APP_VERSION="${APP_VERSION#v}"
+DMG_OUTPUT="dist_final/Talk-me.app_${APP_VERSION}_Setup.dmg"
 rm -f "$DMG_OUTPUT" 2>/dev/null || true
 
 # Creación mediante hdiutil UDZO Ultra Compressed (exactamente como el 1 de Noviembre)
@@ -100,3 +104,4 @@ rm -rf "$DMG_STAGING" 2>/dev/null || true
 echo ""
 echo "🎉 [ÉXITO] Instalador DMG nativo generado correctamente:"
 ls -lh "$DMG_OUTPUT"
+

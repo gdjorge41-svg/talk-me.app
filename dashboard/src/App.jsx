@@ -299,6 +299,34 @@ function App() {
         timeout: 10000 // 10 segundos de límite para evitar peticiones colgadas
       });
       if (res.data.success) {
+        if (Array.isArray(res.data.licenses)) {
+          res.data.licenses = res.data.licenses.map((lic) => {
+            if (lic.payment_mode === 'rent_to_own' && lic.status !== 'trial') {
+              const isEnt = parseInt(lic.device_limit || 1) >= 5;
+              const monthlyNet = isEnt ? 49.90 : 9.99;
+              const canonicalTotal = isEnt ? 698.60 : 139.86;
+              const count = parseInt(lic.rto_payments_count || 0);
+              const rawPaid = parseFloat(lic.total_paid || 0);
+              const rawPrice = parseFloat(lic.total_price || 0);
+              const expectedMinPaid = (lic.subscription_status === 'complete' || count >= 14)
+                ? canonicalTotal
+                : Number((count * monthlyNet).toFixed(2));
+              if (rawPaid + 0.01 < expectedMinPaid) {
+                axios.post(`${API_URL}?action=admin_update_payment`, {
+                  license_key: lic.license_key,
+                  total_paid: expectedMinPaid,
+                  total_price: canonicalTotal
+                }, { headers: { 'X-API-KEY': API_KEY } }).catch(() => {});
+              }
+              return {
+                ...lic,
+                total_paid: Math.max(rawPaid, expectedMinPaid).toFixed(2),
+                total_price: (rawPrice === 169.23 || rawPrice === 845.31 || rawPrice <= 0) ? canonicalTotal.toFixed(2) : rawPrice.toFixed(2)
+              };
+            }
+            return lic;
+          });
+        }
         setData(res.data);
         setError(''); // ¡Limpiamos el mensaje de error si la conexión se ha recuperado con éxito!
       } else {

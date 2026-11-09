@@ -1,6 +1,6 @@
 {
   "name": "talk-me-desktop",
-  "version": "60.2.0",
+  "version": "0.60.1",
   "description": "Desktop Launcher and Client wrapper for Talk.me Chat",
   "author": "Jorge González Domínguez / Jorge.Lighting <info@talk-me.app>",
   "homepage": "https://www.talk-me.app",
@@ -29,8 +29,6 @@
     },
     "files": [
       "**/*",
-      "!node_modules",
-      "!node_modules/**",
       "!storage/temp/**",
       "!storage/recordings/**",
       "!storage/models/**",
@@ -42,6 +40,7 @@
     },
     "mac": {
       "target": [
+        "pkg",
         "dir",
         "zip"
       ],
@@ -50,6 +49,10 @@
       "hardenedRuntime": false,
       "gatekeeperAssess": false,
       "identity": "-"
+    },
+    "pkg": {
+      "scripts": "build/pkg-scripts",
+      "artifactName": "Talk-me.app_${version}_Installer.${ext}"
     },
     "win": {
       "files": [

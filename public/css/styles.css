@@ -2378,14 +2378,35 @@ body:not(:has(#userModal.hidden)) .main-logo .logo-talk,
 #userModal .category-selection {
     margin-top: 0 !important;
     margin-bottom: 18px !important;
+    position: relative;
+    width: 100%;
 }
 
-/* Estilo especÃƒÂ­fico para buscador de categorÃƒÂ­as login */
+#userModal .cat-select-row {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* El contenedor del select ocupa siempre el 100% para centrarse exactamente igual que el campo de nombre */
 #userModal .talkme-select-container {
     margin-bottom: 0px;
     position: relative;
     z-index: 10;
+    width: 100%;
+    flex: 1 1 100%;
+}
 
+/* Botón Master situado de forma absoluta a la derecha del selector sin desplazar el centro geométrico */
+#userModal .btn-manage-cat-login {
+    position: absolute;
+    right: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 32px;
+    height: 32px;
 }
 
 /* BotÃƒÂ³n Talk: violeta sÃƒÂ³lido, ancho completo */

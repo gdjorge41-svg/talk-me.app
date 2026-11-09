@@ -89,6 +89,14 @@ function loadUrlWhenReady(url, attempts = 0) {
         console.log(`[ELECTRON] Server is ready (status: ${res.statusCode}). Loading page...`);
         if (mainWindow) {
             mainWindow.loadURL(url);
+            // Red de seguridad incondicional: forzar visualización si ready-to-show tarda
+            setTimeout(() => {
+                if (mainWindow && !mainWindow.isVisible()) {
+                    console.log('[ELECTRON] Forzando visibilidad de ventana principal (Fallback de seguridad)...');
+                    mainWindow.show();
+                    mainWindow.focus();
+                }
+            }, 800);
         }
     }).on('error', (err) => {
         // Reintentar si falla la conexión
@@ -128,9 +136,13 @@ function startLauncher() {
     logStream.write(`\n=== START LAUNCHER AT ${new Date().toISOString()} ===\n`);
 
     const childBinary = getChildBinary();
+    const appNodeModules = path.join(__dirname, 'node_modules');
+    const existingNodePath = process.env.NODE_PATH ? (appNodeModules + path.delimiter + process.env.NODE_PATH) : appNodeModules;
+
     launcherProcess = spawn(childBinary, [path.join(__dirname, 'pre-launch', 'launcher-server.js')], {
         env: {
             ...process.env,
+            NODE_PATH: existingNodePath,
             ELECTRON_RUN_AS_NODE: '1',
             USER_DATA_PATH: app.getPath('userData'),
             PORT: allocatedPort,
@@ -182,14 +194,13 @@ function startChatServer(targetLang = '') {
     const childBinary = getChildBinary();
     let spawnBin = childBinary;
     let spawnArgs = [path.join(__dirname, 'server.js')];
-    if (process.platform === 'darwin' && process.arch === 'arm64' && fs.existsSync('/usr/bin/arch')) {
-        // En Apple Silicon, invocar Node bajo emulación x86_64 para compatibilidad total N-API con Vosk y C++
-        spawnBin = '/usr/bin/arch';
-        spawnArgs = ['-x86_64', childBinary, path.join(__dirname, 'server.js')];
-    }
+    const appNodeModules = path.join(__dirname, 'node_modules');
+    const existingNodePath = process.env.NODE_PATH ? (appNodeModules + path.delimiter + process.env.NODE_PATH) : appNodeModules;
+
     serverProcess = spawn(spawnBin, spawnArgs, {
         env: {
             ...process.env,
+            NODE_PATH: existingNodePath,
             ELECTRON_RUN_AS_NODE: '1',
             USER_DATA_PATH: app.getPath('userData'),
             PORT: allocatedPort,

@@ -2283,6 +2283,10 @@ export class SettingsUI {
                     importantDiv.appendChild(noteTitle);
 
                     const noteText = document.createElement('span');
+                    noteText.style.cssText = 'color: var(--text-secondary); font-size: 0.78rem; line-height: 1.4; display: block;';
+                    noteText.innerHTML = item.important;
+                    importantDiv.appendChild(noteText);
+
                     liEl.appendChild(importantDiv);
                 }
 
