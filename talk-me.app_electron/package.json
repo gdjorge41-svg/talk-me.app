@@ -29,6 +29,8 @@
     },
     "files": [
       "**/*",
+      "!node_modules",
+      "!node_modules/**",
       "!storage/temp/**",
       "!storage/recordings/**",
       "!storage/models/**",

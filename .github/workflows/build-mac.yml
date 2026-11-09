@@ -6,6 +6,8 @@ on:
 jobs:
   build-macos:
     runs-on: macos-latest # Máquina virtual oficial de macOS (Apple Silicon ARM64)
+    env:
+      ACTIONS_RUNNER_FORCE_NODE24: "1"
 
     steps:
       - name: 1. Descargar repositorio
