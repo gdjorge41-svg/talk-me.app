@@ -75,18 +75,25 @@ if [ -d "../vosk-model-small-en-us-0.15" ]; then
     rsync -a ../vosk-model-small-en-us-0.15 app_build/
 fi
 
-# Binarios nativos opcionales si existen
-if [ -d "../bin/translate" ]; then
-    rsync -a "${EXCLUDE_ARGS[@]}" ../bin/translate app_build/bin/
-fi
-if [ -d "../bin/tts" ]; then
-    rsync -a "${EXCLUDE_ARGS[@]}" ../bin/tts app_build/bin/
+# Binarios nativos opcionales si existen (solo en Windows, evitando arrastrar .exe a macOS o Linux)
+IS_WIN=false
+case "$(uname -s)" in
+    CYGWIN*|MINGW*|MSYS*) IS_WIN=true ;;
+esac
+
+if [ "$IS_WIN" = true ]; then
+    if [ -d "../bin/translate" ]; then
+        rsync -a "${EXCLUDE_ARGS[@]}" ../bin/translate app_build/bin/
+    fi
+    if [ -d "../bin/tts" ]; then
+        rsync -a "${EXCLUDE_ARGS[@]}" ../bin/tts app_build/bin/
+    fi
+    if [ -d "../bin/whisper" ]; then
+        rsync -a "${EXCLUDE_ARGS[@]}" ../bin/whisper app_build/bin/
+    fi
 fi
 if [ -d "../storage/models/tts" ]; then
     rsync -a "${EXCLUDE_ARGS[@]}" ../storage/models/tts app_build/storage/models/
-fi
-if [ -d "../bin/whisper" ]; then
-    rsync -a "${EXCLUDE_ARGS[@]}" ../bin/whisper app_build/bin/
 fi
 
 echo ""

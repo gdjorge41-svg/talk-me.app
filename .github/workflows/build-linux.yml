@@ -6,13 +6,15 @@ on:
 jobs:
   build-linux:
     runs-on: ubuntu-latest # Máquina virtual oficial de Linux (Ubuntu)
+    env:
+      ACTIONS_RUNNER_FORCE_NODE24: "1"
 
     steps:
       - name: 1. Descargar repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 2. Configurar Node.js (LTS v22)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
 
@@ -31,7 +33,7 @@ jobs:
           ./node_modules/.bin/electron-builder --linux AppImage deb --publish never
 
       - name: 6. Publicar instaladores como artefactos descargables
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Talk-me-Linux-Installer
           path: |
