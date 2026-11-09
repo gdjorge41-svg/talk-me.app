@@ -1,6 +1,6 @@
 {
   "name": "talk-me-chat",
-  "version": "1.0.0",
+  "version": "0.60.1",
   "description": "Chat Talk.Me para red local",
   "main": "server.js",
   "scripts": {
