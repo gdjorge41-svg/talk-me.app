@@ -1,0 +1,45 @@
+name: Build Windows Installer (Portable & Setup)
+
+on:
+  workflow_dispatch: # Permite compilar manualmente con un clic desde la web de GitHub Actions
+
+jobs:
+  build-windows:
+    runs-on: windows-latest # Máquina virtual oficial de Windows Server 2022
+    env:
+      ACTIONS_RUNNER_FORCE_NODE24: "1"
+
+    steps:
+      - name: 1. Descargar repositorio
+        uses: actions/checkout@v5
+
+      - name: 2. Configurar Node.js (LTS v22)
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: 3. Instalar herramientas de compilación Electron
+        run: |
+          cd talk-me.app_electron
+          npm install
+
+      - name: 4. Preparar entorno staging (prepare-build.bat)
+        shell: cmd
+        run: |
+          cd talk-me.app_electron
+          call prepare-build.bat
+
+      - name: 5. Compilar instaladores Windows (NSIS Setup & Portable x64)
+        shell: cmd
+        run: |
+          cd talk-me.app_electron
+          .\node_modules\.bin\electron-builder.cmd --win --x64 --publish never
+
+      - name: 6. Publicar instaladores como artefactos descargables
+        uses: actions/upload-artifact@v6
+        with:
+          name: Talk-me-Windows-Installer
+          path: |
+            talk-me.app_electron/dist_final/*.exe
+            talk-me.app_electron/dist_final/*.blockmap
+          retention-days: 14
