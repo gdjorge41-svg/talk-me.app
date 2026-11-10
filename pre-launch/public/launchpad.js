@@ -2398,29 +2398,20 @@ window.onload = async () => {
         checkAndPromptTranslateDownload();
         downloadModel(currentLang);
         // Background re-validation (non-blocking) — updates token and expiry silently
-        const ok = await performAutomaticValidation(cachedLicense, cachedEmail);
-        if (ok === true) {
-            // Licencia re-validada con éxito en segundo plano: mantener sesión activa y botón visible
-            localStorage.setItem('talkme_session_active', 'true');
-            const btnKey = document.getElementById('btnOpenPrelaunchSettings');
-            if (btnKey) {
-                btnKey.style.display = 'flex';
-                btnKey.style.opacity = '1';
-                btnKey.style.pointerEvents = 'auto';
+        performAutomaticValidation(cachedLicense, cachedEmail).then(ok => {
+            if (ok === 'RTO_SCREEN') {
+                localStorage.setItem('talkme_session_active', 'false');
+                const btnKey = document.getElementById('btnOpenPrelaunchSettings');
+                if (btnKey) btnKey.style.display = 'none';
+            } else if (!ok) {
+                // Solo si el servidor rechaza explícitamente la licencia se desactiva
+                localStorage.setItem('talkme_session_active', 'false');
+                const btnKey = document.getElementById('btnOpenPrelaunchSettings');
+                if (btnKey) btnKey.style.display = 'none';
+                document.getElementById('sec-login').style.display = 'block';
+                document.getElementById('sec-start-server').style.display = 'none';
             }
-        } else if (ok === 'RTO_SCREEN') {
-            // Si la cuota RTO venció y se mostró la pantalla de regularización, desmarcar sesión
-            localStorage.setItem('talkme_session_active', 'false');
-            const btnKey = document.getElementById('btnOpenPrelaunchSettings');
-            if (btnKey) btnKey.style.display = 'none';
-        } else {
-            // Servidor rechazó explícitamente la licencia: volver a login y ocultar ajustes
-            localStorage.setItem('talkme_session_active', 'false');
-            const btnKey = document.getElementById('btnOpenPrelaunchSettings');
-            if (btnKey) btnKey.style.display = 'none';
-            document.getElementById('sec-login').style.display = 'block';
-            document.getElementById('sec-start-server').style.display = 'none';
-        }
+        }).catch(() => { });
         return;
     }
 
