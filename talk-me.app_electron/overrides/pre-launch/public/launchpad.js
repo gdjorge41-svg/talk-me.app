@@ -811,7 +811,7 @@ function renderVersionUpdatesChannel(lang) {
 
     updatesBox.style.display = 'block';
 
-    const currentVer = channelData.current_version || 'v1.0.0';
+    const currentVer = channelData.current_version || 'v0.60.1';
     const status = channelData.status || 'UP_TO_DATE';
     const daysRemaining = channelData.days_remaining || 0;
 
@@ -1384,10 +1384,10 @@ function updateSettingsButtonPulse(providedChannelData) {
                 channelData = JSON.parse(stored);
                 cachedVersionChannelData = channelData;
             }
-        } catch (e) {}
+        } catch (e) { }
     }
 
-    const currentAppVer = 'v1.0.0';
+    const currentAppVer = 'v0.60.1';
     let targetVer = null;
     let isUpdateAvailable = false;
 
@@ -3361,8 +3361,8 @@ async function startMainServer() {
         const res = await fetch('/api/start-main-server', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                modelsPath, 
+            body: JSON.stringify({
+                modelsPath,
                 lang: currentLang || 'es',
                 translateEnabled: translateEnabled
             })
@@ -4230,9 +4230,9 @@ async function selectModelsPath(context = 'tab') {
             checkPrelaunchTabModels();
         }
     } catch (e) {
-        const currentPath = (document.getElementById('inputModelsPathModal') && document.getElementById('inputModelsPathModal').value) || 
-                            (document.getElementById('inputModelsPath') && document.getElementById('inputModelsPath').value) || 
-                            'C:\\\\TalkMe\\\\Models';
+        const currentPath = (document.getElementById('inputModelsPathModal') && document.getElementById('inputModelsPathModal').value) ||
+            (document.getElementById('inputModelsPath') && document.getElementById('inputModelsPath').value) ||
+            'C:\\\\TalkMe\\\\Models';
         const t = translations[currentLang] || translations['en'];
         const newPath = prompt(t.prompt_models_path || 'Enter the models storage path:', currentPath);
         if (newPath !== null && newPath.trim() !== '') {
@@ -4691,7 +4691,7 @@ function _safeGetTermsCache(key) {
 function _safeSetTermsCache(key, val) {
     try {
         localStorage.setItem(key, val);
-    } catch (e) {}
+    } catch (e) { }
     window._termsMemoryCache[key] = val;
 }
 
@@ -4780,40 +4780,40 @@ async function openLauncherTermsModal(e, tipo) {
 
     // ── NIVEL 2: Sondeo Silencioso en Background con AbortController (3.5s) y Anti-Caché ──
     if (_termsFetchController) {
-        try { _termsFetchController.abort(); } catch (e) {}
+        try { _termsFetchController.abort(); } catch (e) { }
     }
     _termsFetchController = new AbortController();
     const timeoutId = setTimeout(() => {
-        try { _termsFetchController.abort(); } catch (e) {}
+        try { _termsFetchController.abort(); } catch (e) { }
     }, 3500);
 
     fetch(`${archivoTerms}?_t=${Date.now()}`, {
         cache: 'no-store',
         signal: _termsFetchController.signal
     })
-    .then(async (res) => {
-        clearTimeout(timeoutId);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return await res.text();
-    })
-    .then((remoteHtml) => {
-        // ── NIVEL 3: Validación de Integridad y Actualización Suave ──
-        if (remoteHtml && typeof remoteHtml === 'string' && remoteHtml.length > 200) {
-            const currentCached = _safeGetTermsCache(cacheKey);
-            if (remoteHtml !== currentCached) {
-                _safeSetTermsCache(cacheKey, remoteHtml);
-                const updatedBlock = _extractTermsLangBlock(remoteHtml, activeLang);
-                if (updatedBlock) {
-                    contentArea.innerHTML = updatedBlock;
-                    console.log(`✅ [TermsModal] Términos (${tipoFinal}) actualizados dinámicamente desde repositorio central.`);
+        .then(async (res) => {
+            clearTimeout(timeoutId);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return await res.text();
+        })
+        .then((remoteHtml) => {
+            // ── NIVEL 3: Validación de Integridad y Actualización Suave ──
+            if (remoteHtml && typeof remoteHtml === 'string' && remoteHtml.length > 200) {
+                const currentCached = _safeGetTermsCache(cacheKey);
+                if (remoteHtml !== currentCached) {
+                    _safeSetTermsCache(cacheKey, remoteHtml);
+                    const updatedBlock = _extractTermsLangBlock(remoteHtml, activeLang);
+                    if (updatedBlock) {
+                        contentArea.innerHTML = updatedBlock;
+                        console.log(`✅ [TermsModal] Términos (${tipoFinal}) actualizados dinámicamente desde repositorio central.`);
+                    }
                 }
             }
-        }
-    })
-    .catch((err) => {
-        clearTimeout(timeoutId);
-        // Silencio absoluto ante cortes de red o timeout: el usuario continúa leyendo la copia local sana
-    });
+        })
+        .catch((err) => {
+            clearTimeout(timeoutId);
+            // Silencio absoluto ante cortes de red o timeout: el usuario continúa leyendo la copia local sana
+        });
 }
 
 function closeLauncherTermsModal(accept) {
@@ -5452,46 +5452,46 @@ function renderPrelaunchGuide(guideData, container, lang) {
     });
 
     // Contenedor de estado vacío cuando no hay coincidencias en la guía de pre-launch
-        const emptyStateI18n = {
-            es: 'No se encontraron resultados',
-            en: 'No results found',
-            eu: 'Ez da emaitzarik aurkitu',
-            de: 'Keine Ergebnisse gefunden',
-            ar: 'لم يتم العثور على نتائج',
-            ca: 'No s\'han trobat resultats',
-            zh: '未找到结果',
-            ko: '결과를 찾을 수 없습니다',
-            eo: 'Neniuj rezultoj trovitaj',
-            fa: 'نتیجه‌ای یافت نشد',
-            fr: 'Aucun résultat trouvé',
-            gl: 'Non se atoparon resultados',
-            nl: 'Geen resultaten gevonden',
-            it: 'Nessun resultado trovato',
-            ja: '結果が見つかりませんでした',
-            kk: 'Нәтиже табылмады',
-            pl: 'Nie znaleziono wyników',
-            pt: 'Nenhum resultado encontrado',
-            ru: 'Результаты не найдены',
-            sv: 'Inga resultat hittades',
-            tr: 'Sonuç bulunamadı',
-            uk: 'Результатів не знайдено',
-            uz: 'Hech qanday natija topilmadi',
-            vi: 'Không tìm thấy kết quả'
-        };
+    const emptyStateI18n = {
+        es: 'No se encontraron resultados',
+        en: 'No results found',
+        eu: 'Ez da emaitzarik aurkitu',
+        de: 'Keine Ergebnisse gefunden',
+        ar: 'لم يتم العثور على نتائج',
+        ca: 'No s\'han trobat resultats',
+        zh: '未找到结果',
+        ko: '결과를 찾을 수 없습니다',
+        eo: 'Neniuj rezultoj trovitaj',
+        fa: 'نتیجه‌ای یافت نشد',
+        fr: 'Aucun résultat trouvé',
+        gl: 'Non se atoparon resultados',
+        nl: 'Geen resultaten gevonden',
+        it: 'Nessun resultado trovato',
+        ja: '結果が見つかりませんでした',
+        kk: 'Нәтиже табылмады',
+        pl: 'Nie znaleziono wyników',
+        pt: 'Nenhum resultado encontrado',
+        ru: 'Результаты не найдены',
+        sv: 'Inga resultat hittades',
+        tr: 'Sonuç bulunamadı',
+        uk: 'Результатів не знайдено',
+        uz: 'Hech qanday natija topilmadi',
+        vi: 'Không tìm thấy kết quả'
+    };
 
-        const guideEmptyTitle = emptyStateI18n[lang] || emptyStateI18n['es'];
-        const emptyState = document.createElement('div');
-        emptyState.id = 'prelaunchGuideEmptyState';
-        emptyState.style.cssText = 'display: none; text-align: center; padding: 40px 20px; color: var(--text-secondary, rgba(255,255,255,0.45)); font-size: 0.9rem;';
-        emptyState.innerHTML = `
+    const guideEmptyTitle = emptyStateI18n[lang] || emptyStateI18n['es'];
+    const emptyState = document.createElement('div');
+    emptyState.id = 'prelaunchGuideEmptyState';
+    emptyState.style.cssText = 'display: none; text-align: center; padding: 40px 20px; color: var(--text-secondary, rgba(255,255,255,0.45)); font-size: 0.9rem;';
+    emptyState.innerHTML = `
             <svg viewBox="0 0 24 24" width="40" height="40" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.4; margin-bottom: 12px;">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
             <div style="font-weight: 600; color: var(--text-primary, #ffffff); margin-bottom: 4px;">${guideEmptyTitle}</div>
         `;
-        container.appendChild(emptyState);
-    }
+    container.appendChild(emptyState);
+}
 
 /**
  * 📜 Sistema Legal & Licencias Dinámico de Pre-Launch (24 Idiomas)

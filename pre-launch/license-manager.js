@@ -13,14 +13,14 @@ function resolvePrelaunchWritablePath(filename) {
         try {
             if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
             return path.join(targetDir, filename);
-        } catch (_) {}
+        } catch (_) { }
     }
     return path.join(__dirname, filename);
 }
 
 const TOKEN_PATH = resolvePrelaunchWritablePath('local_license.tok');
 
-const GRACE_PERIOD_DAYS = 30; // 30 Días para suscripciones Anuales
+const GRACE_PERIOD_DAYS = 37; // 30 Días para suscripciones Anuales
 const CLIENT_VERSION = 1;
 
 
@@ -53,7 +53,7 @@ function generateOfflineToken(hwId, licenseKey, email = null, userId = null, exp
     const now = new Date();
     // Por defecto para licencias pagadas por completo o de golpe (one_time), exigimos subir telemetría cada 180 días (6 meses)
     let graceEnd = new Date(now.getTime() + 180 * 24 * 60 * 60 * 1000);
-    
+
     if (expirationDate) {
         const expDate = new Date(expirationDate);
         if (!isNaN(expDate.getTime())) {
@@ -70,7 +70,7 @@ function generateOfflineToken(hwId, licenseKey, email = null, userId = null, exp
             }
         }
     }
-    
+
     const payload = {
         hwId: hwId,
         licenseKey: licenseKey,
@@ -91,7 +91,7 @@ function generateOfflineToken(hwId, licenseKey, email = null, userId = null, exp
         licenseVersion: licenseVersion,
         subscriptionStatus: subscriptionStatus
     };
-    
+
     try {
         fs.writeFileSync(TOKEN_PATH, encrypt(JSON.stringify(payload)));
         console.log(`🔒 Token Offline actualizado. Válido hasta: ${graceEnd.toLocaleDateString()} | Plan: ${planType.toUpperCase()} (${activeBinders}/${deviceLimit}) | Estado: ${licenseStatus} | Versión: ${licenseVersion}`);
@@ -114,15 +114,15 @@ function validateOfflineToken(currentHwId) {
     } catch (e) {
         return { success: false, error: "Error de lectura en el archivo de licencia: " + e.message };
     }
-    
+
     const decryptedJson = decrypt(encryptedData);
-    
+
     if (!decryptedJson) {
         return { success: false, error: "El archivo de licencia está corrupto o manipulado." };
     }
 
     let tokenData = JSON.parse(decryptedJson);
-    
+
     // 0. Filtro de Versión Mayor
     const licenseVer = tokenData.licenseVersion || 1;
     if (licenseVer < CLIENT_VERSION) {
@@ -170,9 +170,9 @@ function validateOfflineToken(currentHwId) {
     if (isPenalized) {
         // Excepción para pruebas gratuitas: no conceder strikes de emergencia si ya expiró el mes de prueba
         if (tokenData.licenseStatus === 'trial' && isFullyExpired) {
-            return { 
-                success: false, 
-                error: "Tu periodo de prueba de 30 días ha finalizado. Conéctate a internet para adquirir una licencia permanente." 
+            return {
+                success: false,
+                error: "Tu periodo de prueba de 30 días ha finalizado. Conéctate a internet para adquirir una licencia permanente."
             };
         }
 
@@ -183,7 +183,7 @@ function validateOfflineToken(currentHwId) {
                 return { success: false, error: "Has agotado tus 3 usos de emergencia. DEBES conectarte a internet para reactivar el sistema." };
             }
         }
-        
+
         const lastStrikeTime = tokenData.lastStrikeDate ? new Date(tokenData.lastStrikeDate).getTime() : 0;
         const oneDayMs = 24 * 60 * 60 * 1000;
         if (now.getTime() - lastStrikeTime >= oneDayMs) {
@@ -197,15 +197,15 @@ function validateOfflineToken(currentHwId) {
 
     // Actualizamos SIEMPRE el lastUsedDate para prevenir futuros atrasos de reloj
     tokenData.lastUsedDate = new Date(Math.max(now.getTime(), lastUsed.getTime())).toISOString();
-    
+
     try {
         fs.writeFileSync(TOKEN_PATH, encrypt(JSON.stringify(tokenData)));
     } catch (e) {
         console.error("❌ Error de I/O al actualizar lastUsedDate en el Token Offline:", e.message);
     }
 
-    return { 
-        success: true, 
+    return {
+        success: true,
         warningCode: warningCode,
         strikesUsed: tokenData.strikes,
         email: tokenData.email,
