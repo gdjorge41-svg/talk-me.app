@@ -31,6 +31,8 @@ jobs:
 
       - name: 5. Compilar instaladores Windows (NSIS Setup & Portable x64)
         shell: cmd
+        env:
+          USE_HARD_LINKS: "false"
         run: |
           cd talk-me.app_electron
           .\node_modules\.bin\electron-builder.cmd --win --x64 --publish never

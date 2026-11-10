@@ -30,6 +30,8 @@ jobs:
           chmod -R +x talk-me.app_electron/build/pkg-scripts 2>/dev/null || true
 
       - name: 5. Compilar bundle nativo macOS y empaquetar con hdiutil
+        env:
+          USE_HARD_LINKS: "false"
         run: |
           cd talk-me.app_electron
           ./prepare-build.sh
