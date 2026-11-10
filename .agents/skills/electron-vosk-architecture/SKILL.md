@@ -20,3 +20,17 @@ description: Reglas y arquitectura crítica de compilación Electron y motor de 
 ## 4. Compilación del Dashboard React / Vite (`dashboard/dist`)
 - **Ejecutar vía `cmd.exe`**: Para esquivar restricciones de scripts PowerShell (`Execution_Policies`), compilar siempre con `cmd.exe /c "npm run build"` dentro de `dashboard/`.
 - **Verificación**: Comprobar que `dist/index.html` referencie el nuevo bundle JS generado en `dist/assets/` antes de desplegar al FTP.
+
+## 5. Reglas Inmutables de Compilación CI/CD Multiplataforma (Windows, macOS, Linux)
+- **Prohibición Absoluta de Hard Links (`USE_HARD_LINKS=false`)**:
+  - Al utilizar `"asar": false` para permitir la modularidad de scripts en staging, `electron-builder` intenta por defecto crear hard links (`fs.link()`) en los runners de GitHub Actions (Ubuntu ext4 y macOS APFS).
+  - Esto provoca invariablemente el fallo `Error: EEXIST: file already exists, link ... node_modules/ansi-regex/...`.
+  - **Obligatorio**: Todos los pipelines de CI (`build-linux.yml`, `build-mac.yml`, `build-windows.yml`) y scripts locales de empaquetado DEBEN definir `USE_HARD_LINKS: "false"` para forzar copia física limpia y evitar colisiones de inodos.
+- **Soberanía del Package.json de Staging (Zero-Dependencies en Root Electron)**:
+  - `talk-me.app_electron/package.json` DEBE contener únicamente `devDependencies` (`electron` y `electron-builder`).
+  - NUNCA declarar dependencias de producción (`dependencies`) en `talk-me.app_electron/package.json`. Toda dependencia de runtime se instala exclusivamente dentro de `app_build/` durante el paso 5 de `prepare-build`. Declarar dependencias en la raíz provoca duplicidad y conflicto en el árbol de enlaces de `electron-builder`.
+- **Ecosistema y Scripts Multiplataforma**:
+  - **Windows**: Ejecutar `prepare-build.bat` previo a `electron-builder --win --x64`. Genera Setup NSIS y ejecutable Portable.
+  - **macOS**: Exigir `chmod +x` en `prepare-build.sh`, `create-dmg-hdiutil.sh` y scripts de `pkg-scripts`. Genera `.pkg`, `.dmg` nativo con `hdiutil` (UDZO) y `.zip` universal/arm64 sin certificados de pago (`identity: "-"`).
+  - **Linux**: Ejecutar `prepare-build.sh` previo a `electron-builder --linux AppImage deb`. Genera `.AppImage` y `.deb` filtrando estrictamente cualquier ejecutable `.exe` de Windows.
+
