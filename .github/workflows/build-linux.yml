@@ -27,6 +27,8 @@ jobs:
         run: chmod +x talk-me.app_electron/prepare-build.sh
 
       - name: 5. Compilar instalador para Linux (AppImage y .deb)
+        env:
+          USE_HARD_LINKS: "false"
         run: |
           cd talk-me.app_electron
           ./prepare-build.sh
